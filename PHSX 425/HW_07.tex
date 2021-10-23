@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{geometry, graphicx}
+\usepackage{tabulary}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{enumitem}
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}, math-micro={\upmu}}
+
+\usepackage{pgfplotstable,filecontents}
+\pgfplotsset{compat=1.9}% supress warning
+
+% setup the margins
+\geometry{margin=1.0in, headheight=15pt}
+
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+
+\title{PHSX 425, HW 07}
+\author{William Jardee}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1:}
+
+\begin{enumerate}[label=\alph*)]
+    \item 
+    We are given
+    \[\rho(\textbf{r}, t) = \rho(\textbf{r}, 0)e^{-\sigma t/\epsilon_0}\]
+    Thus, 
+    \[\rho(\textbf{r},0) = \frac{Q}{\frac{4}{3}\pi a^3} \]
+    \begin{equation}\rho(\textbf{r},t) = \frac{3Q}{4\pi a^3}e^{-\sigma t/\epsilon_0}\end{equation}
+    
+    \item
+    We can use Guass's Law to calculate the $\textbf{E}$
+    \[\oint\, \textbf{E}\cdot \, d\textbf{a} = \frac{1}{\varepsilon_0}\int_V \rho \, dV \]
+    \[E (4 \pi r^2) = \frac{3Q}{4\pi a^3}\frac{4\pi r^3}{3 \varepsilon_0} e^{-\sigma t/\varepsilon_0}\]
+    % \[\mybox[fill=blue!20]{\textbf{E} = \frac{}{}\hat{r}}\]
+    
+   \begin{equation}
+   \textbf{E}(\textbf{r}, t) = \left\{
+        \begin{array}{ll}
+            \frac{Qr}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \leq a \\
+            \frac{Q}{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \geq a
+        \end{array}
+    \right
+    \}\footnote{Sorry that these aren't boxed. I tried to do that boxing that I have done in the past. However, with doing a piecewise it wasn't playing nice. If I do LaTeX solutions in the future I will get that figured out.}
+    \label{eq:E}
+    \end{equation}
+    
+    Using the fact that $\textbf{J} = \sigma \textbf{E}$:
+    \begin{equation}
+    \textbf{J}(\textbf{r}, t) = \left\{
+        \begin{array}{ll}
+            \frac{Q\sigma r}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \leq a \\
+            \frac{Q\sigma  }{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \geq a
+        \end{array}
+    \right\}
+    \label{eq:J}
+    \end{equation}
+    Finally, using $\nabla\times \textbf{B} = \mu_0 \Big(\textbf{J}+\varepsilon_0 \frac{\partial \textbf{E}}{\partial t}\Big)$
+    \[\nabla \times \textbf{B} = \left\{
+        \begin{array}{ll}
+            \mu_0 \Big(\frac{Q\sigma r}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0} + \varepsilon_0 \frac{Qr}{\varepsilon_0 4 \pi a^3} \frac{-\sigma}{\varepsilon_0}e^{-\sigma t/\varepsilon_0}\Big)\hat{r}& \quad r \leq a \\
+            \mu_0 \Big(\frac{Q\sigma  }{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0} + \varepsilon_0 \frac{Q}{\varepsilon_0 4 \pi a^2}  \frac{-\sigma}{\varepsilon_0}e^{-\sigma t/\varepsilon_0}\Big)\hat{r} & \quad r \geq a
+        \end{array}
+    \right
+    \}\]
+    \begin{equation}
+    \nabla \times \textbf{B} = 0
+    \label{eq:B}
+    \end{equation}
+    We already know from Maxwell's equations that $\nabla \cdot \textbf{B} = 0$. Putting these two together, we know that
+    \[\textbf{B}(\textbf{r}, t) = 0\]
+    
+    \item \textbf{Checking Maxwell's Equations:}\\
+    \begin{itemize}
+        \item For $x \leq a$: $\nabla \cdot \textbf{E} = \frac{1}{r^2}\frac{\partial}{\partial r}\Big(r^2 \frac{Qr}{4\pi a^3 \varepsilon_0}e^{-\sigma t/\varepsilon_0}\Big) = \frac{1}{r^2}\frac{3r^2}{4\pi a^3 \varepsilon_0}e^{-\sigma t/\varepsilon_0} = \frac{\rho}{\varepsilon_0}$\\
+        For $x > a$: $\nabla \cdot \textbf{E} = \frac{1}{r^2}\frac{\partial}{\partial t}\Big(\frac{Q}{4\pi \varepsilon_0}\Big) = 0$
+        \item $\nabla \cdot \textbf{B} = \frac{1}{r \text{sin}\theta}\frac{\partial \textbf{B}_\phi}{\partial \phi} = 0$
+        \item $\nabla \times \textbf{E} = -\frac{\partial \textbf{B}}{\partial t} = 0$
+        \item For $x \leq a$: $\nabla \times \textbf{B} = \mu_0 \Big(\textbf{J} + \varepsilon_0 \frac{\partial \textbf{E}}{\partial t}\Big) = \mu_0 \Big(\frac{Q\sigma r}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0} + \varepsilon_0 \Big(\frac{-\sigma}{\varepsilon_0}\frac{Qr}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0}\Big)\Big) = 0$\\
+        For $x < a$: $\nabla \times \textbf{B}$ = $\mu_0\Big(\frac{Q\sigma  }{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0} + \varepsilon_0\Big(\frac{-\sigma}{\varepsilon_0}\frac{Q}{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0} \Big) \Big) = 0$
+    \end{itemize}
+    So, it seems that all our equations are consistent with Maxwell's Equations. 
+\end{enumerate}
+
+\section*{Question 2:}
+\begin{enumerate}[label=\alph*)]
+    \item We know that $\textbf{B} = \mu_0(\textbf{M}+\textbf{H})$. So, if $\textbf{H} = 0$
+    \[\textbf{B} = M \hat{z}\]
+    \item We can use the equation that $\textbf{J} = en\textbf{v}$; where $e$ is the charge of an electron, $n$ is number volume-density, and $\textbf{v}$ is the average velocity. Then (remembering Eq.~\ref{eq:J})
+    \[\textbf{J} = en\textbf{v}\]
+    \begin{equation}
+    \textbf{v} = \frac{\textbf{J}}{ne} = \left\{
+        \begin{array}{ll}
+            \frac{Q\sigma r}{\varepsilon_0 4 \pi a^3 en} e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \leq a \\
+            \frac{Q\sigma  }{\varepsilon_0 4 \pi a^2 en}  e^{-\sigma t/\varepsilon_0}\hat{r} & \quad r \geq a
+        \end{array}
+    \right\}
+    \label{eq:J2}
+    \end{equation}
+    
+    \item Putting together Eq.~\ref{eq:J} and Eq.~\ref{eq:J2} and recognizing that $\textbf{v} \times \textbf{B} = -|\textbf{v}||\textbf{B}|\text{sin}(\theta)\hat{\phi}$
+    \begin{equation}
+        \textbf{J} = \sigma \left\{
+        \begin{array}{ll}
+            \frac{Q\sigma r}{\varepsilon_0 4 \pi a^3} e^{-\sigma t/\varepsilon_0} \Big( \hat{r}-\frac{M\text{sin}(\theta)\hat{\phi}}{ne}\Big) & \quad r \leq a \\
+            \frac{Q\sigma  }{\varepsilon_0 4 \pi a^2}  e^{-\sigma t/\varepsilon_0}\Big( \hat{r}-\frac{M\text{sin}(\theta)\hat{\phi}}{ne}\Big) & \quad r \geq a
+        \end{array}
+    \right\}
+    \end{equation}
+    
+\end{enumerate}
+
+\end{document}
