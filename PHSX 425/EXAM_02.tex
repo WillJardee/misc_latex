@@ -37,17 +37,44 @@
 \includegraphics[scale=.5]{exam02_question1.png}
 \label{fig:1.1}
 \end{figure}
+
+If we set up a cylindrical coordinate system such that $\hat{y}$ is parallel with $\vb{\omega}$, then we get the following set of parameters:
+\[\vb{v} = \frac{\omega}{R}\hat{\theta} \qquad \vb{B} = B\hat{z}\]
+Then, using the equation $\mathcal{E} = \oint (\vb{v} \times \vb{B})\cdot \dd{\vb{l}}$: $\vb{v} \times \vb{B} = \frac{\omega}{R} B \hat{s}$. Since the path that we are interested in is the rim of the bowl, then $\dd{\vb{l}}$ is in the $\hat{\theta}$ direction. 
+\[\frac{\omega}{R} B \hat{s} \cdot \dd{l}\hat{\theta} = 0 \quad \rightarrow \quad \mathcal{E} = \oint (\vb{v} \times \vb{B})\cdot \dd{\vb{l}} = 0\]
+
+I have a feeling that this one came out too easy and that I might have misunderstood that geometry of the problem. So, to add a little completion to the idea, I tried looking at all the surface that makes up the ``salad bowl". However, the same argument holds for every circle that you construct going down the side. 
+
+And this kinda makes sense when I think of it. $\mathcal{E} = -\dv{\Phi}{t}$, and since our flux isn't changing at all, we should expect no introduction of potential. Another way to look at it is that the magnetic field doesn't do any work, so if it magically allowed for some potential to be created without any acceleration of the bowl it would be sketchy.  
 \newpage
 
 %---------------------------------------------------
 
 \section*{Question 2:}
-\emph{A toroidal coil with rectangular cross section has $n$ turns, with inner radius $a$ and outer radius $c$ as shown. It is wound on a form of non-magnetic material, $\mu = \mu_0$. At $s=b \, (a<b<c)$, an insulated wire is threaded between the windings of the coil, parallel to the $z$-axis. The rest of this wire is formed into a continuous loop, which closes outside the toroid. Find teh mutual inductance between the wire loop and the coil.}
+\emph{A toroidal coil with rectangular cross section has $n$ turns, with inner radius $a$ and outer radius $c$ as shown. It is wound on a form of non-magnetic material, $\mu = \mu_0$. At $s=b \, (a<b<c)$, an insulated wire is threaded between the windings of the coil, parallel to the $z$-axis. The rest of this wire is formed into a continuous loop, which closes outside the toroid. Find the mutual inductance between the wire loop and the coil.}
 \begin{figure}[h]
 \centering
 \includegraphics[scale=.5]{exam02_question2.png}
 \label{fig:2.1}
 \end{figure}
+
+We have done this a hundred times, but I always forget; so, the first step is to calculate the B-field in the solenoid.
+\[\oint \vb{H} \cdot \dd{\vb{l}} = I_\text{enc}\]
+\[H\cdot 2 \pi s = In\]
+\[\vb{H} = \frac{In}{2 \pi s} \hat{\phi}\]
+Now, using $\vb{B} = \mu \vb{H}$ 
+\[\vb{B} = \frac{\mu In}{2 \pi s} \hat{\phi}\]\bigskip
+
+Now, we use use this to find the amount of the B-field from the toroid that actually passes through our funky loop.
+\[h\int_b^c \frac{\mu I n}{2 \pi s} \dd{s}\]
+\[=\frac{\mu h n I}{2 \pi}\ln\Big(\frac{c}{b}\Big)\]
+\bigskip
+
+Finally, we can use this to find the mutual inductance from the equation $\Phi_2 = M I_1$
+\[IM = \Phi = \frac{\mu h n I}{2 \pi} \ln \Big(\frac{c}{b}\Big)\]
+\[M = \frac{\mu n h}{2 \pi} \ln\Big(\frac{c}{b}\Big)\]
+
+Quick sanity check to make sure that the jazz inside the natural log is unitless, and that the mutual inductance is only reliant on geometric values ... Great!
 
 \newpage
 %---------------------------------------------------
@@ -81,10 +108,10 @@ Since $\mathcal{E} = \dv{\Phi}{t} = 0$, so the only voltage measured is from the
 
 \item \emph{Find the measure voltage $V(t)$ if the current is $I = I_0 e^{i\omega t}$. Assume that $w\omega \ll c$, where $c$ is the speed of light; why is this important?}\bigskip
 
-We have two sources, both pointed out in the part a.
+We have two sources, both pointed out in the part a. Using $\mathcal{E} = \dv{\Phi}{t}$ and that value from \eqref{eq:3.1}:
 \[\Delta V = \frac{I}{k \pi a^2} - \mathcal{E}\]
-\[\frac{I_0 e^{i\omega t}}{k \pi a^2}-\frac{\mu_0 d}{2 \pi} \ln\Big(1 + \frac{w}{a}\Big) I_0 i\omega e^{i \omega t} \]
-\[\Delta V = \Big[\frac{1}{k \pi a^2}- i\omega \frac{\mu_0 d}{2 \pi} \ln\Big(1 + \frac{w}{a}\Big)\Big]I_0 e^{i \omega t} \]
+\[= \frac{I_0 e^{i\omega t}}{k \pi a^2}-\frac{\mu_0 d}{2 \pi} \ln\Big(1 + \frac{w}{a}\Big) I_0 i\omega e^{i \omega t} \]
+\[\Delta V = \Big[\frac{1}{k \pi a^2}- i\omega \frac{\mu_0 d}{2 \pi} \ln\Big(1 + \frac{w}{a}\Big)\Big]I_0 e^{i \omega t} \]\bigskip
 
 It is important that $w\omega \ll c$ because otherwise the speed that the electrons would have to near/overcome would be the speed of light. And, as we all know from our time with special relativity, lengths and time scales get weird when we near $\frac{1}{10} c$. Especially since we haven't dealt this this concept formally in class, we wouldn't know exactly how to deal with it.\footnote{It's an interesting thought, however. My first guess would be that there would be a battle between time dilation and length contraction going on. I'm not confident to say whether this idea is actually important, but, thinking about electrons skipping over atoms entirely in a pseudo runaway event. At this point we would be dealing with a plasma situation and I don't think simple wire setup like this is built to deal with that.} 
 
@@ -125,11 +152,12 @@ So, altogether
 
 \[\div{\vb{E}} = \frac{\rho}{\varepsilon_0}\]
 \[\dv{t}\div{\vb{E}} = \dv{t}\frac{\rho}{\varepsilon_0}\]
-This gives the same result as \ref{eq:4.b}. So, when calculating $\curl{\vb{B}} = \mu_0\Big(\vb{J} + \varepsilon_0 \dv{\vb{E}}{t}\Big)$, we get 0. Since $\div{\vb{B}} = 0$ as well. So, put together:
+This gives the same result as \eqref{eq:4.b}. So, when calculating $\curl{\vb{B}} = \mu_0\Big(\vb{J} + \varepsilon_0 \dv{\vb{E}}{t}\Big)$, we get 0. Since $\div{\vb{B}} = 0$ as well. So, put together:
 \[\vb{B} = 0\]
  
 
-\item \emph{Do your results agree with all four Maxwell's equations in matter, as given in Griffiths?}
+\item \emph{Do your results agree with all four Maxwell's equations in matter, as given in Griffiths?}\bigskip
+
 From Griffiths:
 \begin{equation}
 \div{\vb{D}} = \rho_f
@@ -148,7 +176,7 @@ From Griffiths:
 \label{eq:max4}
 \end{equation} 
 
-To save being redundant, we used \ref{eq:max1} to justify calculating $\rho_b$, so it must be consistent. We built $\vb{B}= 0 $ from combining \ref{eq:max2} and \ref{eq:max4}\footnote{when we realize that $\vb{M} = 0 \rightarrow \mu_0\vb{H} = \vb{B}$, then we get back to the equation that we used initially, which is one of the normal Maxwell's equations}, so those are consistent. Finally, we can recognize that there is no source for a curl to $\vb{E}$, so it is good that is equal to zero.
+To save being redundant, we used \eqref{eq:max1} to justify calculating $\rho_b$, so it must be consistent. We built $\vb{B}= 0 $ from combining \eqref{eq:max2} and \eqref{eq:max4},\footnote{when we realize that $\vb{M} = 0 \rightarrow \mu_0\vb{H} = \vb{B}$, then we get back to the equation that we used initially, which is one of the normal Maxwell's equations} so those are consistent. Finally, we can recognize that there is no source for a curl to $\vb{E}$, so it is good that is equal to zero and satisfy \eqref{eq:max3}.
 
 \end{enumerate}
 
