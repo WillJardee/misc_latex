@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 461: HW07}
+\author{William Jardee}
+\maketitle
+
+\section*{A.2}
+\emph{Consider the collection of all polynomials (with complex coefficients) of degree $<N$ in $x$}
+\begin{enumerate}[label=\alph*)]
+\item \emph{Does this set constitute a vector space (with the polynomials as ``vectors")? If so, suggest a convenient basis, and give the dimension of the space. If not, which of the defining properties does it lack?}
+\bigskip 
+
+This very much does constitute a vector space, as any linear combination of polynomials will be a polynomial. We also don't allow for the multiplication of vectors, so the maximum degree that is achievable is the largest degree initially given. A convenient basis would be a vector for every degree: $\ket{1,0,0,\cdots}, \ket{0,x,0,\cdots}, \ket{0,0,x^2,\cdots}$. There would be a total of $N$ linearly independent vectors, so the dimensionality would be $N$. 
+
+\item \emph{What if we require that the polynomials be even functions?}\bigskip
+
+We couldn't get an odd function out of a sum of even functions, so this would also be a vector space.
+
+\item \emph{what if we require that the leading coefficient (i.e. the number multiplying $x^{N-1}$) be 1?}\bigskip
+
+If we added together two vectors that were not linearly independent, we would no longer be in this space, so this one is not a vector space. 
+\begin{center}
+i.e. $\ket{0,0,x^2,\cdots} + \ket{0,0,x^2,\cdots} = \ket{0,0,2 \cdot x^2,\cdots}$
+\end{center}
+
+\item \emph{What if we require that the polynomials have the value 0 at $x=1$?} \bigskip
+
+This would be a vector space, as at the point $x=1$ we would be summing the value of each vector, and $c \cdot 0 = 0$. So, this is closed over scalar multiplication and vector addition.
+
+\item \emph{What if we require that the polynomials have the value 1 at $x=0$?}\bigskip
+
+This would not be, since we would be adding 1's at $x=0$.
+\begin{center}
+i.e. $\ket{1,0,x^2,\cdots} + \ket{1,x,0,\cdots} = \ket{2,x,x^2,\cdots}$ which gives $\eval{\ket{2,x,x^2,\cdots}}_0 \neq \ket{1,0,0,\cdots}$
+\end{center}
+\end{enumerate}
+
+
+\section*{3.2}
+\begin{enumerate}[label=\alph*)]
+\item \emph{For what range \textbf{v} is the function $f(x)=x^\textbf{v}$ in Hilbert space, on the interval (0,1)? Assume \textbf{v} is real, but not necessarily positive.}\bigskip
+
+	The property of the Hilbert space that we need to satisfy is that the function is square integrate. That is
+	\[\int_0^1 [f(x)]^*f(x) dx < \infty\]\bigskip
+\[\int_0^1 (x^\textbf{v})^*x^\textbf{v}dx\]
+\[\int_0^1 x^{2\textbf{v}}dx\]
+\[\frac{1}{2\textbf{v}+1}x^{2\textbf{v}+1}\Big|_{x=0}^{x=1}\]
+\[\frac{1}{2\textbf{v}+1}(1+\lim_{R\rightarrow 0}R^{2\textbf{v}+1})\]
+So, we can say this diverges when the second term has the $R$ in the denominator:
+\[2\textbf{v}+1>0\]
+\begin{center}
+\mybox[fill=blue!20]{$\textbf{v}>-\frac{1}{2}$}
+\end{center}
+\item \emph{For the specific case $v=1/2$, if $f(x)$ in this Hilbert space? What about $xf(x)$? How about $\dv{x} f(x)$?}\bigskip
+\begin{itemize}
+\item $f(x)$: since $\frac{1}{2} > -\frac{1}{2}$, $f(x)$ is in the Hilbert space.
+\item $xf(x)$: since $\textbf{v} = \frac{1}{2}$ is in the Hilbert space, then $\textbf{v} = \frac{3}{2}$ is also in the Hilbert space.
+\item $\dv{x}f(x)$: $\dv{x} f(x) = \frac{1}{2}x^{-1/2}$, since $-\frac{1}{2} \not> \frac{1}{2}$ it is not in the Hilbert space.
+\end{itemize}
+\end{enumerate}
+
+\section*{3.3}
+\emph{Show that if $\braket*{h}{\hat{Q}h} = \braket*{\hat{Q}h}{h}$ for all $h$ (in Hilbert space), then for all $f$ and $g$ $\braket*{f}{\hat{Q}g} = \braket*{\hat{Q}f}{g}$(i.e. the two definition of ``hermitian" are equivalent). Hint: first let $h=f+g$, and then let $h=f+ig$.}
+\bigskip
+
+Since $f$ and $g$ can be \textbf{any} function in Hilbert space, we can construct another function $h = f+g$ that is in Hilbert space, and a $h^\prime = f+ig$ that is also in Hilbert space.
+\[\braket*{h}{\hat{Q}h} = \braket*{\hat{Q}h}{h}\]
+\[\braket*{f+g}{\hat{Q}(f+g)} = \braket*{\hat{Q}(f+g)}{(f+g)}\]
+\[\int(f+g)^*[\hat{Q}(f+g)] = \int[\hat{Q}(f+g)]^*(f+g)\]
+\[\int[f^*+g^*][\hat{Q}(f+g)] = \int[(\hat{Q}f)^* + (\hat{Q}g)^*](f+g)\]
+\[\int f^*\hat{Q}f + f^*\hat{Q}g + g^*\hat{Q}f + g^*\hat{Q}g = \int (\hat{Q}f)^*f+(\hat{Q}f)^*g + (\hat{Q}g)^*f + (\hat{Q}g)^*g\]
+\begin{equation}
+\int f^* \hat{Q}g + g^*\hat{Q}f = \int (\hat{Q}f)^*g + (\hat{Q}g)^*f
+\label{eq:3.3a}
+\end{equation}
+
+Now, doing the same analysis on $h^\prime$:
+\[\braket*{h^\prime}{\hat{Q}h^\prime} = \braket*{\hat{Q}h^\prime}{h^\prime}\]
+\[\braket*{f+ig}{\hat{Q}(f+ig)} = \braket*{\hat{Q}(f+ig)}{(f+ig)}\]
+\[\int(f+ig)^*[\hat{Q}(f+ig)] = \int[\hat{Q}(f+ig)]^*(f+ig)\]
+\[\int[f^*+(ig)^*][\hat{Q}(f+ig)] = \int[(\hat{Q}f)^* + (\hat{Q}ig)^*](f+ig)\]
+\[\int f^*\hat{Q}f + f^*\hat{Q}ig - ig^*\hat{Q}f - ig^*\hat{Q}ig = \int (\hat{Q}f)^*f+(\hat{Q}f)^*ig - i(\hat{Q}g)^*f - i(\hat{Q}g)^*ig\]
+\begin{equation}
+\int f^* \hat{Q}g - g^*\hat{Q}f = \int (\hat{Q}f)^*g - (\hat{Q}g)^*f
+\label{eq:3.3b}
+\end{equation}
+Summing together \ref{eq:3.3a} and \ref{eq:3.3b}, it turns into
+\[2\int f^*\hat{Q}g = 2\int (\hat{Q}f)^*g\]
+\[f^* \hat{Q} g = \int (\hat{Q}f)^* g\]
+\[\braket*{f}{\hat{Q}g} = \braket*{\hat{Q}f}{g}\]
+
+\section*{3.5}
+\begin{enumerate}[label=\alph*)]
+\item \emph{Find the hermitian conjugates of $x$, $i$, and $\dv*{x}$}\bigskip
+\begin{itemize}
+\item $x$: $\braket{f}{xg} = \int f^* x g = \int (xf)^*g = \braket{xf}{g}$, \mybox[fill=blue!20]{$x^\dagger = x$}
+\item $i$: $\braket{f}{ig} = \int f^* i g = \int (-if)^*g = \braket{-if}{g}$, \mybox[fill=blue!20]{$i^\dagger = -i$}
+\item $i$: $\braket{f}{\dv{x} g} = \int f^* \dv*{g}{x}$ this one we will have to be a tad more clever and use integration by parts to get: 
+$\eval{f^*g}_{-\infty}^\infty \, - \int \dv{x} (f)^*g = 0 \,+ \int (-\dv{f}{x})^*g = \braket{-\dv{x} f}{g}$, \mybox[fill=blue!20]{$(\dv{x})^\dagger = -\dv{x}$}
+\end{itemize}
+
+\item \emph{Show that $(\hat{Q}\hat{R})^\dagger = \hat{R}^\dagger \,\hat{Q}^\dagger$ (notice the reversed order), $(\hat{Q}+\hat{R})^\dagger = \hat{Q}^\dagger+\hat{R}^\dagger$, and $(c\,\hat{Q})^\dagger = c^*\,\hat{Q}^\dagger$ for a complex number $c$.}\bigskip
+
+\begin{itemize}
+\item To show $(\hat{Q}\hat{R})^\dagger = \hat{R}^\dagger\,\hat{Q}^\dagger$:
+
+\[\braket{f}{(\hat{Q}\hat{R})^\dagger g}\]
+\[\int f^* (\hat{Q}\hat{R}^\dagger g\]
+\[\int(\hat{Q}\hat{R}f)^* g\]
+\[\int (\hat{R}f)^* \hat{Q}^\dagger g\]
+\[\int f^* \hat{R}^\dagger \hat{Q}^\dagger g\]
+\[\braket{f}{\hat{R}^\dagger \hat{Q}^\dagger g}\]
+Thus $(\hat{Q}\hat{R})^\dagger = \hat{R}^\dagger\,\hat{Q}^\dagger$
+\bigskip
+
+\item To show $(\hat{Q}+\hat{R})^\dagger = \hat{Q}^\dagger+\hat{R}^\dagger$:
+\[\braket{f}{(\hat{Q} + \hat{R})^\dagger g}\]
+\[\int f^* (\hat{Q} + \hat{R})^\dagger g\]
+\[\int ((\hat{Q} + \hat{R})f)^*g\]
+\[\int (\hat{Q}f)^* g + \int (\hat{R}f)^* g\]
+\[\int f^* \hat{Q}^\dagger g + \int f^* \hat{R}^\dagger g\]
+\[\int f^* (\hat{Q}^\dagger + \hat{R}^\dagger)g\]
+\[\braket{f}{(\hat{Q}^\dagger + \hat{R}^\dagger)g}\]
+Thus $(\hat{Q}+\hat{R})^\dagger = \hat{Q}^\dagger+\hat{R}^\dagger$
+\bigskip
+
+\item To show $(c\,\hat{Q})^\dagger = c^*\,\hat{Q}^\dagger$:
+\[\braket{f}{(c\hat{Q})^\dagger g}\]
+\[\int f^* (c\hat{Q})^\dagger g\]
+\[\int (c\hat{Q}f)^* g\]
+\[\int c^* (\hat{Q}f)^* g\]
+\[\int f^*(c\hat{Q}^\dagger)g\]
+\[\braket{f}{(c^*\hat{Q}^\dagger) g}\]
+Thus $(c\,\hat{Q})^\dagger = c^*\,\hat{Q}^\dagger$
+\bigskip
+\end{itemize}
+
+\item \emph{Construct the hermitian conjugate of $a_+$}
+\bigskip
+
+\[a_\pm = \frac{1}{\sqrt{2 \hbar m \omega}} (\mp i \hat{p} + m \omega x)\]\
+\bigskip
+\[a_+ = \frac{1}{\sqrt{2 \hbar m \omega}} (- i \hat{p} + m \omega x)\]
+\[(a_+)^\dagger = \Big(\frac{1}{\sqrt{2 \hbar m \omega}}\Big)^* [(- i \hat{p})^\dagger + (m \omega x)^\dagger]\]
+\[(a_+)^\dagger = \frac{1}{\sqrt{2 \hbar m \omega}} [i (\hat{p})^\dagger + (m \omega x)^\dagger]\]
+\[(a_+)^\dagger = \frac{1}{\sqrt{2 \hbar m \omega}} (i \hat{p} + m \omega x) = a_-\]
+
+\bigskip
+
+Which I am glad we got to $(a_+)^\dagger = a_-$ because this was a point made back in Chapter 2. 
+\end{enumerate}
+
+\end{document}
