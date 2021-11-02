@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx,caption}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+\date{}
+
+\title{CSCI 246: Assignment 1}
+
+\author{William Jardee}
+
+\maketitle
+
+
+\section*{Problem 1}
+Let $A = \{c,d,f,g\}$, $B = \{j, f\}$, $C=\{g,d\}$
+
+\begin{enumerate}
+    \item 
+    B is a subset of B. To be a subset all the items in B must exist in B as well, obviously this statement is true, so $B \subseteq B$.
+    \item
+    C is a subset of A, as $g \in A$, and $f \in A$. So, $C \subseteq A$.
+    \item
+    C is a proper subset of A. We say in b) that $C \subseteq A$, and it is obvious that $C \neq A$, so $C \subset A$.
+ 
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 2}
+Let $A = \{a,b\}$, $B = \{1,2\}$, and $C = \{2,3\}$
+\begin{enumerate}
+    \item $(B\cap C) \times A = \{2\} \times \{a,b\} = \{(2, a), (2, b)\}$
+
+    \item $(A\times B) \cap (B \times C) = \{(a, 1), (a, 2), (b, 1), (b, 2)\}\cap \{(1,2), (1,3), (2,2), (2, 3)\} = \{\}$
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 3}
+\begin{enumerate}
+    \item $A \cup B = \{x \in \mathbb{R} | -3 \leq x < 2\}$
+    \item $A \cap B = \{x \in \mathbb{R} | -1 < x \geq 0\}$
+    \item $A^c$ is the compliment of c, so $A^c = \{x\in \mathbb{R} | x < -3 \cup 0 < x\}$
+    \item $A \cap C = \{\}$
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 4}
+In this case, 
+    \begin{center} 
+    $A_0 = \{n \in \mathbb{Z} | n = 4k$, for some integer $k\}$\\
+    $A_1 = \{n \in \mathbb{Z} | n = 4k+1$, for some integer $k\}$\\
+    $A_2 = \{n \in \mathbb{Z} | n = 4k+2$, for some integer $k\}$\\
+    $A_3 = \{n \in \mathbb{Z} | n = 4k+3$, for some integer $k\}$\\
+    \end{center}
+$\{A_0, A_1, A_2, A_3\}$ is a partition of $\mathbb{Z}$. This is because any integer, $n$, can be written as $n = 4k+r$, s.t. $n, k \in \mathbb{Z}$ and $r \in \{0,1,2,3\}$. Using the definition of division, it is obvious that $A_0$ through $A_3$ cover all possible values for r.
+
+\newpage
+
+\section*{Problem 5}
+\begin{enumerate}
+    \item $\bigcup\limits_{i=1}^{4}{V_i}$, with $V_i = \{x \in \mathbb{R} | -\frac{1}{i} \leq x \geq \frac{1}{i}\}.$\\
+    Then, $\bigcup\limits_{i=1}^{4}{V_i}= \{x \in \math{R} | -\frac{1}{4} \leq x \geq \frac{1}{4}\}$.
+    \item The sets are not mutually disjoint, as for any $V_i$ where $i < j$ is contained within $V_j$.
+\end{enumerate}
+
+\end{document}

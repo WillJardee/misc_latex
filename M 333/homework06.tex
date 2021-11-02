@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{mathtools}
+\graphicspath{ {./images/} }
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+%https://tex.stackexchange.com/questions/43008/absolute-value-symbols
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+\title{Linear Algebra Homework 6}
+\author{William Jardee}
+\date{May 2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+
+%% Question 1
+\item 
+\begin{enumerate}
+    \item Find the lease squares solution\\
+    $$\begin{bmatrix}
+        1 & 1 \\
+        2 & 1 \\
+        3 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+         m  \\
+         b 
+    \end{bmatrix} = 
+    \begin{bmatrix}
+         6  \\
+         3  \\
+         1
+    \end{bmatrix}$$
+    
+    Least squares solution is $A^TA\textbf{x} = A^T\textbf{b} \rightarrow \textbf{x} = (A^TA)^{-1}A^T\textbf{b}$\\
+    $A^TA = \begin{bmatrix}1&2&3\\1&1&1\end{bmatrix}
+    \begin{bmatrix}1&1\\2&1\\3&1\end{bmatrix} =
+    \begin{bmatrix}14&6\\6&3\end{bmatrix}$\\
+    $(A^TA)^{-1} = \frac{1}{42-36}\begin{bmatrix}3&-6\\-6&14\end{bmatrix}=
+    \frac{1}{6}\begin{bmatrix}3&-6\\-6&14\end{bmatrix}$\\
+    
+    $(A^TA)A^T = \frac{1}{6}\begin{bmatrix}3&-6\\-6&14\end{bmatrix}\begin{bmatrix}1&2&3\\1&1&1\end{bmatrix}\begin{bmatrix}6\\3\\1\end{bmatrix}=
+    \frac{1}{6}\begin{bmatrix}-3&0&3\\8&2&-4\end{bmatrix}\begin{bmatrix}6\\3\\1\end{bmatrix} =
+    \frac{1}{6}\begin{bmatrix}-15\\50\end{bmatrix}\approx 
+    \begin{bmatrix}-2.5\\8.33\end{bmatrix}$\\\\
+    
+    So the least squares line is: $y=-2.5x+8.33$.
+    
+    \item The sum of squares of error, or SSE, is calculated with $\lVert A\textbf{x}-\textbf{b}\rVert^2$.\\
+    $A\textbf{x} \approx \begin{bmatrix}5.833\\3.33\\0.833\end{bmatrix}$\\
+    $SSE(\textbf{x}) = \norm{\begin{bmatrix}5.83\\3.33\\0.833\end{bmatrix} - \begin{bmatrix}6\\3\\1\end{bmatrix}}^2 = \norm{ \begin{bmatrix}-0.167\\0.33\\-0.167\end{bmatrix}}^2 \approx 0.167$
+    
+    \item Since A has linearly independent columns, $(A^TA)^{-1}$ exists and is unique. Consequently the least squares solution is unique.
+\end{enumerate}
+\par
+
+%% Question 2
+\item
+\begin{enumerate}
+    \item Find the least squares solution\\
+    $$y = a+bx+cx^2$$
+    $$\begin{bmatrix}1&1&1\\1&2&4\\1&3&9\\1&4&16\end{bmatrix}\begin{bmatrix}a\\b\\c\end{bmatrix} = \begin{bmatrix}6\\0\\0\\2\end{bmatrix}$$
+    Again, $\textbf{x}_{l.s.}=(A^TA)^{-1}A^T\textbf{b}$\\
+    $A^TA = \begin{bmatrix}4&10&30\\10&30&100\\30&100&354\end{bmatrix}$\\
+    The inverse was too extensive to do by hand reliably, so with assistance from Matlab: \\
+    $(A^TA)^{-1} \approx \begin{bmatrix}7.75&-6.75&1.25\\-6.75&6.45&-1.25\\1.25&-1.25&0.25\end{bmatrix}$\\
+    $(A^TA)^{-1}A^T \approx \begin{bmatrix}2.25&-0.75&-1.25&0.75\\-1.55&1.15&1.35&-0.95\\0.25&-0.25&-0.25&0.25\end{bmatrix}$\\
+    $(A^TA)^{-1}A^T\textbf{b} \approx \begin{bmatrix}15\\-11.2\\2\end{bmatrix}$\\\\
+    
+    So the least squares line approximation is: $y = 15-11.2x+2x^2$
+    
+    \item $SSE(\textbf{x}) = \norm{A\textbf{x}-\textbf{b}}^2 \approx \norm{\begin{bmatrix} 5.8\\0.6\\-0.6\\2.2\end{bmatrix}-\begin{bmatrix}6\\0\\0\\2\end{bmatrix}}^2 \approx 0.8$
+
+\end{enumerate}
+\par
+
+
+%% Question 3
+\item
+\tab $$A = \begin{bmatrix}0&1&1&0\\1&-1&1&-1\\1&0&1&0\\1&1&1&1\end{bmatrix}  b = \begin{bmatrix}5\\3\\-1\\1\end{bmatrix}$$
+\begin{enumerate}
+    \item If a matrix doesn't have linearly independent columns, the solutions either don't exist or are not unique. The least squares solution is given by $A^TA\textbf{x}=A^T \textbf{b}$.
+    $$A^TA = \begin{bmatrix}3&0&3&0\\0&3&1&2\\3&1&4&0\\0&2&0&2\end{bmatrix}$$
+    The 3rd row can be written as a linear combination of the other three rows:
+    $$\begin{bmatrix}3\\0\\3\\0\end{bmatrix} + \begin{bmatrix}0\\3\\1\\2\end{bmatrix} - 
+    \begin{bmatrix}0\\2\\0\\2\end{bmatrix} = 
+    \begin{bmatrix}3\\1\\4\\0\end{bmatrix}$$
+    This means that if we solve $(A^TA)\textbf{x} = A^T\textbf{b}$, there is not one unique solution.
+    \item To show there are an infinite number of least squares solutions, we have to show that there are neither 0 or 1 solution. We have already ruled out 1 solution. To rule out 0 solutions, we can look at what it means to be a least squares solution. The least squares solution solves for the projection of $\textbf{b}$ onto A. If we take the a basis of A, say U, then $Proj_A(\textbf{b}) = \textbf{b}\cdot \textbf{u}_1 + \textbf{b}\cdot \textbf{u}_2 + \cdots + \textbf{b}\cdot \textbf{u}_n = \textbf{x}_{l.s.}$. So $\textbf{x}_{l.s.}$ always has at least one solution, since the solution cannot be undefined. We get multiple solutions when the SSE of multiple of those projections are the same.
+\end{enumerate}
+\par
+
+
+%% Question 4
+\item
+\begin{enumerate}
+    \item We need to show $P^T=P$\\
+    $P^T=(A(A^TA)^{-1}A^T)^T = (A^T)^T((A^TA)^{-1})^TA^T = A((A^TA)^T)^{-1}A^T = A(A^TA)^{-1}A^T = P$\\
+    So P is symmetric
+    \item We need to show $P^2 = P$\\
+    $P^2 = PP = (A(A^TA)^{-1}A^T)(A(A^TA)^{-1}A^T) = A(A^TA)^{-1}(A^TA)(A^TA)^{-1}A^T = A((A^TA)^{-1})A^T = P$\\
+    So P is idempotent
+\end{enumerate}
+\par
+
+%% Question 5
+\item
+Taking the assumption that A is square and has linearly independent columns, we can deduce that the A is invertible. Then the projection matrix $P$ is:
+$$P = A(A^TA)^{-1}A^T = AA^{-1}(A^T)^{-1}A^T = I\cdot I = I$$.
+\par
+
+
+%% Question 6
+\item Prove that if a matrix $A$ has independent columns (and possibly rectangular!), then  $A^TA$ is invertible.\\\\
+\tab Proof:\\
+If we show that 0 is not an eigenvector of $A^TA$, then it is invertible. If $A$ has linear independent columns, then there is no null-space, $A\textbf{x}\neq \textbf{0}$ $\forall$ $\textbf{x} \in \mathbb{R}^n$ and consequently $\norm{A\textbf{x}}^2\neq 0$. Let us $\textbf{v}$ to be an eigenvector of $A^TA$.
+$$0 \neq \norm{A\textbf{v}}^2 = A\textbf{v}\cdot A\textbf{v} = \textbf{v}^TA^TA\textbf{v}
+=\textbf{v}^T\lambda\textbf{v} = \lambda(\textbf{v}\cdot\textbf{v}) = \lambda\norm{\textbf{x}}^2$$
+Since the definition of eigenvector doesn't allow $\textbf{v}$ to be the zero vector, $\norm{\textbf{v}}^2 \neq 0$, so $\lambda \neq 0$. Since $\lambda \neq 0$, then $A^TA$ is invertible.
+\par
+{\raggedleft ``Quack''  $\blacksquare$\\}
+
+
+%% Question 7
+\item Prove that if a square matrix $B$ is diagonalizable with r non-zero eigenvalues, then B has rank r.\\\\
+\tab Proof:\\
+If A is a $n\times n$ diagonalizable matrix, then it has all linearly independent eigenvectors. The eigenvectors that correlate to the eigenvalues of zero form a basis for the null-space of A. If there are r non-zero eigenvalues, then there are n-r zero eigenvalues, and consequently n-r vectors that make up the basis for our null-space. The $nullity(A) = n-r$. We know through the Rank Theorem that $n= rank + nullity(A)$. If we substitute in that $nullity(A) = n-r$: $n=rank + n-r \rightarrow r = rank$. 
+\par 
+{\raggedleft ``Quack''  $\blacksquare$\\}
+
+
+%% Question 8
+\item Let $A=U\Sigma V^T$ be the SVD of a (possibly rectangular) matrix A. Prove that the columns of U are orthogonal.\\\\
+\tab Proof:\\
+If we let $A=U\Sigma V^T$, by the definition of a SVD we know that the columns of U are either $\textbf{u}_i = \frac{1}{\sigma_i}A\textbf{v}_i$, or found using gram-schmitt to finish the basis. Using gram-schmitt we are guaranteed to have orthogonal vectors, so the vectors past the $r^{th}$ vector will be be orthogonal to every vector in the matrix. Looking at the first r vectors:
+$$\textbf{u}_i\cdot\textbf{u}_j =(\frac{1}{\sigma_i}A\textbf{v}_i)\cdot(\frac{1}{\sigma_j}A\textbf{v}_j)
+=\frac{1}{\sigma_i\sigma_j}\textbf{v}_i^TA^TA\textbf{v}_j
+=\frac{1}{\sigma_i\sigma_j}\textbf{v}_i^T\lambda_j\textbf{v}_j
+=\frac{\lambda_j}{\sigma_i\sigma_j}\textbf{v}_i \cdot \textbf{v}_j$$
+If $i \neq j$ then $\textbf{v}_i \cdot \textbf{v}_j = 0 = \textbf{u}_i \cdot \textbf{u}_j$. We see that any two column vectors of U are orthogonal.
+\par
+{\raggedleft ``Quack''  $\blacksquare$\\}
+
+
+%% Question 9
+\item Let A be a symmetric matrix. Show that the singular values of A are the absolute values of the eigenvalues of A.\\\\
+\tab Proof:\\
+For a matrix $A$, if $A$ is symmetric, then it is orthogonally diagonalizable.\\
+$A = S\Lambda S^T$, $A^TA = A^2 = (S\Lambda S^T)(S\Lambda S^T) = S\Lambda^2 S^T$.\\
+This is the orthogonal diagonalization of $A^TA$, so the eigenvalues of $A^TA$ are the squares of the eigenvalues of $A$. The singular values are defined to be the principle root of the eigenvalues of $A^TA$, so the singular values are $\sigma_i = \abs{\sqrt{\lambda_i^2}} = \abs{\lambda}_i$. So the singular values of A are the absolute values of the eigenvalues of A.
+\par
+{\raggedleft ``Quack''  $\blacksquare$\\}
+
+
+%% Question 10
+\item Show that if $A=U\Sigma V^T$ is an SVD of A, then the left
+singular vectors are eigenvectors of $AA^T$.\\\\
+    Proof:
+        $$AA^T\textbf{u}_i = AA^T\frac{1}{\sigma_i}A\textbf{v}_i = \frac{1}{\sigma_i}AA^TA\textbf{v}_i = \frac{1}{\sigma_i}A\lambda_i\textbf{v}_i = \frac{\lambda_i}{\sigma_i}A\textbf{v}_i = \lambda_i\textbf{u}_i$$
+        So, for when $\textbf{u}_i = \frac{1}{\sigma_i}A\textbf{v}_i$, which is for all the left singular vectors, $\textbf{u}_i$ is an eigenvector with an eigenvalue of $\lambda_i$, which is the ``$i^{th}$'' singular value squared.
+\par
+{\raggedleft ``Quack''  $\blacksquare$\\}
+
+
+
+\end{enumerate}
+
+\end{document}

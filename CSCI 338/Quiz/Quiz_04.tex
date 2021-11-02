@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+
+
+\title{CSCI 338: Quiz ~04~}
+\author{William Jardee}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1.}
+
+In this quiz, you are asked to write a new undecidability proof for $REGULAR_{TM}$ such that in the two cases (i.e., when $M$ accepts $w$, and when $M$ doesn't accept $w$), the corresponding two languages $L(M_2)$ do not overlap at all.\\\\
+
+I will start where the hint leaves off and copying the book nearly word-for-word:\\
+
+We let $R$ be a TM that decides $REGULAR_{TM}$ and construct TM $S$ to decide $A_{TM}$. Then $S$ works in the following manner. 
+
+$S$ = ``On input $\langle M, w\rangle$, where $M$ is a TM and $w$ is a string;
+\begin{enumerate}
+    \item Construct the following TM $M_2$.
+               $M_2$ = ``On input $x$: 
+               \begin{enumerate}
+                   \item if $x$ has the form $0^n1^n$, run $M$ on input and \emph{reject} if $M$ rejects $w$.
+                   \item if $x$ has the form $1^+$, run $M$ on input $w$ and \emph{accept} if $M$ accepts $w$."
+               \end{enumerate}
+    \item Run $R$ on input $\langle M_2 \rangle$.
+    \item If $R$ accepts, \emph{accept}; if $R$ rejects, $reject$."
+    In this way $R$ is decidable for $A_{TM}$, but this is a contradiction since $A_{TM}$ is undecidable. So $REGULAR_{TM}$ is undecidable. 
+\end{enumerate}
+
+\end{document}

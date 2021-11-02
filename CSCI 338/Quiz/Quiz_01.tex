@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+%Don't change any thing before \begin{document}
+%They are not useful for now, but later when you try to add figures
+%these might be useful. In fact if you use sth fancy, you might need
+%to add more packages, or macros.
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+
+
+\title{CSCI 338: Quiz ~01~}
+\author{William Jardee}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1.}
+Given the set $A = \{-36, -25, -16, -9, -4, 1, 4, 9, 16, 25, 36\}$, is $A$ countable? Why?\\
+
+\mybox[fill=blue!20]{$A$ is countable.} Since A can be written one-to-one with a subset of $\mathbb{N}$, namely $\{x | x \leq 11 \land x \in \mathbb{N}\}$, then $A$ is countable. 
+
+
+\section*{Problem 2.}
+Let $B$ be the set of all complete graphs. Is $B$ countable? Why?\\
+
+\mybox[fill=blue!20]{$B$ is countable.} A complete graph is a graph that has an edge between each unique vertex to every other vertex in the graph. The graphs in $B$ can be labeled according to their number of vertices (since we have to have every possible edge in the simple graph, there is only one layout for each number of vertices). The number of vertices has to be integers and greater than zero. A direct one-to-one relationship can be drawn from the graphs to the natural numbers, obviously being onto as well. So, $B$ is countable since it has a correspondence with $\mathbb{N}$.\\
+
+\em I originally did this problem with all simple graphs and said that it is not countable. Oh Will, that was very wrong. Since a union of countable sets is countable, the set of all simple graphs is countable. 
+
+\end{document}

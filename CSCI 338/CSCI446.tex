@@ -1,0 +1,38 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging, colortbl, arydshln}
+\usepackage[shortlabels]{enumitem}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Homework~6~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+
+$P(c) = Ae^{n(c_0 - c)}$
+
+\end{document}

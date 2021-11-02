@@ -1,0 +1,57 @@
+\documentclass[10pt] {report}
+\usepackage{graphicx, ulem, amsmath, amsfonts, amssymb}
+\pagestyle{plain}
+  \def\ds{\displaystyle }
+  \setlength{\topmargin}{-1 in}
+  \setlength{\textheight}{9.5 in}
+  \setlength{\oddsidemargin}{-.25 in}
+  \setlength{\evensidemargin}{-.25 in}
+  \setlength{\textwidth}{6.6 in}
+\begin{document}
+\begin{center}
+Math 242\\
+William Jardee\\
+LaTex Write Up\\
+Chapter 8, Proof 3.\\
+\today\\
+
+\end{center}
+\begin{enumerate}
+\item[2.] For every natural number $n$, the integer $2n^2 -4n+31$ is prime.\\
+False.\\
+Disproof by Counterexample:\\
+Suppose that $n=31$.  Then $2n^2 -4n+31=(31)^2 -4*31 +31= 868=31(28)$. Since the integer 868 is not prime, the statement does not hold for all values of n and is thus false. 
+
+\item[8.] If A, B, and C are sets, then $A-(B \cup C)=(A-B)\cup(A-C).$\\
+True.\\
+Direct Proof:\\
+Suppose A, B, and C are sets. Then $A-(B \cup C)=\{x:x\in A-(B \cup C)\}$ using set builder notation.\\
+    $=\{x:x \in A \cap x \notin (B \cup C)\}$ \hfill (Definition of Compliment)\\
+    $=\{x:x \in A \cap (x\notin B \cup x\notin C)\}$ \hfill (Definition of Union)\\
+    $=\{x:(x \in A \cap x\notin B) \cup (x \in A \cap x \notin C)\}$ \hfill (Distributive Property)\\
+    $=\{x:(x \in A-B) \cup (x\in A-C)\}$ \hfill (Definition of Compliment)\\
+    $=\{x:x \in (A-B) \cup (A-C)\}$ \hfill (Definition of Union)\\
+Rewriting the set in the intentional definition,\\
+$=(A-B) \cup (A-C)$\\
+Thus we have shown that $A-(B \cup C)=(A-B) \cup (A-C)$ by means of direct proof.
+\begin{flushright} QED \end{flushright}
+\item[9.] If A and B are sets, then $\mathcal{P}(A)-\mathcal{P}(B)\subseteq\mathcal{P}(A-B)$.\\
+False.\\
+Disproof by Contradiction:\\
+Assume we have sets $A=\{1,2\}$ and $B=\{2,3\}$.\\
+Then $\mathcal{P}(A)=\{\{\},\{1\},\{2\},\{1,2\}\}$ and\\
+$\mathcal{P}(B)=\{\{\},\{2\},\{3\},\{2,3\}\}$.\\
+$\mathcal{P}(A)-\mathcal{P}(B)=\{\{1\},\{1,2\}\}$\\
+$A-B=\{1,3\}$, and $\mathcal{P}(A-B)=\{\{\},\{1\},\{3\},\{1,3\}\}$\\
+So it follows that $\mathcal{P}(A)-\mathcal{P}(B) \nsubseteq \mathcal{P}(A-B)$.\\
+Since $\mathcal{P}(A)-\mathcal{P}(B) \nsubseteq \mathcal{P}(A-B)$, the original statement does not hold true for all possible sets, thus the hypothesis is false.
+\item[28.] Suppose $a,b\in\mathbf{Z}$. If $a|b$ and $b|a$, then a=b.\\
+False.\\
+Disproof by Contradiction:\\
+Since the hypothesis includes all integers, we can suppose $a=-1$ and $b=1$. It is obvious that $-1|1$ and $1|-1$. But $a \neq b$, so the hypothesis is false. 
+\item[34.] If $X\subseteq A\cup B$, then $X\subseteq A$ or $X\subseteq B$.\\
+False.\\
+Disproof by Counterexample:\\
+Suppose sets A, B, and X such that $A=\{1,2\}$, $B=\{2,3\}$, and $X=\{1,3\}$. The union $A\cup B=\{1,2,3\}$. It is obvious that $X$ is a subset of this union. However, $X\nsubseteq A$ and $X\nsubseteq B$; thus, through the definition of union the hypothesis does not hold true that if $X\subseteq A \cup B$ then $X\subseteq A$ of $X\subseteq B$.
+\end{enumerate}
+\end{document}

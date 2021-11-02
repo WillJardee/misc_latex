@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+
+
+\title{CSCI 338: Quiz ~02~}
+\author{William Jardee}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1.}
+
+Based on what we covered on March 5 and 8 regarding the Turing machines, list at least 3 differences between a Turing machine and PDA.
+
+\begin{enumerate}
+    \item The way the mathematical objects are defined:
+\begin{enumerate}
+    \item A Turning machine is defined as a 7-tuple: $(Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$
+    \item A PDA is defined as a 6-tuple: $(Q, \Sigma, \Gamma, \delta, q_0, F)$
+\end{enumerate}
+    Notice how the difference here is that the PDA doesn't contain explicit reject states.
+    
+    \item The two definitions of $\delta$ are different. In a Turing machine they cast from $Q \times \Gamma \rightarrow Q \times \Gamma \times \{L, R\}$; or from a state and tape to a state and tape with a movement left or right. In a PDA $\delta$ is defined as $Q \times \Sigma_\varepsilon \times \Gamma_\varepsilon \rightarrow P( Q \times \Gamma_\varepsilon)$, or from an initial state and alphabet with some stack alphabet to another state and stack alphabet with a ``pop" applied to the stack. 
+    
+    \item This one is more of a subjective point, but the notation attacked to both machines are vastly different. A Turning machine is one infinitely long tape that we traverse by L and R on while the PDA sees a stack that we must deal with as a stack of tapes (meaning we can't move down without popping an element/tape). the two use different notations for a blank element, and they represent different things. In a Turing machine ``\textvisiblespace" represents a blank space, however it conserves its size. For a PDA we use $\varepsilon$, usually, which is a black element that doesn't conserve space. So these two serves similar functions of being ``nothing", but do so in fundamentally different ways. 
+    
+\end{enumerate}    
+\end{document}

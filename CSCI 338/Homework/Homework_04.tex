@@ -1,0 +1,213 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Assignment~4~(7 points)}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+%\begin{multicols*}{2}
+
+
+
+
+
+\section*{Problem 1}
+
+    Let ${\cal B}$ be the set of all infinite sequences over $\{a,b\}$. Show that
+    ${\cal B}$ is uncountable, using a proof by diagonalization.\\
+    
+    \textbf{Proof:}
+
+    \noindent
+    Let us consider the $\mathbb{S}$ of the set ${\cal B}$. Then we can draw out all the sequences as 
+    \begin{center}
+        \begin{tabular}{c|c}
+            0 &  aaaaaaa...\\
+            1 &  baaaaaa...\\
+            2 &  abaaaaa...\\
+            3 &  bbaaaaa...\\
+            4 &  babaaaa...\\
+              &  \vdots \\
+        \end{tabular}
+    \end{center}
+    We can now construct a new $x$ such that $x \in {\cal B}$, where we construct $x$ by flipping each component's element in a diagonal pattern all the way down. So: 
+    \[x = bbbb...\]
+    This pattern allows us to create a new element that exists in ${\cal B}$ that is not in the power set already created. Since we could add $x$ to $\mathbb{S}({\cal B})$ and do this again for a new $y \in {\cal B}$, ${\cal B}$ cannot be crafted as a one-to-one with $\mathbb{N}$ and we do not have a bijective relationship $\rightarrow$ ${\cal B}$ is uncountable. 
+    
+    \begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+
+
+
+
+\section*{Problem 2}
+
+    Let $T=\{(i,j,k)|i,j,k\in{\cal N}\}$. Show that $T$ is countable.\\
+    
+    \textbf{Proof:}
+    
+    \noindent
+    We know that the union of countable sets are countable. So, let us expand $T$ into a union of countable sets:
+    
+    \setlength{\parskip}{0em}
+    \begin{center}$T=\{(i,j,k)|i,j,k\in\mathbb{N}\}$\end{center}
+    \begin{center} $T = \{(i,j,0) | i, j \in \mathbb{N}\} \cup \{(i,j,1) | i, j \in \mathbb{N}\}  \cup \{(i,j,2) | i, j \in \mathbb{N}\} \cup \cdots$   \end{center}
+    \begin{center}
+        \begin{tabular}{c c}
+            $T = $ & $\{(i,0,0) | i \in \mathbb{N}\} \cup \{(i,1,0) | i \in \mathbb{N}\} \cup \{(i,2,0) | i \in \mathbb{N}\} \cup \cdots$ \\
+              & $\{(i,0,1) | i \in \mathbb{N}\} \cup \{(i,1,1) | i \in \mathbb{N}\} \cup \{(i,2,1) | i \in \mathbb{N}\} \cup \cdots$\\
+              & $\vdots$\\
+        \end{tabular}
+    \end{center}
+    \setlength{\parskip}{0.5em}
+    It is obvious that each element in the union sum is countable, as $i$ allows us to draw a bijection to the natural numbers. Then $T$ is countable, as it is a union of countable sets.
+    \begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+
+
+
+
+\section*{Problem 3}
+
+    Let {\em INFINITE}$_{PDA}=\{<M>|M$ is a PDA and $L(M)$ is an infinite language$\}$.
+    Show that {\em INFINITE}$_{PDA}$ is decidable.
+    \newline
+    
+    We know that $M$ can be written as a stack of NDAs, so let us say that our PDA looks like:
+    \begin{center}
+        $M$ = PDA = NDA$_1$ $\rightarrow$ NDA$_2$ $\rightarrow$ NDA$_3$ $\rightarrow \cdots$ 
+    \end{center}
+    We know that all NDAs can be written as some form of DFA, so let us do that to simplify the conceptual understanding of the problem further:
+    \begin{center}
+        PDA = DFA$_1$ $\rightarrow$ DFA$_2$ $\rightarrow$ DFA$_3$ $\rightarrow \cdots$ 
+    \end{center}
+    Since a sum of finite strings is finite, at least one of the DFAs must accept an infinite string. To accept an infinite sequence, the regular expression produced by a DFA must contain a `$*$'. So, let us construct a R such that:
+    \begin{enumerate}
+        \item Build the PDA as above.
+        \item R accepts if any regular expression produced by a DFA used to construct PDA contains a `$*$', that is to say if any DFA accepts a string of infinite length.
+        \item R rejects if all DFAs used to construct PDA only accept finite strings, that is if a single `$*$' does not show up. 
+    \end{enumerate}
+    R is a valid decider for a {\em INFINITE}$_{PDA}$. So, {\em INFINITE}$_{PDA}$ is decidable.
+\newpage
+
+
+
+
+
+\section*{Problem 4}
+
+    Let $\Sigma=\{a,b\}$. Define the following language {\em ODD}$_{TM}$:
+    \begin{center}
+        {\em ODD}$_{TM}=\{ <M>|M$ is a TM and $L(M)$ contains only strings of odd length $\}$.
+    \end{center}
+    Prove that {\em ODD}$_{TM}$ is undecidable.\\
+    
+    
+    \textbf{Proof by Contradiction:}
+    
+    Construct a TM $M^\prime$ on input $x$ s.t. $M^\prime$ accepts $x$ if it is odd ($x = 2n+1$ s.t. $n \in \mathbb{N}$), and rejects $x$ if it is even ($x = 2n$ s.t. $n \in \mathbb{N})$. 
+    
+    Assume that {\em ODD}$_{TM}$ is decidable and R is the decider, we'll construct TM $S$ for $A_{TM}$. $S$ on $<M,x>$:
+    \begin{enumerate}
+        \item Construct $M^\prime$
+        \item If the length of $x$ is even then run R on $<M^\prime>$.\\
+              If R accepts then reject,\\
+              if R rejects then accept.
+        \item If the length of $x$ is odd then run R on $<M^\prime>$.\\
+              If R accepts then accept,\\
+              if R rejects then reject.
+    \end{enumerate}
+    So, R is a decider for $A_{TM}$, as discussed above. This is, however, a contradiction and therefore {\em ODD}$_{TM}$ is undecidable. 
+    \begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+
+
+
+
+\section*{Problem 5}
+
+    Show that $EQ_{CFG}$ is undecidable.\\
+    
+    \textbf{Proof by Contradiction:}
+    \footnote{\em I did use an initial hint from Slader to give me the direction to go. Thank the lord, `cause I couldn't get a $A_{TM}$ solution to work. After I wrote my initial proof I checked with their answer, of course.}\\
+    
+    
+    We will be reducing {\em ALL}$_{CFG}$ to $EQ_{CFG}$. First let's remind ourselves that:
+    \begin{center}
+        {\em ALL}$_{CFG} = \{<G> | G$ is a CFG and $L(G) = \Sigma ^*\}$
+    \end{center}
+    and that {\em ALL}$_{CFG}$ is undecidable. \\
+    
+    Let us assume, for the point of contradiction, that $EQ_{CFG}$ is decidable and we can building a decider $R$ for it. Now let us grab a $L(H) = \Sigma ^*$. If we pass $L(G)$ and $L(H)$ to $R$. If $R$ accepts, then we will accept $ALL_{CFG}$, if $R$ rejects then we will reject. In this way $R$ is a decider for $ALL_{CFG}$; however, this is a contradiction, so there cannot be a decider for $EQ_{CFG}$ and it is not decidable. 
+    \begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+
+
+
+
+\section*{Problem 6}
+
+    Show that $EQ_{CFG}$ is co-Turing-recognizable.\\
+    
+    If $EQ_{CFG}$ is co-Turing-recognizable, then {\em NEQ}$_{CFG}$ is Turing-recognizable, where
+    \begin{center}
+        {\em NEQ}$_{CFG} = \{ <G^\prime, H^\prime>| G^\prime$, $H^\prime$ are CFG's and $L(G^\prime) \neq L(H^\prime)\}$ 
+    \end{center}
+    Let us build Turing machines $T_1$ and $T_2$ such that the machine in $T_1$ accepts $L(G^\prime)$ and the machine in $T_2$ accepts $L(H^\prime)$. Let us now build a multi-line Turing machine that incorporates $T_1$ and $T_2$ called $T_0$. $T_0$ works such that for each string accepted by $T_1$ (algorithmically working through $L(G^\prime)$), it checks if $T_2$ accepts that string. If $T_2$ accepts the string mark it as read, continue on to the next string in $L(G^\prime)$. If $T_2$ does not accept it, then $T_3$ accepts. If $L(G^\prime)$ gets exhausted and every element of $L(H^\prime)$ is marked are read, return reject, otherwise return accept. Since $T_3$ recognizes {\em NEQ}$_{CFG}$ (and every multi-line TM can be written as a TM), then {\em NEQ}$_{CFG}$ is Turing-recognizable and $EQ_{CFG}$ is co-Turing-recognizable.
+    
+\newpage
+
+
+
+
+
+\section*{Problem 7}
+
+    Problem 5.3 (page 239---third edition of Sipser):\\
+    
+    ``Find a match in the following instance of the Post Correspondence Problem.
+    \begin{center}
+        $\Big\{ \Big[\frac{ab}{abab}\Big], \Big[\frac{b}{a}\Big], \Big[\frac{aba}{b}\Big], \big[\frac{aa}{a}\big]\Big\}$"
+    \end{center}
+    
+    
+    One solution is $\Big[ \frac{aa}{a}\Big]$, $\Big[ \frac{aa}{a}\Big]$, $\Big[ \frac{b}{a}\Big]$, and $\Big[ \frac{ab}{abab}\Big]$. This gives a string of $aaaabab$ on the top and bottom. 
+    
+
+\newpage
+
+%\end{multicols*}{2}
+
+
+
+
+
+\end{document}

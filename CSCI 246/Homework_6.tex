@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+
+%Don't change any thing before \begin{document}
+%They are not useful for now, but later when you try to add figures
+%these might be useful. In fact if you use sth fancy, you might need
+%to add more packages, or macros.
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+\date{}
+
+\title{CSCI 246: Assignment~6~(6 points)}
+
+\author{William Jardee}
+
+\maketitle
+
+ 
+\section*{Problem 1.}
+
+\noindent
+Given real-valued functions $f$ and $g$ with the same domain, the sum of $f$ and $g$, denoted as $f+g$, is defined as follows.
+\newline
+
+For each real number $x$, $(f+g)(x)=f(x)+g(x)$.
+
+\noindent
+Prove that if $f$ and $g$ are both increasing on a set $S$ of real numbers,
+then $f+g$ is also increasing on $S$.
+\newline
+\newline
+\noindent
+{\bf Proof:}~~
+\newline
+
+Assume that $f$ and $g$ are increasing on $S$. Let $x_1 < x_2$ and $x_1, x_2 \in S$. Since $f$ and $g$ and increasing we can say that $f(x_1)<f(x_2)$ and $g(x_1)<g(x_2)$. Then the following occurs:
+\[f(x_1)+g(x_1) < f(x_1) + g(x_2)\]
+\[(f+g)(x_1) < (f+g)(x_2)\]
+This is valid for all $x_1$ and $x_2$ in $S$, so we can say that $f+g$ is increasing on all $S$.
+\begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+\section*{Problem 2.}
+
+\noindent
+Given a polynomial $f(n)=\frac{1}{4}n^2-24n-16$, show the following:
+\newline
+
+\noindent
+(2.1) Show that $f(n)=\frac{1}{4}n^2-24n-16$ is $\Omega(n^2)$.\\
+\noindent
+{\bf Answer:}~~
+Following the procedure given in class, we get that 
+\begin{center}
+    $\frac{1}{8}n^2 \leq \frac{1}{4}n^2 -24n -16$ for all $n\geq 320$.
+\end{center}
+To verify this, we first check $n=320$, the equality gives $12800 \leq 17904$, which is a valid statement. So  next we have to show that for $n\geq 320$, the right side grows faster than the left. We will use some basic calculus to make this explanation easier. Taking the first derivative yields:
+\begin{center}
+    $\frac{1}{4}n$ on the right, and $\frac{1}{2}n - 24$  on the left
+\end{center}
+Obviously for $n\geq 320$, the left sided first derivative will be less than the left, so the left will grow faster and always stay ahead of the right for at least $n\geq 320$. We have met all the conditions to say that $f(n)$ is $\Omega(n^2)$.\\\\
+
+\noindent
+(2.2) Show that $f(n)=\frac{1}{4}n^2-24n-16$ is $O(n^2)$.\\
+\noindent
+{\bf Answer:}~~
+It is enough to say that $\frac{1}{4}n^2 -24n -16 \geq \frac{1}{4}n$ for $n>0$. So, $f(n)$ is $O(n^2)$.\\\\
+
+\noindent
+(2.3) Show that $f(n)=\frac{1}{4}n^2-24n-16$ is $\Theta(n^2)$.\\
+\noindent
+{\bf Answer:}~~
+To classify a function as $\Theta(n^2)$ it must be both $\Omega(n^2)$ and $O(n^2)$. We have shown that both those conditions are met, so we can say that $f(n)$ is $\Omega(n^2)$.
+
+\newpage
+
+\section*{Problem 3.}
+
+Given three positive real-valued functions $f_1,f_2$ and $g$ defined on the
+same set of nonnegative integers.  Prove that if
+$f_1(n)$ is $\Theta(g(n))$ and $f_2(n)$ is $\Theta(g(n))$, then
+$F(n)=f_1(n)+f_2(n)$ is $\Theta(g(n))$.\\\\
+\noindent
+{\bf Proof:}~~ 
+\newline
+Take the conditions that $f_1(n)$ is $\Theta(g(n))$, $f_2(n)$ is $\Theta(g(n))$, and $F(n) = f_1(n) + f_2(n)$. In order to say that $F(n)$ is $\Theta(g(n))$, $F(n)$ must be $\Omega(g(n))$ and $O(g(n))$. Since $f_1(n)$ is $\Theta(g(n))$ and $f_2(n)$ is $\Theta(g(n))$, we can say: 
+\begin{center}
+    $f_1(n) > a\cdot g(n)$, $f_1(n) < c\cdot g(n)$, $f_2(n) > b\cdot g(n)$, and $f_2(n) < d\cdot g(n)$, s.t. $a,b,c,d \in \mathbb{R}$
+\end{center}
+\[a \cdot g(n) + b \cdot g(n) < f_1(n) + f_2(n) < c \cdot g(n) + d \cdot g(n)\]
+\[(a+b) \cdot g(n) < F(n) < (c+d) \cdot g(n)\]
+So in one statement we say that $F(n)$ is $\Omega (g(n))$ and $O(g(n))$. Thus $F(n)$ is $\Theta (g(n))$.
+\begin{flushright}$\blacksquare$\end{flushright}
+\newpage
+
+\section*{Problem 4.}
+
+When analyzing the average running time for Insertion Sort, we have the
+following recurrence relation:
+
+$E_k=E_{k-1}+\frac{k+1}{2}$, for each integer $k\geq 2$,
+
+$E_1=0$.
+\newline
+
+(4.1) Use the direct iteration method to compute $E_n$. Sufficient details must be given.\\
+\noindent
+{\bf Answer:}~~ 
+\newline
+
+$E_1 = 0$\\
+$E_2 = \frac{3}{2}$\\
+$E_3 = \frac{3}{2} + \frac{4}{2}$\\
+$E_4 = \frac{3}{2} + \frac{4}{2} + \frac{5}{2}$\\\\
+\noindent
+$E_n = \frac{\sum\limits^{n+1}_3 (i)}{2} = \frac{1}{2}\Big(\frac{(n+1)(n+2)}{2}-3\Big)$\\\\
+
+\noindent
+(4.2) Use mathematical induction to verify the correctness of the formula.\\\\
+\noindent
+{\bf Proof by Induction:}~~ 
+\newline
+Base case: $n=1$; $E_1 = \frac{1}{4}(2\cdot3 - 6) = 0$. So the base case works.\\
+Inductive step: We say that the equation works for $k$, so we need to show that $k+1$ works.\\
+\[E_{k+1} = \frac{1}{4}((k+2)(k+3)-6)\]
+\[E_{k+1} = \frac{1}{4}((k^2+5k+6)-6)\]
+\[E_{k+1} = \frac{1}{4}((k^2+3k+3)+2k+4-6)\]
+\[E_{k+1} = \frac{1}{4}((k+1)(k+2)-6) +\frac{2k+4}{4}\]
+\[E_{k+1} = E_{k} + \frac{(k+1)+1}{2}\]\\
+So the equation holds for $k+1$. By induction, $E_n = \frac{1}{2}\Big(\frac{(n+1)(n+2)}{2}-3\Big)$ is correct.
+\begin{flushright}$\blacksquare$\end{flushright}
+
+\newpage
+
+
+\section*{Problem 5.}
+
+Prove that $\lfloor\log_2n\rfloor$ is $\Theta(\log_2n)$.\\
+
+\noindent
+{\bf Proof:}~~\\
+In order to prove that $\lfloor\log_2n\rfloor$ is $\Theta(\log_2n)$, we must show that $\lfloor\log_2n\rfloor$ is $\Omega(\log_2n)$ and $\lfloor\log_2n\rfloor$ is $O(\log_2n)$. Let us first show that $\lfloor\log_2n\rfloor$ is $\Omega(\log_2n)$. Since the floor operator rounds down, $\lfloor \log_2n \rfloor \geq \log_2n -1$. Looking to calculus to provide an insight about the limits; $\lim_{x \to +\infty} \log_2n \rightarrow \infty$. So, as $\log_2n$ tends to large $n$, the -1 can be neglected and we can say that $\lfloor \log_2n \rfloor \geq a\log_2n$, s.t. $a<1$ if $n$ is significantly large. So, we have met the condition to say $\lfloor\log_2n\rfloor$ is $\Omega(\log_2n)$. Now to show that $\lfloor\log_2n\rfloor$ is $O(\log_2n)$. Since the floor operator rounds down, $\lfloor \log_2n \rfloor \leq \log_2n < b\log_2n$ if $b>1$. So, we can write $\lfloor \log_2n \rfloor < b\log_2n$. So, $\lfloor\log_2n\rfloor$ is $O(\log_2n)$. Since we have shown $\lfloor\log_2n\rfloor$ is $\Omega(\log_2n)$ and $\lfloor\log_2n\rfloor$ is $O(\log_2n)$, $\lfloor\log_2n\rfloor$ is $\Theta(\log_2n)$.
+\begin{flushright}$\blacksquare$\end{flushright}
+
+
+\end{document}
+

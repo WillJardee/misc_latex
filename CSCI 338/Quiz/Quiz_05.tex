@@ -1,0 +1,72 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Quiz~5~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+\section*{Problem 1}
+
+    In this quiz, you are asked to solve the second problem (of the crystal ball scenario), i.e., if Peter has exactly two balls, how could he find the smallest step $i$ (efficiently, in better than $O(n)$ time) such that his ball would break at step $i$ (but not at step $i-1$). Note that once both balls are broken Peter can't use any replacement. 
+    
+    The algorithm will search as follow: 
+    \begin{enumerate}
+        \item Do an exponential search using both balls at once, until one of them break. What that would look like is dropping ball 1 one step, then ball 2 two steps, ball 1 three steps (for a total of 4 dropped steps), ball 2 six steps (total of 8), and so on. 
+        \item Once one of them breaks, drop the second ball from its last position until it break. This is your $i$. 
+    \end{enumerate}
+    This algorithm has a time complexity of $O(${\em log}$(n))$ from the exponential search and a $O(c)$ from the last stretch, where $c$ is some constant. So, over all, the algorithm has a time complexity of $O(${\em log}$(n))$. Below is a trial run (next page):
+    \newpage
+    
+    Our $i=20$:\\
+    \begin{center}
+    \begin{tabular}{c|c|c|c|c}
+        drop & ball dropped & distance & ball 1 total & ball 2 total \\
+        \hline
+        1 & ball 1 & 1 & 1 & 0\\
+        2 & ball 2 & 2 & 1 & 2\\
+        3 & ball 1 & 3 & 4 & 2\\
+        4 & ball 2 & 6 & 4 & 8\\
+        5 & ball 1 & 12 & 16 & 8\\
+        6 & ball 2 & 24 & 16 & 32\\
+        & {\bf Ball 2 breaks}\\
+        7 & ball 1 & 1 & 17 & 32\\
+        8 & ball 1 & 1 & 18 & 32\\
+        9 & ball 1 & 1 & 19 & 32\\
+        10 & ball 1 & 1 & 20 & 32\\
+        & {\bf Ball 1 breaks}\\
+    \end{tabular}
+    \end{center}
+    
+    So, the length was less than $n$
+    
+    
+
+
+
+\end{document}

@@ -1,0 +1,38 @@
+import java.util.Hashtable;
+import java.util.Random;
+
+public class Question3 {
+
+    public static void main(String[] args) {
+        System.out.print("Please give your R and N, separated by a space: ");
+        String[] item = StdIn.readLine().split(" ");
+
+        try {			//Watching for improperly formated inputs
+            int R = Integer.parseInt(item[0]);
+            int N = Integer.parseInt(item[1]);
+
+            Integer[] randos = new Integer[N];
+
+	    //Develop out list of random values
+            Random rand = new Random();
+            for (int i = 0; i < N; i++) {
+                randos[i] = rand.nextInt(R);
+            }
+
+            //Using a dictionary to keep count
+            Hashtable<Integer, Integer> dic = new Hashtable<Integer, Integer>();
+
+	    //This is the counted code provided in class. 
+            for (int i = 0; i < N; i++) {
+                int prevCount = 0;
+                if (dic.containsKey(randos[i])) prevCount = dic.get(randos[i]);
+                dic.put(randos[i], prevCount + 1);
+            }
+
+            for (Integer index : dic.keySet()) System.out.println(index + " : " + dic.get(index));
+
+        } catch (NumberFormatException e) {		//This error is the one thrown by ParseInt when there aren't ints
+            System.out.println("Please check your input.");
+        }
+    }
+}

@@ -1,0 +1,115 @@
+clc, clear;
+
+%1st Data from http://miroz.com.hr/random/monsters.html
+%2nd Data from https://www.reddit.com/r/UnearthedArcana/comments/8zvr6s/the_great_dd5e_monster_spreadsheet/
+
+M = readmatrix("monsters2.xlsx");
+%Matrix from data, We are interested in challange rating, AC, hp, and sum
+%of ability mods
+
+%hypothesis 1: AC,hp,and ability scores have a very strong relation to
+%challange rating, either linearly or quadratically
+
+%data = [M(:,5).^0,M(:,5),M(:,19),(M(:,6)+M(:,8)+M(:,10)+M(:,12)+M(:,14)+M(:,16))./6]; 
+%chal = M(:,2);
+data = [M(:,5).^0,M(:,5),M(:,6),(M(:,8)+M(:,9)+M(:,10)+M(:,11)+M(:,12)+M(:,13))./6];
+chal = M(:,19);
+%eliminate NaN
+data(isnan(data))=0;
+chal(isnan(chal))=0;
+
+%covariance stuff
+%Ahat looks like [AC,HP,Ability Modifiers]
+Ahat = data(:,2:4)'*data(:,2:4);
+means = mean(Ahat);
+A(:,1) = Ahat(:,1)- mean(Ahat(:,1));
+A(:,2) = Ahat(:,2)- mean(Ahat(:,2));
+A(:,3) = Ahat(:,3)- mean(Ahat(:,3));
+covar = A'*A;
+[u,p] = eig(covar);
+%This shows that the second column has the most weight to it, which is
+%heavily skewed because of the size of the values
+
+
+%Least squares solution for all three relations
+fit1 = [data(:,1),data(:,2)];
+x1 = (fit1'*fit1)^-1 *fit1'*chal;
+fit2 = [data(:,1),data(:,3)];
+x2 = (fit2'*fit2)^-1 *fit2'*chal;
+fit3 = [data(:,1),data(:,4),data(:,4).^2];
+x3 = (fit3'*fit3)^-1 *fit3'*chal;
+
+SSE1 = norm((fit1*x1-chal))^2;
+SSE2 = norm((fit2*x2-chal))^2;
+SSE3 = norm((fit3*x3-chal))^2;
+
+%Produce graph from least squares solution
+x_1 = linspace(min(data(:,2)),max(data(:,2)),100);
+x_3 = linspace(0,max(data(:,4)),100);
+y1 = data(:,1).*x1(1,1) + x_1.*x1(2,1);
+y2 = data(:,1).*x2(1,1) + data(:,3).*x2(2,1);
+y3 = data(:,1).*x3(1,1) + x_3.*x3(2,1) + x_3.^2.*x3(3,1);
+
+
+figure('Renderer', 'painters', 'Position',[0,0,1024,768]);
+set(gcf,'name','Jardee Linear Algebra Least Squares','numbertitle','off')
+t = tiledlayout(2,2,'TileSpacing','Compact');
+title(t, "How Monster Stats Effect Challange Rating (Dungeons and Dragons)");
+
+%AC graph
+nexttile
+xlabel("AC");
+ylabel("Challenge Rating");
+txt1 = sprintf("y = %.1fx + (%.1f)",x1(2,1), x1(1,1));
+text(15,-5,txt1);
+hold on;
+scatter(data(:,2),chal,'.');
+plot(x_1,y1);
+hold off;
+
+%HP graph
+nexttile
+xlabel("HP");
+ylabel("Challenge Rating");
+txt2 = sprintf("y = (%.1f)x + (%.1f)",x2(2,1), x2(1,1));
+text(350,5,txt2);
+hold on;
+scatter(data(:,3),chal,'.');
+plot(data(:,3),y2);
+hold off;
+
+%Abilities
+nexttile
+xlabel("Average Ability Modifier");
+ylabel("Challenge Rating");
+txt3 = sprintf("y = (%.1f)x^2 + (%.1f)x + (%.1f)",x3(3,1),x3(2,1), x3(1,1));
+text(15,0,txt3);
+hold on;
+scatter(data(:,4),chal,'.');
+plot(x_3,y3);
+hold off;
+
+disp("finished with 1");
+
+
+%Least Squares solution for all three
+fit4 = [data(:,4).^0,data(:,2),data(:,3),data(:,4),data(:,4).^2];
+x4 = (fit4'*fit4)*fit4'*chal;
+
+SSE4 = norm((fit4*x4-chal))^2;
+
+%hypthesis 2: str/con/wis have high berring on chal rating
+data2 = M(:,8:13);
+B(:,1)=data2(:,1)-mean(data2(:,1));
+B(:,2)=data2(:,2)-mean(data2(:,2));
+B(:,3)=data2(:,3)-mean(data2(:,3));
+B(:,4)=data2(:,4)-mean(data2(:,4));
+B(:,5)=data2(:,5)-mean(data2(:,5));
+B(:,6)=data2(:,6)-mean(data2(:,6));
+covar2 = B'*B;
+[u2,p2] = eig(covar2);
+
+%[6,1,2,5,4,3]
+%[cha,str,dex,wis,int,con]
+
+disp("finished with 2");

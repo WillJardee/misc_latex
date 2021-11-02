@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+
+%Don't change any thing before \begin{document}
+%In fact if you use sth fancy, you might need
+%to add more packages, or macros.
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+\begin{document}
+\date{}
+%\date{Feb 3, 2020}
+
+\title{CSCI 338: Assignment~5~(7 points)}
+
+%\author{Your Name Here}
+
+
+\maketitle
+
+%When writing up your solution, comment out the following until you reach Problem 1.
+\noindent
+This assignment is due on {\bf Tuesday, April 13, 8:00pm}. It is strongly
+encouraged that you use Latex to generate a single pdf file and upload it
+under {\em Assignment 5} on D2L. But there will NOT be a penalty for not
+using Latex (to finish the assignment). This is {\bf not} a group-assignment,
+so you must finish the assignment by yourself.
+
+\section*{Problem 1}
+
+\noindent
+We are given 5 matrices $M_1,...,M_5$, their dimensions (i.e., rows by columns)
+are as follows: 
+$M_1$ is 15 $\times$ 20,
+$M_2$ is 20 $\times$ 30,
+$M_3$ is 30 $\times$ 10,
+$M_4$ is 10 $\times$ 50, and
+$M_5$ is 50 $\times$ 8.
+\newline
+
+\noindent
+(1.1) Run the dynamic programming algorithm for {\em matrix chain multiplication} that we covered in class to produce the table $m[-,-]$.
+\newline
+
+\noindent
+(1.2) What is the optimal solution value? Where do you find it? 
+\newline
+\newpage
+
+\section*{Problem 2}
+
+\noindent
+We are given a context-free grammar $G$ as follows:
+\newline
+
+$G$: $S\rightarrow AS|SB$
+
+~~~  $A\rightarrow AD|DA|a$
+
+~~~  $B\rightarrow BB|BD|b$
+
+~~~  $D\rightarrow DD|d$.
+
+We are also given a string $w=bdbdd$.
+\newline
+
+\noindent
+(2.1) Run the dynamic programming algorithm for $A_{CFG}$ that we covered in class to produce the table $table[-,-]$.
+\newline
+
+\noindent
+(2.2) How do we know whether $G$ generates $w$ from the table?
+\newline
+\newpage
+
+
+\section*{Problem 3}
+
+Show that $ALL_{DFA}\in$ P.
+
+\section*{Problem 4}
+
+Show that Independent Set $\in$ NP.
+\newline
+
+\end{document}

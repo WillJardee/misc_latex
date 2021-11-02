@@ -1,0 +1,42 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Quiz~7~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+\section*{Problem 1}
+    In your own language, what is the difference between NP and NP-complete?\\
+    
+    Our understanding in class is that if a problem can be reduced to a NP-complete problem in polynomial time, then it is NP-complete ($B \leq_p A$; I am hazing on the exact order of the wording, but you are trying to do a reduction like this were we know $B$ to be NP-complete). This means nothing to understanding NP-complete, since it is a circular definition. So, reading into it a little bit more, NP-complete is a set of NP problems that can be solved with a brute-force search algorithm, verified quick, and, most notably, be used to solve other NP problems. 
+    
+    So, the difference between NP and NP-complete is that being NP just requires being able to verify in polynomial time, while being NP-complete requires it to be NP and be able to be reducible to some NP-complete problem (so this circular requirement). 
+
+
+\end{document}
