@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 461: HW07}
+\author{William Jardee}
+\maketitle
+
+\section*{3.7}
+\begin{enumerate}[label=\alph*)]
+\item \emph{Suppose that $f(x)$ and $g(x)$ are two eigenfunctions of an operator $\hat{Q}$, with the same eigenvalue $q$. Show than any linear combination of $f$ and $g$ is itself an eigenfunction of $\hat{Q}$, with eigenvalue $q$.}\bigskip
+
+\item \emph{Check that $f(x) = \text{exp} (x)$ and $g(x) = \text{exp} (-x)$ are eigenfunctions of the operator $d^2/dx^2$, with the same eigenvalue. Construct two linear combinations of $f$ and $g$ that are orthogonal eigenfunctions on the interval $(-1,1)$.}
+\end{enumerate}
+
+%---------------------------------------------------------------
+\newpage
+
+\section*{3.9}
+\begin{enumerate}[label=\alph*)]
+\item \emph{Cite a Hamiltonian from Chapter 2 (other than the harmonic oscillator) that has only a discrete spectrum.}\bigskip
+
+\item \emph{Cite a Hamiltonian from Chapter 2 (other than the free particle) that has only a continuous spectrum.}\bigskip
+
+\item \emph{Cite a Hamiltonian from Chapter 2 (other than the finite square well) that has both a discrete and a continuous part to its spectrum.}
+\end{enumerate}
+
+%---------------------------------------------------------------
+\newpage
+
+\section*{3.13}
+\[\langle x \rangle = \int \Phi^* \qty(i\hbar\pdv{p})\Phi \dd{p}\]
+\emph{Notice that $x\text{exp}(ipx/\hbar) = -i\hbar (\pdv*{p})\text{exp} (ipx/\hbar)$, and use Equation 2.147. In momentum space, then, the position operator is $i\hbar \pdv*{p}$. More generally,}\bigskip
+
+%---------------------------------------------------------------
+\newpage
+
+\section*{3.26}
+\emph{Consider a three-dimensional vector space spanned by an orthonormal basis $\ket{1},\,\ket{2},\,\ket{3}$. Kets $\ket{\alpha}$ and $\ket{\beta}$ are given by}
+ \[\ket{\alpha} = i\ket{1} -2\ket{2}-i\ket{3}, \qquad \ket{\beta} = i\ket{1} + 2\ket{3}\]
+\begin{enumerate}[label=\alph*)]
+\item \emph{Construcct $\bra{\alpha}$ and $\bra{\beta}$ (in terms of the dual basis $\bra{1},\,\bra{2},\,\bra{3}$).}\bigskip
+
+\item \emph{Find $\braket{\alpha}{\beta}$ and $\braket{\beta}{\alpha}$, and confirm that $\braket{\beta}{\alpha} = \braket{\alpha}{\beta}^*$.}\bigskip
+
+\item \emph{Final all nine matrix elements fo the operator $\hat{A} = \ket{\alpha}\bra{\beta}$, in this basis, and construct the matrix $A$. Is it hermitian?}
+\end{enumerate}
+
+%---------------------------------------------------------------
+\newpage
+
+\section*{Question 5.}
+\emph{Prove that the momentum operator, $\hat{p}$ is Hermitian.}\\
+\emph{\textbf{Hint:} you will need to assume that any functions you use are normalizable. You may also use the results from the previous homework assignment.}\bigskip
+
+%---------------------------------------------------------------
+\newpage
+
+\section*{3.33}
+\emph{An operator $\hat{A}$, representing observable $A$, has two (normalized) eigenstates $\psi_1$ and $\psi_2$, with eigenvalues $a_1$ and $a_2$, respectively. Operator $\hat{B}$, representing observable $B$, has two (normalized) eigenstates $\phi_1$ and $\phi_2$, with eigenvalues $b_1$ and $b_2$. The eigenstates are related by}
+\[\psi_1 = (3\phi_1 + 4\phi_2)/5, \qquad \psi_2 = (4\phi_1 - 3\phi_2)/5\]
+\begin{enumerate}[label=\alph*)]
+\item \emph{Observable $A$ is measured, and the value $a_1$ is obtained. What is the state of the system (immediately after this measurement?}\bigskip
+
+\item \emph{If $B$ is now measure, what are the possible results, and what are their probabilities?}\bigskip
+
+\item \emph{Right after the measurement of $B$, $A$ is measured again. What is the probability of getting $a_1$? (Note that the answer would be quite different if I had told you the outcome of the $B$ measurement.}
+\end{enumerate}
+\end{document}
