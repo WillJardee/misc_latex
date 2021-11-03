@@ -1,0 +1,201 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging, colortbl, arydshln}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Homework~5~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+
+\section*{Problem 1}
+
+\noindent
+We are given 5 matrices $M_1,...,M_5$, their dimensions (i.e., rows by columns)
+are as follows: 
+$M_1$ is 15 $\times$ 20,
+$M_2$ is 20 $\times$ 30,
+$M_3$ is 30 $\times$ 10,
+$M_4$ is 10 $\times$ 50, and
+$M_5$ is 50 $\times$ 8.
+\newline
+
+\noindent
+(1.1) Run the dynamic programming algorithm for {\em matrix chain multiplication} that we covered in class to produce the table $m[-,-]$.
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|} 
+    (i,j)  & 1 & 2 & 3 & 4 & 5 \\ \hline
+    1 & 0 & 9000 & 13500 & 21000 & 13600 \\ \hline
+    2 & \cellcolor{gray} & 0 & 6000 & 16000 & 11200 \\ \hline
+    3 & \cellcolor{gray} & \cellcolor{gray} & 0 & 15000 & 6400\\ \hline
+    4 & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & 0 & 4000\\ \hline
+    5 & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & 0\\ \hline
+\end{tabular}
+\end{center}
+The calculations can be seen at the end of this page and onto the next. 
+ 
+
+\noindent
+(1.2) What is the optimal solution value? Where do you find it? 
+\newline
+
+Your optimal solution (assuming you want to do the full multiplication of 1 through 5) will the in the final position $(1,5)$. So $m[1,5] =$ \mybox[fill=blue!20]{$13600$}.\\
+
+All that beautiful math that I promised earlier:\\
+The diagonal is trivially 0. and the elements above the diagonal will be the product of the edges; i.e. $m[1,2] = 15 \times 20 \times 30 = 9000$
+
+\begin{tabular}{r l l}
+    $m[1,3]$    & $= m[1,1] + m[2,3] + 15\times 20\times50$  \quad \quad $m_1(m_2 m_3)$\\
+                & $= 0 + 6000 + 15000 = 21000$\\
+    \cdashline{2-2}
+                & $= m[1,2] + m[3,3] + 15\times30\times10$  \quad \quad $(m_1 m_2) m_3$\\
+                & $= 9000 + 0 + 4500 = $ \mybox[fill=gray!20]{$13500$}
+\end{tabular}   
+
+\begin{tabular}{r l l}
+    $m[2,4]$& $= m[2,2] + m[3,4] + 20\times 30\times50$ & \quad \quad $m_2(m_3 m_4)$\\
+    & $= 0 + 15000 + 30000 = 45000$ \\
+    \cdashline{2-2}
+    & $= m[2,3] + m[4,4] + 20\times10\times50$     &     \quad \quad $(m_2 m_3) m_4$\\
+    & $= 6000 + 0 + 10000 = $ \mybox[fill=gray!20]{16000}
+\end{tabular}
+
+\begin{tabular}{r l l}
+    $m[3,5]$& $= m[3,3] + m[4,5] + 30\times 10\times8$ & \quad \quad $m_3(m_4 m_5)$\\
+    & $= 0 + 4000 + 2400 =$ \mybox[fill=gray!20]{6500}\\
+    \cdashline{2-2}
+    & $= m[3,4] + m[5,5] + 15\times30\times10$ & \quad \quad $(m_3 m_4) m_5$\\
+    & $= 15000 + 0 + 1200 = 27000$\\
+\end{tabular}
+
+\begin{tabular}{r l l}
+    $m[1,4]$& $= m[1,1] + m[2,4] + 15\times 20\times50$ & \quad \quad $m_1(m_2 m_3 m_4)$\\
+    & $= 0 + 16000 + 15000 = 31000$\\
+    \cdashline{2-2}
+    & $= m[1,2] + m[3,4] + 15\times30\times50$ & \quad \quad $(m_1 m_2) (m_3 m_4)$\\
+    & $= 9000 + 15000 + 22500 = 46500$\\
+    \cdashline{2-2}
+    & $= m[1,3] + m[4,4] + 15\times10\times50$ & \quad \quad $m_1 (m_2 m_3 m_4)$\\
+    & $= 13500 + 0 + 7500 = $ \mybox[fill=gray!20]{21000}\\
+\end{tabular}
+
+\begin{tabular}{r l l}
+    $m[2,5]$& $= m[2,2] + m[3,5] + 20\times 30\times8$ & \quad \quad $m_2(m_3 m_4 m_5)$\\
+    & $= 0 + 6400 + 4800 =$ \mybox[fill=gray!20]{11200}\\
+    \cdashline{2-2}
+    & $= m[2,3] + m[4,5] + 20\times10\times8$ & \quad \quad $(m_2 m_3) (m_4 m_5)$\\
+    & $= 6000 + 4000 + 1600 = 11600$\\
+    \cdashline{2-2}
+    & $= m[2,4] + m[5,5] + 20\times50\times8$ & \quad \quad $m_2 (m_3 m_4 m_5)$\\
+    & $= 16000 + 0 + 8000 = $ 24000\\
+\end{tabular}
+
+\begin{tabular}{r l l}
+    $m[1,5]$& $= m[1,1] + m[2,5] + 15\times 20\times8$ & \quad \quad $m_1(m_2 m_3 m_4 m_5)$\\
+    & $= 0 + 11200 + 2400 =$ \mybox[fill=gray!20]{13600}\\
+    \cdashline{2-2}
+    & $= m[1,2] + m[3,5] + 15\times30\times8$ & \quad \quad $(m_1 m_2) (m_3 m_4 m_5)$\\
+    & $= 9000 + 6400 + 3600 = 19000$\\
+    \cdashline{2-2}
+    & $= m[1,3] + m[4,5] + 15\times10\times8$ & \quad \quad $(m_1 m_2 m_3) (m_4 m_5)$\\
+    & $= 13500 + 4000 + 1200 = $ 18700\\
+    \cdashline{2-2}
+    & $= m[1,4] + m[5,5] + 15\times50\times8$ & \quad \quad $(m_1 m_2 m_3 m_4 ) m_5$\\
+    & $= 21000 + 0 + 6000 = $ 27000\\
+\end{tabular}
+
+\newpage
+
+\section*{Problem 2}
+
+\noindent
+We are given a context-free grammar $G$ as follows:
+\newline
+
+$G$: $S\rightarrow AS|SB$
+
+~~~  $A\rightarrow AD|DA|a$
+
+~~~  $B\rightarrow BB|BD|b$
+
+~~~  $D\rightarrow DD|d$.
+
+We are also given a string $w=bdbdd$.
+\newline
+
+\noindent
+(2.1) Run the dynamic programming algorithm for $A_{CFG}$ that we covered in class to produce the table $table[-,-]$.
+\newline
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|} 
+    (i,j)  & 1 & 2 & 3 & 4 & 5 \\ \hline
+    1 & S,B & B & S,B & S,B & S,B \\ \hline
+    2 & \cellcolor{gray} & D & $\emptyset$ & $\emptyset$ & $\emptyset$ \\ \hline
+    3 & \cellcolor{gray} & \cellcolor{gray} & B & B & B\\ \hline
+    4 & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & D & D\\ \hline
+    5 & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & \cellcolor{gray} & D\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent
+(2.2) How do we know whether $G$ generates $w$ from the table?\\
+
+The fact that $m[1,5]$ isn't $\emptyset$ means that we can get to $w$. Furthermore, since I was careful to check where ``$S$" can get me, the fact that ``$S$" is in the $m[1,5]$ position means that we can get to $w$ from our start position. (When I include ``$S$" it means that the cell can be solved by a concatenation of two cells that form a string $BB$.)  
+
+
+\newpage
+
+
+\section*{Problem 3}
+
+Show that {\em ALL}$_{DFA}\in$ P.
+
+We can show that {\em ALL}$_{DFA}\in$ P pretty easily if we simplify it to something that we have already analyzed. In the book it is given that {\em PATH} $\in$ P and in that proof it is asserted that a breadth-first search or a depth-first search are both polynomial length processes. 
+
+Build our $DFA$ like a directed graph. Then, starting on our $q_0$, check every path using one of these two searching mechanisms (I suggest breadth-first). If any of these paths pass through at least one invalid node then we reject. Otherwise, if all paths are valid, then accept. Notice how we have a deterministic setup, so every string has a unique node it will land on and the argument only works if you include all nodes (even implicitly stated ones). We have a polynomial number of times that we run a polynomial operation (the number of nodes by the time of a search). Since the product of polynomials is polynomial, the process to check {\em ALL}$_{DFA}\in$ P. 
+
+\newpage
+
+\section*{Problem 4}
+
+Show that Independent Set $\in$ NP.
+
+There are a couple of ways to go about this question, the one I am going to go about uses this core fact outlined in the lecture: 
+\begin{center}
+    $[V-V^\prime]$ is an IS of $G$\\
+    $[V-V^\prime]$ is a cliche of $\overline{G}$
+\end{center}
+
+In this case, we will take our graph $G$ and produce $\overline{G}$ (if we use an adjacency matrix this takes time {\em O}$(n^2)$). We know that calculating the cliches of the graph is {\em O}$(n^2)$. Since these two sets are equal, the computation time to verify would be {\em O}$(n^2)$ overall. So IS is NP. 
+\newline
+
+
+
+
+\end{document}

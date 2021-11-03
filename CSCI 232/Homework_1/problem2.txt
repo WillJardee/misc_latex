@@ -1,0 +1,53 @@
+package Problem2;
+
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+    static String[] lefts = {"(", "{", "["};
+    static String[] rights = {")", "}", "]"};
+
+    static private Boolean parentheses(String str){
+
+        Stack<String> stack = new Stack<>();
+        String[] par = str.split("");
+        for (String s : par) {
+            stack.push(s);
+
+            if (Arrays.asList(rights).contains(s)){
+                String right = stack.pop();
+                if(stack.isEmpty())
+                    return false;
+                String test = stack.pop();
+                if (right.equals(")") & !test.equals("("))
+                    return false;
+                else if (right.equals("}") & !test.equals("{"))
+                    return false;
+                else if (right.equals("]") & !test.equals("["))
+                    return false;
+            } else if (!Arrays.asList(lefts).contains(s)) {
+                System.out.println("Please give a combination of parentheses.");
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        String ask;
+        do{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please give a combination of parentheses: ");
+            String input = scanner.nextLine();
+
+            System.out.printf("Valid: %s\n", parentheses(input));
+
+            do {
+                System.out.println("Would you like to continue, yes or no?: ");
+                ask = scanner.nextLine();
+            } while (!ask.equals("yes") & !ask.equals("no"));
+        }while(!ask.equals("no"));
+    }
+
+}

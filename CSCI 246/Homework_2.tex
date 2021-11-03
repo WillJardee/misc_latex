@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath,algorithm, algorithmic}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx,caption,enumitem}
+
+
+\begin{document}
+\date{}
+
+\title{CSCI 246: Assignment 2}
+
+\author{William Jardee}
+
+\maketitle
+
+
+\section*{Problem 1}
+This is a list of powers of 2, multiplied in my head, for the first 16. 
+\begin{center}
+\begin{tabular}{c c c c}
+     2 & 32 & 512 & 8192      \\
+     4 & 64 & 1024 & 16384    \\
+     8 & 128 & 2048 & 32768   \\
+     16 & 256 & 4096 & 65536  \\
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \item 
+    log$_2(512) \rightarrow 2^x = 512 \therefore \boxed{x = 9}$ 
+    \item
+    log$_2(4096) \rightarrow 2^x = 4096 \therefore \boxed{x = 12}$ 
+    \item
+    log$_2(8192) \rightarrow 2^x = 8192 \therefore \boxed{x = 13}$ 
+    \item
+    For this part and the next one we can use our laws of logs, telling us that two values multiplied in a log can we separated in to the addition of two logs, and any power inside a log can we factored outside of that log as a coefficient.\\\\
+    log$_2(1024 \cdot 4096) =$ log$_2(1024) + $log$_2(4096) = 10+12 = \boxed{22}$
+    \item
+    log$_2(\frac{4096}{64}) =$ log$_2(4096) - $log$_2(64) = 12-6= \boxed{6}$ 
+
+ 
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 2}
+Let $A = \{4,5,7\}$ and $B = \{y,z\}$. Let $p_1$ and $p_2$ be the $projections$ of $A \times B$ onto the first and second coordinates (components).
+\begin{enumerate}
+    \item 
+    $p_1 (5,y) = \boxed{5}$\\
+    $p_2(4,z) = \boxed{4}$
+    \item
+    Range$(p_1) = \boxed{A} = \{4, 5, 7\}$
+    \item
+    $p_2 (5,y) = \boxed{y}$\\
+    $p_2(4,z) = \boxed{z}$
+    \item
+    Range$(p_2) = \boxed{B}= \{y, z\}$
+    
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 3}
+\begin{center}
+    If $x$ is at most 25, then $x$ is smaller than 25 or $x$ is equal to 25.
+\end{center}
+\begin{enumerate}
+    \item Negation:
+    \begin{center}
+    If Not($x$ is at most 25), then Not($x$ is smaller than 25 or $x$ is equal to 25).\\
+    If $x$ is less than 25, than $x$ is larger than 25 and $x$ is not equal to 25.\\
+    $x < 25 \rightarrow x > 25 \cap x \neq 25$
+    \end{center}
+    \item Contrapositive:cs
+    \begin{center}
+        If Not($x$ is smaller than 25 or $x$ is equal to 25), then Not($x$ is at most 25).\\
+        If $x$ is larger than 25 and $x$ is not equal to 25, then $x$ is less than 25.\\
+        $x > 25 \cap x \neq 25 \rightarrow x < 25$
+    \end{center}
+    \item Converse:
+    \begin{center}
+      If $x$ is smaller than 25 or $x$ is equal to 25, then $x$ is at most 25.\\
+      $x< 25 \cup x = 25 \rightarrow x \leq 25$
+    \end{center}
+    \item Inverse:
+    \begin{center}
+        If $x$ is at most 25, then Not($x$ is smaller than 25 or $x$ is equal to 25).\\
+        If $x$ is at most 25, then $x$ is larger than 25 and $x$ is not equal to 25.\\
+        $x \leq 25 \rightarrow x > 25 \cap x \neq 25$
+    \end{center}
+
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 4}
+\begin{center}
+    $\forall x \in \mathbb{Z}, \frac{x-1}{x}$ is not an integer
+\end{center}
+\begin{enumerate}
+    \item Counterexample: $x = 1 \rightarrow \frac{x-1}{x} = 0 \in \mathbb{Z}$
+    \item If we change the statement to:
+    \begin{center}
+        $\forall x \in \mathbb{Z},$ s.t. $x \notin \{-1, 1\}, \frac{x-1}{x}\notin \mathbb{Z}$
+    \end{center}
+    Then the statement it true
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 5}
+\begin{enumerate}
+    \item Some computer science students are not physics majors:\\
+    $\exists x \in X,$ s.t. $C(s) \land \sim P(s)$
+    \item No mathematics students are also physics majors:\\
+    $\forall x \in X, x \in M(s) \rightarrow \land P(s)$
+    \item There is a computer science student who is both math and physics major:\\
+    $\exists x \in X,$ s.t. $\Big(x \in C(s)\Big) \cap \Big(x \in M(s) \cap P(S)\Big)$
+\end{enumerate}
+
+\end{document}

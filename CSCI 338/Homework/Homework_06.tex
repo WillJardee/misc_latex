@@ -1,0 +1,136 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging, colortbl, arydshln}
+\usepackage[shortlabels]{enumitem}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Homework~6~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+
+\section*{Problem 1}
+
+Problem 7.9 (page 323).
+\footnote{I used the \textit{Introduction to the Theory of Computation, Solutions} By Ching Lee, Edmond Kayi Lee, and Zulfikar Ramzan to fine tune my solutions and give me guidance in the correct direction for the first three questions.}\\
+
+\noindent
+A {\bf triangle} in an undirected graph is a 3-cliche. Show that {\em TRIANGLE} $\in$ P, where {\em TRIANGLE} $= \{ \langle G \rangle | G$ contains a triangle $\}$.\\
+
+Check for a triangle by repeating these steps for each node:
+\begin{enumerate}
+    \item Follow each edge coming off of the node.
+    \item For each of these edges go to the other node, follow each of the edges off these nodes.
+    \item If any of these secondary edges lead back to the initial node, then you have a triangle in $G$
+\end{enumerate}
+
+What this process is checking is that there is a set of three edges $\{E_1, E_2, E_3\}$ such that $E_1 = (v_1, v_2)$, $E_1 = (v_2, v_3)$, and $E_1 = (v_3, v_1)$. 
+
+Assuming we have a simple graph (where there is only one possible edge between two nodes. If $G$ is not then we can add a step to simplify the problem to a simple graph of this nature in quadratic time with an adjacency matrix), then there are at most $n-1$ edges coming off of any node, where $n$ is the number of nodes. Step 1. and 2. will have $n-1$ edges to follow. We will have to repeat this for the $n$ nodes. So, overall, the time is {\em O}$(n^3)$. {\em TRIANGLE}$\in$ P
+
+\newpage
+
+
+
+
+
+\section*{Problem 2}
+
+Problem 7.21 (page 324, LPATH).\\
+
+
+Let $G$ represent an undirected graph. Also let 
+\begin{center}
+    {\em SPATH} $=\{\langle G, a, b, k \rangle | G$ contains a simple path of length at most $k$ from $a$ to $b\}$,\\
+    {\em LPATH} $=\{\langle G, a, b, k \rangle | G$ contains a simple path of length at least $k$ from $a$ to $b\}$\\
+\end{center}
+\begin{enumerate}[(a)]
+    \item Show that {\em SPATH} $\in$ P.
+    
+    A path between two nodes can have a length at most $m$, where $m$ is the number of nodes. We have to check all possible paths up to this length. Let's incorporate the procedure used to show the {\em PATH} $\in$ P, while keeping track of the path length at the same time. 
+    \begin{enumerate}[1.]
+        \item Place a mark on node $a$ with value 0
+        \item Repeat the following until our count reaches $m$, we will use $i$ to keep track of our current value. So, repeat for $i$ from 0 to $m$:
+        \begin{enumerate}[a.]
+            \item Scan all the edges of $G$. If an edge $(s,t)$ is found going from a node $s$ with length $i$ to an unmarked node $t$, assign a length to $t$ of $i+1$.
+        \end{enumerate}
+        \item If $b$ is marked with a value less than $k$ then we can {\em accept}.
+    \end{enumerate}
+    The reason this works for giving us a minimum is that the process uses the concept of a breath first search to check for all paths of length $i$ before moving to nodes of length $i+1$. When we find a path we can't overwrite the path, so it'll be minimum one possible to that node. Step 1 and 4 are constant time, and we repeat 2 up to the number of edges that we have (this will be an upper bound as the number of nodes goes down as we mark them) up to $m$ times. So, the upper bound looks like {\em O}$(m^3+$ const $)$. So, {\em SPATH} $\in$ P.
+    
+    \item Show that {\em LPATH} is NP-complete.
+    First, we can verify that {\em LPATH} is NP by nondeterministically guessing a path from $a$ to $b$ and checking it in polynomial (linear) time. We can create a reduction to {\em UHAMPATH}. Let our reduction function look like: 
+\begin{enumerate}
+    \item $f$ := $\langle G,a,b \rangle$ 
+    \item define $k$ as the number of nodes in our graph
+    \item return $\langle G, a, b, k \rangle$
+\end{enumerate}
+If $\langle G,a,b \rangle \in$ {\em UHAMPATH}, then $G$ contains a path of length $k$ from $a$ to $b$. If $\langle G, a, b, k \rangle \in$ {\em LPATH} then there is a path of at least $k$. But, since there are only $k$ nodes and this is a simple path, then this path must also be Hamiltonian. So,  $\langle G,a,b \rangle \in$ {\em UHAMPATH}. This reduction works, and {\em UHAMPATH} is NP-complete, so {\em LPATH} is NP-complete. 
+
+\end{enumerate}
+
+\newpage
+
+
+
+
+
+\section*{Problem 3}
+
+Problem 7.22 (page 324, Double-SAT).\\
+
+Let {\em DOUBLE-SAT}$=\{\langle \phi \rangle | \phi$ has at least two satisfying assignments $\}$. Show that {\em DOUBLE-SAT} is NP-complete.\\
+
+Showing that {\em DOUBLE-SAT} $\in$ NP is trivially easy, as you can go through each logic statement and check it verifies in {\em O}$(C\times I)$ time, where $C$ is the number of clauses and $I$ is the number of iterates in each clause. Now to reduce to something known to be NP-complete. We will use the reduction {\em SAT} $\leq_p$ {\em DOUBLE-SAT} by the following procedure:
+\begin{enumerate}
+    \item Build an input $\phi^\prime$ such that $\phi^\prime = \phi \cap ((x_{I})\cup (\overline{x_{I}}))$, where $\phi$ is a boolean formula with $I-1$ variables.
+    \item If $\phi \in$  {\em SAT}, then {\em DOUBLE-SAT} has at least two valid inputs, since $\phi$ has at least one, and there is a free variable in our definition of $\phi^\prime$.
+\end{enumerate}
+So, we can use {\em SAT}, which is NP-complete, to solve the {\em DOUBLE-SAT} problem. If $\phi^\prime \in$ {\em DOUBLE-SAT} then $\phi \in$ {\em SAT} since we can simply remove $x_I$ and have a valid input for {\em SAT}.  So, the reduction works and {\em DOUBLE-SAT} is NP-complete.
+
+\newpage
+
+
+
+
+
+\section*{Problem 4}
+
+Problem 7.35 (page 326, $\neq$-SAT).\\
+
+A subset of nodes of a graph $G$ is a {\bf dominating set} if every other node of $G$ is adjacent to some node in the subset. Let 
+\begin{center}
+    {\em DOMINATING-SET} $=\{\langle G,k \rangle | G$ has a dominating set with $k$ nodes $\}$.  
+\end{center}
+Show that it is NP-complete by giving a reduction from {\em VERTEX-COVER}.\\
+
+If you take a proposed {\em DOMINATING-SET}, it can be verified by taking all permutations of ${n \choose k}$, where $n$ is the number of nodes, and deleting all the edges attached to all the nodes. If at least one set up doesn't have any edges left over than the dominating set is valid. This check has {\em O}$(n^2 + k)$ time to finish, so polynomial time. {\em DOMINATING-SET} is NP. 
+
+The {\em DOMINATING-SET} can be reduced to the {\em VERTEX-COVER} by acknowledging that a vertex-cover is a dominating set. If there is a {\em VERTEX-COVER} of a given $k$, then every node is either in that set or connected to that set by an edge, also known as adjacent. So, we simply pass our $G$ and $k$ to {\em VERTEX-COVER} and if there is a vertex cover of a size $k$ there is a dominating set of that size. Since a vertex-cover and a dominating-set are the same object, finding one finds the other (showing an iff relationship required for $x\in A \iff f(x) \in B$) So, {\em DOMINATING-SET} is NP-complete.
+
+
+\end{document}

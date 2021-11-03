@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx,caption}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+\date{}
+
+\title{CSCI 246: Test 1}
+
+\author{William Jardee}
+
+\maketitle
+
+
+\section*{Problem 1}
+\begin{center}
+    Let $S = \{a,b,1,2\}$. List the power set (set of all the subsets of S).
+\end{center}
+    \[\mathcal{P}(S) = \{\{\},\{a\},\{b\},\{1\},\{2\},\{a,b\},\{a,1\},\{a,2\},\{b,1\},\{b,2\},\{1,2\},\]
+    \[\{a,b,1\},\{b,1,2\},\{a,b,2\},\{a,1,2\},\{a,b,1,2\}\}\]
+    
+\newpage
+
+\section*{Problem 2}
+\begin{center}
+    If $x$ is divisible by 18, then $x$ is divisible by 9 and $x$ is divisible by 2.\\
+\end{center}
+    $p = x$ is divisible by 18\\
+    $q = x$ is divisible by 9 $\and x$ is divisible by 2
+\begin{enumerate}
+    \item Negation:\\
+        $x$ is divisible by 18 and [$x$ is not divisible by 9 or $x$ is not divisible by 2]\\\\
+        Alternatively you could write:\\
+        $x$ is divisible by 18 and $x$ is not divisible by 9 or $x$ is divisible by 18 and $x$ is not divisible by 2
+    \item Contrapositive:\\
+        If $x$ is not divisible by 9 or $x$ is not divisible by 2, then $x$ is not divisible by 18.
+    \item Converse:\\
+        If $x$ is divisible by 9 and $x$ is divisible by 2, then $x$ is divisible 18.
+    \item Inverse:\\
+        If $x$ is not divisible by 18, then $x$ is not divisible by 9  or $x$ is not divisible by 2.
+
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 3}
+    \quad If a computer program is correct, then compilation of the program does not produce error messages.\\\\
+    Compilation of this program produces error messages. \\
+    $\therefore$ The computer program is not correct.\\\\
+    I just needed to finish the contrapositive.
+
+\newpage
+
+\section*{Problem 4}
+\begin{center}
+    What are A and B?
+\end{center}
+This is a perfectly logical statement. If A is a knight and B is a Knave, then A is correct in saying that B is a Knave, as B is incorrect. I would say, however, that these statements by A and B are confusing. \\
+\begin{center}
+    A is a knight \quad B is a Knave
+\end{center}
+
+\newpage
+
+\section*{Problem 5}
+\begin{enumerate}
+    \item Write a negation for the statement:\\
+    \quad $\exists$ integer $d$ if  $\frac{18}{d}$ is an integer, then $d = 3$.\\
+    Negation: $\forall$ integer $d$, $\frac{18}{d}$ is an integer and $d \neq 3$. 
+    \item Is the statement in 5.1 correct? Explain your reason.\\
+    It took me a couple times looking over this question to actually get the right answer eventually. \\
+    $\exists$ integer $d$ if  $\frac{18}{d}$ is an integer, then $d = 3$;\\
+    Since $d=3$ is an integer, and $\frac{18}{3} = 6$, $6$ is an integer so the statement is valid (correct).
+
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+
+%Don't change any thing before \begin{document}
+%They are not useful for now, but later when you try to add figures
+%these might be useful. In fact if you use sth fancy, you might need
+%to add more packages, or macros.
+\usepackage{amssymb,amsmath,algorithm, algorithmic, mathtools}
+\usepackage{times,psfrag,epsf,epsfig,graphics,graphicx,caption,enumitem}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\begin{document}
+\date{}
+
+\title{CSCI 246: Assignment~3~(6 points)}
+
+\author{William Jardee}
+
+\maketitle
+
+
+\noindent
+This assignment is due on {\bf Thursday, Oct 1, 8:30pm}. It is strongly
+encouraged that you use Latex to generate a single pdf file and upload it
+under {\em Assignment 3} on D2L. But there will NOT be a penalty for not
+using Latex (to finish the assignment). This could be a group-assignment,
+so you could form a group with $\leq 3$ students (mathematically, this means
+you can also do it by yourself).
+\newline
+ 
+\section*{Problem 1.}
+
+\noindent
+Prove that if $a$ and $b$ are odd integers, then $a^2+b^2$ is even.
+\newline
+
+Suppose we have two odd integers that, by the definition of odd, $a=2n+1$ and $b = 2k+1$ s.t. $n,k \in \mathbb{Z}$. Then;
+\begin{center}  $a^2 = 4n^2 +  4n + 1$ and $b^2 = 4k^2 + 4k + 1$\end{center}
+\[a^2 + b^2 = 4n^2 +4n +1 + 4k^2 + 4k +1 = 2(2n^2 +2n +2k^2 +2k +1) = 2q\]
+s.t. $q = 2n^2 +2n +2k^2 +2k +1$. By closure of integers over multiplication and addition $q \in \mathbb{Z}$. By the definition of even, we can then say that $a^2 + b^2$ is even. 
+\begin{flushright}$\blacksquare$\end{flushright}
+
+\newpage
+
+
+\section*{Problem 2.}
+
+\noindent
+Reorder the premises in the argument to show that the conclusion follows as
+a valid consequence from the premises. It might be helpful to rewrite the
+statements in if-then form and replace some of them by their contrapositives.
+{\em You can assume the premise: ``The arguments in these examples are not arranged in regular order like the ones I am used to".}
+\newline
+
+{\bf A}. When I work a logic example without grumbling, you may be sure it is one I understand.
+\newline
+
+{\bf B}. No easy examples make my head ache.
+\newline
+
+{\bf C}. I can't understand examples if the arguments are not arranged in regular order like the ones I am used to.
+\newline
+
+{\bf D}. I never grumble at an example unless it gives me a headache.
+\newline
+
+$\therefore$~~~ These examples are not easy.
+\\\\
+
+{\em Reworded logic:}\\
+
+{\bf A}. If I work a logic example without grumbling, then I understand it.\\
+
+{\bf B}. If it an easy example, then my head doesn't ache.\\
+
+{\bf C}. If the arguments are not arranged in regular order like the ones I am used to, then I can't understand the examples.\\
+
+{\bf D}. I grumble at an example if and only if it gives me a headache.\\
+
+$\therefore$ These examples are not easy
+\\\\
+
+{\em Reordering the logic:}\\
+{\bf Original Premise:} The arguments in these examples are not arranged in regular order like the ones I am used to.\\
+
+{\bf C} If the arguments are not arrange in regular order liek the ones I am used to, then I can't understand the examples.\\
+
+{\bf A} If I do not understand the example, I must work the logic example with grumbling.\\
+
+{\bf D} I grumble at an example if and only if it gives me a headache.\\
+
+{\bf B} If my head aches, then it isn't an easy example.\\
+
+$\therefore$ These examples are not easy
+
+\newpage
+
+\section*{Problem 3.}
+
+Sam worked hard last night; in fact, he slept for only three hours. He claimed that he found the following theorem:
+
+For every integer $n>3$, if $n$ is even then $n^2+1$ is prime.
+\newline
+
+\noindent
+Find a counterexample for Sam's claim.
+\newline
+
+If $n =4$ then $n$ is obviously even and $n^2 + 1 = 65$ which is divisible by 5, violating the definition of prime. So we see a contradiction with the original statement. \\
+
+$\boxed{n  = 4}$
+
+%\noindent
+%{\bf Answer:}~~ .........
+%\newline
+
+\newpage
+
+\noindent
+\section*{Problem 4.}
+
+Prove the following statement directly by definition.
+\newline
+
+The difference of any two rational numbers is a rational number.
+\newline
+
+Proof:
+
+Let a and b be rational numbers. By the definition of rational numbers, a and b can be written as $a = \frac{c}{d}$ and $b = \frac{e}{f}$ s.t. $c,d,e,f \in \mathbb{Z}$. 
+\[a - b = \frac{c}{d} - \frac{e}{f} = \frac{cf -ed}{df} = \frac{k}{q}\]
+s.t. $k = cf -ed$ and $q = df$. By the closer of integers over multiplication and addition, we can say that $k,q \in \mathbb{Z}$. By the definition of rational numbers, we can say that $a-b$ is a rational number. But $a$ and $b$ were arbitrary rational numbers, so the statement can be generalized that the difference of any two rational numbers is a rational number.
+\begin{flushright}$\blacksquare$\end{flushright}
+
+\newpage
+
+
+\section*{Problem 5.}
+
+If $n$ is an integer and $n>1$, then $n!$ is the product of $n$ and every other positive integer that is less than $n$, e.g., $5!=5\times 4\times 3\times 2\times 1$.
+\newline
+
+\noindent
+(5.1) Write 6! in standard factored form.\\
+Using De Polignac's Formula for the primes less than 20: 
+$$a_n = \sum_{k>0} \floor*{\frac{20}{n^k}}$$
+$a_2 = 4$\\
+$a_3 = 2$\\
+$a_5 = 1$\\
+\[\boxed{6! = 2^4 \times 3^2 \times 5}\]
+
+\noindent
+(5.2) Write 20! in standard factored form.\\
+Using De Polignac's Formula for the primes less than 20: 
+$$a_n = \sum_{k>0} \floor*{\frac{20}{n^k}}$$
+$a_2 = 18$\\
+$a_3 = 8$\\
+$a_5 = 4$\\
+$a_7 = 2$\\
+$a_{11} = a_{13} = a_{17} = a_{19} = 1$
+\[\boxed{20! = 2^{18} \times 3^8 \times 5^4 \times 7^2 \times 11 \times 13 \times 17 \times 19}\]
+
+
+\noindent
+(5.3) Without computing the value of $(20!)^2$, determine how many zeros are at the end of the number when it is written in decimal form. Explain the reason.\\
+
+\[20!^2 = (2^{18} \times 3^8 \times 5^4 \times 7^2 \times 11 \times 13 \times 17 \times 19)^2\]
+\[20!^2 = 2^{36} \times 3^{16} \times 5^8 \times 7^4 \times 11^2 \times 13^2 \times 17^2 \times 19^2\]
+Each zero at the end can be factored out as a multiple of 10. 10 has a prime factorization of $10 = 2 \times 5$, so there are only as many 10's are there are 2's or 5's, whichever there are fewer. So there are $\boxed{8}$ zeros at the end of $20!^2$.
+
+\end{document}

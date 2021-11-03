@@ -1,0 +1,40 @@
+%% Document initiation %%
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parskip}{0.5em}
+
+
+%% Package Declarations %%
+\usepackage{amssymb,amsmath, algorithm, algorithmic}
+\usepackage{xcolor, times,psfrag,epsf,epsfig,graphics, tabularx, array}
+\usepackage{tikz}
+\usepackage{multicol, wrapfig, ctable}
+\usepackage{fancyhdr, hanging}
+
+
+%% Common Declarations %%
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+\pagestyle{fancy}
+\begin{document}
+
+%% Document Building %%
+\graphicspath{{../images/}}
+
+%% Title %%
+\title{CSCI 338: Quiz~6~}
+\author{William Jardee}
+\date{\today}
+\maketitle
+
+
+%% Document Contents %%
+\section*{Problem 1}
+    In your own language, what is the difference between a problem in P and a problem in NP?\\
+    
+    Problems in P can be solved in polynomial time, problems in NP can be verified in polynomial time. A lot of the time it is easier to verify something than it is to get the answer in the first place. So, for example, finding the cliches in a graph may not be a polynomial time problem, but we have shown that we can verify it in polynomial time. So it may not be in P, but it is in NP. 
+
+
+\end{document}
