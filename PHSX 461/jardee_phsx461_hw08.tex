@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+	\documentclass[12pt]{article}
 
 \usepackage[english]{babel}
 
@@ -50,7 +50,32 @@
 \begin{enumerate}[label=\alph*)]
 \item \emph{Suppose that $f(x)$ and $g(x)$ are two eigenfunctions of an operator $\hat{Q}$, with the same eigenvalue $q$. Show than any linear combination of $f$ and $g$ is itself an eigenfunction of $\hat{Q}$, with eigenvalue $q$.}\bigskip
 
+\[\hat{Q}\ket{f} = q\ket{f} \quad , \quad \hat{Q}\ket{g} = q \ket{g}\]
+\[\ket{\alpha} = a\ket{f} + b\ket{b}\]
+
+\[\hat{Q}\ket{\alpha} = \hat{Q}[a\ket{f} + b\ket{g}]\]
+\[=\hat{Q}(a\ket{f}) + \hat{Q}(b\ket{g})\]
+\[=a\hat{Q}\ket{f} + b\hat{Q}\ket{g}\]
+\[=aq\ket{f} + bq\ket{g}\]
+\[=q[a\ket{f} + b\ket{g}] = q\ket{\alpha}\]
+
 \item \emph{Check that $f(x) = \text{exp} (x)$ and $g(x) = \text{exp} (-x)$ are eigenfunctions of the operator $d^2/dx^2$, with the same eigenvalue. Construct two linear combinations of $f$ and $g$ that are orthogonal eigenfunctions on the interval $(-1,1)$.}
+
+\[\hat{Q}\ket{f} \Rightarrow \pdv[2]{x}e^x =e^x \rightarrow q=1\]
+\[\hat{Q}\ket{g} \Rightarrow \pdv[2]{x}e^{-x} =(-1)^2e^{-x}=e^{-x} \rightarrow q=1\]
+
+\[\ket{\alpha} = a\ket{f} + b\ket{g} \quad , \quad \ket{\beta} = c\ket{f} + d\ket{g}\]
+For orthogonality, we need $\braket{\alpha}{\beta} = \int \alpha(x)^* \beta(x) \dd{x} = 0$
+\[0=\int^1_{-1} (a^* f^*(x) + b^* g^*(x))^* (cf(x) + bg(x)) \dd{x}\]
+\[0=\int^1_{-1} (ae^x + be^{-x})(ce^x + de^{-x})\dd{x}\]
+\[0=\int^1_{-1} [ace^{2x} + ad+bc + bde^{-2x}] \dd{x}\]
+\[0= \frac{ac}{2}e^{2x} + [ad+bc]x -\frac{bd}{2}e^{-2x}\eval^1_{-1}\] 
+\[0=\frac{ac}{2}e^2 + [ad+bc] -\frac{bd}{2}e^{-2} -\Big[\frac{ac}{2}e^{-2} -[ad+bc] -\frac{bd}{2}e^2\Big]\]
+\[0=e^2\Big[\frac{ac}{2}+\frac{bd}{2}\Big] + e^{-2}\Big[\frac{-bd}{2} + \frac{-ac}{2}\Big] + 2[ad+bc]\]
+The easiest solution to this is if we let $ac = -bd$. Two solutions to this question yield the linear combination:
+\[\ket{\alpha} = \ket{f} + \ket{g} \quad , \quad \ket{\beta} = \ket{f} -\ket{g}\]
+\[\ket{\alpha} = -\ket{f} + \ket{g} \quad , \quad \ket{\beta} = \ket{f} +\ket{g}\]
+
 \end{enumerate}
 
 %---------------------------------------------------------------
@@ -70,21 +95,57 @@
 
 \section*{3.13}
 \emph{Show that}
-\[\langle x \rangle = \int \Phi^* \qty(i\hbar\pdv{p})\Phi \dd{p}\]
-\emph{Notice that $x\text{exp}(ipx/\hbar) = -i\hbar (\pdv*{p})\text{exp} (ipx/\hbar)$, and use Equation 2.147. In momentum space, then, the position operator is $i\hbar \pdv*{p}$. More generally,}\bigskip
+\[\langle x \rangle = \int \Phi^* \qty(i\hbar\pdv{p})\Phi \dd{p}\]\bigskip
+Let us start by defining what $\Phi$ is:
+\[\Phi = \frac{1}{\sqrt{2\pi \hbar}}\int e^{ipx/\hbar} \Psi(x,t)\]
+So, let's plug this in and just run the calculus:
+\[\int \Phi^* \qty(i\hbar\pdv{p})\Phi \dd{p}\]
+\[= \frac{i\hbar}{2 \pi \hbar} \int \Big[\int e^{ipx/\hbar} \Psi \dd{x}\Big]^*\pdv{p}\Big[\int e^{ipx^\prime /\hbar} \Psi \dd{x^\prime}\Big]\]
+\[=\frac{i}{2 \pi} \int \Big[\int e^{ipx/\hbar} \Psi^* \dd{x}\Big] \Big[\int \frac{-ix^\prime}{\hbar}e^{ipx^\prime/\hbar} \Psi \dd{x^\prime}\Big]\]
+Since these three variables, $p, x, x^\prime$, are all independent, they can be moved in and out of each other's integrals. 
+\[=\frac{1}{2 \pi \hbar} \int e^{-i(\frac{p}{\hbar}(x-x^\prime)} \Psi^*(x,t) x^\prime \Psi(x^\prime, t) \dd{p}\dd{x}\dd{x^\prime}\]
+\[=\frac{\hbar}{\hbar} \delta\Big[\frac{p}{\hbar}(x-x^\prime)\Big]\int\Psi^*(x,t)x^\prime\Psi(x^\prime,t)\dd{x}\dd{x^\prime}\eval^\infty_{-\infty}\]
+\[=\int \Psi^*(x,t)x\Psi(x,t)\dd{x} = \langle x \rangle\]
 
 %---------------------------------------------------------------
 \newpage
 
 \section*{3.26}
-\emph{Consider a three-dimensional vector space spanned by an orthonormal basis $\ket{1},\,\ket{2},\,\ket{3}$. Kets $\ket{\alpha}$ and $\ket{\beta}$ are given by}
+\emph{Consider a three-dimensional vector space spanned by an orthonormal basis $\ket{1}, \,\ket{2},\,\ket{3}$. Kets $\ket{\alpha}$ and $\ket{\beta}$ are given by}
  \[\ket{\alpha} = i\ket{1} -2\ket{2}-i\ket{3}, \qquad \ket{\beta} = i\ket{1} + 2\ket{3}\]
 \begin{enumerate}[label=\alph*)]
-\item \emph{Construcct $\bra{\alpha}$ and $\bra{\beta}$ (in terms of the dual basis $\bra{1},\,\bra{2},\,\bra{3}$).}\bigskip
+\item \emph{Construct $\bra{\alpha}$ and $\bra{\beta}$ $($in terms of the dual basis $\bra{1},\,\bra{2},\,\bra{3})$.}\bigskip
+
+We can think of $\ket{\alpha}$ and $\ket{\beta}$ as wavefunctions, since the mechanics here are the same (orthonormal basis, linear combinations of states, ...). So, pulling that analog:
+\[\ket{\Psi} = \sum c_n \ket{f_n} \Rightarrow \bra{\Psi} = \sum c^*_n \bra{f_n}\]
+and thus:
+\[\bra{\alpha} = -i \bra{1} -2\bra{2} +i\bra{3} \quad , \quad \bra{\beta} = -i\bra{1} +2\bra{3}\]
 
 \item \emph{Find $\braket{\alpha}{\beta}$ and $\braket{\beta}{\alpha}$, and confirm that $\braket{\beta}{\alpha} = \braket{\alpha}{\beta}^*$.}\bigskip
 
-\item \emph{Final all nine matrix elements fo the operator $\hat{A} = \ket{\alpha}\bra{\beta}$, in this basis, and construct the matrix $A$. Is it hermitian?}
+\[\braket{\alpha}{\beta} = (-i\bra{1} -2\bra{2} +i\bra{3})(i\ket{1} +2\ket{3})\]
+\[= -i^2 \braket{1}{1} +2i\braket{3}{3}\]
+\[=1+2i\]
+
+\[\braket{\beta}{\alpha} = (-i\bra{1} + 2\bra{3})(i\ket{1} -2\ket{2} -i\ket{3})\]
+\[=-i^2\braket{1}{1} -2i\braket{3}{3}\]
+\[=1-2i\]
+
+\[\braket{\alpha}{\beta}^* = (1+2i)^* = 1-2i = \braket{\beta}{\alpha}\]
+
+\item \emph{Final all nine matrix elements fo the operator $\hat{A} = \ket{\alpha}\bra{\beta}$, in this basis, and construct the matrix $A$. Is it hermitian?}\bigskip
+
+\[\hat{Q} \Rightarrow Q = \mqty(Q_{11} & Q_{12} & \cdots \\ Q_{21} & Q_{22} & \cdots \\ \cdots & \cdots & \cdots), \text{ where } Q_{mn} = \bra{e_m}\hat{Q}\ket{e_n}\]
+We will use this to calculate the $A_{13}$ element, then point out the pattern and fill out the rest of the matrix.
+\[A_{13} = \braket{1}{\alpha}\braket{\beta}{3}\]
+\[= \bra{1}(i\ket{1} -2\ket{2} -i\ket{3})(-i\bra{1} +2\bra{3})\ket{3}\]
+\[= (i)(2) = 2i\]
+So, an element $A_{mn}$ can be found by taking the product of the $m$th coefficient from $\ket{\alpha}$ and the $n$th coefficient form $\bra{\beta}$. Using this method:
+\[\hat{A} = \mqty((i)(-i)&(i)(0)&(i)(2) \\ (-2)(-i)&(-2)(0)&(-2)(2) \\ (-i)(-i)&(-i)(0)&(-i)(2)) = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)\]
+To test if this is hermitian, $\hat{A}^\dagger = \hat{A}$
+\[\hat{A}^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^{*T} = \mqty(1&-2i&-1 \\ 0&0&0 \\ -2i&-4&-2i) \neq \hat{A}\]
+So, $A$ is \textbf{not} hermitian. 
+
 \end{enumerate}
 
 %---------------------------------------------------------------
@@ -93,6 +154,15 @@
 \section*{Question 5.}
 \emph{Prove that the momentum operator, $\hat{p}$ is Hermitian.}\\
 \emph{\textbf{Hint:} you will need to assume that any functions you use are normalizable. You may also use the results from the previous homework assignment.}\bigskip
+
+We want to show that $\hat{p}^\dagger = \hat{p}$. To do this, first we can identify that a hermitian operator in momentum space is also a hermitian operator in position space; so, we will be doing this problem with $\Phi$, instead of $\Psi$. 
+\[\ev{\hat{p}^\dagger}{\Phi}\]
+\[=\braket{\hat{p}\Phi}{\Phi}\]
+\[=\int (\hat{p}\Phi)^* \Phi \dd{p}\]
+\[=\int (p \Phi)^* \Phi \dd{p}\]
+\[=\int \Phi^* p \Phi \dd{p}\]
+\[=\int \Phi^* \hat{p} \Phi \dd{p}\]
+\[= \ev{\hat{p}}{\Phi} \rightarrow \hat{p}^\dagger = \hat{p}\]
 
 %---------------------------------------------------------------
 \newpage
@@ -103,8 +173,23 @@
 \begin{enumerate}[label=\alph*)]
 \item \emph{Observable $A$ is measured, and the value $a_1$ is obtained. What is the state of the system (immediately after this measurement?}\bigskip
 
+The wavefunction has been observed and thus has been collapsed to $\psi_1$. So, the state is $\phi_1$
+
 \item \emph{If $B$ is now measure, what are the possible results, and what are their probabilities?}\bigskip
 
+Since we are completely in state $\psi_1$, the probabilities will only be decedents of that equation. There will be a $(\frac{3}{5})^2 = \frac{9}{25} = 35\%$ chance for $b_1$ and a   $(\frac{4}{5})^2 = \frac{16}{25} = 65\%$ chance for $b_2$.
+
 \item \emph{Right after the measurement of $B$, $A$ is measured again. What is the probability of getting $a_1$? (Note that the answer would be quite different if I had told you the outcome of the $B$ measurement.}
+
+If we are asking for the probability of $a_1$, we are thinking about $\psi_1$:
+\[\psi_1^2 = \frac{9\phi_1^2 + 24\phi_1 \phi_2 + 16\phi_2^2}{25}\]
+\[= \frac{3^4+ 23^2 4^2 + 4^4}{5^4} = 1\]
+To do a quick check to make sure that we don't need to renormalize:
+\[\psi_2^2 = \frac{16\phi_1^2 - 24\phi_1 \phi_2 + 9\phi_2^2}{25}\]
+\[= \frac{3^24^2- 23^2 4^2 + 3^2 4^2}{5^4} = 0\]
+
+So, it would seem that there is a $100\%$ chance that we get back $a_1$. 
+
+But what about that hint? What would it be then? Well, if we say that $B=b_1$, $\phi_1 = 1$ and $\phi_2 = 0$. Thus, $\psi_1^2 = \frac{9}{25} = 35\%$ and $\psi_2^2 = \frac{16}{25} = \frac{16}{25} = 65\%$. This is a very different answer from what we got, so the ``$100\%$" is consistent with the hint. 
 \end{enumerate}
 \end{document}
