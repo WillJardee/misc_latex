@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  4 NOV 2021 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  11 NOV 2021 21:58
 entering extended mode
-**./jardee_phsx461_hw08.tex
-(jardee_phsx461_hw08.tex
+**./jardee_phsx461_hw09.tex
+(jardee_phsx461_hw09.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -873,8 +873,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip73
-) (jardee_phsx461_hw08.aux)
-\openout1 = `jardee_phsx461_hw08.aux'.
+) (jardee_phsx461_hw09.aux)
+\openout1 = `jardee_phsx461_hw09.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
@@ -978,70 +978,27 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 43.
 LaTeX Info: Redefining \pageref on input line 43.
 LaTeX Info: Redefining \nameref on input line 43.
- (jardee_phsx461_hw08.out) (jardee_phsx461_hw08.out)
+ (jardee_phsx461_hw09.out) (jardee_phsx461_hw09.out)
 \@outlinefile=\write4
-\openout4 = `jardee_phsx461_hw08.out'.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
+\openout4 = `jardee_phsx461_hw09.out'.
 
 
-(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
+! I can't write on file `jardee_phsx461_hw09.pdf'.
+Please type another file name for output
+! Emergency stop.
+<to be read again> 
+                   \edef 
+l.43 \begin{document}
+                     
+*** (job aborted, file error in nonstop mode)
 
-
-(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for U+esint on input line 4
-8.
-
-(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
-File: uesint.fd 
-)
-[1
-
-{C:/Users/jarde/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
-[4]
-Overfull \hbox (13.10129pt too wide) in paragraph at lines 124--125
-\OT1/cmr/m/it/12 Consider a three-dimensional vec-tor space spanned by an or-th
-onor-mal ba-sis $[] \OML/cmm/m/it/12 ;  [] ;  []$\OT1/cmr/m/it/12 .
- []
-
-[5] [6] [7] [8] [9] (jardee_phsx461_hw08.aux)
-Package rerunfilecheck Info: File `jardee_phsx461_hw08.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 27730 strings out of 478927
- 537666 string characters out of 2852534
- 821805 words of memory out of 3000000
- 45081 multiletter control sequences out of 15000+600000
- 415393 words of font info for 76 fonts, out of 8000000 for 9000
+ 27600 strings out of 478927
+ 535808 string characters out of 2852534
+ 808877 words of memory out of 3000000
+ 45013 multiletter control sequences out of 15000+600000
+ 403728 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,89p,423b,920s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\jarde\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi720\esi
-nt10.pk><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbxti10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jarde/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/jarde/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/jarde/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/jarde/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
-/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
-C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-8.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmsy6.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/jarde/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/jarde/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on jardee_phsx461_hw08.pdf (9 pages, 186505 bytes).
-PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 84i,1n,89p,423b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -46,30 +46,55 @@ If we just treat the two surfaces as faces of a parallel plate capacitor:
 where the $\hat{z}$ is pointed the axis of the cylinder to the right. What is $\sigma$? If we consider this the charge that builds up from the current, uniformly distributed over the area:
 \[\sigma = \frac{Q}{\pi a^2} = \frac{It}{\pi a^2}\]
 Putting this together with the E-field:
-\[\vb{E} = \frac{It}{\pi a^2 \varepsilon_0}\hat{z}\]
+\[\boxed{\vb{E} = \frac{It}{\pi a^2 \varepsilon_0}\hat{z}}\]
 
 To find the B-field, we can use $\oint \vb{B} \cdot \dd{\vb{l}} = \mu_0 I_\text{enc} + \mu_0 \varepsilon_0 \int \pdv{\vb{E}}{t}\cdot \dd{\vb{a}}$, recognizing that no current is flowing in the gap.
 \[\vb{B}2\pi s = \mu_0 \varepsilon_0 \int \Big(\frac{I}{\pi a^2 \varepsilon_0}\hat{z}\Big)\cdot \dd{\vb{a}}\]
-\[\vb{B} = \frac{\mu_0 I}{2 \pi a^2} s \, \hat{\phi}\]
+\[B = \frac{\mu_0 I}{2 \pi^2 s a^2} \pi s^2\]
+\[\boxed{\vb{B} = \frac{\mu_0 I}{2 \pi a^2} s \, \hat{\phi}}\]
 
 \item \emph{Find the energy density $u_\text{em}$ and the Poynting vector $S$ in the gap. Note especially the direction of $S$. Check that Eq 8.12 is satisfied.}\bigskip
 
 \[u_\text{em} = \frac{1}{2} \varepsilon_0 \vb{E}^2 + \frac{1}{2\mu_0} \vb{B}^2\]
 \[= \frac{1}{2} \varepsilon_0 \Big( \frac{It}{\pi a^2 \varepsilon_0} \Big)^2 + \frac{1}{2 \mu_0}\Big( \frac{\mu_0 I}{2 \pi a^2}s\Big)^2\]
-\[u_\text{em} = \frac{I^2}{2\pi^2 a^4}\Big[ \frac{t^2}{\varepsilon_0} + \frac{\mu_0}{4}s^2\Big]\]
+\[\boxed{u_\text{em} = \frac{I^2}{2\pi^2 a^4}\Big[ \frac{t^2}{\varepsilon_0} + \frac{\mu_0}{4}s^2\Big]}\]
 
-\[\vb{S} = \frac{1}{\mu_0}\Big(\frac{It}{\pi a^2 \varepsilon_0} \hat{z} \times \frac{\mu_0 I}{2 \pi a^2}s \hat{\phi} \Big) =  -\frac{I^2 t s}{2 \pi^2 a^4 \varepsilon_0}\hat{s}\]
+\[\vb{S} = \frac{1}{\mu_0}\vb{E}\times \vb{B} \]
+\[= \frac{1}{\mu_0}\Big(\frac{It}{\pi a^2 \varepsilon_0} \hat{z} \times \frac{\mu_0 I}{2 \pi a^2}s \hat{\phi} \Big) = \boxed{ -\frac{I^2 t s}{2 \pi^2 a^4 \varepsilon_0}\hat{s}}\]
 
-
+Equation 8.12 states:
+\[\pdv{u}{t} = -\div{\vb{S}}\]
+Calculating the left hand side first:
+\[\pdv{u}{t} = \frac{I^2 t}{\pi^2 a^4 \varepsilon_0}\]
+Now for the right hand side:
+\[-\div{\vb{S}} = \frac{1}{s}\pdv{s}\frac{I^2 t}{2\pi^2 a^4 \varepsilon_0}s \cdot s = \frac{I^2 t}{\pi^2 a^4 \varepsilon_0}\]
+The left and right hand sides both provide the same answer, so equation 8.12 checks out. 
 
 \item \emph{Determine the total energy in the gap, as a function of time. Calculate the total power flowing into the gap, by integrating the Poynting vector over the appropriate surface. Check that the power input is equal to the rate of increase of energy in the gap (Eq. 8.9 - in this case $W=0$, because there is no charge in the gap). [If you're worried about the fringing fields, do it for a volume of radius $b<a$ well inside the gap.]}\bigskip
+
+\[\pdv{U_\textbf{em}}{t} = \int \pdv{u_\text{em}}{t} = -\oint_{\partial V}\vb{S}\cdot \dd{\vb{a}} = \oint_{\partial V}\frac{I^2 t s}{2 \pi^2 a^4 \varepsilon_0} \hat{s} \cdot s \dd{\theta} \dd{z}\hat{s}\eval_{s=a}\]
+\[= \frac{I^2 t s^2}{2 \pi^2 a^4 \varepsilon_0}\eval_{s=a} \oint \dd{\theta}\dd{z}\]
+\[= \frac{I^2 t}{2 \pi^2 a^ 2 \varepsilon_0} 2\pi w = \boxed{w\frac{I^2 t}{\pi a^2 \varepsilon_0} = \pdv{U_\textbf{em}}{t}}\]
+
+Now, let's follow this up by verifying that this value is correct. 
+\[U_\text{em} = \int_V u_\text{em} = \int \frac{I^2}{2\pi^2 a^4}\Big[ \frac{t^2}{\varepsilon_0} + \frac{\mu_0}{4}s^2\Big]s \dd{s} \dd{\theta} \dd{z}\]
+\[= w 2\pi \int \frac{I^2}{2\pi^2 a^4}\Big[ \frac{t^2}{\varepsilon_0}s + \frac{\mu_0}{4}s^3\Big] \dd{s}\]
+\[= w2\pi \frac{I^2}{2\pi^2 a^4}\Big(\frac{t^2}{\varepsilon_0}\frac{1}{2}s^2 + \frac{\mu_0}{4}\frac{1}{4}s^4\Big)\eval_0^a\]
+\[= w \frac{I^2}{2\pi a^4}\Big(\frac{t^2}{\varepsilon_0}a^2 + \frac{\mu_0}{8}a^4\Big)\]
+\[U_\text{em} = w \frac{I^2}{2\pi a^2}\Big(\frac{t^2}{\varepsilon_0} + \frac{\mu_0}{8}a^2\Big)\]
+
+\[\pdv{U_\text{em}}{t} = \pdv{t}\Big(w\frac{I^2}{2 \pi a^2}\Big(\frac{t^2}{\varepsilon_0} + \frac{1}{8}\mu_0 a^2\Big)\Big)\]
+\[=w\frac{I^2 2t}{2\pi a^2 \varepsilon_0} = w\frac{I^2 t}{\pi a^2 \varepsilon_0}\]
+
+As we expected, these two methods gave us the same answer! (but we can see that one of them did it a lot faster, and easier)
+
 \end{enumerate}
 
 \section*{Question 2:}
 \emph{The tip of a scanning tunneling microscope $(\theta < \alpha$, where $\alpha < \pi/2)$, held at a potential $V_0$, contacts a solid surface $(z=0)$. Assume that the STM tip and the surface it contacts are perfect conductors, but that the point of contact at the origin has resistance $R$. Find the Poynting vector $S$. Then calculate the Poynting flux, $\oint S\cdot \dd{a}$, through a shell of radius $r$ around the resistor.}\bigskip
 
-\[\laplacian{V} = \frac{1}{r \sin^2(\theta)}\dv{\theta}\sin(\theta)\dv{\theta}V(\theta) = 0\]
-\[\dv{\theta}\sin(\theta)\dv(\theta)V(\theta) = 0\]
+\[\laplacian{V} =0= \frac{1}{r \sin^2(\theta)}\dv{\theta}\sin(\theta)\dv{\theta}V(\theta)\]
+\[\dv{\theta}\sin(\theta)\dv{\theta}V(\theta) = 0\]
 \[\sin(\theta)\dv{\theta}V(\theta) = C\]
 \[\dv{\theta}V(\theta) = \frac{1}{\sin(\theta)}C\]
 \[V(\theta) = C\ln(\abs{\tan(\frac{\theta}{2})}) + V_1\]
@@ -90,5 +115,19 @@ We know that at $\theta = \alpha$ that $V(\alpha) = V_0$ and that the potential 
 \[=-\frac{C}{2r}\frac{1}{\cos(\frac{\theta}{2})\sin(\frac{\theta}{2})}\hat{\theta}\]
 \[= -\frac{C}{r \sin(\theta)}\]
 \[\vb{E}= - \frac{V_0}{\ln(\abs{\tan(\frac{\alpha}{2})})}\frac{1}{r \sin(\theta)}\hat{\theta}\]
+
+To find the B-field we can integrate around a loop with radius $s$ where $z>0$. We can recognize that the total current along the cone must be the same at any height, by an argument of symmetry. That current will be whatever can flow through the trip, which by ohms law is: $I_\text{enc} = \frac{V_0}{R}$.
+
+\[\oint \vb{B} \cdot \dd{\vb{l}} = \mu_0 I_\text{enc} + \mu_0 \varepsilon_0 \int \pdv{\vb{E}}{t}\]
+\[B 2\pi s = \mu_0 \frac{V_0}{R}\]
+\[\vb{B} = \frac{\mu_0 V_0}{Rs}\hat{\phi} = \frac{\mu_0 V_0}{Rr \sin(\theta)}\hat{\phi}\]
+
+\[\vb{S} = \frac{1}{\mu_0} \vb{E} \times \vb{B} = \frac{1}{\mu_0}\frac{\mu_0 V_0^2}{R \ln(\abs{\tan(\frac{\alpha}{2})})}\frac{1}{(r\sin(\theta))^2}\hat{r}\]
+\[\boxed{\vb{S} =\frac{V_0^2}{R\ln(\abs{\tan(\frac{\alpha}{2})})}\frac{1}{(r\sin(\theta))^2}\hat{r}}\]
+
+\[\int_{\partial V}\vb{S} \cdot \dd{\vb{a}} = \int_{\theta = \alpha}^{\pi/2} \int_{\phi = 0}^{2\pi} \frac{V_0^2}{R\ln(\abs{\tan(\frac{\alpha}{2})})}\frac{1}{(r\sin(\theta))^2}\hat{r} \cdot r^2 \sin(\theta)\dd{\theta} \dd{\phi}\]
+\[=\frac{V_0^2}{R \ln(\abs{\tan(\frac{\alpha}{2})})}2\pi \int_{\theta = \alpha}^{\pi/2} \frac{1}{\sin(\theta)\dd{\theta}}\]
+\[= -\frac{V_0^2 2\pi}{R \ln(\abs{\tan(\frac{\alpha}{2})})} \ln(\abs{\tan(\frac{\theta}{2})})\eval_\alpha^{\pi/2}\]
+\[\boxed{\int_V \pdv{u_\text{em}}{t} = -\frac{V_0^2 2\pi}{R}}\]
 
 \end{document}
