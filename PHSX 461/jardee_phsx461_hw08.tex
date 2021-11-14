@@ -58,11 +58,14 @@
 \[=a\hat{Q}\ket{f} + b\hat{Q}\ket{g}\]
 \[=aq\ket{f} + bq\ket{g}\]
 \[=q[a\ket{f} + b\ket{g}] = q\ket{\alpha}\]
+\[\rightarrow \hat{Q}\ket{\alpha} = q\ket{\alpha}\]
 
 \item \emph{Check that $f(x) = \text{exp} (x)$ and $g(x) = \text{exp} (-x)$ are eigenfunctions of the operator $d^2/dx^2$, with the same eigenvalue. Construct two linear combinations of $f$ and $g$ that are orthogonal eigenfunctions on the interval $(-1,1)$.}
 
 \[\hat{Q}\ket{f} \Rightarrow \pdv[2]{x}e^x =e^x \rightarrow q=1\]
 \[\hat{Q}\ket{g} \Rightarrow \pdv[2]{x}e^{-x} =(-1)^2e^{-x}=e^{-x} \rightarrow q=1\]
+
+So, now they both have an eigenvalue of $q=1$. To find the linear combinations that are orthogonal, let's declare two states, $\ket{\alpha}$ and $\ket{\beta}$ and see the condition that must be satisfied for them to be orthogonal.
 
 \[\ket{\alpha} = a\ket{f} + b\ket{g} \quad , \quad \ket{\beta} = c\ket{f} + d\ket{g}\]
 For orthogonality, we need $\braket{\alpha}{\beta} = \int \alpha(x)^* \beta(x) \dd{x} = 0$
@@ -85,9 +88,16 @@ The easiest solution to this is if we let $ac = -bd$. Two solutions to this ques
 \begin{enumerate}[label=\alph*)]
 \item \emph{Cite a Hamiltonian from Chapter 2 (other than the harmonic oscillator) that has only a discrete spectrum.}\bigskip
 
+Not sure what else you want other than the names, so that's all I'm gonna give ya. \\
+The infinite square well. 
+
 \item \emph{Cite a Hamiltonian from Chapter 2 (other than the free particle) that has only a continuous spectrum.}\bigskip
 
-\item \emph{Cite a Hamiltonian from Chapter 2 (other than the finite square well) that has both a discrete and a continuous part to its spectrum.}
+The delta function well.
+
+\item \emph{Cite a Hamiltonian from Chapter 2 (other than the finite square well) that has both a discrete and a continuous part to its spectrum.}\bigskip
+
+The finite square well (discrete in the bound states and continuous in the scattering states)
 \end{enumerate}
 
 %---------------------------------------------------------------
@@ -143,8 +153,8 @@ We will use this to calculate the $A_{13}$ element, then point out the pattern a
 So, an element $A_{mn}$ can be found by taking the product of the $m$th coefficient from $\ket{\alpha}$ and the $n$th coefficient form $\bra{\beta}$. Using this method:
 \[\hat{A} = \mqty((i)(-i)&(i)(0)&(i)(2) \\ (-2)(-i)&(-2)(0)&(-2)(2) \\ (-i)(-i)&(-i)(0)&(-i)(2)) = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)\]
 To test if this is hermitian, $\hat{A}^\dagger = \hat{A}$
-\[\hat{A}^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^{*T} = \mqty(1&-2i&-1 \\ 0&0&0 \\ -2i&-4&-2i) \neq \hat{A}\]
-So, $A$ is \textbf{not} hermitian. 
+\[\hat{A}^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^\dagger = \mqty(1&0&2i \\ 2i&0&-4 \\ -1&0&-2i)^{*T} = \mqty(1&-2i&-1 \\ 0&0&0 \\ -2i&-4&2i) \neq \hat{A}\]
+So, $\hat{A}$ is \textbf{not} hermitian. 
 
 \end{enumerate}
 
@@ -173,20 +183,20 @@ We want to show that $\hat{p}^\dagger = \hat{p}$. To do this, first we can ident
 \begin{enumerate}[label=\alph*)]
 \item \emph{Observable $A$ is measured, and the value $a_1$ is obtained. What is the state of the system (immediately after this measurement?}\bigskip
 
-The wavefunction has been observed and thus has been collapsed to $\psi_1$. So, the state is $\phi_1$
+The wavefunction has been observed and thus has been collapsed to $\psi_1$. So, the state is $\psi_1$
 
-\item \emph{If $B$ is now measure, what are the possible results, and what are their probabilities?}\bigskip
+\item \emph{If $B$ is now measured, what are the possible results, and what are their probabilities?}\bigskip
 
 Since we are completely in state $\psi_1$, the probabilities will only be decedents of that equation. There will be a $(\frac{3}{5})^2 = \frac{9}{25} = 35\%$ chance for $b_1$ and a   $(\frac{4}{5})^2 = \frac{16}{25} = 65\%$ chance for $b_2$.
 
-\item \emph{Right after the measurement of $B$, $A$ is measured again. What is the probability of getting $a_1$? (Note that the answer would be quite different if I had told you the outcome of the $B$ measurement.}
+\item \emph{Right after the measurement of $B$, $A$ is measured again. What is the probability of getting $a_1$? $($Note that the answer would be quite different if I had told you the outcome of the $B$ measurement.$)$}
 
 If we are asking for the probability of $a_1$, we are thinking about $\psi_1$:
 \[\psi_1^2 = \frac{9\phi_1^2 + 24\phi_1 \phi_2 + 16\phi_2^2}{25}\]
 \[= \frac{3^4+ 23^2 4^2 + 4^4}{5^4} = 1\]
 To do a quick check to make sure that we don't need to renormalize:
 \[\psi_2^2 = \frac{16\phi_1^2 - 24\phi_1 \phi_2 + 9\phi_2^2}{25}\]
-\[= \frac{3^24^2- 23^2 4^2 + 3^2 4^2}{5^4} = 0\]
+\[= \frac{3^24^2- 2\cdot3^2 4^2 + 3^2 4^2}{5^4} = 0\]
 
 So, it would seem that there is a $100\%$ chance that we get back $a_1$. 
 
