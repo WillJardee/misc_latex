@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  12 NOV 2021 12:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  12 NOV 2021 18:08
 entering extended mode
-**./HW_08.tex
-(HW_08.tex
+**./jardee_phsx425_hw09.tex
+(jardee_phsx425_hw09.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -370,8 +370,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip58
-) (HW_08.aux)
-\openout1 = `HW_08.aux'.
+) (jardee_phsx425_hw09.aux
+
+LaTeX Warning: Label `fig:03_01' multiply defined.
+
+)
+\openout1 = `jardee_phsx425_hw09.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
@@ -478,9 +482,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 30.
 LaTeX Info: Redefining \pageref on input line 30.
 LaTeX Info: Redefining \nameref on input line 30.
- (HW_08.out) (HW_08.out)
+ (jardee_phsx425_hw09.out) (jardee_phsx425_hw09.out)
 \@outlinefile=\write3
-\openout3 = `HW_08.out'.
+\openout3 = `jardee_phsx425_hw09.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
 
@@ -494,44 +498,58 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<homework08_question1.png, id=3, 202.50656pt x 79.04532pt>
-File: homework08_question1.png Graphic file (type png)
-<use homework08_question1.png>
-Package pdftex.def Info: homework08_question1.png  used on input line 37.
-(pdftex.def)             Requested size: 202.50604pt x 79.0451pt.
-
 [1
 
-{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./homework08_
-question1.png>] [2] [3] (HW_08.aux)
-Package rerunfilecheck Info: File `HW_08.out' has not changed.
+{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
+[3] [4]
+
+pdfTeX warning: pdflatex (file ./hw09_03_01.pdf): PDF inclusion: found PDF vers
+ion <1.7>, but at most version <1.5> allowed
+<./hw09_03_01.pdf, id=36, 413.60323pt x 350.54462pt>
+File: ./hw09_03_01.pdf Graphic file (type pdf)
+<use ./hw09_03_01.pdf>
+Package pdftex.def Info: ./hw09_03_01.pdf  used on input line 135.
+(pdftex.def)             Requested size: 281.85587pt x 238.88602pt.
+[5 <./hw09_03_01.pdf>]
+<./hw09_03_02.pdf, id=79, 614.295pt x 518.93875pt>
+File: ./hw09_03_02.pdf Graphic file (type pdf)
+<use ./hw09_03_02.pdf>
+Package pdftex.def Info: ./hw09_03_02.pdf  used on input line 157.
+(pdftex.def)             Requested size: 281.85587pt x 238.10501pt.
+ [6] [7 <./hw09_03_02.pdf>] (jardee_phsx425_hw09.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `jardee_phsx425_hw09.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11551 strings out of 478927
- 171169 string characters out of 2851586
- 507383 words of memory out of 3000000
- 29224 multiletter control sequences out of 15000+600000
- 415396 words of font info for 71 fonts, out of 8000000 for 9000
+ 11548 strings out of 478927
+ 171444 string characters out of 2851586
+ 512516 words of memory out of 3000000
+ 29223 multiletter control sequences out of 15000+600000
+ 412854 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,9n,81p,483b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,12n,81p,514b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmbsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/WillsPc/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/WillsPc/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Wi
-llsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
-:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r17.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/WillsPc/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on HW_08.pdf (3 pages, 154819 bytes).
+m/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmbx8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmex10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/WillsPc/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/WillsPc/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Will
+sPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/WillsPc/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/WillsPc/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/WillsPc/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on jardee_phsx425_hw09.pdf (7 pages, 644919 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
