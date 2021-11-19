@@ -1,0 +1,288 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 461: HW09}
+\author{William Jardee}
+\maketitle
+
+\section*{Griffiths 3.18}
+\emph{Apply Equation 3.73 to the following special cases. In each case, comment on the result, with particular reference to Equations 1.27, 1.33, 1.38, and conservation of energy $($see remarks following Equation 2.21$)$}
+
+\begin{equation}
+	\tag{Equation 3.73}
+	\dv{t}\ev{Q} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{\hat{Q}}} + \ev{\pdv{\hat{Q}}{t}}
+	\label{eq:3.73}
+\end{equation}
+
+\begin{equation}
+	\tag{Equation 1.27}
+	\dv{t}\int_{-\infty}^\infty \abs{\psi(x,t)}^2 \dd{x} = \frac{i\hbar}{2m}\Big(\psi^* \pdv{\psi}{x} - \pdv{\psi^*}{x}\psi\Big)\eval_{-\infty}^\infty
+	\label{eq:1.27}
+\end{equation}
+
+\begin{equation}
+	\tag{Equation 1.33}
+	\ev{p} = m \dv{\ev{x}}{t} = -i \hbar \int\Big(\psi^* \pdv{\psi}{x}\Big) \dd{x}
+	\label{eq:1.33}
+\end{equation}
+
+\begin{equation}
+	\tag{Equation 1.38}
+	\dv{\ev{p}}{t} = \ev{-\pdv{V}{x}}
+	\label{eq:1.38}
+\end{equation}
+
+\begin{equation}
+	\tag{Equation 2.21}
+	\ev{H} = \sum_{n=1}^\infty \abs{c_n}^2 E_n
+	\label{eq:2.21}
+\end{equation}\bigskip
+
+\begin{enumerate}[label=\alph*)]
+\item  \emph{$Q = 1$}
+
+Nothing too exciting to say about it, let's just plug her in:
+\[\dv{t}\ev{1} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{1}} + \ev{\pdv{\, 1}{t}}\]
+\[\dv{t}\ev{1}{\psi} = \frac{i}{\hbar} \ev{\hat{H} \cdot 1 -1 \cdot\hat{H}} + \ev{0}\]
+\[\dv{t}\braket{\psi}{\psi} = \frac{i}{\hbar}\ev{0}\]
+\[\dv{t}(1) = 0\]
+\[0 = 0\]
+This one isn't all too enlightening. There are a couple conclusions that can be drawn from this, such as that the derivative of one is zero, or that the commutation relationship between $\hat{H}$ and 1 is zero. But let's move on to the next one. \bigskip
+
+\item \emph{$Q = H$}
+
+Again, plug and chug:
+\[\dv{t}\ev{H} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{\hat{H}}} + \ev{\pdv{\hat{0}}}{t}\]
+\[\dv{t}\ev{H} = \dv{t}\sum \abs{c_n}^2 E_n = 0 = \ev{\pdv{\hat{0}}}{t}\]
+So, this one brings us to the fact that the Hamiltonian operator doesn't change with respect to time. A conclusion that we should have already known, but it is verified with this relationship. \bigskip
+
+\item \emph{$Q = x$}
+
+\[\dv{t}\ev{x} = \frac{i}{\hbar}\ev{\comm{\bar{H}}{\bar{x}}} + \ev{\pdv{\hat{x}}{t}}\]
+\[\frac{1}{m}\ev{p} = \frac{i}{\hbar}\ev{\hat{H}x - x\hat{H}} + \ev{\pdv{\hat{x}}{t}}\]
+
+Now, using the fact that $\hat{H} = \hat{T} + \hat{V} = - \frac{\hbar ^2}{2m} \pdv[2]{x} + V(x)$
+\[\frac{1}{m}\ev{p} = \frac{i}{\hbar}\ev{\Big(- \frac{\hbar ^2}{2m} \pdv[2]{x} + V(x)\Big)x - x\Big(- \frac{\hbar ^2}{2m} \pdv[2]{x} + V(x)\Big)} + \ev{\pdv{\hat{x}}{t}}\]
+\[\frac{1}{m}\ev{p} = \frac{i}{\hbar}\ev{\Big(- \frac{\hbar ^2}{2m} \pdv[2]{x}\Big)x - x\Big(- \frac{\hbar ^2}{2m} \pdv[2]{x}\Big)} + \ev{\pdv{\hat{x}}{t}}\]
+\[\frac{1}{m}\ev{p} = -\frac{\hbar i }{2m}\ev{2 \pdv{x} + x \pdv[2]{x} - x \pdv[2]{x}} + \ev{\pdv{\hat{x}}{t}}\]
+\[\frac{1}{m}\ev{p} = -\frac{\hbar i }{m}\ev{\pdv{x}} + \ev{\pdv{\hat{x}}{t}}\]
+\[\frac{1}{m}\ev{p} = \frac{1}{m}\ev{p} + \ev{\pdv{\hat{x}}{t}}\]
+\[0 = \ev{\pdv{\hat{x}}{t}}\]
+So, ultimately we come to the conclusion that the position operator, $\hat{x}$ doesn't change with time. Not at all a surprising conclusion.\bigskip
+
+\item \emph{$Q = p$}
+\[\dv{t}\ev{p} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{\hat{p}}} + \ev{\pdv{\hat{p}}{t}}\]
+\begin{align*}
+\ev{-\pdv{V}{t}} = \frac{i}{\hbar} \Big\langle \Big(-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x)\Big)\Big(-i \hbar \pdv{x}\Big) - \\
+\Big(-i\hbar \pdv{x}\Big)\Big(-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x)\Big)\Big\rangle + \ev{\pdv{\hat{p}}{t}}
+\end{align*}
+\[-\ev{\pdv{V}{t}} = \ev{\Big(-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x)\Big)\pdv{x} - \pdv{x}\Big(-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x)\Big)} + \ev{\pdv{\hat{p}}{t}}\]
+\[-\ev{\pdv{V}{t}} = \ev{V(x) \pdv{x} - \pdv{V(x)}{x} } + \ev{\pdv{\hat{p}}{t}}\]
+\[0 = \ev{V(x) \pdv{x}} + \ev{\pdv{\hat{p}}{t}}\]
+\[\ev{\pdv{\hat{p}}{t}} = \ev{ - V(x) \pdv{x}}\]
+This looks quite a bit like equation 1.38. However, if we recognize that the momentum operator shouldn't depend on time, as the math used when first deriving the theory should be the same math that we use today: 
+\[0 = \ev{V(x) \pdv{x}}\]
+This doesn't seem to be too enlightening of a statement, unless we rewrite the partial in terms of momentum.
+\[\frac{1}{i \hbar}\ev{V(x) \hat{p}} = 0 \]
+\[\ev{V(x) \hat{p}} = 0\]
+
+\end{enumerate}
+
+
+%--------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 3.37}
+\emph{Use equation 3.73 to show that}
+\[\dv{t}\ev{xp} = 2 \ev{T} - \ev{x \pdv{V}{x}}\]
+\emph{where $T$ is the kinetic energy $(H = T+V)$. In a stationary state the left side is zero $($why?$)$ so}
+\[2\ev{T} = \ev{x \dv{V}{x}}\]
+\emph{This is called the virial theorem. Use it to prove that $\ev{T} = \ev{V}$ for stationary state of the harmonic oscillator, and check that this is consistent with the result you got in problems 2.11 and 2.12.}\bigskip
+
+\[\dv{t}\ev{xp} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{\hat{x}\hat{p}}} + \ev{\pdv{\hat{x}\hat{p}}{t}}\]
+Looking at the commutation relationship, and liberally applying some of the intermediate calculations given in the first problem:
+\[\comm{\hat{H}}{\hat{x}\hat{p}}\]
+\[= -\comm{\hat{x}\hat{p}}{\hat{H}} \]
+\[= -\Big(\hat{x}\comm{\hat{p}}{\hat{H}} + \hat{p}\comm{\hat{x}}{\hat{H}}\Big)\]
+\[= \hat{p}\Big(-\frac{\hbar^2}{m} \pdv{x}\Big) + x\Big(V(x) \pdv{x} - \pdv{x}V(x)\Big)\]
+\[= m \hat{p}^2 - x \pdv{V(x)}{x}\]
+\[= 2 \hat{T} - x \pdv{V(x)}{x}\]
+Taking a quick look at what is left on the right side of the equation: 
+\[\ev{\pdv{\hat{x}\hat{p}}{t}}\]
+\[ = \ev{\hat{p}\pdv{x}{t} + x \pdv{\hat{p}}{t}}\]
+Since both the momentum operator and the position operator should be independent of time, this should be zero. So, plugging this back into the equation:
+\[\dv{t}\ev{xp} = \frac{i}{\hbar}\ev{\comm{\hat{H}}{\hat{x}\hat{p}}} + \ev{\pdv{\hat{x}\hat{p}}{t}}\]
+\[\dv{t}\ev{xp} = \ev{2 \hat{T} - x \pdv{V(x)}{x}} + 0\]
+\[\boxed{\dv{t}\ev{xp} = 2\ev{\hat{T}} - \ev{x \pdv{V(x)}{x}}}\]
+
+If we assume that we are in a stationary state, then the left side of the equation can be simplifed to 
+\[\dv{t}\ev{xp} = \dv{t}\ev{\hat{x}\hat{p}}{\psi} = \mel{\dv{\psi}{t}}{\hat{x}\hat{p}}{\psi} + \mel**{\psi}{\dv{\hat{x}\hat{p}}{t}}{\psi} + \mel{\psi}{\hat{x}\hat{p}}{\dv{\psi}{t}} = 0\]
+Since we are in a stationary state, the wavefunction is independent of t. We already used the fact that $\pdv*{t}(\hat{x}\hat{p}) = 0$.
+So, in the case of stationary states,
+\[2\ev{T} = \ev{x \dv{V}{x}}\]
+
+For the harmonic oscillator, $V(x) = m \omega^2 x^2$
+\[2\ev{T} = \ev{x \dv{m \omega^2 x^2}{x}} = \ev{x \cdot 2 m \omega^2 x} =2\ev{m \omega^2 x^2} = 2\ev{V} \]
+\[\boxed{\ev{T} = \ev{V}}\]
+
+
+
+
+%--------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 4.1 \emph{(a and b)}}
+\begin{enumerate}[label=\alph*)]
+\item \emph{Work out all the canonical commutation relations for components of the operators $\vb{r}$ and $\vb{p}$: $\comm{x}{y}, \comm{x}{p_y}, \comm{x}{p_x}, \comm{p_y}{p_z}$ and so on.}\\
+\emph{answer:}
+\[\comm{r_i}{p_j} = -\comm{p_i}{r_j} = i\hbar \delta_{ij}, \quad \comm{r_i}{r_j}=\comm{p_i}{p_j}=0\]
+\emph{where the indices stand for $x$, $y$, or $z$ and $r_x = x$, $r_y=y$, and $r_z = z$.}\bigskip
+
+\[\comm{\hat{r_i}}{\hat{r_j}} = \hat{r_i}\hat{r_j} - \hat{r_j}\hat{r_i}\]
+Since $\hat{r_i} = i$, for $i$ being $x$, $y$, or $z$
+\[\hat{r_i}\hat{r_j} - \hat{r_j}\hat{r_i} = \hat{r_i}\hat{r_j} - \hat{r_i}\hat{r_j} = 0\]
+\[\boxed{\comm{\hat{r_i}}{\hat{r_j}} = 0}\]
+
+\[\comm{\hat{p_i}}{\hat{p_j}} = \hat{p_i}\hat{p_j} - \hat{p_j}\hat{p_i}\]
+Since $i$ and $j$ are either independent or equal
+\[\hat{p_i}\hat{p_j} - \hat{p_j}\hat{p_i} = \hat{p_i}\hat{p_j} - \hat{p_i}\hat{p_j} = 0\]
+\[\boxed{\comm{\hat{p_i}}{\hat{p_j}} = 0}\]
+
+\[\comm{\hat{r_i}}{\hat{p_j}} = \hat{r_i}\hat{p_j} - \hat{p_j}\hat{r_i}\]
+If $i \neq j$, then the derivative will be independent of the other variable
+\[\hat{r_i}\hat{p_j} - \hat{p_j}\hat{r_i} = \hat{r_i}\hat{p_j} - \hat{r_i}\hat{p_j} = 0\]
+If $i = j$, then the if we take one of the variables, say $x$
+\[\hat{r_x}\hat{p_x} - \hat{p_x}\hat{r_x} = x\Big(-i \hbar \pdv{x}\Big) - \Big(-i \hbar \pdv{x}x\Big) = -i \hbar x\pdv{x} + i\hbar + i \hbar x \pdv{x} = i \hbar\]
+Putting together these two ideas together
+\[\boxed{\comm{\hat{r_i}}{\hat{p_j}} = - \comm{\hat{p_j}}{\hat{r_i}}= i \hbar \delta_{i,j}}\]
+
+
+\item \emph{Confirm the three-dimensional version of Ehrenfest's theorem, }
+\[\dv{t}\ev{\vb{r}} = \frac{1}{m}\ev{\vb{p}}, \quad \text{and} \quad \dv{t}\ev{\vb{p}} = \ev{-\grad{V}}\]
+\emph{$($Each of these, of course, stands for three equations - one for each component.$)$ Hint: First check that the ``generalized" Ehrenfest theorem, Equation 3.73, is valid in three dimensions.}\bigskip
+
+First, let's quickly check that the commutator transfers to three dimensions. It is straightforward that the time relationships do hold true, when given in Cartesian coordinates.
+\[\comm{\hat{H}}{\hat{\vb{r}}} = \hat{H}\vb{r} - \vb{r}\hat{H}\]
+\[ = \hat{H}(x\, \vb{e}_x + y\, \vb{e}_y + z\, \vb{e}_z)\]
+\[= (\hat{H}x - x\hat{H})\vb{e}_x + (\hat{H}y - y\hat{H})\vb{e}_y + (\hat{H}z - z\hat{H})\vb{e}_z \]
+\[= \comm{\hat{H}}{\hat{x}}\vb{e}_x + \comm{\hat{H}}{\hat{y}}\vb{e}_y + \comm{\hat{H}}{\hat{z}}\vb{e}_z\]
+So, it looks like the commutation relationships are all linearly independent, and thus the Ehrenfest's theorem holds in 3D. 
+\[\dv{t}\ev{\vb{r}} = \frac{i}{\hbar} \ev{\comm{\hat{H}}{\vb{r}}} - \ev{\pdv{\vb{r}}{t}}\]
+\[= \frac{i}{\hbar}\Big(\ev{\comm{\hat{H}}{\hat{x}}}\vb{e}_x + \ev{\comm{\hat{H}}{\hat{y}}}\vb{e}_y + \ev{\comm{\hat{H}}{\hat{y}}}\vb{e}_z\Big) - 0\]
+\[= \frac{1}{m}\ev{p_x}\vb{e}_x + \frac{1}{m}\ev{p_y}\vb{e}_y + \frac{1}{m}\ev{p_z}\vb{e}_z\]
+\[= \frac{1}{m}\ev{p_x\vb{e}_x + p_y\vb{e}_y + p_z\vb{e}_z}\]
+\[\boxed{\dv{t}\ev{\vb{r}} = \frac{1}{m}\ev{\vb{p}}}\]
+
+\[\dv{t}\ev{\vb{p}} = \frac{i}{\hbar} \ev{\comm{\hat{H}}{\hat{p}}} - \ev{\pdv{\hat{p}}{t}}\]
+\[ = \frac{i}{\hbar} \Big(\ev{\comm{\hat{H}}{\hat{p_x}}} + \ev{\comm{\hat{H}}{\hat{p_y}}} + \ev{\comm{\hat{H}}{\hat{p_z}}}\Big) - 0\]
+\[= \frac{i}{\hbar}\Big(\ev{-\pdv{V}{x}}\vb{e}_x + \ev{-\pdv{V}{y}}\vb{e}_y + \ev{-\pdv{V}{z}}\vb{e}_z\Big)\]
+\[= -\frac{i}{\hbar} \ev{\pdv{V}{x}\vb{e}_x + \pdv{V}{y}\vb{e}_y + \pdv{V}{z}\vb{e}_z}\]
+\[\boxed{\dv{t}\ev{\vb{p}} = \ev{-\grad{V}}}\]
+\end{enumerate}
+
+%--------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 4.2 \emph{(a and b)}}
+\emph{Use separation of variables in Cartesian coordinates to solve the infinite cubical well $($or ``particle in a box"$)$:}
+\begin{equation*}
+v(x,y,z) = \left\{
+        \begin{array}{ll}
+            0 & \quad x,y,z \text{ all between } 0 \text{ and } a \\
+            \infty & \quad \text{otherwise}
+        \end{array}
+    \right.
+\end{equation*}
+
+\begin{enumerate}[label=\alph*)]
+\item  \emph{Find the stationary states, and the corresponding energies. }\bigskip
+
+Since this is a cubical well $V(x,y,z) = X(x)Y(y)Z(z)$. And, for each variable it must satisfy it's own Schrodinger's equation in the form
+\[-\frac{\hbar^2}{2m}\pdv{i}\psi_i + V_i \psi = E\psi_i\]
+We know from earlier in the semester we know that, per say the $x$:
+\[\psi_x (x,t) = \sqrt{\frac{2}{a}}\sin\Big(\frac{\pi l}{a}x\Big)e^{-iE_l t/\hbar} \quad \text{With energy} \quad E_l = \frac{\pi^2 \hbar^2}{2ma^2}l^2\]
+So, if we quantize the $x$ with $l$, $y$ with $m$, and the $z$ with $k$:
+\[\boxed{\psi(x,y,z,t) = \sqrt{\frac{8}{a^3}} \sin\Big(\frac{\pi l}{a}x\Big)\sin\Big(\frac{\pi m}{a}y\Big)\sin\Big(\frac{\pi k}{a}z\Big)e^{-iE_n /\hbar}}\]
+where $n$ is determined by the energy levels created by the addition of $l$, $m$, and $k$. $E_n = E_l + E_m + E_k$
+\[\boxed{E_n = \frac{\pi^2 \hbar^2}{2ma^2}\Big[l^2 + m^2 + k^2\Big]}\]
+
+
+\item \emph{Call the distinct energies $E_1, E_2, E_3, ..., $ in order of increasing energy. Find $E_1, E_2, E_3, E_4, E_5, \text{and } E_6$. Determine their degenerates $($that is, the number of different states that share the same energy$)$. Comment: In one dimension degenerate bound states do not occur $($see Problem 2.44$)$, but in three dimensions they are very common.}\bigskip
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{llll|ll}
+n & $n_1$ & $n_2$ & $n_3$ & $E_n$ & Degeneracy \\ \hline
+1: & 1     & 0     & 0     & 1     & 2          \\
+2: & 1     & 1     & 0     & 2     & 2          \\
+3: & 1     & 1     & 1     & 3     & 0          \\
+4: & 2     & 0     & 0     & 4     & 2          \\
+5: & 2     & 1     & 0     & 5     & 5          \\
+6: & 2     & 1     & 1     & 6     & 2         
+\end{tabular}
+\end{table}
+
+\end{enumerate}
+
+\clearpage
+%--------------------------------------------------------------
+\newpage
+
+\section*{Question 5}
+\emph{Show that the angular part of the Schrodinger equation for a spherically symmetric potential}
+\[\sin\theta \pdv{\theta}\Big(\sin\theta\pdv{Y}{\theta}\Big) + \pdv[2]{Y}{\phi} + (l(l+1)\sin^2 \theta )Y = 0\]
+\emph{simplified to}
+\[\Big\{\frac{1}{\Theta}\Big[\sin \theta \dv{\theta}\Big(\sin \theta \dv{\Theta}{\theta}\Big)\Big] + l(l+1)\sin^2 \theta\Big\} + \frac{1}{\Phi}\dv[2]{\Phi}{\phi} = 0\]
+\emph{for}
+\[Y(\theta, \phi) = \Theta(\theta)\Phi(\phi)\]\bigskip
+
+
+\[\sin\theta \pdv{\theta}\Big(\sin\theta\pdv{\Theta\Phi}{\theta}\Big) + \pdv[2]{\Theta\Phi}{\phi} + (l(l+1)\sin^2 \theta ) \Theta(\theta)\Phi(\phi) = 0\]\
+\[\Phi\sin\theta \pdv{\theta}\Big(\sin\theta\pdv{\Theta}{\theta}\Big) + \Theta\pdv[2]{\Phi}{\phi} + (l(l+1)\sin^2 \theta )\Theta \Phi = 0\]
+if we divide by $\Theta\Phi$:
+\[\frac{1}{\Theta}\sin\theta \pdv{\theta}\Big(\sin\theta\pdv{\Theta}{\theta}\Big) + \frac{1}{\Phi}\pdv[2]{\Phi}{\phi} + (l(l+1)\sin^2 \theta ) = 0\]
+\[\Big\{\frac{1}{\Theta}\sin\theta \pdv{\theta}\Big(\sin\theta\pdv{\Theta}{\theta}\Big) + (l(l+1)\sin^2 \theta ) \Big\} + \frac{1}{\Phi}\pdv[2]{\Phi}{\phi}  = 0\]
+And there we go. 
+
+\end{document}

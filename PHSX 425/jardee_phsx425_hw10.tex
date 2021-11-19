@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 425: HW10}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\emph{In class, and also in Griffiths, the reflection and transmission coefficients at normal incidence were derived assuming that $\mu = \mu_0$. Derive the reflection and transmission coefficients without making this assumption, and then show that energy is conserved $($i.e., $R + T = 1)$.}
+
+
+
+%--------------------------------------------------------------
+\newpage
+
+\section*{Question 2}
+\emph{Check your results to the previous problem against the solutions derived in Griffiths for oblique incidence, with the polarization in the plan of incidence. Show that $R + T = 1$ in this more general case.}
+
+
+
+%--------------------------------------------------------------
+\newpage
+
+\section*{Question 3}
+\emph{We have assumed that the wave frequency, $\omega$, is constant across an interface. Consider a wave function of the form $\psi_I = f_I(\vb{r})e^{-i\omega_I t}$, incident on a boundary from material 1 to material 2. The incident, relfected, and transmitted waves in these two substances must satify a generalized linear wave equation,}
+\[[a_j\laplacian + b_j \partial_t + c_j\partial^2]\psi = 0\]
+\emph{Where $j=1,2$ denotes materials 1 and 2. Show that $\omega_I = \omega_R =\omega_T$. Were any addition assumptions necessary to show this?\footnote{Hint: you might find it helpful to solve problem 9.16 first. Consider reflected and transmitted waves of the same form, and assume some general sort of boundary condition holds.} Would your conclusion change for a nonlinear wave equation? Why or why not?\footnote{Hint: If the wave equation were nonlinear in $\psi$, would solutions of the assumed form be likely to work?}}
+
+
+
+\end{document}
