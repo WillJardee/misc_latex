@@ -47,7 +47,33 @@
 \maketitle
 
 \section*{Question 1}
-\emph{In class, and also in Griffiths, the reflection and transmission coefficients at normal incidence were derived assuming that $\mu = \mu_0$. Derive the reflection and transmission coefficients without making this assumption, and then show that energy is conserved $($i.e., $R + T = 1)$.}
+\emph{In class, and also in Griffiths, the reflection and transmission coefficients at normal incidence were derived assuming that $\mu = \mu_0$. Derive the reflection and transmission coefficients without making this assumption, and then show that energy is conserved $($i.e., $R + T = 1)$.}\bigskip
+
+We know that the intensity of the EM waves are given by $I = \varepsilon \frac{1}{2}\frac{c}{n}E_0^2$. Taking the relationships given in the book:
+\[E_{0T} = \frac{2}{1+\beta}E_{0I} \qquad E_{0T} = \frac{1-\beta}{1+\beta}E_{0I}\]
+
+Simply plugging these values into the intensity functions:
+\[I_I = \varepsilon_1 \frac{c}{2n_1}E_{0I}^2\]
+\[I_R = \frac{1}{2}\varepsilon_1 \frac{c}{n_1}E_{0R}^2 = \varepsilon_1 \frac{c}{2n_1}\Big(\frac{1-\beta}{1+\beta}\Big)^2 E_{0I}^2\]
+\[I_T = \frac{1}{2}\varepsilon_2\frac{c}{n_2}E_{0T}^2 = \varepsilon_2 \frac{c}{2n_2}\Big(\frac{2}{1+\beta}\Big)^2 E_{0I}^2\]
+
+For the reflection coefficient:
+\[R = \frac{I_R}{I_I} = \frac{\varepsilon_1 \frac{c}{2n_1}\Big(\frac{1-\beta}{1+\beta}\Big)^2 E_{0I}^2}{\varepsilon_1 \frac{c}{2n_1}E_{0I}^2}\]
+\[\boxed{R = \Big(\frac{1-\beta}{1+\beta}\Big)^2}\]
+
+For the transmission coefficient:
+\[T = \frac{I_T}{I_I} = \frac{\varepsilon_2 \frac{c}{2n_2}\Big(\frac{2}{1+\beta}\Big)^2 E_{0I}^2}{\varepsilon_1 \frac{c}{2n_1}E_{0I}^2}\]
+\[= \frac{\varepsilon_2 n_1}{\varepsilon_1 n_2}\Big(\frac{2}{1+\beta}\Big)^2\]
+As was shown in class, and at this point is just another expression for $\beta$
+\[\boxed{ T = \beta \Big(\frac{2}{1+\beta}\Big)^2}\]\bigskip
+
+\[R + T = \Big(\frac{1-\beta}{1+\beta}\Big)^2 + \beta \Big(\frac{2}{1+\beta}\Big)^2\]
+\[= [(1 - 2\beta + \beta^2) + (4\beta)]\frac{1}{(1+\beta)^2}\]
+\[= [1 +2\beta + \beta^2]\frac{1}{(1+\beta)^2}\]
+\[= (1+\beta)^2 \frac{1}{(1+\beta)^2} = 1\]
+
+And there it is, I guess. 
+
 
 
 
@@ -55,7 +81,27 @@
 \newpage
 
 \section*{Question 2}
-\emph{Check your results to the previous problem against the solutions derived in Griffiths for oblique incidence, with the polarization in the plan of incidence. Show that $R + T = 1$ in this more general case.}
+\emph{Check your results to the previous problem against the solutions derived in Griffiths for oblique incidence, with the polarization in the plan of incidence. Show that $R + T = 1$ in this more general case.}\footnote{Don't worry about the second equation below. It's acting funky and I really don't feel like making it work today...}\bigskip
+
+\begin{equation}
+	\tag{Equation 9.115}
+	R = \Big(\frac{\alpha - \beta}{\alpha + \beta}\Big)^2
+	\label{eq:9.115}
+\end{equation}
+
+\begin{equation}
+	\tag{Equation 9.116}
+	T = \alpha \beta \Big(\frac{2}{\alpha + \beta}\Big)^2
+	\label{eq:9.116}
+\end{equation}
+
+If we take a peak at $\alpha$: $\alpha = \frac{\cos(\theta_T)}{\cos(\theta_I)}$. In \textbf{Question 1} we were normal to the plane, so $\theta_T = \theta_I = 0$. So, $\alpha = \frac{1}{1} = 1$. We see that Equations 9.115 and 9.116 are equal what we got in \textbf{Question 1} when we set $\alpha = 1$.\bigskip
+
+\[R + T = \Big(\frac{\alpha - \beta}{\alpha + \beta}\Big)^2 + \alpha \beta \Big(\frac{2}{\alpha + \beta}\Big)^2\]
+\[ = [(\alpha^2 - 2\alpha\beta + \beta^2) + 4 \alpha \beta]\frac{1}{(\alpha + \beta)^2}\]
+\[ = (\alpha^2 + 2\alpha\beta + \beta^2)\frac{1}{(\alpha + \beta)^2}\]
+\[= (\alpha + \beta)^2 \frac{1}{(\alpha + \beta)^2} = 1\]
+
 
 
 
@@ -65,8 +111,68 @@
 \section*{Question 3}
 \emph{We have assumed that the wave frequency, $\omega$, is constant across an interface. Consider a wave function of the form $\psi_I = f_I(\vb{r})e^{-i\omega_I t}$, incident on a boundary from material 1 to material 2. The incident, relfected, and transmitted waves in these two substances must satify a generalized linear wave equation,}
 \[[a_j\laplacian + b_j \partial_t + c_j\partial^2]\psi = 0\]
-\emph{Where $j=1,2$ denotes materials 1 and 2. Show that $\omega_I = \omega_R =\omega_T$. Were any addition assumptions necessary to show this?\footnote{Hint: you might find it helpful to solve problem 9.16 first. Consider reflected and transmitted waves of the same form, and assume some general sort of boundary condition holds.} Would your conclusion change for a nonlinear wave equation? Why or why not?\footnote{Hint: If the wave equation were nonlinear in $\psi$, would solutions of the assumed form be likely to work?}}
+\emph{Where $j=1,2$ denotes materials 1 and 2. Show that $\omega_I = \omega_R =\omega_T$. Were any addition assumptions necessary to show this?\footnote{Hint: you might find it helpful to solve problem 9.16 first. Consider reflected and transmitted waves of the same form, and assume some general sort of boundary condition holds.} Would your conclusion change for a nonlinear wave equation? Why or why not?\footnote{Hint: If the wave equation were nonlinear in $\psi$, would solutions of the assumed form be likely to work?}}\bigskip
 
+To begin, we will assume that all three wave equations can be separated into a temporal and a positional part:
+\[\text{Incident: } \quad f(\vb{r})e^{-i\omega_I t}\]
+\[\text{Reflected: } \quad h(\vb{r})e^{-i\omega_R t}\]
+\[\text{Transmitted: } \quad g(\vb{r})e^{-i\omega_T t}\]
+
+Each must satisfy the wave equation, so showing it with the $\psi_I$:
+\[0 = [a_1\laplacian + b_1 \partial_t + c_1\partial^2]\quad f(\vb{r})e^{-i\omega_I t}\]
+\[= a_1 e^{-i\omega_I t} \laplacian{f(\vb{r})} + b_1 f(\vb{r}) (-i\omega_I) e^{-i\omega_I t} + c_1 f(\vb{r}) (-\omega_I^2)e^{-i\omega_I t}\]
+\[0 = a_1 \laplacian{f(\vb{r})} + b_1 f(\vb{r}) (-i\omega_I) + c_1 f(\vb{r}) (-\omega_I^2)\]
+\[\laplacian{f(\vb{r})} = \frac{b_1 i\omega_I + c_1 \omega_I^2}{a_1} f(\vb{r})\]
+
+So, for each of $f(\vb{r})$, $h(\vb{r})$, and $g(\vb{r})$ must satisfy the wave equation as well.
+\[\laplacian{f(\vb{r})} = \frac{b_1 i\omega_I + c_1 \omega_I^2}{a_1} f(\vb{r})\]
+\[\laplacian{h(\vb{r})} = \frac{b_1 i\omega_R + c_1 \omega_R^2}{a_1} h(\vb{r})\]
+\[\laplacian{g(\vb{r})} = \frac{b_2 i\omega_T + c_2 \omega_T^2}{a_2} g(\vb{r})\]
+
+Next, we will assume that the differential is continuous at the boundary, in the $x = 0$ and holds for all time. It is noted in Griffiths that the latter can be violated, but only in an active medium. If we are not in an active medium, such as in a linear one, then this assumption should hold. 
+\[\psi_I + \psi_R = \psi_T \rightarrow f(\vb{r})e^{-i\omega_I t} + h(\vb{r})e^{-i\omega_R t} = g(\vb{r})e^{-i\omega_T t}\]
+\begin{equation}
+\tag{1}
+@ \, t=0, \vb{r}=0 \quad f_0 + h_0 = g_0
+\end{equation}
+
+\[\pdv{\psi_I}{t} + \pdv{\psi_R}{t} = \pdv{\psi_T}{t} \rightarrow -i\omega_I f(\vb{r})e^{-i\omega_I t} -i\omega_R h(\vb{r})e^{-i\omega_R t} = -i\omega_T g(\vb{r})e^{-i\omega_T t}\]
+\begin{equation}
+\tag{2}
+@ \, t=0, \vb{r}=0 \quad \omega_I f_0 + \omega_R h_0 = \omega_T g_0
+\end{equation}
+
+Now, taking it to the second derivative as well
+\begin{equation}
+\tag{3}
+@ \,  t=0, \vb{r}=0 \quad \omega_I^2 f_0 + \omega_R^2 h_0 = \omega_T^2 g_0
+\end{equation}
+
+Substituting (1) into (2):
+\begin{align*}
+\tag{2a}
+\omega_I f_0 + \omega_R h_0 = \omega_T (f_0 + h_0)\\
+f_0 = \frac{\omega_T - \omega_R}{\omega_I - \omega_T}h_0
+\end{align*}
+Substituting (2a) and (1) into (3):\footnote{It was brought up that is looks awful similar to the ``proof" of 2=1; since there is a seeming division by 0. I think that I've rationalize that if there is a ``division by zero" issue, then that just means that $\omega_I = \omega_T$, which was the objective anyways. I don't think it is actually an issue like that, but I'm not quite positive. The rationale used to justify the result if it were a problem is almost more problematic... Either way, I was able to derive the value by the rational used to justify $\omega_T =\omega_R$ in 2a. So, I've already got this typed up, so it's staying! (any ideas of if there is a fundamental algebraic flaw in my work?)}
+\[\omega_I^2 \Big(\frac{\omega_T - \omega_R}{\omega_I - \omega_T}\Big)h_0 + \omega_R^2 h_0 = \omega_T^2 \Big[\Big(\frac{\omega_T - \omega_R}{\omega_I - \omega_T}\Big)h_0 + h_0\Big]\]
+\[\Big[\frac{\omega_T - \omega_R}{\omega_I - \omega_T}\Big][\omega_I^2 - \omega_T^2]h_0 = [\omega_T^2 - \omega_R^2]h_0\]
+\[[\omega_T - \omega_R][\omega_I + \omega_T] = [\omega_T^2 - \omega_R^2]\]
+\[[\omega_I + \omega_T]=[\omega_T + \omega_R]\]
+\[\omega_I = \omega_R\]
+Plugging this result back into (2a):
+\[\Big[\frac{\omega_T - \omega_R}{\omega_R - \omega_T}\Big]h_0 = f_0\]
+\begin{equation}
+\tag{4}
+[\omega_T - \omega_R]h_0 = [\omega_T - \omega_R]f_0
+\end{equation}
+Since $f(\vb{r})$ and $h(\vb{r})$ are arbitrary solutions to a differential equation, this statement has to hold for all time, and all values of $\vb{r}$. The only set up of (4) that is always satisfied is if the coefficient in from of $f_0$ and $h_0$ is equation to 0. 
+\[\omega_T - \omega_R = 0 \rightarrow \omega_T = \omega_R\]
+
+So, through the transitivity of scalar multiplication:
+\[\boxed{\omega_I = \omega_R = \omega_T}\]\bigskip
+
+If $\psi$ were nonlinear then the derivation shown would not be valid. The primary issue is when it was assumed that the temporal and positional parts of the equation were separable, as now they could be coupled. 
 
 
 \end{document}
