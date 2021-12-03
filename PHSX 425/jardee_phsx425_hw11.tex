@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 425: HW11}
+\author{William Jardee}
+\maketitle
+
+\textbf{See problem 9.27}
+
+\noindent
+\emph{In class, we solved the problem of relfection and refraction at oblique incidence to an interface between linear media, for the case of polarization in the plane of incidence.}
+\section*{Question 1}
+\emph{Derive $E_{0R}$ and $E_{0T}$ for the case of polarization perpendicular to the plane of incidence. Write your answer in terms of $E_{0I}$, $\alpha$, and $\beta$.}
+
+\section*{Question 2}
+\emph{Also derive the reflection and transmission coefficients. Show that they sum to unity.}
+
+\section*{Question 3}
+\emph{Using the values $n_1 = 1$, $n_2 = 1.5$, with $\mu_1 = \mu_2 = \mu_0$, plot $E_{0R}/E_{0T}$ and $E_{0T}/E_{0I}$ as a function of the incidence angle, $\theta_I$.}
+
+\section*{Question 4}
+\emph{Also plot the reflection and transmission coefficients as a function of $\theta_I$.}
+
+\end{document}
