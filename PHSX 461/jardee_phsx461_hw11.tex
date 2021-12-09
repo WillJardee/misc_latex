@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 461: HW11}
+\author{William Jardee}
+\maketitle
+
+\section*{Griffiths 4.12}
+{\sl Work out the radial wave functions of $R_{31}$, using the recursion formula. Don't bother to normalize them.}
+
+\begin{equation}
+	\tag{Equation 4.76}
+	c_{j+1} = \frac{2(j+l+1-n)}{(j+1)(j+2l+2)}c_j
+	\label{eq:4.76}
+\end{equation}
+
+\section*{Griffiths 4.15}
+\begin{enumerate}[label=\alph*)]
+\item {\sl Find $\ev{r}$ and $\ev{r^2}$ for an electron in the ground state of hydrogen. Express your answers in terms of the Bohr radius.}
+
+\item {\sl Find $\ev{x}$ and $\ev{x^2}$ for an electron in the ground state of hydrogen.}
+
+\item {\sl Find $\ev{x^2}$ in the state $n=2, l=1, m=1$.}
+
+\end{enumerate}
+
+\section*{Griffiths 4.16}
+{\sl What is the most probably value of r, in the ground state of hydrogen?}
+
+\section*{Griffiths 4.27}
+{\sl Two particles $($masses $m_1$ and $m_2)$ are attached to the ends of a massless rigid rod of length $a$. the system is free to rotate in three dimensions about the $($fixed$)$ center of mass.}
+\begin{enumerate}[label=\alph*)]
+\item {\sl Show that the allowed energies of this rigid rotor are}
+\[E_n = \frac{\hbar^2}{2I}n(n+1) \quad (n = 0,1,2,...) \quad \text{where } I = \frac{m_1 m_2}{m_1 + m_2}a^2\]
+{\sl is the moment of inertia of the system}
+
+\item {\sl What are the normalized eigenfunctions for this system? $($Let $\theta$ and $\phi$ define the orientation of the rotor axis.$)$ What is the degeneracy of the $n$th energy level?}
+
+\item {\sl What spectrum would you expect for this system?}
+
+\item {\sl According to the figure given in the text, what is the frequency separation between adjacent lines? Look up the masses of $^{12}C$ and $^{16}O$, and from $m_1$, $m_2$, and $\delta \nu$ determine the distance between the atoms.}
+
+\end{enumerate}
+
+
+\section*{Griffiths 4.64}
+{\sl the electron in a hydrogen atom occupies the combined spin and position state}
+\[R_{21}(\sqrt{1/3}Y^0_1 \chi_+ + \sqrt{2/3}Y^1_1 \chi_-)\]
+\begin{enumerate}[label=\alph*)]
+\item {\sl If you measured the orbital angular momentum squared, what values might you get, and what is the probability of each? }
+
+\item {\sl Same for the $z$ component of angular momentum.}
+
+\item {\sl Same for the spin angular momentum squared.}
+
+\item {\sl Same for the $z$ component of spin angular momentum.}
+
+\item {\sl Same for the energy of the electron.}
+\end{enumerate}
+
+
+\section*{Griffiths 4.30}
+{\sl An electron is in the spin state}
+\[\chi = A \mqty(3i & 4)\]
+\begin{enumerate}[label=\alph*)]
+\item {\sl Determine the normalization constant $A$}
+
+\item {\sl Find the expectation values of $S_x$, $S_y$, and $S_z$}
+
+\item {\sl Find the ``uncertainties" $\sigma_{S_x}$, $\sigma_{S_y}$, and $\sigma_{S_z}$}
+
+\item {\sl Confirm that your results are consistent with all three uncertainty principles.}
+\end{enumerate}
+
+\end{document}
