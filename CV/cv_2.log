@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  27 OCT 2021 22:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  5 DEC 2021 19:45
 entering extended mode
 **./cv_2.tex
 (cv_2.tex
@@ -6,9 +6,9 @@ LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27> (res.cls
 Document Style `res' <26 Sep 89>.
 Document Class: res 2000/05/19 v1.4b Resume class
-(C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
-(C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count182
@@ -35,15 +35,15 @@ No auxiliary output files.
 \resumewidth=\dimen140
 \@columnwidth=\dimen141
 \c@numberofcolumns=\count190
-) (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\helvet.sty
+) (C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\helvet.sty
 Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
 
-(C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 ))
-(C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
-dftex.def
+(C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count191
 \l__pdf_internal_box=\box50
@@ -74,7 +74,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 79--82
 
 [1
 
-{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+{C:/Users/jarde/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 Overfull \hbox (4.69693pt too wide) in paragraph at lines 230--233
 []\OT1/cmr/m/n/10 Science com-mu-ni-ca-tion, com-pu-ta-tional physics, par-ti-c
 le physics, chaotic sys-tems, macro-
@@ -83,21 +83,21 @@ le physics, chaotic sys-tems, macro-
 [2] ) 
 Here is how much of TeX's memory you used:
  536 strings out of 478927
- 9128 string characters out of 2851586
- 312861 words of memory out of 3000000
+ 9126 string characters out of 2852534
+ 312867 words of memory out of 3000000
  18464 multiletter control sequences out of 15000+600000
  405377 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,8n,55p,372b,218s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\WillsPc\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600
-\tcrm1000.pk><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmbx10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/WillsPc/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/WillsPc/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/Will
-sPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cv_2.pdf (2 pages, 99092 bytes).
+ <C:\Users\jarde\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\t
+crm1000.pk><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jarde/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/jarde/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/jarde/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on cv_2.pdf (2 pages, 99130 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

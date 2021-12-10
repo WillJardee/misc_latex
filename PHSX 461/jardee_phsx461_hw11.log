@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  9 DEC 2021 00:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  9 DEC 2021 00:18
 entering extended mode
-**./jardee_phsx461_hw10.tex
-(jardee_phsx461_hw10.tex
+**./jardee_phsx461_hw11.tex
+(jardee_phsx461_hw11.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\jarde\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -873,8 +873,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip73
-) (jardee_phsx461_hw10.aux)
-\openout1 = `jardee_phsx461_hw10.aux'.
+) (jardee_phsx461_hw11.aux)
+\openout1 = `jardee_phsx461_hw11.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
@@ -978,9 +978,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 43.
 LaTeX Info: Redefining \pageref on input line 43.
 LaTeX Info: Redefining \nameref on input line 43.
- (jardee_phsx461_hw10.out) (jardee_phsx461_hw10.out)
+ (jardee_phsx461_hw11.out) (jardee_phsx461_hw11.out)
 \@outlinefile=\write4
-\openout4 = `jardee_phsx461_hw10.out'.
+\openout4 = `jardee_phsx461_hw11.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
 
@@ -1002,66 +1002,36 @@ File: uesint.fd
 )
 [1
 
-{C:/Users/jarde/AppData/Local/MiKTeX/pdftex/config/pdftex.map}pdfTeX warning (e
-xt4): destination with the same identifier (name{equation.0.1}) has been alread
-y used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.88 ...aket{\psi}{\psi} = \frac{i}{\hbar}\ev{0}\]
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{equation.0.1}) has been already used, dupl
-icate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.88 ...aket{\psi}{\psi} = \frac{i}{\hbar}\ev{0}\]
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{equation.0.1}) has been already used, dupl
-icate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.88 ...aket{\psi}{\psi} = \frac{i}{\hbar}\ev{0}\]
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{equation.0.1}) has been already used, dupl
-icate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.88 ...aket{\psi}{\psi} = \frac{i}{\hbar}\ev{0}\]
-                                                  ] [2] [3] [4] [5] [6]
-[7] [8] [9] [10] [11] [12
-
-] (jardee_phsx461_hw10.aux)
-Package rerunfilecheck Info: File `jardee_phsx461_hw10.out' has not changed.
+{C:/Users/jarde/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
+(jardee_phsx461_hw11.aux)
+Package rerunfilecheck Info: File `jardee_phsx461_hw11.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27761 strings out of 478927
- 537950 string characters out of 2852534
- 829040 words of memory out of 3000000
- 45097 multiletter control sequences out of 15000+600000
- 418689 words of font info for 87 fonts, out of 8000000 for 9000
+ 27725 strings out of 478927
+ 537614 string characters out of 2852534
+ 819850 words of memory out of 3000000
+ 45078 multiletter control sequences out of 15000+600000
+ 414031 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,89p,432b,924s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\jarde\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi720\esi
-nt10.pk><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbsy10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/jarde/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jarde/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/jarde/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/jarde
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Use
-rs/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb
-><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jarde/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/jarde/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jardee_phsx461_hw10.pdf (12 pages, 205783 bytes).
+ 84i,8n,89p,423b,913s stack positions out of 5000i,500n,10000p,200000b,80000s
+<C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmbx12.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmex10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi12.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/jarde/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/jarde/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jarde/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/jarde/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/j
+arde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C
+:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmsy8.pfb><C:/Users/jarde/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/symbols/msbm10.pfb>
+Output written on jardee_phsx461_hw11.pdf (3 pages, 138033 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
+ 111 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 461: Exam 2}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+
+\item 
+\[\ev{x} = \int \phi^*(p) \hat{x}\phi(p) \dd{p}\]
+\[= \int \phi (p) \Big(i \hbar \pdv{p}\Big) \phi(p) \dd{p}\]
+\[\boxed{\ev{x} = (i \hbar)\int \phi^*(p) \pdv{p}\phi(p) \dd{p} }\]
+\bigskip
+
+\[\ev{p} = \int \phi^*(p) \hat{p} \phi(p) \dd{p}\]
+\[= \int \phi^* (p) \phi(p) p \dd{p}\]
+\[\boxed{ \ev{p} = \int \abs{\phi(p)}^2 p \dd{p}}\]
+
+\item 
+We need to show that $\hat{p} \ket{p_0} = p_0 \ket{p_0}$ We can do this by a simple proof by contradiction. If we assume that $\hat{p} \ket{p_0} \neq p_0 \ket{p_0}$, or in functional form: $\hat{p} \phi_{p_0}(p) \neq p_0 \phi_{p_0}(p)$ , then $\int \hat{p} \phi_{p_0}(p) \neq \int p_0 \phi_{p_0}(p)$. Looking at the left side:
+\[\int \hat{p} \phi_{p_0}(p) \dd{p}\]
+\[ = \int p \delta(p-p_0)\dd{p}\]
+\[= p_0 \]
+Now, looking at the right side:
+\[\int p_0 \phi_{p_0}(p) \dd{p}\]
+\[ = p_0 \int \delta(p-p_0)\dd{p}\]
+\[= p_0 \]
+But, we said that there were not equal, so we have reached a contradiction and it would thus be logical to say that $\phi_{p_0}$ is the eigenfunction of $\hat{p}$
+
+\item 
+\[\braket{p_0}{p_0} \Longrightarrow \int \phi^*_{p_0} \phi_{p_0} \dd{p}\]
+\[= \int \delta(p-p_0)\delta(p-p_0)\dd{p}\]
+\[= \int \delta^2(p-p_0)\dd{p}\]
+\[= \int \delta(p-p_0)\dd{p} = 1\]
+This fits the idea that $\braket{\vb{e}_m}{\vb{e}_n} = \delta_{mn}$ from dirac orthonormailty. Since $p_0$ is an eigen value and $\ket{p_0}$ is its eigen state, it is very much \textbf{physically recognizable}!
+
+\item 
+transfer over using Fourier transform:
+\[\phi(x,t) = \frac{1}{\sqrt{2 \pi}} \int \phi(k) e^{i(kx - \frac{\hbar k^2}{2m}t)} \dd{k}\]
+\[ = \frac{1}{\sqrt{2 \pi}} \int \phi (p) e^{i(\frac{p}{\hbar} x - \frac{p^2}{2\hbar m}t)} \frac{1}{\hbar} \dd{p}\]
+\[=\frac{1}{\hbar \sqrt{2 \pi}}\int \delta(p-p_0)e^{i(\frac{p}{\hbar} x - \frac{p^2}{2\hbar m}t)} \dd{p}\]
+\[= \frac{1}{\hbar \sqrt{2 \pi}}e^{i(\frac{p_0}{\hbar} x - \frac{p_0^2}{2\hbar m}t)}\]
+\[\boxed{= \frac{1}{\hbar \sqrt{2 \pi}} \exp\Big(i \frac{p_0}{\hbar} x \Big) \, \exp \Big(- i\frac{p_0^2}{2\hbar m}t\Big)}\]
+You can see that it ``wiggles" in the $x$ and has the quivalent of $\exp(-iE_n t /\hbar)$ where the $E_0 = p_0^2/em$ ($\hat{T} = \hat{p}^2/2m$).
+
+\item I would expect $\ev{p} \Rightarrow \ev{p_0}{p} = p_0$
+\[\Rightarrow \int \phi^*_{p_0}(p)\hat{p}\phi(p)_{p_0} \dd{p}\]
+\[= \int \phi^*_{p_0}(p) \phi(p)_{p_0} p \dd{p}\]
+\[= \int \delta(p-p_0) \delta(p-p_0) p \dd{p}\]
+\[ = p \eval_{p_0} = p_0\]
+\[\boxed{\ev{p} = p_0}\]
+\end{enumerate}
+\end{document}
