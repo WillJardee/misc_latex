@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 425: HW12}
+\author{William Jardee}
+\maketitle
+
+\noindent
+\emph{In class, we developed a calculation technique for working out the transmission and reflection of optical coatings at normal incidence (which we defined as the $z$-axis}
+\section*{Question 1}
+{\sl The boundary conditions I assumed for the electric field were $E_1 = E_2$ and $\pdv*{E_1}{z} = \pdv*{E_2}{z}$. Must I assume anything about materials 1 and 2 for these boundary conditions to be correct?}
+
+Since we are perpendicular to the boundary, then we do not need to take into account the parallel restriction: 
+\[\varepsilon_1 E^\perp_1 = \varepsilon_2 E^\perp_2\]
+We do, however, need to account for the perpendicular part of the B-field.
+\[\frac{1}{\mu_1}B^\parallel_1 = \frac{1}{\mu_2}B^\parallel_2\]
+So, this would mean that $\mu_1 = \mu_2$ since the B-field must also be continuous. We can see this through the derivative boundary condition; that the E, and B, field must stay in sync at the boundary.
+
+\newpage
+
+
+\section*{Question 2}
+{\sl Suppose a substrate $(n=n_0)$ is coated with a material $n=n_1$. Both indexes of refraction are real. The thickness $d_1$ of the coatings is $1/4$ wave, i.e. $n_1k_{vac}d_1 = \pi/2$. Light enters the coating from vacuum $(n_2 = 1)$ at normal incidence.}
+\begin{enumerate}[label=\alph*)]
+\item {\sl What value of $n_1$ would result in zero reflection form the coating? In that case, what fraction of the power would be transmitted into the substrate?}
+
+From lecture 
+\begin{equation}
+	\tag{Equation 5}
+	E_{F,j+1} = \frac{1}{2}\Big(1 + \frac{n_j}{n_{j+1}}\Big)E^\prime_{F,j} + \frac{1}{2}\Big(1 - \frac{n_j}{n_{j+1}}\Big)E^\prime_{R,j}
+	\label{eq:5}
+\end{equation}
+\begin{equation}
+	\tag{Equation 6}
+	E_{R,j+1} = \frac{1}{2}\Big(1 - \frac{n_j}{n_{j+1}}\Big)E^\prime_{F,j} + \frac{1}{2}\Big(1 + \frac{n_j}{n_{j+1}}\Big)E^\prime_{R,j}
+	\label{eq:6}
+\end{equation}
+\begin{equation}
+	\tag{Equation 7}
+	E^\prime_{F,j} = E_{F,j}e^{-in_jk_{vac}d_j}
+	\label{eq:7}
+\end{equation}
+\begin{equation}
+	\tag{Equation 8}
+	E^\prime_{R,j} = E_{R,j}e^{in_jk_{vac}d_j}
+	\label{eq:8}
+\end{equation}
+
+If we want zero reflection, then we just set that value $(E_{R_2})$ equal to zero. From \ref{eq:6}:
+\[0 = \frac{1}{2}\Big(1 - \frac{n_1}{n_{2}}\Big)E^\prime_{F,1} + \frac{1}{2}\Big(1 + \frac{n_1}{n_{2}}\Big)E^\prime_{R,1}\]
+\begin{equation}
+(n_1 - n_2)E^\prime_{F,1} = (n_1 + n_2)E^\prime_{R,1}
+\label{eq:a}
+\end{equation}
+Using both \ref{eq:5} and \ref{eq:6} for the interface between the coating and the substrate:
+\[E_{F,1} = \frac{1}{2}\Big(1 + \frac{n_0}{n_1}\Big)E^\prime_{F,0} + \frac{1}{2}\Big(1- \frac{n_0}{n_1}\Big)E^\prime_{R,0}\]
+\[E_{R,1} = \frac{1}{2}\Big(1 - \frac{n_0}{n_1}\Big)E^\prime_{F,0} + \frac{1}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{R,0}\]
+Recognizing that the substrate can be thought of as infinitely thick we can say that $E^\prime_{R,0}$, and thus the two equations above become:
+\[E_{F,1} = \frac{1}{2}\Big(1 + \frac{n_0}{n_1}\Big)E^\prime_{F,0} \qquad E_{R,1} = \frac{1}{2}\Big(1 - \frac{n_0}{n_1}\Big)E^\prime_{F,0}\]\smallskip
+
+\[E_{F,1}\Big(2n_1\frac{1}{n_1+n_0}\Big)E^\prime_{F,0}\]
+\[E_{R,1} = \frac{1}{2}\Big(\frac{n_1-n_0}{n_1}\Big)\Big(\frac{2n_1}{n_1+n_0}\Big)E_{F,1}\]
+\[= \frac{n_1-n_0}{n_1 +n_0}E_{F,1}\]
+These two statements of $E$ refer to different sides of the material. \ref{eq:7} and \ref{eq:8} can be used to relate the two:
+\begin{equation}
+E^\prime_{F,1} = E_{F,1}e^{-in_1k_{vac}d_1} = E_{F,1}e^{-i\pi/2} = -iE_{F,1} \rightarrow E_{F,1} = i E^\prime_{F,1}
+\label{eq:b}
+\end{equation}
+\begin{equation}
+E^\prime_{R,1} = E_{R,1}e^{+in_1k_{vac}d_1} = E_{R,1}e^{+i\pi/2} = iE_{R,1} \rightarrow E_{R,1} = -i E^\prime_{R,1}
+\label{eq:c}
+\end{equation}
+\smallskip
+
+\[-iE^\prime_{R,1} = i \frac{n_1 - n_0}{n_1 + n_0}E^\prime_{F,1}\]
+\[E^\prime_{R,1} = \frac{n_0 - n_1}{n_1 + n_0}E^\prime_{F,1}\]
+
+plugging this into the (\ref{eq:a}):
+\[(n_1-n_2)E^\prime_{F,1} = (n_1+n_2)\frac{n_0-n_1}{n_0 + n_1}E^\prime_{F,1}\]
+\[(n_1 - n_2) = (n_1+n_2)\Big(\frac{n_0-n_1}{n_0+n_1}\Big)\]
+By simple algebra:
+\[2n_1^2 = 2n_2n_0\]
+\[\Longrightarrow \boxed{n_1 = \sqrt{n_0}}\]
+
+\[iE^\prime_{F,1} = \frac{1}{2}\Big(1 + \frac{n_0}{n_1}\Big)E^\prime_{F,0} \rightarrow E^\prime_{F,1} = -\frac{i}{2}\Big(1 + \frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+\[-iE^\prime_{R,1} = \frac{1}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0} \rightarrow E^\prime_{R,1} = \frac{i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+
+\[E_{F,2} = \frac{1}{2}\Big(1 + \frac{n_1}{n_2}\Big)\Big(\frac{-i}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{F,0}\Big) + \frac{1}{2}\Big(1-\frac{n_1}{n_2}\Big)\Big(\frac{i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\Big)\]
+\[= \frac{-i}{4n_1n_2}[(n_2+n_1)(n_1+n_0)+(n_1-n_2)(n_1-n_0)]E^\prime_{F,0}\]
+\[= -\frac{i}{2n_1n_2}[n_1^2 + n_2n_0]\]
+
+To find the transmission coefficient, we need to find $I_T/I_I$. We can combine
+\[I=\frac{1}{2}\varepsilon v E^2 \quad v= \frac{1}{\sqrt{\varepsilon \mu}} \quad n = \sqrt{\frac{\varepsilon \mu}{\varepsilon_0 \mu_0}}\]
+\[I = \frac{1}{2}\frac{n \sqrt{\varepsilon_0 \mu_0}}{\mu}E^2\]\bigskip
+\[\frac{I_T}{I_I}  = T = \frac{\frac{1}{2}\frac{n_0 \sqrt{\varepsilon_0 \mu_0}}{\mu^\prime_0}(E^\prime_{F,0})^2}{\frac{1}{2}\frac{n_2 \sqrt{\varepsilon_0 \mu_0}}{\mu^\prime_2}(E^\prime_{F,2})^2}\]
+\[T = \frac{n_0}{n_2} \frac{\mu^\prime_2}{\mu^\prime_2}\Big(\frac{-i}{2n_1n_2}[n_1^2 + n_2n_0]\Big)^{-2}\]
+\[n_2 = 1 \qquad n_1 = \sqrt{n_0}\]
+\[\Rightarrow \frac{n_0}{1}\Big(\frac{1}{2\sqrt{n_0}}[n_0 + n_0]\Big)^{-2}\]
+\[\boxed{T = n_0(\sqrt{n_0})^{-2} = 1}\]
+This makes sense, as nothing is reflected. 
+
+
+\item {\sl Find the reflectivity coefficient for a $1/4$ wave coating of MgF$_2$ $(n=1.38)$ on BK7 glass $(n=1.52)$. What would be the reflectivity of glass without the coating?}
+
+\[E_{F,2} = \frac{1}{2}\Big(1 + \frac{n_1}{n_2}\Big)\frac{i}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{F,0}
++ \frac{1}{2}\Big(1 - \frac{n_1}{n_2}\Big)\frac{-i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+\[= \frac{i}{4}\Big[\Big(1+\frac{n_1}{n_2}\Big)\Big(1+\frac{n_0}{n_1}\Big) - \Big(1-\frac{n_1}{n_2}\Big)\Big(1-\frac{n_0}{n_1}\Big)\Big]E^\prime_{F,0}\]
+\[= \frac{i}{4n_1n_2}[(n_2 + n_1)(n_1 + n_0) - (n_2-n_1)(n_1-n_0)]E^\prime_{F,0}\]
+\[= \frac{i}{4n_1n_2}(2n_0n_2+2n_1^2)E^\prime_{F,0}\]
+\begin{equation}
+E_{F,2} = \frac{i}{2n_1n_2}(n_0n_2 + n_1^2)E^\prime_{F,0}
+\label{eq:d}
+\end{equation}\bigskip
+\[E^\prime_{R,2} = \frac{1}{2}\Big(1-\frac{n_1}{n_2}\Big)\frac{i}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{F,0}
++ \frac{1}{2}\Big(1+\frac{n_1}{n_2}\Big)\frac{-i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+\[=\frac{i}{4n_1n_2}[(n_2-n_1)(n_1+n_0)- (n_2+n_1)(n_1-n_0)]E^\prime_{F,0}\]
+\begin{equation}
+E^\prime_{R,2} = \frac{i}{2n_1n_2}(n_2n_0-n_1^2)E^\prime_{F,0}
+\label{eq:e}
+\end{equation}\bigskip
+plugging in (\ref{eq:d}) into (\ref{eq:e}):
+\[E^\prime_{R,2} = \frac{i}{2n_1n_2}[n_2n_0 - n_1^2]\frac{1}{\frac{i}{2n_1n_2}[n_0n_2 + n_1^2]}E^\prime_{F,2}\]
+\[= \frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}E^\prime_{F,2}\]
+
+Using the equation for the intensity from above, and the fact that $\mu^\prime_0 = \mu_2$ for the boundary conditions:
+\[T = \frac{n_0}{n_2}\frac{\mu_2}{\mu^\prime_0}\Big[\frac{i}{2n_1n_2}(n_0n_2 + n_1^2)\Big]^{-2} = \frac{n_0}{n_2}\Big[\frac{2n_1n_2}{n_0n_2 + n_1^2}\Big]^{2}\]
+\[T = n_0n_2\Big[\frac{2n_1}{n_0n_2 + n_1^2}\Big]^2\]
+\[R = \frac{n_2}{n_2}\frac{\mu_2}{\mu_2}\Big[\frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}\Big]^2 = \Big[\frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}\Big]^2\]\smallskip
+Simply plugging in $n_2 = 1$, $n_1 = 1.38$ and $n_0 = 1.52$
+\[\boxed{T = 0.9874} \qquad \boxed{R = 0.0126}\]
+If instead we plug in $n_1 = n_2 = 1$, and $n_0 = 1.52$
+\[\boxed{T = 0.9574} \qquad \boxed{R = 0.0426}\]
+
+
+\end{enumerate}
+
+\end{document}
