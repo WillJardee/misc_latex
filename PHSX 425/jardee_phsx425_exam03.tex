@@ -1,0 +1,290 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+
+% Graphics/Presentation packages
+\usepackage{geometry, graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 425: Final Exam}
+\author{William Jardee}
+\maketitle
+
+\noindent
+
+\section*{Question 1}
+{\sl On the surface of a good conductor $(n = n_0(1+i))$ is a dielectric coating with index $n_1$. both materials have $\mu = \mu_0$. what is the reflective of the coated surface for radiation with a vacuum wavelength $\lambda$, at normal incidence, if the coating thickness is}
+
+\begin{enumerate}[label=\alph*)]
+\item $d = \lambda/4n_1$? \smallskip
+
+The bulk of this problem is a repeat from the last homework assignment once you recognize that the condition ``$in_1k_{vac}d = \pi/2$ is saying the same thing as $d = \lambda/4n_1$
+
+{\bf Copied from homework 12:}
+\[E_{F,2} = \frac{1}{2}\Big(1 + \frac{n_1}{n_2}\Big)\frac{i}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{F,0}
++ \frac{1}{2}\Big(1 - \frac{n_1}{n_2}\Big)\frac{-i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+\[= \frac{i}{4}\Big[\Big(1+\frac{n_1}{n_2}\Big)\Big(1+\frac{n_0}{n_1}\Big) - \Big(1-\frac{n_1}{n_2}\Big)\Big(1-\frac{n_0}{n_1}\Big)\Big]E^\prime_{F,0}\]
+\[= \frac{i}{4n_1n_2}[(n_2 + n_1)(n_1 + n_0) - (n_2-n_1)(n_1-n_0)]E^\prime_{F,0}\]
+\[= \frac{i}{4n_1n_2}(2n_0n_2+2n_1^2)E^\prime_{F,0}\]
+\begin{equation}
+E_{F,2} = \frac{i}{2n_1n_2}(n_0n_2 + n_1^2)E^\prime_{F,0}
+\label{eq:1.1}
+\end{equation}\bigskip
+\[E^\prime_{R,2} = \frac{1}{2}\Big(1-\frac{n_1}{n_2}\Big)\frac{i}{2}\Big(1+\frac{n_0}{n_1}\Big)E^\prime_{F,0}
++ \frac{1}{2}\Big(1+\frac{n_1}{n_2}\Big)\frac{-i}{2}\Big(1-\frac{n_0}{n_1}\Big)E^\prime_{F,0}\]
+\[=\frac{i}{4n_1n_2}[(n_2-n_1)(n_1+n_0)- (n_2+n_1)(n_1-n_0)]E^\prime_{F,0}\]
+\begin{equation}
+E^\prime_{R,2} = \frac{i}{2n_1n_2}(n_2n_0-n_1^2)E^\prime_{F,0}
+\label{eq:1.2}
+\end{equation}\bigskip
+plugging in (\ref{eq:1.1}) into (\ref{eq:1.2}):
+\[E^\prime_{R,2} = \frac{i}{2n_1n_2}[n_2n_0 - n_1^2]\frac{1}{\frac{i}{2n_1n_2}[n_0n_2 + n_1^2]}E^\prime_{F,2}\]
+\[= \frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}E^\prime_{F,2}\]
+
+Using the equation for the intensity from above, and the fact that $\mu^\prime_0 = \mu_2$ for the boundary conditions:
+\[T = \frac{n_0}{n_2}\frac{\mu_2}{\mu^\prime_0}\Big[\frac{i}{2n_1n_2}(n_0n_2 + n_1^2)\Big]^{-2} = \frac{n_0}{n_2}\Big[\frac{2n_1n_2}{n_0n_2 + n_1^2}\Big]^{2}\]
+\[T = n_0n_2\Big[\frac{2n_1}{n_0n_2 + n_1^2}\Big]^2\]
+\[R = \frac{n_2}{n_2}\frac{\mu_2}{\mu_2}\Big[\frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}\Big]^2 = \Big[\frac{n_2n_0 - n_1^2}{n_2n_0 + n_1^2}\Big]^2\]\smallskip
+
+{\bf end copy.}
+
+Now, using the $n$ given for $n_0$: $n_0 \rightarrow n_0(1+i)$
+ = \[R \Rightarrow \Big[\Big|\frac{n_2 n_0 (1+i) - n_1^2}{n_2 n_0(1+i) + n_1^2} \Big|\Big]^2 =\Big(\frac{n_2 n_0(1+i) - n_1^2}{n_2n_0(1+i) + n_1^2}\Big)\Big(\frac{n_2n_0(1-i)-n_1^2}{n_2n_0(1-i) + n_1^2}\Big)\]
+\[= \frac{(n_2n_0)^2(1+i)(1-i) - 2n_2n_0n_1^2 +n_1^4}{(n_2n_0)^2(1+i)(1-i) + 2n_2n_0n_1^2 +n_1^4}\]
+\[= \frac{2(n_2n_0)^2 - 2n_2n_0n_1^2 +n_1^4}{2(n_2n_0)^2 + 2n_2n_0n_1^2 +n_1^4}\]
+The interface that corresponds with 2 is that of vacuum, so $n_2 = 1$
+\[\boxed{R = \frac{2(n_0)^2 - 2n_0n_1^2 +n_1^4}{2(n_0)^2 + 2n_0n_1^2 +n_1^4}}\]
+
+\item $d = \lambda/2n_1$?
+
+We do need to make one modification to the last step in order to make it right. Above we said $n_1k_{vac}d = \pi/2$. Since we are now half of the wavelength, that needs to be changed to $n_1k_{vac}d = \pi/4$. This shift makes the relationship
+\[E_{F,1} = iE_{F,1}^\prime \qquad E_{R,1} = -iE_{R,1}^\prime\]
+to 
+\[E_{F,1} = -E_{F,1}^\prime \qquad E_{R,1} = -E_{R,1}^\prime\]
+So, the derivation becomes:
+\[E_{F, 2} = \frac{1}{2}\Big(1 + \frac{n_1}{n_2}\Big)\Big(\frac{-1}{2}\Big)\Big(1 + \frac{n_0}{n_1}\Big)E_{F,0}^\prime + \frac{1}{2}\Big(1 - \frac{n_1}{n_2}\Big)\Big(\frac{-1}{2}\Big)\Big(1 - \frac{n_0}{n_1}\Big)E_{F,0}^\prime \]
+\[= -\frac{1}{4n_1n_0}[(n_2 + n_1)(n_1 + n_0) + (n_2 - n_1)(n_1-n_0)]E_{F,0}^\prime\]
+\[= -\frac{1}{4n_1n_2}[2n_2n_1 + 2n_1n_0]E_{F,0}^\prime = -\frac{1}{2n_2}[n_2 + n_0]E_{F,0}^\prime\]
+Similarly:
+\[E_{R, 2} = \frac{1}{2}\Big(1 - \frac{n_1}{n_2}\Big)\Big(\frac{-1}{2}\Big)\Big(1 + \frac{n_0}{n_1}\Big)E_{F,0}^\prime + \frac{1}{2}\Big(1 + \frac{n_1}{n_2}\Big)\Big(\frac{-1}{2}\Big)\Big(1 - \frac{n_0}{n_1}\Big)E_{F,0}^\prime \]
+\[= -\frac{1}{4n_1n_0}[(n_2 - n_1)(n_1 + n_0) + (n_2 + n_1)(n_1-n_0)]E_{F,0}^\prime\]
+\[= -\frac{1}{4n_1n_2}[2n_2n_1 - 2n_1n_0]E_{F,0}^\prime = -\frac{1}{2n_2}[n_2 - n_0]E_{F,0}^\prime\]
+
+So, to find the reflectivity:
+\[R = \frac{I_R}{I_F} = \frac{\frac{1}{2}\mu v E_R^2}{\frac{1}{2}\mu v E_F^2} = \Big[\Big|\frac{n_2 - n_0}{n_2 + n_0}\Big|\Big]^2\]
+\[ \Rightarrow \Big[\Big| \frac{n_2 - n_0(1+i)}{n_2 + n_0(1+i)}\Big|\Big]^2 = \Big(\frac{n_2 - n_0(1+i)}{n_2 + n_0(1+i)}\Big)\Big(\frac{n_2 - n_0(1-i)}{n_2 + n_0(1-i)}\Big)\]
+\[= \frac{n_2^2 - 2n_2n_0 +n_0^2}{n_2^2 + 2n_2n_0 +n_0^2}\]
+$n_2 =0$
+\[\boxed{R = \frac{1 - 2n_0 +n_0^2}{1 + 2n_0 +n_0^2} = \Big(\frac{n_0 - 1}{n_0 +1}\Big)^2}\]
+
+
+\end{enumerate}
+
+%----------------------------------------------------
+\newpage
+
+\section*{Question 2}
+{\sl A gold sphere of radius $a$ is embedded at the center of a poorly conducting sphere of radius $b$ and conductivity $\sigma$. You may assume $\mu = \mu_0$ and $\varepsilon = \varepsilon_0$. At time $t=0$, the gold sphere has a surface charge of $q_0$. The larger sphere is initially uncharged.}
+\begin{enumerate}[label=\alph*)]
+\item {\sl Find the electric and magnetic fields, and find $q(t)$, the charge on the gold sphere, as a function of time.} 
+
+Let's first start with finding the equation for $q(t)$. Since this is a uniform conductor, then the density should just evolve according to the relationship
+\[\rho = \rho_0 e^{-\sigma/\varepsilon_0 \, t}\]
+\[\boxed{q(t) = q_0 e^{-\sigma/\varepsilon_0 \, t}}\]
+Gauss's law states that $\oint \vec{E} \cdot \dd{\vec{a}} = Q_{\text{enc}}/\varepsilon_0$. At the surface we can just use the equation above for the charge:
+\[E(t) \cdot 4\pi a^2 = \frac{q(t)}{\varepsilon_0} = \frac{q_0}{\varepsilon_0} e^{-\sigma/\varepsilon_0 \, t}\]
+\[\boxed{\vec{E}(t) = \frac{q_0}{4 \pi a^2 \varepsilon_0} \hat{r} e^{-\sigma/\varepsilon_0 \, t}}\]
+
+The B-field can be defined from the equation $\oint \vec{B} \cdot \dd{\vec{l}} = \mu_0 I_{\text{enc}}$. If we integrate around a ring at the parimeter of the gold, the charge is always flowing perpendicular to the ring. Either by justifying ourselves through the integral, or using the right hand rule to realize that every current flowing out will have an ``up" and ``down" component to the resulting B-field that will cancel another current's ``down" and ``up". 
+\[\boxed{\vec{B} = 0}\]
+
+\item {\sl Verify that Poynting's theorem (Griffiths equation 8.9) is satisfied on $a<r<b$, for any $t>0$.}
+
+\begin{equation}
+	\tag{Griffiths 8.9}
+	\dv{W}{t} = - \dv{t} \int_\mathpzc{V} \frac{1}{2}\Big(\varepsilon_0 \vec{E}^2 + \frac{1}{\mu_0}\vec{B}^2\Big)\dd{\tau} - \frac{1}{\mu_0}\oint (\vec{E}\times \vec{B})\cdot \dd{a}
+	\label{eq:2.1}
+\end{equation}
+With the derivations given above, this is trivial to show. Using the energy density:
+\[u_{\text{em}} = \frac{1}{2}\int \varepsilon_0 \frac{q_0}{\varepsilon_0}e^{-2 \sigma / \varepsilon_0 \, t} \dd{\tau} = \frac{1}{2} q_0 \frac{4}{3}\pi (b^3 - a^3)e^{-2 \sigma / \varepsilon_0 \, t}\]
+To evaluate the right side:
+\[-\dv{t}\frac{1}{2}\int_\mathpzc{V}\varepsilon_0 E^2 \dd{\tau} = -\dv{t} \frac{1}{2}\int\varepsilon_0 \frac{q_0}{\varepsilon_0}e^{-2 \sigma / \varepsilon_0 \, t}\dd{\tau}\]
+\[= -\dv{t} \frac{1}{2}q_0 \frac{4}{3}\pi (b^3 -a^3)e^{-2 \sigma / \varepsilon_0 \, t} = -\dv{t} u_{\text{em}} \quad \checkmark\]
+This is just the rate that energy is flowing out of the region, which is the work done by the system. 
+
+
+\end{enumerate}
+
+%----------------------------------------------------
+\newpage
+
+\section*{Question 3}
+{\sl The simplest electromagnetic spherical wave is}
+\begin{equation}
+\vb{B}(\vb{r}, t) = \frac{E_0 \hat{\phi}}{c}\Big[\frac{1}{kr} + \frac{i}{(kr)^2}\Big]\sin(\theta)e^{ik(r-ct)}
+\label{eq:3.1}
+\end{equation}
+
+\begin{enumerate}[label=\alph*)]
+\item {\sl Starting from }
+\[\curl{\vb{B}}=\frac{1}{c^2}\pdv{\vb{E}}{t},\]
+{\sl derive the associated electric field, $\vb{E}(\vb{r}, t)$.}\footnote{Who's ready for a derivative fest??}
+
+\begin{align*}
+\curl{\vb{B}} = \frac{E_0}{c}\Big[\frac{1}{r\sin\theta}\pdv{\theta} \sin\theta \Big(\frac{1}{kr}+ \frac{i}{(kr)^2}\Big)\sin\theta e^{ik(r-ct)}\Big]\hat{r} \\ + \frac{E_0}{c}\frac{1}{r}\Big[-\pdv{r} r \Big(\frac{1}{kr} + \frac{i}{(kr)^2}\Big)\sin\theta e^{ik(r-ct)}\Big]\hat{\theta}
+\end{align*}
+\begin{align*}
+= \frac{E_0}{c}\Big[\Big[\frac{2\sin\theta \cos\theta}{r \sin\theta}\Big(\frac{1}{kr} + \frac{i}{(kr)^2}\Big)e^{ik(r-ct)}\Big]\hat{r} \\ 
+\quad + \Big[-\frac{1}{r}\sin\theta \pdv{r} \Big(\frac{1}{kr} + \frac{i}{(kr)^2}\Big)e^{ik(r-ct)}\Big]\hat{\theta}\Big]
+\end{align*}
+\begin{align*}
+=\frac{E_0}{c}\Big[\frac{2\cos\theta}{r}\Big(\frac{1}{kr} + \frac{i}{(kr)^2)}\Big)e^{ik(r-ct)}\Big]\hat{r} -\Big[\frac{1}{r}\sin\theta \Big(\frac{-i}{k^2r^2}e^{ik(r-ct)}+ \\ \Big[\frac{1}{k} + \frac{i}{k^2 r}\Big](ik)e^{ik(r-ct)}\Big)\Big]\hat{\theta}\Big]
+\end{align*}
+\begin{align*}
+=\frac{E_0}{c}\Big[2\cos\theta\Big(\frac{1}{kr^2} + \frac{i}{k^2r^3}\Big)e^{ik(r-ct)}\hat{r}+ \sin\theta\Big[\frac{i}{k^2r^3} - \frac{i}{r}-\frac{i^2}{kr^2}\Big]e^{ik(r-ct)}\hat{\theta}\Big]
+\end{align*}
+\[= \frac{E_0}{c}\Big[2\cos\theta \Big(\frac{1}{kr^2} + \frac{i}{k^2r^3}\Big)\hat{r} + i\sin\theta \Big(\frac{1}{k^2r^3} - \frac{1}{r} - \frac{i}{kr^2}\Big)\hat{\theta}\Big]e^{ik(r-ct)}\]
+This needs to be equal to $(1/c^2)\pdv*{\vb{E}}{t}$, so let's factor out the $(-1/ikc)$
+\[= c\frac{E_0}{c}\Big[-\frac{1}{ikc}\Big]\Big[-2\cos\theta \Big(\frac{i}{r^2} + \frac{i^2}{kr^3}\Big)\hat{r} - i^2 \sin\theta \Big(\frac{1}{kr^3} - \frac{k}{r} - \frac{i}{r^2}\Big)\hat{\theta}\Big]e^{ik(r-ct)}\]
+\[\boxed{\vb{E}(\vb{r}, t) = E_0\Big[-2\cos\theta \Big(\frac{i}{r^2} + \frac{i^2}{kr^3}\Big)\hat{r} + \sin\theta \Big(\frac{1}{kr^3} - \frac{k}{r} - \frac{i}{r^2}\Big)\hat{\theta}\Big]e^{ik(r-ct)}}\]
+
+\item {\sl Verify that the fields satisfy the remaining three Maxwell's equations in vacuum.}
+\begin{equation}
+	\tag{Maxwell Equations}
+	\mqty{\div{\vb{E}} = \frac{\rho}{\varepsilon_0} & \quad & \curl{\vb{E}} = - \pdv{\vb{B}}{t} \\ \div{\vb{B}} = 0 & \quad & \curl{\vb{B}} = \mu_0\Big(\vb{J} + \varepsilon_0 \pdv{\vb{E}}{t}\Big)}
+\end{equation}
+
+\begin{align*}
+\div{\vb{E}} = \frac{1}{r^2} \pdv{r} r^2 \Big(-2\cos\theta \Big[\frac{i}{r^2} - \frac{1}{kr^3}\Big]e^{ik(r-ct)}\Big) \\+ \frac{1}{r \sin \theta} \pdv{\theta} \Big(\sin^2\theta \Big[\frac{1}{kr^3}-\frac{k}{r} -\frac{i}{r^2}\Big]e^{ik(r-ct)}\Big)
+\end{align*}
+\begin{align*}
+= \frac{1}{r^2}\pdv{r}\Big(-2\cos\theta \Big[i - \frac{1}{kr}\Big]e^{ik(r-ct)}\Big) + \frac{1}{r\sin\theta}2\cos\theta \sin\theta\Big[\frac{1}{kr^3} \\ - \frac{k}{r} -\frac{i}{r^2}\Big]e^{ik(r-ct)}
+\end{align*}
+\[2\cos\theta e^{ik(r-ct)}\Big[-\Big(\frac{1}{kr^4} -\frac{k}{r^2} -\frac{i}{r^3}\Big) + \Big(\frac{1}{kr^4}-\frac{k}{r^2} -\frac{i}{r^3}\Big)\Big] = 0 = \frac{\rho}{\varepsilon} \quad \checkmark\]\bigskip
+
+\[\div{\vb{B}} = \frac{1}{r\sin\theta}\pdv{\phi} \frac{E_0}{c}\Big[\frac{1}{kr} + \frac{i}{(kr)^2}\Big]\sin\theta e^{ik(r-ct)} = 0 \quad \checkmark\]\bigskip
+
+\begin{align*}
+\curl{\vb{E}} = E_0 \frac{1}{r} \Big(-\pdv{\theta}\Big(-2\cos\theta \Big[\frac{i}{r^2} - \frac{1}{kr^3}\Big]e^{ik(r-ct)}\Big) \\ + \pdv{r}\Big(r\sin\theta \Big[\frac{1}{kr^3} - \frac{k}{r} - \frac{i}{r^2}\Big]e^{ik(r-ct)}\Big)\Big)\hat{\theta}
+\end{align*}
+\begin{align*}
+=E_0\frac{1}{r}\Big(-2\sin\theta \Big[\frac{i}{r^2} - \frac{1}{kr^3}\Big]e^{ik(r-ct)} + \pdv{r}\Big(\sin\theta \Big[\frac{1}{kr^2} - k -\frac{i}{r}\Big]e^{ik(r-ct)}\Big)\Big)\hat{\theta}
+\end{align*}
+\begin{align*}
+= E_0 \frac{1}{r}\Big(-2\sin\theta \Big[\frac{i}{r^2} - \frac{1}{kr^3}\Big]e^{ik(r-ct)} + \sin\theta \Big(\Big[\frac{-2}{kr^3} + \frac{i}{r^2}\Big]e^{ik(r-ct)} \\ + \Big[\frac{1}{kr^2} - k -\frac{i}{r}\Big](ik)e^{ik(r-ct)}\Big)\Big)\hat{\theta}
+\end{align*}
+\begin{align*}
+= E_0 \frac{1}{r} \Big(-2\sin\theta \Big[\frac{i}{r^2} - \frac{1}{kr^3}\Big] + \sin\theta \Big(\Big[\frac{-2}{kr^3} + \frac{i}{r^2}\Big] + \Big[\frac{i}{r^2} -ik^2 \frac{k}{r}\Big]\Big)\Big)e^{ik(r-ct)}\hat{\theta}
+\end{align*}
+\[= E_0 \frac{1}{r} \sin\theta \Big[-ik^2 + \frac{k}{r}\Big]e^{ik(r - ct)}\hat{\theta} = E_0 \sin\theta \Big[\frac{-ik^2}{r} + \frac{k}{r^2}\Big]e^{ik(r - ct)}\hat{\theta}\]
+Now to get the right side:
+\[-\pdv{\vb{B}}{t} = -\frac{E_0}{c} \Big[\frac{1}{kr} + \frac{i}{(kr)^2}\Big]\sin\theta (-ikc) e^{ik(r-ct)}\hat{\theta}\]
+\[ = E_0 \sin\theta \Big[\frac{i}{r} - \frac{1}{k r^2}\Big]e^{ik(r - ct)}\hat{\theta}\]
+
+These two are off by a factor of $-k^2$. Having looked over my derivation multiple times, I can't find any errors. So, this is going to be one of those situations were you call it ``close enough" because I have more pressing things to get onto.
+
+\item {\sl Show that for $kr \ll 1$, $\vb{E}$ is the static field of an electric dipole. The dipole moment is oscillating: $\vb{p} = p_0\hat{z}e^{-ickt}$. Fine $p_0$ in terms of the parameters used in Equation \ref{eq:3.1}.}
+
+In the situation where $kr \ll 1$
+\[\frac{1}{(kr)^3} \gg \frac{1}{(kr)^2} \gg \frac{1}{kr}\]
+so, those terms can be neglected.
+\[\vb{E}(\vb{r}, t) = E_0\Big[-2\cos\theta \Big(\frac{i}{r^2} + \frac{-1}{kr^3}\Big)\hat{r} + \sin\theta \Big(\frac{1}{kr^3} - \frac{k}{r} - \frac{i}{r^2}\Big)\hat{\theta}\Big]e^{ik(r-ct)}\]
+\[\rightarrow E_0\Big[2\cos\theta \Big(\frac{1}{kr^3}\Big)\hat{r} + \sin\theta \Big(\frac{1}{kr^3}\Big)\hat{\theta}\Big]e^{ik(r-ct)}\]
+\[ = \frac{E_0 k^2}{kr^3}e^{ik(r-ct)} [2 \cos\theta \hat{r} +\sin\theta \hat{\theta}]\]
+This is in the form of a dipole. $ \quad \checkmark$
+\[\frac{P}{4\pi \varepsilon_0 r^3} = \frac{E_0 k^2}{kr^3}e^{ik(r-ct)} \]
+\[P = 4 \pi \varepsilon_0 \frac{E_0}{k}e^{ik(r-ct)} = p_0 e^{ik(r-ct)}\]
+\[\boxed{p_0 = \frac{4 \pi \varepsilon_0}{k}}\]
+
+\end{enumerate}
+
+%----------------------------------------------------
+\newpage
+
+\section*{Question 4}
+{\sl A spherical bead with radius $R$ is strung on a wire, radius $a<R$, carrying current $I$. The bead is not carrying any free current. It is a linear magnetic material with permeability $\mu$.}
+\begin{enumerate}[label=\alph*)]
+\item {\sl Find $\vb{B}, \vb{H}, \vb{M}$ everywhere outside the wire.}
+
+Let's look at inside the bead first. We can use your favorite equation to get our $\vec{H}$: $\oint \vec{H} \cdot \dd{\vec{l}} = I_{f, \text{enc}}$. This is just the standard B-field from a wire. So, inside the bead the field is $I/2\pi r \hat{r}$. For a linear linear magnetic, $\vec{B} = \mu \vec{H}$. So, $\vec{B} = I\mu /2\pi r \hat{r}$. For the $\vec{M}$ we know that it is $\vec{M} = \chi_m \vec{H} = (\frac{\mu}{\mu_0} - 1)I/2\pi r \hat{r}$. Outside of the magnetic, $\vec{B} = \mu_0 \, \vec{H} = \mu_0 I/2\pi r \hat{r}$
+
+\[\mqty{\vec{B} = \frac{I\mu}{2 \pi r}\hat{r} & \vec{B} = \frac{I\mu_0}{2 \pi r}\hat{r} \\ \vec{H} = \frac{I}{2 \pi r}\hat{r} & \vec{H} = \frac{I}{2 \pi r}\hat{r} \\ \vec{M} = \Big(\frac{\mu}{\mu_0}-1\Big)\frac{I}{2 \pi r} \hat{r} & \vec{M} = 0}\]
+
+
+\item {\sl Find the bound currents in and on the bead, including the inside core of radius $a$ where the wire goes through.}
+
+Since we can create a closed circuit around the whole edge of the bead, making a D-shape through the center and around the outside edge, the magnitude of the vector must be the same in the core and outside. What will change is the current density. 
+\[\oint \vec{B} \cdot \dd{\vec{l}} = I_{\text{enc}} = I_f + I_b\]
+\[\frac{\mu_0}{\mu} I = I_f + I_b = I+I_b\]
+\[\boxed{\Big(\frac{\mu_0}{\mu} -1\Big)I = I_b}\]
+
+\end{enumerate}
+
+%----------------------------------------------------
+\newpage
+
+\section*{Question 5}
+{\sl Two plan waves, $\tilde{\vb{E}}_R = \tilde{E_{0R}}\hat{z}e^{i(kx-\omega t)}$, and $\tilde{\vb{E}}_L$ propagating the opposite way, are caught in the region between perfectly conducting planes $x=0$ and $x=d$.}
+
+\begin{enumerate}[label=\alph*)]
+\item {\sl What is the boundary condition for $\vb{E}^\parallel$ at the surface of a perfect conductor?}
+
+We know that the general form of the boundary condition will have to be $E_1^\parallel - E_2^\parallel = 0$. We can think of this situation as a Faraday cage, and realize that the transmitted wave will be zero.\footnote{This is supported by Griffiths, who says that a ``perfect conductor $\sigma \Rightarrow \infty$ so $\tilde{E}_{0R} = - \tilde{E}_{0T}$"} So, the boundary condition is that
+\[\boxed{\vb{E}_R = -\vb{E}_L}\]
+
+\item {\sl Apply the boundary condition to determine the set of allowed solutions for the total electric field on $0<x<d$.}
+
+The condition is that they have to be equal at the bounds, in both the position and the first derivative (so they stay in sync). By inspection, it is easy to see that this only works if the two waves have the same wavelength (to conserve energy) and that wavelength be such that a $\pi/2$ multiple of the wave fits. In terms of this problem, that means that $k = n \cdot \pi/2 d$, s.t. $d \in \mathbb{N}$
+
+\item {\sl Find the pressure (force per area normal to the mirror). Compare this to the time-averaged energy density in the fields.}
+
+I'm not quite sure what exactly you are looking for on this one, as we derived the pressure from the time-averaged energy density. Our derivation, ran backwards, looked like
+\[P = \frac{1}{A}\frac{\Delta p}{\Delta t} =\frac{1}{A} \frac{\ev{\vec{g}}A c \Delta t}{\Delta t} = \ev{\vec{g}}c \Rightarrow \frac{1}{2} c \varepsilon_0 E^2\]
+
+Energy density of one of the waves, let's say the right one, is
+\[u_R = \varepsilon_0 (\vec{E}_{R})^2\]
+\[\ev{u_R} = \frac{1}{2} \varepsilon_0 E_{0R}^2\]
+This is just for one of the waves. Since there is total reflection, we can double that number for the total pressure felt by the plane.
+\[\boxed{\ev{u} = \varepsilon_0 E_{0R}^2 = P}\]
+
+\item {\sl Suppose that instead of light, we have non-relativistic particles bouncing between the mirrors. Would the ratio of (in this case kinetic) energy density to pressure be the same as for light?}
+
+My calculation dealt with the light just like the a continuous, constant stream of particles. In this way, there is no way that they are different. The point where this would be different, is if the particles couldn't be estimated as a continuous stream of particles. In this case, the problem would be projected from the continuous realm of the EM wave to a discrete space. However, I can't think of a way that this would change our result if we average over all time.
+
+\end{enumerate}
+
+
+\end{document}
