@@ -1,0 +1,280 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.7in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{graphicx}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+	\begin{document}
+
+\title{PHSX 462: HW01}
+\author{William Jardee}
+\maketitle
+
+{\bf This homework is just a lot of math. I don't justify too much with words, but try to justify most of it with actually doing the calculation. Hope its tractable.}
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item
+\hspace*{1em}$\vec{S}^{(1)} \cdot \vec{S}^{(2)} \ket{\uparrow \downarrow}$\vspace{0.5em}\\
+$=[S_x^{(1)}\otimes S_x^{(2)} + S_y^{(1)}\otimes S_y^{(2)} + S_z^{(1)}\otimes S_z^{(2)}]\ket{\uparrow \downarrow}$\vspace{0.5em}\\
+$=S_x^{(1)}\ket{\uparrow}_1\otimes S_x^{(2)}\ket{\downarrow}_2 + S_y^{(1)}\ket{\uparrow}_1\otimes S_y^{(2)}\ket{\downarrow}_2 + S_z^{(1)}\ket{\uparrow}_1\otimes S_z^{(2)}\ket{\downarrow}_2$\vspace{0.5em}\\
+$=\frac{\hbar}{2}\sigma_x\ket{\uparrow}_1\otimes \frac{\hbar}{2}\sigma_x\ket{\downarrow}_2 + \frac{\hbar}{2}\sigma_y\ket{\uparrow}_1\otimes \frac{\hbar}{2}\sigma_y\ket{\downarrow}_2 + \frac{\hbar}{2}\sigma_z\ket{\uparrow}_1\otimes \frac{\hbar}{2}\sigma_z\ket{\downarrow}_2$\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\mqty[0 & 1 \\ 1 & 0]\mqty[1\\0]_1\otimes\mqty[0&1 \\1 & 0]\mqty[0\\1]_2 + \mqty[0 & -i \\ i & 0]\mqty[1\\0]_1\otimes\mqty[0& -i \\ i &0]\mqty[0\\1]_2 \right.$\vspace{0.5em}\\
+\hspace*{5em}$\left. + \mqty[1 &0\\0 &-1]\mqty[1\\0]_1\otimes\mqty[1 & 0 \\ 0 & -1]\mqty[0\\1]_2\right)$\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\mqty[0\\1]_1\otimes\mqty[1\\0]_2 + i\mqty[0\\1]_1\otimes(-i)\mqty[0\\1]_2 + \mqty[1\\0]_1\otimes\mqty[0\\-1]_2\right)$\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\ket{\downarrow}_1\otimes\ket{\uparrow}_2 + \ket{\downarrow}_1\otimes\ket{\uparrow}_2 - \ket{\uparrow}_1\otimes\ket{\downarrow}_2\right)$\vspace{0.5em}\\
+$= \frac{\hbar^2}{4}\left(2\ket{\downarrow\uparrow}-\ket{\uparrow\downarrow}\right)$
+
+\item 
+\hspace{1em}$\vec{S}^{(1)} \cdot \vec{S}^{(2)} \ket{\downarrow \uparrow}$\vspace{0.5em}\\
+The derivation of this one is nearly identical as the last part, just replace the $\uparrow$'s with $\downarrow$, and vice-versa.\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\mqty[0 & 1 \\ 1 & 0]\mqty[0\\1]_1\otimes\mqty[0&1 \\1 & 0]\mqty[1\\0]_2 + \mqty[0 & -i \\ i & 0]\mqty[0\\1]_1\otimes\mqty[0& -i \\ i &0]\mqty[1\\0]_2 \right.$\vspace{0.5em}\\
+\hspace*{5em}$\left.+ \mqty[1 &0\\0 &-1]\mqty[0\\1]_1\otimes\mqty[1 & 0 \\ 0 & -1]\mqty[1\\0]_2\right)$\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\mqty[1\\0]_1\otimes\mqty[0\\1]_2 + (-i)\mqty[1\\0]_1\otimes i \mqty[1\\0]_2 + \mqty[0\\-1]_1\otimes\mqty[1\\0]_2\right)$\vspace{0.5em}\\
+$=\frac{\hbar^2}{4}\left(\ket{\uparrow}_1\otimes\ket{\downarrow}_2 + \ket{\uparrow}_1\otimes\ket{\downarrow}_2 - \ket{\downarrow}_1\otimes\ket{\uparrow}_2\right)$\vspace{0.5em}\\
+$= \frac{\hbar^2}{4}\left(2\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right)$
+
+\item The right hand side is not normalized, but that is because it doesn't need to be. This is the measurement of spin, and spin shouldn't be normalized (unless is is the measurement of the z-component of a spin 1 particle). If this were a new vector that would be used for calculation, such as the result from $S_-$, then we would need to care about the normalization. 
+\end{enumerate}
+\newpage
+
+%----------------------------------------
+
+\section*{Question 2}
+$S_z = S_z^{(1)} + S_z^{(2)} + S_z^{(3)} = S_z^{(1)}\otimes 1 \otimes 1 + 1 \otimes S_z^{(2)} \otimes 1 + 1 \otimes 1 \otimes S_z^{(3)}$\vspace{0.5em}\\
+$\ket{\alpha} \, = c_1 \ket{\uparrow\uparrow\downarrow} + c_2 \ket{\uparrow\downarrow\uparrow} = c_1\left(\ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes \ket{\downarrow}_3\right) + c_2\left(\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3\right)$\vspace{1em}\\
+$S_z \ket{\alpha} = \left[S_z^{(1)} + S_z^{(2)} + S_z^{(3)} = S_z^{(1)}\otimes 1 \otimes 1 + 1 \otimes S_z^{(2)} \otimes 1 + 1 \otimes 1 \otimes S_z^{(3)}\right]$\vspace{0.5em}\\
+\hspace*{5em} $\cdot\left[c_1\left(\ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes \ket{\downarrow}_3\right) + c_2\left(\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3 \right)\right]$\vspace{0.5em}\\
+\hspace*{3em}$= c_1\left[S_z^{(1)}\ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes \ket{\downarrow}_3 + \ket{\uparrow}_1\otimes S_z^{(2)}\ket{\uparrow}_2 \otimes \ket{\downarrow}_3 + \ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes S_z^{(3)}\ket{\downarrow}_3\right]$\vspace{0.5em}\\
+\hspace*{5em}$+ \, c_2\left[S_z^{(1)}\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3 + \ket{\uparrow}_1\otimes S_z^{(2)}\ket{\downarrow}_2 \otimes \ket{\uparrow}_3 + \ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes S_z^{(3)}\ket{\uparrow}_3\right]$\vspace{0.5em}\\
+\hspace*{3em}$=c_1\left[\frac{\hbar}{2}\ket{\uparrow}_1\otimes \ket{\uparrow}_2\otimes \ket{\downarrow}_3 + \frac{\hbar}{2}\ket{\uparrow}_1\otimes \ket{\uparrow}_2\otimes \ket{\downarrow}_3 -\frac{\hbar}{2}\ket{\uparrow}_1 \otimes \ket{\uparrow}_2\otimes \ket{\downarrow}_3\right]$\vspace{0.5em}\\
+\hspace*{5em}$+ \, c_2 \left[\frac{\hbar}{2}\ket{\uparrow}_1 \otimes \ket{\downarrow}_2\otimes\ket{\uparrow}_3 - \frac{\hbar}{2}\ket{\uparrow}_1\otimes\ket{\downarrow}_2\otimes\ket{\uparrow}_3 + \frac{\hbar}{2}\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3\right]$\vspace{0.5em}\\
+\hspace*{3em}$=c_1 \frac{\hbar}{2}\left[\ket{\uparrow}_1\otimes \ket{\uparrow}_2 \otimes \ket{\downarrow}_3\right] + c_2 \frac{\hbar}{2}\left[\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3\right]$\vspace{0.5em}\\
+\hspace*{3em}$= \frac{\hbar}{2} \left(c_1 \ket{\uparrow\uparrow\downarrow} + c_2\ket{\uparrow\downarrow\uparrow}\right)$\vspace{0.5em}\\
+$S_z \ket{\alpha} \, = \frac{\hbar}{2}\ket{\alpha}$ \hspace{2em} \checkmark
+
+
+\newpage
+%----------------------------------------
+
+\section*{Question 3}
+\begin{enumerate}[label=\alph*)]
+\item
+$\ket{\alpha} = \frac{1}{\sqrt{2}}\left(\ket{\uparrow\uparrow\downarrow} + \ket{\uparrow\downarrow\uparrow}\right)$\vspace{0.5em}\\
+$\ev{S_{2x}} = \ev{S_{2x}}{\frac{1}{\sqrt{2}}\left(\ket{\uparrow\uparrow\downarrow} + \ket{\uparrow\downarrow\uparrow}\right)}$\vspace{0.5em}\\
+\hspace*{2.1em} $=\frac{1}{2}\left(\ev{S_{2x}}{\uparrow\uparrow\downarrow} + \ev{S_{2x}}{\uparrow\downarrow\uparrow}\right)$\vspace{0.5em}\\
+\hspace*{2.1em} $= \frac{1}{2}\left( \ev{1\otimes S_x^{(2)}\otimes 1}{\uparrow_1 \otimes \uparrow_2 \otimes \downarrow_3} \right.$\vspace{0.5em}\\
+\hspace*{4.1em} $\left. + \ev{1 \otimes S_x^{(2)}\otimes}{\uparrow_1 \otimes \downarrow_2 \otimes \uparrow_1}\right)$\vspace{0.5em}\\
+\hspace*{2.1em} $= \frac{1}{2}\left(\bra{\uparrow}_1 \otimes \bra{\uparrow}_2 \otimes \bra{\downarrow}_3 1 \otimes S_x^{(2)} \otimes 1 \ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes \ket{\downarrow}_3\right.$\vspace{0.5em}\\
+\hspace*{4.1em} $+ \left.\bra{\uparrow}_1 \otimes \bra{\downarrow}_2 \otimes \bra{\uparrow}_3 1 \otimes S_x^{(2)} \otimes 1 \ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\uparrow}_3\right) $\vspace{0.5em}\\
+\hspace*{2.1em} $= \frac{\hbar}{4}\left(\bra{\uparrow}_1 \otimes \bra{\uparrow}_2 \otimes \bra{\downarrow}_3 \ket{\uparrow}_1 \otimes \ket{\downarrow}_2 \otimes \ket{\downarrow}_3 + \bra{\uparrow}_1 \otimes \bra{\downarrow}_2 \otimes \bra{\uparrow}_3 \ket{\uparrow}_1 \otimes \ket{\uparrow}_2 \otimes \ket{\uparrow}_3\right)$\vspace{0.5em}\\
+\hspace*{2.1em} $ = \frac{\hbar}{4}\left(\braket{\uparrow}{\uparrow}_1 \otimes \braket{\uparrow}{\downarrow}_2 \otimes \braket{\downarrow}{\downarrow}_3 + \braket{\uparrow}{\uparrow}_1 \otimes \braket{\downarrow}{\uparrow}_2 \otimes \braket{\uparrow}{\uparrow}_3\right)$\vspace{0.5em}\\
+\hspace*{2.1em} $ = \frac{\hbar}{4}\left(1\cdot 0\cdot 1 + 1\cdot 0 \cdot 1\right)$\vspace{0.5em}
+
+\[\boxed{\ev{S_{2x}} = 0}\]
+
+\item
+$\ket{\beta} = \frac{1}{\sqrt{2}}\left(\ket{\uparrow} + \ket{\downarrow}\right)$\vspace{0.5em}\\
+$\ev{S_x} = \ev{S_x}{\beta}$\vspace{0.5em}\\
+\hspace*{1.9em} $ = \frac{1}{2}\ev{S_x}{\uparrow + \downarrow}$\vspace{0.5em}\\
+\hspace*{1.9em} $ = \frac{1}{2}\left(\ev{S_x}{\uparrow} + \mel{\uparrow}{S_x}{\downarrow} + \mel{\downarrow}{S_x}{\uparrow} + \ev{S_x}{\downarrow}\right) $\vspace{0.5em}\\
+\hspace*{1.9em} $ = \frac{\hbar}{4} \left(\braket{\uparrow}{\downarrow} + \braket{\uparrow}{\uparrow} + \braket{\downarrow}{\downarrow} + \braket{\downarrow}{\uparrow}\right)$\vspace{0.5em}\\
+\hspace*{1.9em} $= \frac{\hbar}{4}\left(0+1+1+0\right)$\vspace{0.5em}
+
+\[\boxed{\ev{S_x} = \frac{\hbar}{2}}\]
+
+\end{enumerate}
+
+\newpage
+%----------------------------------------
+
+\section*{Question 4}
+
+$\ket{0 \, 0} = \frac{1}{\sqrt{2}}\left(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right)$\vspace{0.5em}\\
+$\ket{1 \, 0} = \frac{1}{\sqrt{2}}\left(\ket{\uparrow\downarrow} + \ket{\downarrow}{\uparrow}\right)$\vspace{1.5em}\\
+$\braket{0 \, 0}{1 \, 0} = \frac{1}{2} \left(\bra{\uparrow\downarrow} - \bra{\downarrow\uparrow}\right)\left(\ket{\uparrow \downarrow} + \ket{\downarrow\uparrow}\right)$\vspace{0.5em}\\
+\hspace*{3.4em} $= \frac{1}{2}\left(\bra{\uparrow}_1 \otimes \bra{\downarrow}_2 - \bra{\downarrow}_1 \otimes \bra{\uparrow}_2\right)\left(\ket{\uparrow}_1 \otimes \ket{\downarrow}_2 + \ket{\downarrow}_1 \otimes \ket{\uparrow}_2\right)$\vspace{0.5em}\\
+\hspace*{3.4em} $= \frac{1}{2}\Big[\left(\bra{\uparrow}_1 \otimes \bra{\downarrow}_2\right)\left(\ket{\uparrow}_1 \otimes \ket{\downarrow}_2\right) + \left(\bra{\uparrow}_1 \otimes \bra{\downarrow}_2\right)\left(\ket{\downarrow}_1 \otimes \ket{\uparrow}_2\right)$\vspace{0.5em}\\
+\hspace*{5.4em} $ - \left(\bra{\downarrow}_1 \otimes \bra{\uparrow}_2\right)\left(\ket{\uparrow}_1 \otimes \ket{\downarrow}_2\right) - \left(\bra{\downarrow}_1 \otimes \bra{\uparrow}_2\right)\left(\ket{\downarrow}_1 \otimes \ket{\uparrow}_2\right)\Big]$\vspace{0.5em}\\ 
+\hspace*{3.4em} $= \left[\braket{\uparrow}{\uparrow}_1\braket{\downarrow}{\downarrow}_2 + \braket{\uparrow}{\downarrow}_1\braket{\downarrow}{\uparrow}_2 - \braket{\downarrow}{\uparrow}_1\braket{\uparrow}{\downarrow}_2 - \braket{\downarrow}{\downarrow}_1\braket{\uparrow}{\uparrow}_2 \right]$\vspace{0.5em}\\ 
+\hspace*{3.4em} $ = \frac{1}{2}\left[1 + 0 + 0 -1\right]$
+
+\[\boxed{\braket{0 \,  0}{1 \, 0} = 0}\]
+
+\newpage
+%----------------------------------------
+
+\section*{Griffiths 4.38}
+\begin{enumerate}[label=\alph*)]
+\item I'm not quite sure how else to justify this, other than just listing all the possible combination of up and down spins to get all the total spin:\vspace{0.5em}\\
+$\ket{\uparrow\uparrow\uparrow} \rightarrow \frac{3}{2}$\vspace{0.5em}\\
+$\ket{\uparrow\uparrow\downarrow}, \ket{\uparrow\downarrow\uparrow}, \ket{\downarrow\uparrow\uparrow} \rightarrow \frac{1}{2}$\vspace{0.5em}\\
+$\ket{\uparrow\downarrow\downarrow}, \ket{\downarrow\uparrow\downarrow}, \ket{\downarrow\downarrow\uparrow} \rightarrow -\frac{1}{2}$\vspace{0.5em}\\
+$\ket{\downarrow\downarrow\downarrow} \rightarrow -\frac{3}{2}$\vspace{0.5em}\\
+So, the set of total possible angular momentum of a baryon (at least a three-quark boson) are:
+
+\[\boxed{\left\{\frac{3}{2}, \frac{1}{2}, -\frac{1}{2}, -\frac{3}{2}\right\}}\]
+
+\item Let's do the same thing for some mesons:\vspace{0.5em}\\
+$\ket{\uparrow\uparrow} \rightarrow 1$\vspace{0.5em}\\
+$\ket{\uparrow \downarrow}, \ket{\downarrow\uparrow} \rightarrow 0$\vspace{0.5em}\\
+$\ket{\downarrow\downarrow} \rightarrow -1$\vspace{0.5em}\\
+So, the total set of possible angular momentum of a meson are:
+
+\[\boxed{\left\{1, 0, -1\right\}}\]
+
+\end{enumerate}
+\newpage
+%----------------------------------------
+
+\section*{Griffiths 4.40}
+\begin{enumerate}[label=\alph*)]
+\item The setup of this problem looks a little like: 
+\[\ket{s=1}\otimes \ket{s=2} \rightarrow \ket{s=3}\]
+And, we know that the combined state has a z-component of $\hbar$, or is in the state $\ket{s=3, m=1}$. Reading off the table:\vspace{0.5em}\\
+$\ket{3, 1} = \sqrt{\frac{1}{15}}\left(\ket{1, -1} \otimes \ket{2, 2}\right) + \sqrt{\frac{8}{15}}\left(\ket{1, 0} \otimes \ket{2, 1}\right) + \sqrt{\frac{6}{15}}\left(\ket{1, 1} \otimes \ket{2, 0}\right)$\vspace{0.5em}\\
+Thus, we can pull  out the probabilities:
+
+\[\boxed{\frac{1}{15} \text{ for } 2\hbar \quad , \quad \frac{8}{15} \text{ for } \hbar \quad , \quad \frac{6}{15} \text{ for } 0 }\]
+
+\item 
+
+We has a down spin in the $\psi_{510}$ state. What this means is that we have a total state of $\ket{l=1, m_l = 0, s=\frac{1}{2}, m_s = -\frac{1}{2}}$. Reading off the table: \vspace{0.5em}\\
+$\ket{l=1, m_l = 0, s=\frac{1}{2}, m_s = -\frac{1}{2}} = \sqrt{\frac{2}{3}}\ket{\frac{3}{2}, -\frac{1}{2}} + \sqrt{\frac{1}{2}}\ket{\frac{1}{2}, -\frac{1}{2}}$\vspace{0.5em}\\
+Now we have to find the magnitude of the angular momentum, let's do the $\frac{3}{2}$ one first:\vspace{0.5em}\\
+$J^2 \ket{\frac{3}{2}, -\frac{1}{2}} = j(j+1) \ket{\frac{3}{2}, -\frac{1}{2}}$\vspace{0.5em}\\
+\hspace*{4.4em} $ = \frac{3}{2}\left(\frac{3}{2} + 1\right)\hbar^2  \ket{\frac{3}{2}, -\frac{1}{2}}$\vspace{0.5em}\\
+\hspace*{4.4em} $= \frac{15}{4}\hbar^2 \ket{\frac{3}{2}, -\frac{1}{2}} \rightarrow J = \sqrt{\frac{15}{4}}\hbar$\vspace{1.5em}\\
+$J^2 \ket{\frac{1}{2}, -\frac{1}{2}} = j(j+1) \ket{\frac{1}{2}, -\frac{1}{2}}$\vspace{0.5em}\\
+\hspace*{4.4em} $ = \frac{1}{2}\left(\frac{1}{2} + 1\right)\hbar^2  \ket{\frac{1}{2}, -\frac{1}{2}}$\vspace{0.5em}\\
+\hspace*{4.4em} $= \frac{3}{4}\hbar^2 \ket{\frac{1}{2}, -\frac{1}{2}} \rightarrow J = \sqrt{\frac{3}{4}}\hbar$
+
+So, putting this altogether:
+
+\[\boxed{\frac{2}{3} \text{ for } \frac{\sqrt{15}}{2}\hbar \quad , \quad \frac{1}{3} \text{ for } \frac{\sqrt{3}}{2}\hbar}\]
+
+\end{enumerate}
+
+\newpage
+%----------------------------------------
+
+\section*{Griffiths 4.65}
+For this one, I'm gonna split into three parts. Part {\bf a} is gonna be the quadruplet state, part {\bf b} will be the first doublet state, and part {\bf c} will be the second doublet state.
+
+\begin{enumerate}[label=\alph*)]
+\item To start, we are given $\ket{\frac{3}{2}, \frac{3}{2}} = \ket{\uparrow\uparrow\uparrow}$\vspace{0.5em}\\
+$\ket{\frac{3}{2}, \frac{1}{2}} = S_-\ket{\frac{3}{2}, \frac{3}{2}} = S_- \ket{\uparrow\uparrow\uparrow}$\vspace{0.5em}\\
+\hspace*{2.7em}$= S_-^{(1)}\ket{\uparrow\uparrow\uparrow} + S_-^{(2)}\ket{\uparrow\uparrow\uparrow} + S_-^{3}\ket{\uparrow\uparrow\uparrow}$\vspace{0.5em}\\
+\hspace*{2.7em} $ = \ket{\downarrow\uparrow\uparrow} + \ket{\uparrow\downarrow\uparrow} + \ket{\uparrow\uparrow\downarrow}$\vspace{0.5em}\\
+We can normalize this in the final step. At this point, let's just keep going:\vspace{0.5em}\\
+$\ket{\frac{3}{2}, -\frac{1}{2}} = S_-\ket{\frac{3}{2}, \frac{1}{2}} = S_-\left(\ket{\downarrow\uparrow\uparrow} + \ket{\uparrow\downarrow\uparrow} + \ket{\uparrow\uparrow\downarrow}\right)$\vspace{0.5em}\\
+\hspace*{3.5em}$=S_-^{(1)}\ket{\downarrow\uparrow\uparrow} + S_-^{(1)}\ket{\uparrow\downarrow\uparrow} + S_-^{(1)}\ket{\uparrow\uparrow\downarrow}$\vspace{0.5em}\\
+\hspace*{5.5em}$ + S_-^{(2)}\ket{\downarrow\uparrow\uparrow} + S_-^{(2)}\ket{\uparrow\downarrow\uparrow} + S_-^{(2)}\ket{\uparrow\uparrow\downarrow}$\vspace{0.5em}\\
+\hspace*{5.5em}$ + S_-^{(2)}\ket{\downarrow\uparrow\uparrow} + S_-^{(2)}\ket{\uparrow\downarrow\uparrow} + S_-^{(2)}\ket{\uparrow\uparrow\downarrow}$\vspace{0.5em}\\
+\hspace*{3.5em}$ = \ket{\downarrow\downarrow\uparrow} + \ket{\downarrow\uparrow\downarrow} + \ket{\downarrow\downarrow\uparrow} + \ket{\uparrow\downarrow\downarrow} + \ket{\downarrow\uparrow\downarrow} + \ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+\hspace*{3.5em}$= 2\ket{\downarrow\downarrow\uparrow} + 2\ket{\downarrow\uparrow\downarrow} + 2 \ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+And, to round the quadruplet state out:\vspace{0.5em}\\
+$\ket{\frac{3}{2}, -\frac{3}{2}} = S_-\ket{\frac{3}{2}, -\frac{1}{2}} = S_-\left(\ket{\downarrow\downarrow\uparrow} + \ket{\downarrow\uparrow\downarrow} + \ket{\uparrow\downarrow\downarrow}\right)$\vspace{0.5em}\\
+\hspace*{3.5em}$ = S_-^{(1)}\ket{\downarrow\downarrow\uparrow} + S_-^{(1)}\ket{\downarrow\uparrow\downarrow} + S_-^{(1)}\ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+\hspace*{5.5em}$ + S_-^{(2)}\ket{\downarrow\downarrow\uparrow} + S_-^{(2)}\ket{\downarrow\uparrow\downarrow} + S_-^{(2)}\ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+\hspace*{5.5em}$ + S_-^{(3)}\ket{\downarrow\downarrow\uparrow} + S_-^{(3)}\ket{\downarrow\uparrow\downarrow} + S--^{(3)}\ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+\hspace*{3.5em}$=\ket{\downarrow\downarrow\downarrow} + \ket{\downarrow\downarrow\downarrow} + \ket{\downarrow\downarrow\downarrow} \rightarrow \ket{\downarrow\downarrow\downarrow}$\vspace{1.5em}\\
+Re-normalizing and organizing there, this is the quadruplet states: 
+\[\boxed{\mqty{\ket{\frac{3}{2}, \frac{3}{2}} & = & \ket{\uparrow\uparrow\uparrow}\vspace{0.5em}\\ \ket{\frac{3}{2}, \frac{1}{2}} & = & \frac{1}{\sqrt{3}}\left(\ket{\downarrow\uparrow\uparrow} + \ket{\uparrow\downarrow\uparrow} + \ket{\uparrow\uparrow\downarrow}\right)\vspace{0.5em}\\ \ket{\frac{3}{2}, -\frac{1}{2}} & = & \frac{1}{\sqrt{3}}\left(\ket{\downarrow\downarrow\uparrow} + \ket{\downarrow\uparrow\downarrow} + \ket{\uparrow\downarrow\downarrow}\right)\vspace{0.5em}\\ \ket{\frac{3}{2}, -\frac{3}{2}} & = & \ket{\downarrow\downarrow\downarrow}})}\]
+
+\item The book gives the hint that to start the first doublet state, that we should use: $\ket{\frac{1}{2}, \frac{1}{2}} = \frac{1}{\sqrt{2}}\left(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right)\ket{\uparrow}$. To justify the use of this, we will show that it is an eigenstate of $S^2$. We know that it is already an eigenstate of $S_z$, since a combination of any pair of states is an eigenstate of $S_x$. First, let's figure out what $S^2$ looks like for a three state system:\vspace{0.5em}\\
+$\left[S^{(1)} + S^{(2)} + S^{(3)}\right]\left[S^{(1)} + S^{(2)} + S^{(3)}\right]$\vspace{0.5em}\\
+$= \left(S^{(1)}\right) + \left(S^{(2)}\right) + \left(S^{(3)}\right) S^{(1)}S^{(2)} + S^{(1)}S^{(3)} + S^{(2)}S^{(1)} + S^{(2)}S^{(3)} + S^{(3)}S^{(1)} + S^{(3)}S^{(2)}$\vspace{0.5em}\\
+$= \left(S^{(1)}\right) + \left(S^{(2)}\right) + \left(S^{(3)}\right) + 2 S^{(1)}S^{(2)} + 2S^{(1)}S^{(3)} + 2S^{(2)}S^{(3)}$\vspace{0.5em}\\
+Fantastic! Now, let's apply this to the guess:\vspace{0.5em}\\
+$\frac{1}{\sqrt{2}}\left[\left(S^{(1)}\right) + \left(S^{(2)}\right) + \left(S^{(3)}\right) + 2 S^{(1)}S^{(2)} + 2S^{(1)}S^{(3)} + 2S^{(2)}S^{(3)}\right]\left(\ket{\uparrow\downarrow\uparrow} - \ket{\downarrow\uparrow\uparrow}\right)$\vspace{0.5em}\\
+$=\frac{\hbar^2}{\sqrt{2}}\left[\frac{9}{4}\ket{\uparrow\downarrow\uparrow} - \frac{9}{4}\ket{\downarrow\uparrow\uparrow}\right] + 2 \frac{\hbar^2}{4}\left(2\ket{\downarrow\uparrow} - \ket{\uparrow\downarrow}\right)\ket{\uparrow} - 2\frac{\hbar^2}{4}\left(2\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right)\ket{\uparrow} $\vspace{0.5em}\\
+\hspace*{3em}$+ 2\hbar^2\ket{\uparrow\downarrow\uparrow} - 2\frac{\hbar^2}{4}\left(2\ket{\uparrow\uparrow\downarrow} - \ket{\downarrow\uparrow\uparrow}\right) + 2 \frac{\hbar^2}{4}\left(2\ket{\uparrow\uparrow\downarrow} - \ket{\uparrow\downarrow\uparrow}\right) - 2\hbar^2\ket{\downarrow\uparrow\uparrow}$\vspace{0.5em}\\
+$=\frac{\hbar^2}{\sqrt{2}}\left[\frac{9}{4}\ket{\uparrow\downarrow\uparrow} - \frac{9}{4}\ket{\downarrow\uparrow\uparrow} + \ket{\downarrow\uparrow\uparrow} - \frac{1}{2}\ket{\uparrow\downarrow\uparrow}-\ket{\uparrow\downarrow\uparrow} \right.$\vspace{0.5em}\\
+\hspace*{3em}$\left.+ \frac{1}{2}\ket{\downarrow\uparrow\uparrow} + 2\ket{\uparrow\downarrow\uparrow}- \ket{\uparrow\uparrow\downarrow} + \frac{1}{2}\ket{\downarrow\uparrow\uparrow} + \ket{\uparrow\uparrow\downarrow}-\frac{1}{2}\ket{\uparrow\downarrow\uparrow}-2\ket{\downarrow\uparrow\uparrow}\right]$\vspace{0.5em}\\
+$=\frac{\hbar^2}{\sqrt{2}}\left[\ket{\uparrow\downarrow\uparrow}(\frac{9}{4}-\frac{1}{2}-1+2-\frac{1}{2}) + \ket{\downarrow\uparrow\uparrow}(-\frac{9}{4}+1 + \frac{1}{2}+\frac{1}{2}-2) -\ket{\uparrow\uparrow\downarrow} + \ket{\uparrow\uparrow\downarrow}\right]$\vspace{0.5em}\\
+$= \frac{\hbar^2}{\sqrt{2}}\left[\frac{9}{4}\ket{\uparrow\downarrow\uparrow} - \frac{9}{4}\ket{\downarrow\uparrow\uparrow}\right]$\vspace{0.5em}\\
+$= \frac{9}{4}\frac{\hbar^2}{\sqrt{2}}\left(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right)\ket{\uparrow}$
+
+So, it is an eigenstate of $S^2$ ({\sl phew!}) So, this will be the state for $\ket{\frac{1}{2}, -\frac{1}{2}}$. To find the next state below this, let's use the lowering operator:\vspace{0.5em}\\
+$\ket{\frac{1}{2}, -\frac{1}{2}} = S_-\left(\ket{\uparrow\downarrow\uparrow} - \ket{\downarrow\uparrow\uparrow}\right)$\vspace{0.5em}\\
+\hspace*{3.5em}$=S_-^{(1)}\ket{\uparrow\downarrow\uparrow}-S_-^{(1)}\ket{\downarrow\uparrow\uparrow} + S_-^{(2)}\ket{\uparrow\downarrow\uparrow}-S_-^{(2)}\ket{\downarrow\uparrow\uparrow}+S_-^{(3)}\ket{\uparrow\downarrow\uparrow} - S_-^{(3)}\ket{\downarrow\uparrow\uparrow}$\vspace{0.5em}\\
+\hspace*{3.5em}$= \ket{\downarrow\downarrow\uparrow} - \ket{\downarrow\downarrow\uparrow}+\ket{\uparrow\downarrow\downarrow}-\ket{\downarrow\uparrow\uparrow}$\vspace{0.5em}\\
+\hspace*{3.5em}$= \ket{\uparrow\downarrow\downarrow} - \ket{\downarrow\uparrow\downarrow}$
+
+Combining these two together and normalizing:
+\[\boxed{\mqty{ \ket{\frac{1}{2}, \frac{1}{2}}_1 & = & \frac{1}{\sqrt{2}} \left(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right)\ket{\uparrow}\vspace{0.5em}\\ \ket{\frac{1}{2}, -\frac{1}{2}}_1 & = & \frac{1}{\sqrt{2}}\left(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right)\ket{\downarrow}}}\]
+
+\item Realizing that the given a 3-dimensional space, if two orthogonal vectors are provide that there is only one linearly independent vector remaining: we can make a 3-dimensionaly space out of the set of vectors $\{\ket{\uparrow\downarrow\downarrow}, \ket{\downarrow\uparrow\downarrow}, \ket{\downarrow\downarrow\uparrow}\}$. If we enumerate these as $\{\vb{e}_1, \vb{e}_2, \vb{e}_3\}$, respectively, then we can encode the two vectors we already have:
+\[\ket{\frac{3}{2}, -\frac{1}{2}}\rightarrow \mqty[1\\1\\1] \qquad \ket{\frac{1}{2}, -\frac{1}{2}}\rightarrow \mqty[1\\-1\\0]\]
+The last orthogonal vector to these two would then be: $\mqty[1\\1\\-2]$. (Saving both of us the pain of the derivation here. It is easy to verify by observation, however.) Using this reasoning, we can say that:\vspace{0.5em}\\
+$\ket{\frac{1}{2}, -\frac{1}{2}}_2 = \frac{1}{\sqrt{6}}\left(\ket{\uparrow\downarrow\downarrow} + \ket{\downarrow\uparrow\downarrow} - 2\ket{\downarrow\downarrow\uparrow}\right)$\vspace{0.5em}\\
+To get the final state, we much just say:\vspace{0.5em}\\
+$\ket{\frac{1}{2}, \frac{1}{2}} = S_+\left(\ket{\uparrow\downarrow\downarrow}+ \ket{\downarrow\uparrow\downarrow} -2\ket{\downarrow\downarrow\uparrow}\right)$\vspace{0.5em}\\
+\hspace*{2.7em}$ = S_+^{(1)}\ket{\uparrow\downarrow\downarrow} + S_+^{(1)}\ket{\downarrow\uparrow\downarrow} - S_+^{(2)}2\ket{\downarrow\downarrow\uparrow} + S_+^{(2)}\ket{\uparrow\downarrow\downarrow}+S_+^{(2)}\ket{\downarrow\uparrow\downarrow}-S_+^{(2)}2\ket{\downarrow\downarrow\uparrow} + S_+^{(3)}\ket{\uparrow\downarrow\downarrow}$\vspace{0.5em}\\
+\hspace*{5.7em}$+ S_+^{(3)}\ket{\downarrow\uparrow\downarrow} - S_+^{(3)}2\ket{\downarrow\downarrow\uparrow}$\vspace{0.5em}\\
+\hspace*{2.7em}$= \ket{\uparrow\uparrow\downarrow}-2\ket{\uparrow\downarrow\uparrow}+\ket{\uparrow\uparrow\downarrow}-2\ket{\downarrow\uparrow\uparrow}+\ket{\uparrow\downarrow\uparrow}+\ket{\downarrow\uparrow\uparrow}$\vspace{0.5em}\\
+\hspace*{2.7em}$=\ket{\uparrow\uparrow\downarrow}(1+1) + \ket{\uparrow\downarrow\uparrow}(-2+1) + \ket{\downarrow\uparrow\uparrow}(-2+1)$\vspace{0.5em}\\
+\hspace*{2.7em}$=2\ket{\uparrow\uparrow\downarrow}-\ket{\uparrow\downarrow\uparrow}-\ket{\downarrow\uparrow\uparrow}$
+
+Re-normalizing and organizing:
+\[\boxed{\mqty{\ket{\frac{1}{2}, \frac{1}{2}}_2	& = & \frac{1}{\sqrt{6}}\left(2\ket{\uparrow\uparrow\downarrow}-\ket{\uparrow\downarrow\uparrow} - \ket{\downarrow\uparrow\uparrow}\right)\vspace{0.5em}\\ \ket{\frac{1}{2}, -\frac{1}{2}}_2 & = & \frac{1}{\sqrt{6}}\left(\ket{\uparrow\downarrow\downarrow}+\ket{\downarrow\uparrow\downarrow}-2\ket{\downarrow\downarrow\uparrow}\right)}}\]
+
+I won't show this point, but it is easy to see that the inner-product between any states that share the same z-component of spin will be zero. 
+
+\end{enumerate}
+
+\newpage
+%----------------------------------------
+
+\section*{Question 8}
+$\ev{H}{\psi} = \ev{\gamma B_0 S_{z,NV^-}}{\psi}$\vspace{0.5em}\\
+\hspace*{3em}$= \gamma B_0 \ev{S_{z \, e, N} + S_{z \, e, C}}{\psi}$\vspace{0.5em}\\
+\hspace*{3em}$=\gamma B_0 \left[\ev{S_{z \, e, N}}{\psi} + \ev{S_{z \, e, C}}{\psi}\right]$\vspace{0.5em}\\
+This is just a two spin system. So, we can just jump to that solution:\vspace{0.5em}\\
+$\ket{1,1} \rightarrow \gamma B_0 \left[\frac{1}{2}\hbar +\frac{1}{2}\hbar\right] = \gamma B_0 \hbar$\vspace{0.5em}\\
+$\ket{1,0} \rightarrow \gamma B_0 \left[\frac{1}{2}\left(\frac{1}{2}\hbar - \frac{1}{2}\hbar\right) + \frac{1}{2}\left(-\frac{1}{2}\hbar + \frac{1}{2}\hbar\right)\right] = 0$\vspace{0.5em}\\
+$\ket{1,-1} \rightarrow \gamma B_0 \left[-\frac{1}{2}\hbar -\frac{1}{2}\hbar\right] = -\gamma B_0 \hbar$\vspace{0.5em}\\
+$\ket{0,0} \rightarrow \gamma B_0 \left[\frac{1}{2}\left(\frac{1}{2}\hbar -\frac{1}{2}\hbar\right) - \frac{1}{2}\left(-\frac{1}{2}\hbar + \frac{1}{2}\hbar \right)\right] = 0$
+
+This is really cool, because their energy is directly proportional to an external B-field. This means that the characteristic of a spin, which has a very small change in energy between states, can now have a very large change of energy between states (as long as a large enough B-field is introduced)!
+
+\end{document}
