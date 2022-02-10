@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW03}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item
+
+\begin{align*}
+\pdv{x}{r} & = \sin(\theta)\cos(\phi) & \pdv{y}{r} & = \sin(\theta)\sin(\phi) & \pdv{z}{r} & = \cos(\theta)&\\
+\pdv{x}{\theta} & = r \cos(\theta)\cos(\phi) & \pdv{y}{\theta} & = r\cos(\theta)\sin(\phi) & \pdv{z}{\theta} & = -r\sin(\theta)&\\
+\pdv{x}{\phi} &= -r\sin(\theta)\sin(\phi) & \pdv{y}{\phi} &= r \sin(\theta)\cos(\phi) & \pdv{z}{\phi} &= 0&\\
+\end{align*}
+
+\begin{flalign*}
+g_{rr} & = \pdv{x}{r}\pdv{x}{r}g_{xx} + \pdv{x}{r}\pdv{y}{r}g_{xy} + \pdv{x}{r}\pdv{z}{r}g_{xz} + \pdv{y}{r}\pdv{x}{r}g_{yx} + \pdv{y}{r}\pdv{y}{r}g_{yy} + \pdv{y}{r}\pdv{z}{r}g_{yz} + \pdv{z}{r}\pdv{x}{r}g_{zx} &\\
+& \qquad +\pdv{z}{r}\pdv{y}{r}g_{zy} + \pdv{z}{r}\pdv{z}{r}g_{zz} \\ 
+& = \left[ \pdv{x}{r}\right]^2 g_{xx} +  \left[ \pdv{y}{r}\right]^2 g_{yy} +  \left[ \pdv{z}{r}\right]^2 g_{zz}\\
+& = \sin[2](\theta) \cos[2](\phi) + \sin[2](\theta) \sin[2](\phi) + \cos[2](\theta)\\
+& = \sin[2](\theta) + \cos[2](\theta) = 1\\
+\end{flalign*}
+
+\begin{flalign*}
+g_{r\theta} & = \pdv{x}{r}\pdv{x}{\theta} g_{xx} + \pdv{y}{r}\pdv{y}{\theta}g_{yy} + \pdv{z}{r}\pdv{z}{\theta}g_{zz} = g_{\theta r}&\\
+& = [\sin(\theta)\cos(\phi)][r\cos(\theta)\cos(\phi)] + [\sin(\theta)\sin(\phi)][r\cos(\theta)\sin(\phi)] + [\cos(\theta)][-r\sin(\theta)]\\
+& = r\sin(\theta)\cos(\theta)\cos[2](\phi) + r \sin(\theta)\cos(\theta)\sin[2](\phi) -r\cos(\theta)\sin(\theta)\\
+& = r\sin(\theta)\cos(\theta) - r \cos(\theta)\sin(\theta) = 0
+\end{flalign*}
+
+\begin{flalign*}
+g_{r\phi} & = \pdv{x}{r}\pdv{x}{\phi}g_{xx} + \pdv{y}{r}\pdv{y}{\phi}g_{yy} + \pdv{z}{r}\pdv{z}{\phi}g_{zz} = g_{\phi r} &\\
+& = [\sin(\theta)\cos(\phi)][-r\sin(\theta)\sin(\phi)] + [\sin(\theta)\sin(\phi)][r\sin(\theta)\cos(\phi)] + 0 =0
+\end{flalign*}
+
+\begin{flalign*}
+g_{\theta\phi} & = \pdv{x}{\theta}\pdv{x}{\phi}g_{xx} + \pdv{y}{\theta}\pdv{y}{\phi}g_{yy} + \pdv{z}{\theta}\pdv{z}{\phi}g_{zz} = g_{\phi \theta} &\\
+& = [r\cos(\theta)\cos(\phi)][-r\sin(\theta)\sin(\phi)] + [r\cos(\theta)\sin(\phi)][r\sin(\theta)\cos(\phi)] + 0 = 0
+\end{flalign*}
+
+\begin{flalign*}
+g_{\theta\theta} & = \left[ \pdv{x}{\theta}\right]^2 g_{xx} +  \left[ \pdv{y}{\theta}\right]^2 g_{yy} +  \left[ \pdv{z}{\theta}\right]^2 g_{zz} &\\
+& = [r\cos(\theta)\cos(\phi)]^2 +[r \cos(\theta)\sin(\phi)]^2 + [-r\sin(\theta)]^2\\
+& = r^2 \cos[2](\theta)\cos[2](\phi) + r^2 \cos[2](\theta)\sin[2](\phi) + r^2\sin[2](\theta)\\
+& = r^2\cos[2](\theta) + r^2\sin[2](\theta) = r^2
+\end{flalign*}
+
+\begin{flalign*}
+g_{\phi\phi} & = \left[ \pdv{x}{\phi}\right]^2 g_{xx} +  \left[ \pdv{y}{\phi}\right]^2 g_{yy} +  \left[ \pdv{z}{\phi}\right]^2 g_{zz} &\\
+& = [-r\sin(\theta)\sin(\phi)]^2 + [r\sin(\theta)\cos(\phi)]^2 + [0]^2\\
+& = r^2\sin[2](\theta)\sin[2](\phi) + r^2\sin[2](\theta)\cos[2](\phi) = r^2\sin[2](\theta)\\
+\end{flalign*}
+
+\[\boxed{g_{\alpha^\prime \beta^\prime} = \mqty[1 & 0 & 0 \\ 0 & r^2 & 0 \\ 0 & 0 & r^2\sin[2](\theta)]}\]
+
+\item
+\[\boxed{g^{\alpha^\prime \beta^\prime} = \mqty[1 & 0 & 0 \\ 0 & \frac{1}{r^2} & 0 \\ 0 & 0 & \frac{1}{r^2\sin[2](\theta)}]}\]
+
+\item
+
+$A_x = 1 \cdot g_{xx} + 1 \cdot g_{xy} + 1 \cdot g_{xz} = 1$\\
+$A_y = 1 \cdot g_{yx} + 1 \cdot g_{yy} + 1 \cdot g_{yz} = 1$\\
+$A_z = 1 \cdot g_{zx} + 1 \cdot g_{zy} + 1 \cdot g_{zz} = 1$
+
+\[\boxed{\tilde{A} = \mqty[1 & 1 & 1]}\]
+
+$A^2 = A^\alpha g_{\alpha \beta}A^\beta = A^\alpha A_\alpha = 3$
+\[A^2 = 3\]
+
+\item 
+\begin{align*}
+r &= \sqrt{x^2 + y^2 + z^2} & \theta & = \tan[-1](\frac{y}{x}) & \phi & = \tan[-1](\frac{\sqrt{x^2 + y^2}}{z})
+\end{align*}
+
+$\vec{A} \longrightarrow \mqty[\sqrt{3} \\ \frac{\pi}{4} \\ \tan[-1](\sqrt{2})]$
+
+$A_\alpha = g_{\alpha \beta} A^{\beta}$
+\begin{flalign*}
+A_r & = \sqrt{3} \cdot g_{rr} + \frac{\pi}{4}\cdot g_{r \theta} + \tan[-1](\sqrt{2})g_{r\phi} = \sqrt{3}&\\
+A_\theta & = \sqrt{3} \cdot g_{\theta r} + \frac{\pi}{4}g_{\theta \theta} + \tan[-1](\sqrt{2})g_{\theta\phi} = r^2\frac{\pi}{4}\\
+A_\phi & = \sqrt{3} \cdot g_{\phi r} + \frac{\pi}{4}g_{\phi \theta} + \tan[-1](\sqrt{2})g_{\phi\phi} = r^2\sin[2](\theta)\tan[-1](\sqrt{2})
+\end{flalign*}
+
+\[\boxed{\tilde{A} = \mqty[\sqrt{3} & r^2\frac{\pi}{4} & r^2\sin[2](\theta)\tan[-1](\sqrt{2})]}\]
+
+\begin{flalign*}
+A_\alpha A^\alpha & = A_r A^r + A_\theta A^\theta + A_\phi A^\phi & \\
+& = \sqrt{3}\cdot \sqrt{3} + \frac{\pi}{4}\cdot r^2 \cdot\frac{\pi}{4} + \tan[-1](\sqrt{2})\cdot r^2\sin[2](\theta)\cdot \tan[-1](\sqrt{2})
+\end{flalign*}
+
+\[\boxed{A^2 = 3}\]
+
+\item 
+Invariant
+
+
+\end{enumerate}
+
+\section*{Question 2}
+
+
+\end{document}
