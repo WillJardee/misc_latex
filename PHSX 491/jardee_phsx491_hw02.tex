@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+	\begin{document}
+
+\title{PHSX 491: HW02}
+\author{William Jardee}
+\maketitle
+
+{\bf Thanks for the feedback on the last assignment about the margins. I realize that for homework the margin might have been a little bigger than ideal. I appreciate the feedback, so please keep them coming!}
+\bigskip
+
+The objective of this homework is show that 
+\[\vec{A}\times (\vec{B}\times \vec{C}) = (\vec{A}\cdot \vec{C})\vec{B} - (\vec{A}\cdot \vec{B})\vec{C}\]
+by using the Levi-Civita symbol and index notation.
+
+\begin{enumerate}[label=\alph*)]
+\item Show that $[\vec{A}\times \vec{B}]_i = \varepsilon_{ijk}A^jB^k$:\vspace{0.5em}
+
+$[\vec{A} \times \vec{B}] = [A_y B_z - A_z B_y]\hat{x} - [A_x B_z - A_z B_x]\hat{y} + [A_x B_y - A_y B_x]\hat{z}$\vspace{0.5em}\\
+$[\vec{A} \times \vec{B}]_x = A_y B_z - A_z B_y$\vspace{0.5em}\\
+\hspace*{4.1em}$= \varepsilon_{xyz}A_y B_z + \varepsilon_{xzy}A_z B_y + \cancelto{0}{\varepsilon_{xxy}A_x B_y} + \cancelto{0}{...}$\vspace{0.5em}\\
+\hspace*{4.1em}$=\varepsilon_{xjk}A^jB^k$\vspace{0.5em}\\
+using a very similar logic:\vspace{0.5em}\\
+$[\vec{A}\times \vec{B}]_y = A_z B_x - A_x B_z$\vspace{0.5em}\\
+\hspace*{4.1em}$= \varepsilon_{yzx} A_z B_x + \varepsilon_{yxz}A_x B_z + \cancelto{0}{...}$\vspace{0.5em}\\
+\hspace*{4.1em}$= \varepsilon_{yjk}A^j B^k$\vspace{0.5em}\\
+$[\vec{A}\times \vec{B}]_z = \varepsilon_{zjk}A^j B^k$
+
+So, putting all three of these together:
+
+\[\boxed{[\vec{A}\times \vec{B}]_i = \varepsilon_{ijk}A^jB^k}\]
+
+\item Show that $\varepsilon^{123} = 1$:\vspace{0.5em}
+
+We know that there is the rule $g^{ij}A_i = A^j$, where $g$ is the metric of our space. For regular, Cartesian space:
+\[g = \mqty[1 & 0 & 0 \\ 0& 1 & 0\\ 0 & 0 & 1]\]
+
+Jumping to the conclusion:\vspace{0.5em}\\
+$\varepsilon^{123} = g^{33}\varepsilon^{12}_{\hspace*{0.8em}3} = g^{33}g^{22}\varepsilon^1_{\hspace*{0.4em} 2 3} = g^{33}g^{22}g^{11}\varepsilon_{123}$\vspace{0.5em}\\
+\hspace*{1.9em}$= 1 \cdot 1 \cdot 1 \cdot \varepsilon_{123} = 1 \quad \checkmark$
+
+\item Write down the $i$th component of $\vec{A}\times (\vec{B} \times \vec{C})$ using index notation.:\vspace{0.5em}
+
+$\vec{A}\times[\vec{B}\times \vec{C}]_i = \varepsilon_{ijk}A^j [\vec{B}\times \vec{C}]^k$\vspace{0.5em}\\
+$g_{kk}g_{jj}g^{kk}g^{ii}g^{jj}\vec{A}\times[\vec{B}\times \vec{C}]_i = g_{kk}g_{jj}g^{kk}g^{ii}g^{jj}\varepsilon^{ijk}A^j [\vec{B}\times \vec{C}]^k$\vspace{0.5em}\\
+$1 \cdot 1 \cdot 1 \cdot 1 \cdot 1 \cdot \vec{A}\times[\vec{B}\times \vec{C}]^i=\varepsilon^{ijk}A_j[\vec{B}\times \vec{C}]_k$\vspace{0.5em}\\
+$\vec{A}\times[\vec{B}\times \vec{C}]^i =\varepsilon^{ijk}A_j \varepsilon_{kmn}B^m C^n$\vspace{0.5em}\\
+\hspace*{6em}$=\varepsilon^{kij}\varepsilon_{kmn}A_jB^m C^n$
+
+\[\boxed{[\vec{A}\times\vec{B}\times \vec{C}]^i = \varepsilon^{kij}\varepsilon_{kmn}A_jB^m C^n}\]
+
+\item Write down the $i$th component of $(\vec{A}\cdot \vec{C})\vec{B} - (\vec{A}\cdot \vec{B})\vec{C}$ using index notation.:\vspace{0.5em}
+
+\[\boxed{[(\vec{A}\cdot \vec{C})\vec{B} - (\vec{A} \cdot \vec{B})\vec{C}]^i = A^\alpha C_\alpha B_i - A^\alpha B_\alpha C_i}\]
+
+\item Finish out showing that the two sides are equal:
+
+Let's pick back up the left side:\vspace{0.5em}\\
+$[\vec{A}\times\vec{B}\times \vec{C}]^i = \varepsilon^{kij}\varepsilon_{kmn}A_jB^m C^n$\vspace{0.5em}\\
+\hspace*{6em}$= \left[\delta_m^i \delta_n^j - \delta_m^j \delta^i_n\right]A_jB^mC^n$\vspace{0.5em}\\
+\hspace*{6em}$=\delta_m^i \delta_n^j A_jB^mC^n - \delta_m^j \delta^i_n A_jB^mC^n$\vspace{0.5em}\\
+\hspace*{6em}$= A_nC^nB^i - A_mB^mC^i$\vspace{0.5em}\\
+$g_{ii}[\vec{A}\times\vec{B}\times \vec{C}]^i = g_{ii} [A_nC^nB^i - A_mB^mC^i]$\vspace{0.5em}\\
+\hspace*{7em}$= A_\alpha B^\alpha B_i - A_\alpha B^\alpha C_i$\vspace{0.5em}\\
+\hspace*{7em}$=[(\vec{A}\cdot \vec{C})\vec{B} - (\vec{A} \cdot \vec{B})\vec{C}]^i $\vspace{0.5em}\\
+Thus:
+
+\[\boxed{\vec{A}\times[\vec{B}\times \vec{C}] = (\vec{A}\cdot \vec{C})\vec{B} - (\vec{A} \cdot \vec{B})\vec{C}}\]
+
+
+\end{enumerate}
+
+
+\end{document}
