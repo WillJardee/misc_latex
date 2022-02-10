@@ -1,0 +1,29 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hickernell(1998)]{hickernell_1998}
+Fred Hickernell.
+\newblock A generalized discrepancy and quadrature error bound.
+\newblock \emph{Mathematics of Computation}, 67\penalty0 (221):\penalty0
+  299–322, 1998.
+\newblock \doi{10.1090/s0025-5718-98-00894-1}.
+
+\bibitem[Jin et~al.(2005)Jin, Chen, and Sudjianto]{jin_chen_sudjianto_2005}
+Ruichen Jin, Wei Chen, and Agus Sudjianto.
+\newblock An efficient algorithm for constructing optimal design of computer
+  experiments.
+\newblock \emph{Journal of Statistical Planning and Inference}, 134\penalty0
+  (1):\penalty0 268–287, 2005.
+\newblock \doi{10.1016/j.jspi.2004.02.014}.
+
+\bibitem[Yang and Zhang(2021)]{yang2021hyperparameter}
+Zebin Yang and Aijun Zhang.
+\newblock Hyperparameter optimization via sequential uniform designs.
+\newblock \emph{Journal of Machine Learning Research}, 22\penalty0
+  (149):\penalty0 1--47, 2021.
+
+\end{thebibliography}
