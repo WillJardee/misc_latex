@@ -148,6 +148,42 @@ To measure the magnitude we will need to orientate the vector at the origin. At 
 \end{enumerate}
 
 \section*{Question 2}
+\begin{figure}[!ht]
+\centering
+	\includegraphics[width=0.5\textwidth]{phsx491_hw04_01.jpg}
+	\caption{}
+	\label{fig:2.1}
+\end{figure}
 
+\begin{enumerate}[label=\alph*)]
+\item See Fig.~\ref{fig:2.1}
+\item 
+\begin{align*}
+q &= y -cx^2 = y-cp^2 \\
+\rightarrow y &= q+ cp^2
+\end{align*}
+\[\boxed{\mqty{x(p,q) = p \\ y(p,q) = q + cp^2}}\]
+\item 
+\begin{align*}
+\dd{s^2} & = \dd{x^2} + \dd{y^2}\\
+&= \left(\dd{p}\right)^2 + \left(\dd{q} + 2cp \dd{p}\right)^2\\
+&= \left(\dd{p}\right)^2 + \left(\dd{q}\right)^2 + 4cp\dd{p}\dd{q} + 4c^2 p^2 \left(\dd{p}\right)^2
+\end{align*}
+Using this to find the tensor definition of the dot product and assuming that $g_{pq} = g_{qp}$:
+\begin{align*}
+g_{\alpha \beta} \dd{x}^\alpha \dd{x}^\beta & \rightarrow g_{pp}\left(\dd{p}\right)^2 + g_{pq}\dd{p}\dd{q} + g_{qp} \dd{q} \dd{p} + g_{qq} \left(\dd{q}\right)^2\\
+\left(1 + 4c^2p^2\right)\left(\dd{p}\right)^2 + 4cp\dd{p}\dd{q} + \left(\dd{q}\right)^2 & = g_{pp}\left(\dd{p}\right)^2 + 2g_{pq}\dd{p}\dd{q} + g_{qq} \left(\dd{q}\right)^2\\
+g_{pp} & = 1 + 4c^2p^2\\
+g_{pq} & = 2cp\\
+g_{qq} & = 1 \\
+\end{align*}
+ 
+Putting this into a matrix representation of the tensor:
+\[\boxed{M_{qp} = \mqty[1 & 2cp \\ 2cp & 1+4c^2p^2]}\]
+
+\item
+The primary takeaways is that {\bf a)} the vectors are not orthogonal (this is from the fact that off diagonal elements are not zero) and {\bf b)} that $\hat{e}_p$ is not normalized (a.k.a. the basis is not orthonormal).
+
+\end{enumerate}
 
 \end{document}
