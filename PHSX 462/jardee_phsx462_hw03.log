@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  22 FEB 2022 09:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  24 FEB 2022 01:26
 entering extended mode
-**./jardee_phsx491_hw04.tex
-(jardee_phsx491_hw04.tex
+**./jardee_phsx462_hw03.tex
+(jardee_phsx462_hw03.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -910,8 +910,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip75
-) (jardee_phsx491_hw04.aux)
-\openout1 = `jardee_phsx491_hw04.aux'.
+) (jardee_phsx462_hw03.aux)
+\openout1 = `jardee_phsx462_hw03.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
 LaTeX Font Info:    ... okay on input line 47.
@@ -1017,9 +1017,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 47.
 LaTeX Info: Redefining \pageref on input line 47.
 LaTeX Info: Redefining \nameref on input line 47.
- (jardee_phsx491_hw04.out) (jardee_phsx491_hw04.out)
+ (jardee_phsx462_hw03.out) (jardee_phsx462_hw03.out)
 \@outlinefile=\write4
-\openout4 = `jardee_phsx491_hw04.out'.
+\openout4 = `jardee_phsx462_hw03.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
 
@@ -1042,42 +1042,43 @@ File: uesint.fd
 [1
 
 {C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
-<phsx491_hw04_01.jpg, id=31, 3035.34pt x 3046.38126pt>
-File: phsx491_hw04_01.jpg Graphic file (type jpg)
-<use phsx491_hw04_01.jpg>
-Package pdftex.def Info: phsx491_hw04_01.jpg  used on input line 153.
-(pdftex.def)             Requested size: 249.33128pt x 250.22324pt.
-
-[3] [4 <./phsx491_hw04_01.jpg>] (jardee_phsx491_hw04.aux)
-Package rerunfilecheck Info: File `jardee_phsx491_hw04.out' has not changed.
+[3] [4] [5] [6] [7] [8] [9] [10] (jardee_phsx462_hw03.aux)
+Package rerunfilecheck Info: File `jardee_phsx462_hw03.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27848 strings out of 478927
- 540688 string characters out of 2851586
- 859620 words of memory out of 3000000
- 45198 multiletter control sequences out of 15000+600000
- 412235 words of font info for 63 fonts, out of 8000000 for 9000
+ 27849 strings out of 478927
+ 540573 string characters out of 2851586
+ 849502 words of memory out of 3000000
+ 45190 multiletter control sequences out of 15000+600000
+ 413268 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,89p,423b,927s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmbx10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/WillsPc/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/WillsPc/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Wil
-lsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
-/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-17.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/WillsPc/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on jardee_phsx491_hw04.pdf (4 pages, 1106671 bytes).
+ 84i,19n,89p,423b,923s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\WillsPc\AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi657\e
+sint10.pk><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmex10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/WillsPc/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/WillsPc/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/WillsP
+c/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Us
+ers/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr17.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr6.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/WillsPc/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/WillsPc/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/WillsP
+c/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/U
+sers/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont
+/line10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/symbols/msam10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/WillsPc/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on jardee_phsx462_hw03.pdf (10 pages, 223468 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 25 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

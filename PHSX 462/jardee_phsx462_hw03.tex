@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 462: HW03}
+\author{William Jardee}
+\maketitle
+
+\section*{Griffiths 7.11}
+Let's start by just writing down the unperturbed solution:
+\begin{align*}
+\ket{\Psi_0} & = \sin(\frac{n_x \pi}{a}x)\sin(\frac{n_y \pi}{a}y)\sin(\frac{n_z\pi}{a}z) & E & = \frac{\hbar^2 \pi^2}{2ma^2}\left(n_x^2 + n_y^2 + n_z^2\right)
+\end{align*}
+With a perturbation of
+\[H^\prime = a^3 V_0 \delta\left(x-\frac{a}{4}\right)\delta\left(y - \frac{a}{2}\right)\delta\left(z - \frac{3a}{4}\right)\]
+
+Doing this for the ground state:
+\begin{align*}
+E_1^1 & = \ev{H^\prime}{\Psi^0}\\
+& = \int_0^a \sin[2](\frac{n_x\pi}{a}x)\sin[2](\frac{n_y\pi}{a}y)\sin[2](\frac{n_z \pi}{a}z)a^3 V_0 \delta\left(x-\frac{a}{4}\right)\delta\left(y - \frac{a}{2}\right)\delta\left(z - \frac{3a}{4}\right)\dd{V}\eval_{n_x = n_y=n_z = 1}\\
+&= 8\sin[2](\frac{pi}{a}\frac{a}{4})\sin[2](\frac{\pi}{a}\frac{a}{2})\sin[2](\frac{\pi}{a}\frac{3a}{4})V_0\\
+& = 2V_0
+\end{align*}
+\[\boxed{E_1^1 = 2V_0}\]
+
+Let's encode the triply degenerate second energy state as:
+\begin{align*}
+\ket{1} & \rightarrow \left(n_x = 2, n_y=1, n_z=1\right) & \ket{2} & \rightarrow \left(n_x = 1, n_y=2, n_z=1\right) & \ket{3} & \rightarrow \left(n_x = 1, n_y=1, n_z=2\right)
+\end{align*}
+
+Using the equation: $W_{ij} = \mel{\Psi_i}{H^\prime}{\Psi_j}$:
+\begin{align*}
+W_{11} & = \int_0^a \sin[2](\frac{2\pi}{a}x)\sin[2](\frac{\pi}{a}y)\sin[2](\frac{\pi}{a}z)\left(\frac{2}{a}\right)^3a^3 V_0 \delta \cdots \dd{V}\\
+& = 8 V_0 \sin[2](\frac{2\pi}{a}\frac{a}{4})\sin[2](\frac{\pi}{a}\frac{a}{2})\sin[2](\frac{\pi}{a}\frac{3a}{4})\\
+&= 8V_0 (1)^2(1)^2\left(\frac{1}{\sqrt{2}}\right)^2\\
+& = 4V_0
+\end{align*}
+Recognizing this pattern and following it:
+\begin{align*}
+W_{12} & = 8V_0 \sin(\frac{2\pi}{a}\frac{a}{4})\sin(\frac{\pi}{a}\frac{a}{4})\sin(\frac{2\pi}{a}\frac{a}{2})\sin(\frac{\pi}{a}\frac{a}{2})\sin[2](\frac{\pi}{a}\frac{3\pi}{4})\\
+& = 8V_0 (1)\left(\frac{1}{\sqrt{2}} \right)(0)(1) \left(\frac{1}{2}\right) = 0\\
+W_{13} & = 8V_0 \sin(\frac{2\pi}{a}\frac{a}{4})\sin(\frac{\pi}{a}\frac{a}{4})\sin[2](\frac{\pi}{a}\frac{a}{2})\sin(\frac{2\pi}{a}\frac{3a}{4})\sin(\frac{\pi}{a}\frac{3a}{4})\\
+& = 8V_0 (1)\left(\frac{1}{\sqrt{2}}\right)(1)(-1)\left(\frac{1}{\sqrt{2}}\right) = -4V_0\\
+W_{23} &= 8V_0 \sin[2](\frac{\pi}{a}\frac{a}{4})\sin(\frac{2\pi}{a}\frac{a}{2})\sin(\frac{\pi}{a}\frac{a}{2})\sin(\frac{2\pi}{a}\frac{3a}{4})\sin(\frac{\pi}{a}\frac{3a}{4})\\
+& = 8V_0 \left(\frac{1}{\sqrt{2}}\right)^2 (0)(1)(-1)\left(\frac{1}{\sqrt{2}}\right)^2 = 0\\
+W_{22} &= 8V_0 \sin[2](\frac{\pi}{a}\frac{a}{4})\sin[2](\frac{2\pi}{a}\frac{a}{2})\sin[2](\frac{\pi}{a}\frac{3a}{4})\\
+& = 8V_0 \left(\frac{1}{\sqrt{2}}\right)^2(0)^2\left(\frac{1}{\sqrt{2}}\right)^2 = 0\\
+W_{33} & = 8V_0 \sin[2](\frac{\pi}{a}\frac{a}{4})\sin[2](\frac{\pi}{a}\frac{a}{2})\sin[2](\frac{2\pi}{a}\frac{3\pi}{4})\\
+& = 8V_0 \left(\frac{1}{\sqrt{2}}\right)^2 (1)^2 \left(\frac{1}{\sqrt{2}}\right)^2 = 4V_0
+\end{align*}
+Putting these all together into matrix form:
+\[W = 4V_0\mqty[1 & 0 & -1 \\ 0 & 0 & 0 \\ -1 & 0 & 1]\]
+The changes to the energies are the eigenstates of this matrix:
+\begin{align*}
+\mqty|4V_0 & 0 & -4V_0 \\ 0 & 0 & 0 \\ -4V_0 & 0 & 4V_0| & = -4V_0 \mqty|0 & -\lambda \\ -4V_0 & 0| - 0 \mqty|4V_0 - \lambda & 0 \\ -4V_0 & 0| + (4V_0 -\lambda)\mqty|4V_0 -\lambda & 0 \\ 0 & -\lambda|\\
+& = -4V_0(-4V_0\lambda) + (4V_0 -\lambda)(4V_0 -\lambda)\lambda) = 0\\x
+\lambda & = 8V_0, 0, 0
+\end{align*}
+\[\boxed{E_2^1 = 8V_0, 0, 0}\]
+
+%------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 7.37}
+\begin{enumerate}[label=\alph*)]
+\item 
+To do this approximation, let's remember the binomial expansion, specifically for $n=-1$:
+\[(1+\alpha)^{-1} = 1 - \alpha + \frac{-1(-2)}{2!}\alpha^2 + \frac{-1(-2)(-3)}{3!}\alpha^3 + \cdots\]
+\begin{align*}
+H & = \frac{e^2}{4\pi\varepsilon_0 R}\left[1-\frac{1}{1-\frac{x_1}{R}} - \frac{1}{1-\frac{x_2}{R}} + \frac{1}{1+\frac{-x_1+x_2}{R}}\right]\\
+& = \frac{e^2}{4\pi\varepsilon_0 R}\left[1 - \left(1 + \frac{x_1}{R} + \frac{x_1^2}{R^2} + \cdots\right) - \left(1 - \frac{x_2}{R} + \frac{x_2^2}{R^2} + \cdots \right) + \left(1 - \frac{-x_1 + x_2}{R} \right. \right. \\
+& \qquad \qquad \qquad \left. \left.  + \frac{(-x_1 + x_2)^2}{R^2} + \cdots\right)\right]\\
+& \approx \frac{e^2}{4\pi\varepsilon_0 R}\left[-\frac{x_1}{R} -\frac{x_1^2}{R^2} + \frac{x_2}{R} -\frac{x_2^2}{R} + \frac{x_1}{R} -\frac{x_2}{R} + \frac{x_1^2}{R^2} + \frac{x_2^2}{R^2} - \frac{2x_1x_2}{R^2}\right]\\
+& = \frac{e^2}{4\pi\varepsilon_0 R}\left[\frac{-2x_1x_2}{R^2}\right] = \boxed{\frac{-e^2 x_1x_2}{2\pi\varepsilon_0 R^3}}
+\end{align*}
+
+\item Let's reverse engineer this:
+\begin{align*}
+H & = \left[\frac{1}{2m}\left(\frac{1}{\sqrt{2}}(p_1 + p_2)\right)^2 + \frac{1}{2}\left(k - \frac{e^2}{2\pi\varepsilon_0R^3}\right)\left(\frac{1}{\sqrt{2}}(x_1 + x_2)\right)^2\right] + \\
+& \qquad \qquad \left[\frac{1}{2m}\left(\frac{1}{\sqrt{2}}(p_1 - p_2)\right)^2 + \frac{1}{2}\left(k + \frac{e^2}{2\pi\varepsilon_0R^3}\right)\left(\frac{1}{\sqrt{2}}(x_1 - x_2)\right)^2\right]\\
+& = \left[\frac{1}{4m}\left(p_1^2 + 2p_1p_2 + p_2\right) + \frac{1}{4}\left(k - \frac{e^2}{2\pi\varepsilon_0R^3}\right)\left(x_1 + 2x_1x_2 + x_2^2\right)\right] + \\
+& \qquad \qquad \left[\frac{1}{4m}\left(p_1^2 - 2p_1p_2 + p_2\right)2 + \frac{1}{4}\left(k + \frac{e^2}{2\pi\varepsilon_0R^3}\right)\left(x_1 - 2x_1x_2 + x_2^2\right)\right]\\
+& = \frac{1}{2m}(p_1^2 +p_2^2) + \frac{1}{2}k(x_1^2 + x_2^2) - \frac{e^2x_1x_2}{2\pi\varepsilon_0 R^2} \qquad \checkmark	
+\end{align*}
+\item \emph{We are skipping this part}
+\item Let's start by remembering the general solution for a quantum harmonic oscillator:
+\begin{align*}
+\ket{\Psi_0} & \rightarrow \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{-m\omega x^2/2\hbar} & \hat{a}_+ & = \sqrt{\frac{m\omega}{2\hbar}}\left(x -\frac{\hbar}{m\omega}\pdv{x}\right)
+\end{align*}
+For brevities sake, and looking back at the answer from part c ($\displaystyle \Delta V \approx -\frac{\hbar}{8m^2 \omega_0^3}\left(\frac{e^2}{2\pi\varepsilon_0}\right)^2 \frac{1}{R^6}$), we will only be calculating the first non-zero correction. 
+
+In the first order correction, we have a product of integrals that look something like
+\[\int e^{x^2}x \dd{x}.\]
+This is obviously odd function, and thus the integral will be zero. This will be case for the mixture of $(n_1 = 0, n_2 =0), (n_1 =1, n_2 = 0), $ and $(n_1 = 0, n_2 = 1)$. So, let's just straight to the next largest element: $(n_1 = 1, n_2=1)$.
+\begin{align*}
+\mel{\Psi_{1,1}^0}{H^\prime}{\Psi_0^0} & = \int \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{\frac{-m\omega}{2\hbar}[x_1^2 + x_2^2]} \left(\frac{-e^2x_1x_2}{2\pi\varepsilon_0 R^3}\right)(\hat{a_+})_1^{1}(\hat{a_+})_2^{1}\left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{\frac{-m\omega}{2\hbar}[x_1^2 + x_2^2]}\\
+& = \left(\frac{m\omega}{\pi \hbar}\right)\left(\frac{-e^2}{2\pi\varepsilon_0 R^3}\right)\left[\int e^{\frac{-m\omega}{2\hbar}x^2}x\sqrt{\frac{m\omega}{2\hbar}}\left(x -\frac{\hbar}{m\omega}\pdv{x}\right)e^{\frac{-m\omega}{2\hbar}x^2}\right]^2\\
+& = \left(\frac{m^2\omega^2}{2\pi \hbar^2}\right)\left(\frac{-e^2}{2\pi\varepsilon_0 R^3}\right)\left[\int e^{\frac{-m\omega}{\hbar}x^2}x^2 - \cancelto{0}{e^{\frac{-m\omega}{\hbar}x^2}\left(\frac{\hbar}{m\omega}\right)\left(-\frac{m\omega}{\pi}x\right)}\qquad \right]^2\\
+& = \left(\frac{m^2\omega^2}{2\pi \hbar^2}\right)\left(\frac{-e^2}{2\pi\varepsilon_0 R^3}\right)\left[\sqrt{\pi}\left(\frac{2!}{1!}\right)\left(\frac{1}{2}\sqrt{\frac{\hbar}{m\omega}}\right)^3\right]^2\\
+\end{align*}
+The energy for this new state is double the energy of one QHO in the first excited state: $E_{1,1} = 3\hbar \omega$. So:
+\[E_0^1 = \frac{\left(\frac{e^2\hbar}{R^3 \pi m\omega 4 \varepsilon_0}\right)^2}{\hbar \omega - 3\hbar \omega}\boxed{= -\frac{\hbar}{8m^2\omega^3}\left(\frac{e^2}{2\pi\varepsilon_0}\right)^2\frac{1}{R^6}}\]
+\end{enumerate}
+
+
+%------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 7.45}
+
+This question was very tedious and had a lot of integration. I will be cutting a couple corners to help my sanity since I am typing this up, but I will try to justify the jumps.
+
+\begin{enumerate}[label=\alph*)]
+\item We can recall that the ground state - eigenstate for the Bohr Hamiltonian is:
+\[\Psi_{100} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}\]
+The first order correction to the energy is then:
+\begin{align*}
+E_0^1 & = \ev{eE_{\text{ext}} r \cos(\theta)}{1 \, 0 \,0} \\
+& = eE_{\text{ext}}\int\frac{1}{\pi	a^3}e^{-2r/a}r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& = \frac{eE_{ext}}{\pi	a^3}\int r^3 e^{-2r/a}\dd{r}\int\frac{1}{2}\sin(2\theta)\dd{\theta}\int\dd{\phi}\\
+& = \frac{eE_{ext}}{\pi	a^3}\int r^3 e^{-2r/a}\dd{r}(0)\int\dd{\phi} = 0 \qquad \checkmark
+\end{align*}
+\item Looking up the $n=2$ states:
+\begin{align*}
+\Psi_{200} & = \frac{1}{\sqrt{2\pi a}}\frac{1}{2a} \left(1 - \frac{r}{2a}\right)e^{-r/2a} & \Psi_{211} &= -\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}re^{-r/2a}\sin(\theta)e^{i\phi}\\
+\Psi_{210} & = \frac{1}{4a}\sqrt{\frac{1}{2a\pi}}re^{-r/2a}\cos(\theta) & \Psi_{21-1} &= \frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}re^{-r/2a}\sin(\theta)e^{-i\phi}
+\end{align*}
+
+Before we start this integration drill; recognize that 
+\[\int_0^{2\pi}e^{i\phi}\dd{\phi} =\int_0^{2\pi}e^{-i\phi}\dd{\phi} =\int_0^{2\pi}e^{2i\phi}\dd{\phi} =0\]
+So, any integrals that have any one of these terms will be automatically evaluated to zero. I will also be doing all zero terms first.
+
+\begin{align*}
+\mel{\Psi_{200}}{H^\prime}{\Psi_{200}} & = eE_{\text{ext}}\int\left[\frac{1}{\sqrt{2\pi	a}}\frac{1}{2a}\right]^2 r\cos(\theta)\left(1-\frac{r}{2a}\right)^2e^{-r/a}r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^\pi \frac{1}{2}\sin(\theta)\dd{\theta} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{200}}{H^\prime}{\Psi_{21-1}} & = eE_{\text{ext}}\int \left[\frac{1}{\sqrt{2\pi a}\frac{1}{2a}}\right]\left(1-\frac{r}{2a}\right)e^{-r/2a}\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}re^{-r/2a}\\
+& \qquad \sin(\theta)e^{-i\phi}r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^{2\pi} e^{-i\phi}\dd{\phi} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{211}}{H^\prime}{\Psi_{211}} & = eE_{\text{ext}}\int \left[\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}\right]^2 r^2 e^{-r/a}\sin[2](\theta)e^{2i\phi}r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^{2\pi} e^{2i\phi}\dd{\phi} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{211}}{H^\prime}{\Psi_{210}} & = -eE_{\text{ext}}\int \frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}re^{-r/2a}\sin(\theta)e^{i\phi}\frac{1}{4a}\sqrt{\frac{1}{2a\pi}}re^{-r/2a}\cos(\theta)r\cos(\theta)r^2\\
+& \qquad \sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^{2\pi} e^{i\phi}\dd{\phi} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{211}}{H^\prime}{\Psi_{21-1}} & = -eE_{\text{ext}}\int \left(\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}\right)^2 r^2 e^{-r/a}\sin[2](\theta)r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^\pi \sin[3](\theta)\cos(\theta)\dd{\theta} = \frac{1}{4}\sin[4](\theta)\eval_0^\pi = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{210}}{H^\prime}{\Psi_{210}} & =-eE_{\text{ext}}\int \left(\frac{1}{4a}\sqrt{\frac{1}{2a\pi}}\right)^2r^2e^{-r/a}\cos[2](\theta)r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^\pi \cos[3](\theta)\sin(\theta)\dd{\theta} = -\frac{1}{4}\cos[4](\theta)\eval_0^\pi = -\frac{1}{4}+\frac{1}{4} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{210}}{H^\prime}{\Psi_{21-1}} & = eE_{\text{ext}}\int \left(\frac{1}{4a}\sqrt{\frac{1}{2a\pi}}\right)re^{-r/2a}\cos(\theta)\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}re^{-r/2a}\sin(\theta)e^{i\phi}r\cos(\theta)r^2\\
+& \qquad \sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^{2\pi} e^{i\phi}\dd{\phi} = 0
+\end{align*}
+\begin{align*}
+\mel{\Psi_{21-1}}{H^\prime}{\Psi_{21-1}} & = eE_{\text{ext}}\int \left(\frac{1}{8a^2}\sqrt{\frac{1}{a\pi}}\right)^2r^2e^{-r/a}\sin[2](\theta)e^{-2i\phi}r\cos(\theta)r^2\sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& \qquad \longrightarrow \quad  \int_0^{2\pi} e^{-2i\phi}\dd{\phi} = 0
+\end{align*}
+
+Now, for the only non-zero element. For this we will need to recall 
+\[\int_0^\infty x^n e^{-x/a}\dd{x} = n! a^{n+1}\]
+\begin{align*}
+\mel{\Psi_{200}}{H^\prime}{\Psi_{210}} & = eE_{\text{ext}}\int \left[\frac{1}{\sqrt{2\pi a}}\frac{1}{2a}\left(1-\frac{r}{2a}\right)e^{-r/2a}\right]\left[\frac{1}{4a^2}\sqrt{\frac{1}{2\pi a}}re^{-r/2a}\right]r\cos(\theta)r^2 \\
+& \qquad \sin(\theta)\dd{r}\dd{\theta}\dd{\phi}\\
+& = 2\pi eE_{\text{ext}}\left(\frac{1}{\sqrt{2\pi a}}\frac{1}{2a}\right)\left(\frac{1}{4a^2}\sqrt{\frac{1}{2a\pi}}\right)\int\left(1-\frac{r}{2a}\right)e^{-r/a}r^4 \dd{r} \int\cos[2](\theta)\sin(\theta)\dd{\theta}\\
+& = -eE_{\text{ext}}\left(\frac{1}{8a^4}\right)\left[4! -\frac{5!}{2}\right]a^5 \frac{1}{3}\cos[3](\theta)\eval_0^\pi\\
+&= -3aeE_{\text{ext}}
+\end{align*}
+So, our perturbation matrix is:
+\[W = (-3aeE_{\text{ext}})\mqty[0&0&1&0\\0&0&0&0\\1&0&0&0\\0&0&0&0]\]
+Finding the eigenvalues of this matrix:
+\begin{align*}
+\mqty|-\lambda&0&1&0\\0&-\lambda&0&0\\1&0&-\lambda&0\\0&0&0&-\lambda| & = \lambda\mqty|-\lambda& 0 & 1 \\ 0 & -\lambda & 0 \\ 1 & 0 & -\lambda|\\
+& = \lambda\mqty|0 & -\lambda \\ 1 & 0| -\lambda\mqty|-\lambda & 0 \\ 0 & -\lambda| = 0\\
+& = \lambda(\lambda-\lambda^3) = \lambda^2(1-\lambda^2) = 0\\
+& \longrightarrow \lambda = 0 \qquad \lambda = \pm 1
+\end{align*}
+So, there are \underline{three} energy levels:
+\[\boxed{E_2, E_2 \pm 3aeE_{\text{ext}}}\]
+
+\end{enumerate}
+
+%------------------------------------------------------------------------
+\newpage
+
+\section*{Question 4}
+\[\braket{\Psi_n}{\Psi_n}\]
+\[\left(\bra{\Psi_n^0} + \lambda\bra{\Psi_n^1}\right)\left(\lambda\ket{\Psi_n^1} + \ket{\Psi_n^0}\right)\]
+\[\lambda\braket{\Psi_n^0}{\Psi_n^1} + \braket{\Psi_n^0}{\Psi_n^0} + \lambda^2\braket{\Psi^1_n}{\Psi_n^1} + \lambda\braket{\Psi_n^1}{\Psi_n^0}\]
+\[1 + \lambda\bra{\Psi_n^0}\left(\sum_{m\neq n} c_m^{(n)}\ket{\Psi_m^0}\right) + \lambda \left(\sum_{m\neq n} \left(c_m^{(n)}\right)^*\bra{\Psi_m^0}\right)\ket{\Psi_n^0} + O(\lambda^2)\]
+\[1 + 0 + 0 + O(\lambda^2)\]
+\[1 + O(\lambda^2)\]
+
+%------------------------------------------------------------------------
+\newpage
+
+\section*{Question 5}
+
+\begin{enumerate}[label=\alph*)]
+\item
+The first thing we need to identify is the degenerate ``$W$" matrix. Since the first two states are degenerate:
+\[W = \mqty[0 & \varepsilon \\ \varepsilon & 0]\]
+Any, by observation, the eigenvalues are:
+\[\lambda = \pm \varepsilon\]
+
+solving for the eigenvectors:
+\begin{align*}
+\mqty[\varepsilon & \varepsilon \\ \varepsilon & \varepsilon] \mqty[\alpha \\ \beta] & = \mqty[0\\0] & \mqty[-\varepsilon & \varepsilon \\ \varepsilon & -\varepsilon] \mqty[\alpha \\ \beta] & = \mqty[0\\0]\\
+\varepsilon \alpha + \varepsilon \beta & = 0 & -\varepsilon \alpha + \varepsilon\beta & = 0\\
+\alpha & =-\beta & \alpha & = \beta
+\end{align*}
+Putting these into two normalized vectors:
+\[\boxed{\mqty{\ket{+} & = \frac{1}{\sqrt{2}}\left(\ket{1}+\ket{2}\right) \\ \ket{-} & = \frac{1}{\sqrt{2}}\left(\ket{1}-\ket{2}\right) }}\]
+
+\item At this point (with question 3) we are beating a dead horse, so let's go!
+\begin{align*}
+\mel{+}{H}{+} & = \frac{1}{\sqrt{2}}\left(\bra{1} + \bra{2}\right)H\frac{1}{\sqrt{2}}\left(\ket{1} + \ket{2}\right)\\
+& = \frac{1}{2} \left(E_0 + 2\varepsilon + E_0\right) = E_0 +\varepsilon\\
+\mel{+}{H}{-} & = \frac{1}{\sqrt{2}}\left(\bra{1} + \bra{2}\right)H\frac{1}{\sqrt{2}}\left(\ket{1} - \ket{2}\right)\\
+& = \frac{1}{2} \left(E_0 + \varepsilon -\varepsilon - E_0\right) = 0\\
+\mel{+}{H}{3} & = \frac{1}{\sqrt{2}}\left(\bra{1} + \bra{2}\right)H\ket{3}\\
+& = \frac{1}{\sqrt{2}}\left(\delta + 0 \right) = \frac{\delta}{\sqrt{2}}\\
+\mel{-}{H}{-} & = \frac{1}{\sqrt{2}}\left(\bra{1} - \bra{2}\right)H\frac{1}{\sqrt{2}}\left(\ket{1} - \ket{2}\right)\\
+& = \frac{1}{2} \left(E_0 - 2\varepsilon + E_0\right) = E_0 -\varepsilon\\
+\mel{-}{H}{3} & = \frac{1}{\sqrt{2}}\left(\bra{1} - \bra{2}\right)H\ket{3}\\
+& = \frac{1}{\sqrt{2}}\left(\delta + 0 \right) = \frac{\delta}{\sqrt{2}}\\
+\mel{3}{H}{3} & = E_1
+\end{align*}
+Putting this into matrix form:
+\[\boxed{H_{\ket{+}, \ket{-}, \ket{3}} = \mqty[E_0+\varepsilon & 0 & \frac{\delta}{\sqrt{2}} \\ 0 & E_0-\varepsilon & \frac{\delta}{\sqrt{2}} \\ \frac{\delta}{\sqrt{2}} &\frac{\delta}{\sqrt{2}} & E_1]}\]
+
+\item
+Using $\displaystyle \sum_{m\neq n}\frac{\mel{\Psi_m^0}{H}{\Psi_n^0}}{E_n^0 - E_m^0} \Psi_m^0$:
+\[\Psi_+^1 = \frac{\mel{\Psi_-^0}{H}{\Psi_+^0}}{E_+^0 - E_-^0}\Psi_-^0 + \frac{\mel{\Psi_3^0}{H}{\Psi_+^0}}{E_+^0-E_3^0}\Psi^0_3 = \frac{\delta}{\sqrt{2}\left(E_0 + \varepsilon - E_1\right)}\ket{3}\]
+\[\boxed{\Psi_1^1 = \frac{\delta}{\sqrt{2}\left(E_0 + \varepsilon - E_1\right)}\ket{3}}\]
+
+\end{enumerate}
+
+\end{document}

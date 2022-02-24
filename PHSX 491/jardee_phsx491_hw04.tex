@@ -151,7 +151,7 @@ To measure the magnitude we will need to orientate the vector at the origin. At 
 \begin{figure}[!ht]
 \centering
 	\includegraphics[width=0.5\textwidth]{phsx491_hw04_01.jpg}
-	\caption{}
+	\caption{Our new $p-q$ coordinates. Constant $q$ looks like a parabola, and constant $p$ are values of $x$.}
 	\label{fig:2.1}
 \end{figure}
 
@@ -164,8 +164,9 @@ q &= y -cx^2 = y-cp^2 \\
 \end{align*}
 \[\boxed{\mqty{x(p,q) = p \\ y(p,q) = q + cp^2}}\]
 \item 
+If we ``zoom" into a point, the smoothness of the space allows us to use the Pythagorean theorem:
 \begin{align*}
-\dd{s^2} & = \dd{x^2} + \dd{y^2}\\
+\dd{s^2} & \approx \dd{x^2} + \dd{y^2}\\
 &= \left(\dd{p}\right)^2 + \left(\dd{q} + 2cp \dd{p}\right)^2\\
 &= \left(\dd{p}\right)^2 + \left(\dd{q}\right)^2 + 4cp\dd{p}\dd{q} + 4c^2 p^2 \left(\dd{p}\right)^2
 \end{align*}
@@ -182,7 +183,7 @@ Putting this into a matrix representation of the tensor:
 \[\boxed{M_{qp} = \mqty[1 & 2cp \\ 2cp & 1+4c^2p^2]}\]
 
 \item
-The primary takeaways is that {\bf a)} the vectors are not orthogonal (this is from the fact that off diagonal elements are not zero) and {\bf b)} that $\hat{e}_p$ is not normalized (a.k.a. the basis is not orthonormal).
+The primary takeaways is that {\bf a)} the vectors are not \underline{orthogonal} (this is from the fact that off diagonal elements are not zero) and {\bf b)} that $\hat{e}_p$ is not normalized (a.k.a. the basis is not ortho\underline{normal}).
 
 \end{enumerate}
 
