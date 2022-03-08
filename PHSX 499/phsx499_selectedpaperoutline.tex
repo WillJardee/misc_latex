@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 499: Selected Paper Outline}
+\author{William Jardee}
+\maketitle
+
+This is an analysis of the work published in 2020 by Thibaut Vidal and Maximilian Schiffer, \textbf{Born-Again Tree Ensembles}. I go through section by section and try to give a one sentence synopsis of each paragraph. The paper can be found at citation \cite{pmlr-v119-vidal20a}.
+
+\section*{Abstract}
+\P\, 1: Decision Trees and their ensemble counterparts, Decision Forests, are very important in modern applications. Thus, the authors study ``born-again tree ensembles": ``the process of constructing a single decision tree of minimum size that reproduces the exact same behavior as a given tree ensemble in its entire feature space", by a dynamic-program that uses pruning and bounding rules to generate a minimum decision tree from the ensemble \cite{pmlr-v119-vidal20a}.
+
+%--------------------------------------------------------
+
+\section{Introduction}	
+\P\, 1: Types of Decision Tree are important to get right and casting into explainable models because they are used in a wide area of subjects.\\
+\P\, 2: Currently there is a choice between interpretability and performance, their model addresses this issue\\
+\P\, 3: Here they define their notation and define problem 1:\\
+\quad ``\textbf{Problem 1 (Born-again tree ensemble)}: Given a tree ensemble $\mathcal{T}$, we search for a decision tree T of \textbf{minimal size} that is \textbf{faithful} to $\mathcal{T}$, i.e., such that $F_T(x) = F_\mathcal{T}(x)$ for all $x \in \mathbb{R}^p$."\\
+\P\, 4: They restate their problem as looking for a ``new representation of the same classifier".\\
+\P\, 5: They propose that this problem is NP-hard (when optimizing depth or number of leaves) by suggesting a proof of reduction to the 3-SAT problem.\footnote{These are all concepts that anyone who has studied computer science theory should understand, so they don't, and don't need to, go into elaboration about any of these concepts.}
+
+\subsection{State of the Art}
+\P\, 1: They point towards other works that should be studied for a more complete understanding.
+\subsubsection*{Thinning tree ensembles}
+\P\, 2: Introduce the two perspectives in ensemble thinning.\\
+\P\, 3: The approach of ensemble thinning has been very successful, both in the case of doing static and dynamic algorithms.\\
+\P\, 4: The other ``born-again" models of simplifying an ensemble to one tree are brought up and they end with the flaw that the models ``do not guarantee faithfulness" but focus on trees that ``remain interpretable."\\
+\P\, 5: The authors then explain the current state of neural network studies into ``model compression"
+\subsubsection*{decision trees}
+\P\, 6: The authors bring up the research of optimal decision tree generation, not from an ensemble but of their our right.
+\subsubsection*{Summary}
+\P\, 7: Recent work has been focused on creating an optimal tree from an ensemble rather than an explainable model, that is going to be the purpose of this paper
+\subsection{Contributions}
+\P\, 1: Their aim of this work is: 1) formally define the problem (and prove it is NP-hard), 2) highlight the important characteristics of the problem that can be exploited, 3) design pruning strategies, 4) do numerical studies to analyze their algorithm.\\
+\P\, 2: We have succeeded in solving the problem.
+
+%--------------------------------------------------------
+
+\section{Fundamentals}
+\P\, 1: The authors define more essential terms.\\
+\P\, 2: Defining what a Tree Ensemble is.\\
+\P\, 3: Defining what a Cell is.\\
+\P\, 4: Defining what a Region is.\\
+\P\, 5: Stating the mathematically rigorous definitions.\\
+\P\, 6: Discussing the depth restriction defined on an arbitrary hyperplane cut of the Tree Ensemble.
+
+%--------------------------------------------------------
+
+\section{Methodology}
+\P\, 1: The authors presents the primary algorithm that allows the problem to be solved dynamically.\\
+\P\, 2: Two primary weaknesses of the algorithm are presented\\
+\P\, 3: A solution to the first weakness is addressed and a theorem of dimensionality is presented.\\
+\P\, 4: A solution to the second weakness is addressed.\\
+\P\, 5: The authors prepare the reader for the presentation of the algorithm structure. The remaining paragraphs of the section are on that topic\\
+\P\, 6: Check whether a leaf/branch should be added to the DP memory.\\
+\P\, 7: The search area is reduced and then the best  covering of the space is computed (according to theorems and equations already brought up).\\
+\P\, 8: A point about simplifying memory consumption is made.\\
+\P\, 9: The time complexity of the algorithm is addressed.\\
+\P\, 10: This is more of a figure, but they present the pseudo-code of the algorithm.
+
+%--------------------------------------------------------
+
+\section{computational Experiments}
+\P\, 1: The computational experiments are laid out: 1) Evaluate the performance of the algorithm on a variety of criteria, 2) Study the complexity, 3) Measure the impact of a simple pruning strategy, 4) evaluate a fast heuristic algorithm. The language, computer specs, and github are then given. 
+\subsection{Data Preparation}
+\P\, 1: The datasets used are outlined and justified.
+\subsection{Computational Effort}
+\P\, 1: ``In a first analysis, [they] evaluate the computational time of Algorithm 1 (their algorithm) for different data sets and size metrics."\\
+\P\, 2: ``In [their] second analysis, [they] focus on the FICO case and randomly extract subsets of sample and features to produce smaller data sets."\\
+\P\, 3: They explain the results (they are in line with what was expected).
+\subsection{Complexity of the Born-Again Trees}
+\P\, 1: ``We now analyze the depth and number of leaves of the born-again trees for different objective function and datasets in Table 2." That's the whole paragraph...\\
+\P\, 2: The results of each of their heuristics are explained.
+\subsection{Post-Pruned Born-Again Trees}
+\P\, 1: The need for pruning is motivated.\\
+\P\, 2: ``Unmotivated" leaves are pruned.\\
+\P\, 3: They claim that this pruning worked to improve simplicity and interpretability.\\
+\P\, 4: The impact of pruning of effectiveness is analyzed.\\
+\P\, 5: Pruning had little impact on performance.
+\subsection{Heuristic bone-Again Trees}
+\P\, 1: The authors motivate a need for a heuristic of deciding tree size.\\
+\P\, 2: The heuristic for when to split into more branches is explained.\\
+\P\, 3: They claim that their heuristic worked well at decreasing computation time.
+
+%--------------------------------------------------------
+
+\section{Conclusions}
+\P\, 1: A summary of the paper is provided.\\
+\P\, 2: The authors present the future work on the project.
+
+
+\vskip 0.2in
+\bibliographystyle{unsrt}
+
+\bibliography{phsx499_selectedpaperoutline}
+
+
+\end{document}

@@ -1,0 +1,162 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW06}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item My understanding of this idea is still being developed, but the route that I've been using to justify to myself is that in a flat-spacetime: $\dd{s}^2 = -\dd{t}^2 + \dd{x}^2 + \dd{y}^2 + \dd{z}^2$. So, if we maximize the negative portion of the differential then we minimize the total differential. Thus, we want $\dd{t}$ to be as large as possible. This explanation doesn't quite sit right with me, however.
+
+%---------------------------------------------------------------------
+
+\item Let's just start with the definition of proper time and justify everything at the end.
+\begin{align*}
+\Delta\tau & = \int_0^1 \dd{\sigma}\sqrt{-g_{tt}\dv{t}{\sigma}\dv{t}{\sigma} - g_{xx}\dv{x}{\sigma}\dv{x}{\sigma} - g_{yy}\dv{y}{\sigma}\dv{y}{\sigma}-g_{zz}\dv{z}{\sigma}\dv{z}{\sigma}}\\
+&= \int_0^1 \dd{\sigma}\left(\dv{t}{\sigma}\right)\sqrt{\left(\dv{t}{\sigma}\right)^2\left(\dv{\sigma}{t}\right)^2- \left(\dv{x}{\sigma}\right)^2\left(\dv{\sigma}{t}\right)^2 - \left(\dv{y}{\sigma}\right)^2\left(\dv{\sigma}{t}\right)^2 - \left(\dv{z}{\sigma}\right)^2\left(\dv{\sigma}{t}\right)^2}\\
+&= \int_{t_A}^{t_B}\dd{t}\sqrt{\left(\dv{t}{t}\right)^2 - \left(\dv{x}{t}\right)^2 - \left(\dv{y}{t}\right)^2 - \left(\dv{z}{t}\right)^2}\\
+& \boxed{= \int_{t_A}^{t_B} \dd{t}\sqrt{1 - v_x^2}}
+\end{align*}
+Notice when we changed the integral from $\dd{\sigma}$ to $\dd{t}$, we also had to change the bounds to the starting and stopping $t$ to match. It was also given that $v_y = v_z = 0$, so we could drop the $y$ and $z$ terms. Finally, we are justified by multiplying the right side by $\displaystyle{\dv{t}{\sigma}\dv{\sigma}{t}}$ because that is just $1$.
+
+%---------------------------------------------------------------------
+
+\item When we take a small perturbation we are changing the path, but still need to keep the same end points. Thus: $x^\mu_{\text{pert}}(0) = x^\mu(0)$ and $x^\mu_{\text{pert}}(1) = x^\mu(1)$. This means that
+\[\boxed{f^\mu(0) = f^\mu(1) = 0}\]
+
+%---------------------------------------------------------------------
+
+\item Taking $\displaystyle{x^\mu_{\text{pert}}(\sigma) = x^\mu(\sigma)+\varepsilon f^\mu(\sigma)}$ and $\displaystyle{\dot{x}^\mu_{\text{pert}}(\sigma) = \dot{x}^\mu(\sigma)+\varepsilon \dot{f}^\mu(\sigma)}$, we can use the first order Taylor expansion
+\[f(x,y) \approx f(x_0,\, y_0) + \pdv{f}{x}\eval_{x_0,\, y_0}(x-x_0)+ \pdv{f}{y}\eval_{x_0, y_0}(y-y_0)\]
+to say
+\[\boxed{\mathcal{L}\left(x^\mu_{\text{pert}}, \dot{x}^\mu_{\text{pert}}\right) \approx \mathcal{L}\left(x^\mu, \dot{x}^\mu\right)+ \pdv{\mathcal{L}}{x^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(\varepsilon f^\mu(\sigma)\right) + \pdv{\mathcal{L}}{\dot{x}^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(\varepsilon \dot{f}^\mu(\sigma)\right)}\]
+
+%---------------------------------------------------------------------
+
+\item Starting with the original definition of proper time, then ``upgrading" it to the perturbed path:
+\begin{align*}
+\Delta \tau & = \int_0^1 \mathcal{L}\left(x^\mu(\sigma), \dot{x}^\mu(\sigma)\right)\dd{\sigma}\\
+& \rightarrow \int_0^1 \mathcal{L}\left(x^\mu_{\text{pert}}, \dot{x}^\mu_{\text{pert}}\right)\dd{\sigma}\\
+& = \int_0^1 \left[\mathcal{L}\left(x^\mu, \dot{x}^\mu\right)+ \pdv{\mathcal{L}}{x^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(\varepsilon f^\mu(\sigma)\right) + \pdv{\mathcal{L}}{\dot{x}^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(\varepsilon \dot{f}^\mu(\sigma)\right)\right] \dd{\sigma}\\
+& = \boxed{\left[\int_0^1 \mathcal{L}\left(x^\mu, \dot{x}^\mu\right)\dd{\sigma}\right] + \varepsilon \left[\int_0^1 \pdv{\mathcal{L}}{x^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(f^\mu(\sigma)\right) + \pdv{\mathcal{L}}{\dot{x}^\mu}\eval_{x^\mu,\, \dot{x}^\mu}\left(\dot{f}^\mu(\sigma)\right)\dd{\sigma}\right]}
+\end{align*}
+From this point on I will be dropping the evaluation bar and the clarification of where $\mathcal{L}$ is evaluated at. It should be assumed that, when not otherwise stated, they are evaluated at $x^\mu$ and $\dot{x}^\mu$.
+
+%---------------------------------------------------------------------
+
+\item
+We need to show that $\displaystyle{\int_0^1\left[\pdv{\mathcal{L}}{x^\alpha}f^\mu + \pdv{\mathcal{L}}{\dot{x}^\alpha}\dot{f}^\mu\right]\dd{\sigma} = \int_0^1 f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} - \dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma}}$. It might be helpful to remember that $\displaystyle{\int u\dd{v} = uv -\int v \dd{v}}$.
+\begin{align*}
+\int_0^1 \pdv{\mathcal{L}}{\dot{x}^\alpha}\dot{f}^\mu & = \pdv{\mathcal{L}}{\dot{x}^\alpha}f^\mu\eval_0^1 - \int_0^1 f^\mu \dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\dd{\sigma}\\
+&= \pdv{\mathcal{L}}{\dot{x}^\alpha}\eval_1(0) - \pdv{\mathcal{L}}{\dot{x}^\alpha}\eval_0 (0) - \int_0^1 f^\mu \dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\dd{\sigma}\\
+& = - \int_0^1 f^\mu \dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\dd{\sigma}
+\end{align*}
+Substituting this into the left side of the equation above:
+\begin{align*}
+\int_0^1\left[\pdv{\mathcal{L}}{x^\alpha}f^\mu + \pdv{\mathcal{L}}{\dot{x}^\alpha}\dot{f}^\mu\right]\dd{\sigma} & = \int_0^1 \left[\pdv{\mathcal{L}}{x^\alpha}f^\mu - f^\mu \dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma}\\
+& \boxed{ = \int_0^1 f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma}}
+\end{align*}
+
+%---------------------------------------------------------------------
+
+\item To find the maxima/minima/saddles of a function, we have to take the derivative with respect to the independent variable in mind and set it equal to zero. We are trying to find the $\varepsilon$ that minimizes $\tau$, so it makes sense to look for $\displaystyle{\dv{\tau}{\varepsilon} = 0}$. I'm not sure what the $\varepsilon \rightarrow 0$ is eluding to, other than the fact that we have assumed a small perturbation from the start (so that the Taylor expansion was valid).
+
+%---------------------------------------------------------------------
+
+\item We are going to do this by staring with our equation above, then taking the derivative with respect to $\varepsilon$:
+\begin{align*}
+\Delta \tau & = \int_0^1 \mathcal{L}\dd{\sigma} + \varepsilon \int_0^1 f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma} \\
+\dv{\Delta \tau}{\varepsilon} = 0 & = \cancelto{0}{\dv{\varepsilon}\int_0^1 \mathcal{L}\dd{\sigma}} \, + \dv{\varepsilon} \varepsilon \int_0^1 f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma}\\
+\dv{\sigma} (0) & = \dv{\sigma} \int_0^1 f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right]\dd{\sigma}\\
+\frac{1}{f^\mu} \, 0 & = f^\mu \left[\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\right] \, \frac{1}{f^\mu}\\
+0 & = \pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)
+\end{align*}
+\[\boxed{\pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right) = 0}\]
+
+%---------------------------------------------------------------------
+
+\item 
+We will simplify each component individually, then combine the two. But, before doing that I will show that $\displaystyle{1 = \dv{\tau}{\tau} = \dv{\tau}{\sigma} \dv{\sigma}{\tau} \rightarrow 1/\mathcal{L} = 1/\dv{\tau}{\sigma} = \dv{\sigma}{\tau}}$, since $\displaystyle{\tau = \int \mathcal{L}\dd{\sigma}}$.
+
+\begin{align*}
+\pdv{\mathcal{L}}{\dot{x}^\alpha} & = \pdv{\dot{x}^\alpha}\sqrt{-g_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta}\\
+& = \frac{1}{2\sqrt{-g_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta}}\left[-g_{\mu\nu}\pdv{\dot{x}^\alpha}\left(\dot{x}^\mu\dot{x}^\nu\right)\right]\\
+& = \frac{-g_{\mu\nu}}{2\mathcal{L}}\left[\delta_\alpha^\mu \dot{x}^\nu + \delta_\beta^\nu \dot{x}^\mu\right]\\
+& = \frac{-1}{2\mathcal{L}}\left[\left(\delta_\alpha^\mu g_{\mu\nu}\right)\dot{x}^\nu + \left(\delta_\beta^\nu g_{\mu\nu}\right)\dot{x}^\mu\right]\\
+& = \frac{-1}{2\mathcal{L}}\left[g_{\alpha\nu}\dot{x}^\nu + g_{\mu\beta}\dot{x}^\mu\right] & \text{(using our delta rules)}\\
+& = \frac{-1}{2\mathcal{L}}\left[g_{\nu\alpha}\dot{x}^\nu + g_{\mu\beta}\dot{x}^\mu\right] & \text{(because the metric is symmetric)}\\
+&= \frac{-1}{2\mathcal{L}}\left[g_{\mu\alpha}\dot{x}^\mu + g_{\mu\alpha}\dot{x}^\mu\right] & \text{(using our renaming rules)}\\
+& = \frac{-1}{\mathcal{L}}\left[g_{\mu\alpha}\dv{x^\mu}{\sigma}\right]\\
+& = -\dv{\sigma}{\tau}\left[g_{\mu\alpha}\dv{x^\mu}{\sigma}\right]\\
+& = \boxed{-g_{\mu\alpha}\dv{x^\mu}{\tau}}
+\end{align*}
+
+For this next one, we need to remember that when we defined the Lagrangian we declared $x$ to be independent of $\dot{x}$.
+\begin{align*}
+\pdv{\mathcal{L}}{x^\alpha} & =  \pdv{x^\alpha}\sqrt{-g_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta}\\
+& = \frac{1}{2\sqrt{-g_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta}}\pdv{x^\alpha}\left[-g_{\mu\nu}\dot{x}^\mu\dot{x}^\nu\right]\\
+& = \frac{-\dot{x}^\mu\dot{x}^\nu}{2\mathcal{L}} \pdv{x^\alpha}g_{\mu\nu}\\
+& = \left[\partial_\alpha g_{\mu\nu}\right]\frac{1}{2\mathcal{L}}\dv{x^\alpha}{\sigma}\dv{x^\nu}{\sigma}\\
+& = \frac{1}{2}\left[\partial_\alpha g_{\mu\nu}\right]\dv{\sigma}{\tau}\dv{x^\alpha}{\sigma}\dv{x^\nu}{\sigma}\\
+& = \boxed{\frac{1}{2}\left[\partial_\alpha g_{\mu\nu}\right]\dv{x^\alpha}{\tau}\dv{x^\nu}{\sigma}}\\
+\end{align*}
+
+Substituting both of these back into the equation:
+\begin{align*}
+0 & = \pdv{\mathcal{L}}{x^\alpha} -\dv{\sigma}\left(\pdv{\mathcal{L}}{\dot{x}^\alpha}\right)\\
+& = -\frac{1}{2}\left[\partial_\alpha g_{\mu\nu}\right]\dv{x^\alpha}{\tau}\dv{x^\nu}{\sigma} + \dv{\sigma}\left(g_{\mu\alpha}\dv{x^\mu}{\tau}\right)\\
+\dv{\sigma}{\tau} \cdot (0) & = -\frac{1}{2}\left[\partial_\alpha g_{\mu\nu}\right]\dv{x^\alpha}{\tau}\dv{x^\nu}{\sigma}\dv{\sigma}{\tau} + \dv{\sigma}{\tau}\dv{\sigma}\left(g_{\mu\alpha}\dv{x^\mu}{\tau}\right)\\
+0 & = \dv{\tau}\left[g_{\mu\nu}\dv{x^\mu}{\tau}\right] -\frac{1}{2}\partial_\alpha g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} 
+\end{align*}
+
+\[\boxed{\dv{\tau}\left[g_{\mu\nu}\dv{x^\mu}{\tau}\right] -\frac{1}{2}\partial_\alpha g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} = 0} \quad \checkmark \]
+
+\end{enumerate}
+
+\end{document}

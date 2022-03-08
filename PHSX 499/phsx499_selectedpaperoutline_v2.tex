@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 499: Selected Paper Outline v.2}
+\author{William Jardee}
+\maketitle
+
+This is an analysis of the work published in 2020 by Thibaut Vidal and Maximilian Schiffer, \textbf{Born-Again Tree Ensembles}. I go through section by section and highlight what I believe is the ``topic sentence" of the paragraph. In some cases there are a couple topic sentences for a section, it should be clear why I chose multiple. The paper can be found at citation \cite{pmlr-v119-vidal20a}.
+
+%--------------------------------------------------------
+
+\section{Introduction}	
+``Tree ensembles constitute a core technique for prediction and classification tasks."\\
+``Currently, there exists a trade-off between the interpretability and the performance of tree (ensemble) classifiers." 
+
+\subsection{State of the Art}
+\subsubsection*{Thinning tree ensembles}
+``Thinning tree ensembles has been studied from different perspectives and divides in two different streams, $i)$ classically thinning a tree ensemble by removing some weak learners from the original ensemble and $ii)$ replacing a tree ensemble by a simpler classifier, e.g., a single decision tree."\\
+``In the field of neural networks, related studies were done on \textit{model compression}."
+\subsubsection*{Decision trees}
+``since the 1990's, some works focused on constructing decision trees based on mathematical programming techniques."
+\subsection{Contributions}
+``With this work, we revive the concept of born-again tree ensembles and aim to construct a single -minimum-size-tree that faithfully reproduces the decision function of the original tree ensemble."
+
+%--------------------------------------------------------
+
+\section{Fundamentals}
+``In this section, we introduce some fundamental definitions."
+
+%--------------------------------------------------------
+
+\section{Methodology}
+``In thiss section, we introduce a dynamic programming (DP) algorithm which optimally solves Problem 1 for many data sets of practical interest."
+
+%--------------------------------------------------------
+
+\section{Computational Experiments}
+``The goal of our computational experiments is fourfold: ..." \textit{The authors then go on to outline the four experiments that are conducted.}
+\subsection{Data Preparation}
+``We focus on a set of six datasets from the UCI machine learning repository [UCI] and from previous work by ..."
+\subsection{Computational Effort}
+``In a firsts analysis, we evaluate the computation time of Algorithm 1 for different data sets and size metrics."\\
+``In our second analysis, we focus on the FICO case and randomly extract subsets of samples and features to produce smaller data sets."\\
+``We observe that the computational time fo the DP algorithm is strongly driven by the number of features, with an exponential growth relative to their parameter."
+\subsection{Complexity of the Born-Again Trees}
+``We now analyze the depth and number of leaves of the born-again trees for different objective functions and datasets in Table 2."
+\subsection{Post-Pruned Born-Again Trees}
+``To circumvent this issue, we suggest to apply a simple post-pruning step to eliminate inexpressive tree sub-regions."
+\subsection{Heuristic bone-Again Trees}
+``Accordingly, we take a first step towards scalable heuristic algorithms in the following."
+
+%--------------------------------------------------------
+
+\section{Conclusions}
+``In this paper, we introduced an efficient algorithm to transform a random forest into a single, smallest possible, decision tree."\\
+``As a perspective for future work, we recommend to progress further on solution techniques for the born-again tree ensembles problem, proposing new optimal algorithms to effectively handle larger datasets as well as fast and accurate heuristics."
+
+
+\vskip 0.2in
+\bibliographystyle{unsrt}
+
+\bibliography{phsx499_selectedpaperoutline}
+
+
+\end{document}
