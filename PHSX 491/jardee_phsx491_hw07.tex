@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW07}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item I found two results to this, one dependent on the radial velocity and the other on the time velocity.
+\begin{align*}
+\frac{1}{2}(e^2 - 1) & = \frac{1}{2}\left(\dv{r}{\tau}\right)^2 - \frac{GM}{r}+ \frac{l^2}{2r^2} - \frac{GMl^2}{r^3} & e & = \dv{t}{\tau} \left(1 - \frac{2GM}{r}\right)\\
+\frac{1}{2}(e^2 - 1) & = \frac{1}{2}\left(\dv{r}{\tau}\right)^2 & e & = \boxed{ \dv{t}{\tau} = u^t}\\
+e & = \boxed{ \sqrt{\left(\dv{r}{t}\right)^2 + 1}} 
+\end{align*}
+The right one makes complete sense as that was how we came up with $e$ being the ``relativistic energy-per-unit-mass that the object would have at infinity".
+
+The left solution can kind be thought of as $\displaystyle{\frac{e}{m} = \sqrt{v^2 + c^4} \rightarrow e = \sqrt{(mv)^2 + (mc^2)^2}}$, which is the relativistic energy we get from SR. However, looking a this again, there is a missing $1/2$ on the kinetic term. 
+
+These units are all wanky because of we dropped $c$ and its units. For this reason $e$ has the same units as $p^t$, which is not normally true. 
+
+\item The right solution above is only valid when we are towards infinity, otherwise we need to use the left one.
+\begin{align*}
+\frac{1}{2}(e^2-1) & = \frac{1}{2}\left(\dv{r}{\tau}\right)^2 - \frac{GM}{6GM} + \frac{l^2}{2(6GM)^2} - \frac{GMl^2}{(6GM)^3} \\
+e^2 & = \left(\dv{r}{\tau}\right)^2 + \frac{2}{3} + \frac{l^2}{36(GM)^2} - \frac{l^2}{108(GM)^2} \\
+& \text{We know that for the ISCO } l = \sqrt{12}GM \text{ and } \dv{r}{\tau} = 0\\
+e & = \sqrt{\left(0\right)^2 + \frac{2}{3} + \frac{1}{54}\left(\frac{\sqrt{12}GM}{GM}\right)^2}\\
+e & = \boxed{\frac{2\sqrt{2}}{3}}
+\end{align*}
+
+\item The ``energy radiated" is the amount that is lost between being at $r \rightarrow \infty$ and $r = 6GM$. This is just the difference between the first two parts:
+\[1 - \frac{2\sqrt{2}}{3} \approx 0.057 .\]
+This means that the particle loses about $\boxed{5.7 \%}$ the rest mass as it falls into the blackhole. Notice how this is independent of mass of the blackhole. A quick hand-wavy explanation is that the distance that the particle has to travel to fall into the blackhole increases proportional to the blackhole's size, so the strength of the attraction and the distance account for each other and mean a constant fraction of the rest mass is radiated away.
+
+\end{enumerate}
+
+\end{document}
