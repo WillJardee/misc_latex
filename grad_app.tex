@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{Question 5}
+\author{William Jardee}
+\maketitle
+5. \textit{What are your research objectives and how do they relate to the research interests of the faculty at MSU?}
+\vspace{2em}
+
+I have a strong interest in computational solutions to complex problems, more specifically the theoretical underpinnings of why they work. Machine learning fits this interest very well by being a modern way of solving problems and having an advanced theoretical basis. I have talked to Dr. Sheppard about some research opportunities he has and he believes that my strong mathematical base sets me apart in approaching these problems. I also believe that if my time in a dedicated ML group doesn’t work out, there are faculty in the physics department studying general relativity that have recently been gaining interest in using ML as well as computer science fields, such as computational topology, that may fit my skill set well.
+ 
+
+\end{document}

@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% Box function - update this as more sophisticated solutions are found
+\newcommand\mybox[2][]{\tikz[overlay]\node[fill=blue!20,inner sep=2pt, anchor=text, rectangle, rounded corners=1mm,#1] {#2};\phantom{#2}}
+\renewcommand{\arraystretch}{1.2}
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 462: HW05}
+\author{William Jardee}
+\maketitle
+
+\section*{Griffiths 5.1}
+\begin{enumerate}[label=\alph*)]
+\item
+Let's start with what we are provided:
+\begin{align*}
+\vec{r} &\equiv \vec{r}_1 - \vec{r}_2 & \vec{R} &\equiv \frac{m_1\vec{r}_1 + m_2\vec{r}_2}{m_1 + m_2}   & \mu & \equiv \frac{m_1m_2}{m_1 + m_2}
+\end{align*}
+
+then, you know, do the thing:
+\begin{align*}
+\vec{R} & = \frac{\left(m_1(\vec{r} + \vec{r}_2) + m_2\vec{r}_2\right)}{m_1 + m_2} & \vec{R} & = \frac{\left(m_2(\vec{r}_1 - \vec{r}) + \vec{r}_1 m_1\right)}{m_1 + m_2}\\
+& = \vec{r}_2 + \frac{m_1}{m_2 + m_1}\vec{r} & & = \vec{r}_1 - \frac{m_2}{m_1 + m_2}\vec{r}\\
+\vec{r}_2 & = \vec{R} - \frac{\mu}{m_2}\vec{r} & \vec{r}_1 & = \vec{R} + \frac{\mu}{m_1}\vec{r} & \checkmark
+\end{align*}
+
+\begin{align*}
+\nabla_{\vec{r}_1} & = (\nabla_{\vec{r}_1}\cdot \vec{R})\nabla_{\vec{R}} + (\nabla_{\vec{r}_1}\cdot \vec{r})\nabla_{\vec{r}} & \nabla_{\vec{r}_2} & = (\nabla_{\vec{r}_2}\cdot \vec{R})\nabla_{\vec{R}} + (\nabla_{\vec{r}_2}\cdot \vec{r})\nabla_{\vec{r}}\\
+& = \left(\frac{m_1}{m_1 + m_2}\right)\nabla_{\vec{R}} + \nabla_{\vec{r}} &  & = \left(\frac{m_2}{m_1+m_2}\right)\nabla_{\vec{R}} - \nabla_{\vec{r}}\\
+& = \frac{\mu}{m_2}\nabla_{\vec{R}} + \nabla_{\vec{r}} &  & = \frac{\mu}{m_1}\nabla_{\vec{R}} - \nabla_{\vec{r}} & \checkmark\\
+\end{align*}
+
+\item 
+\begin{align*}
+(E-V)\Psi & = - \frac{\hbar^2}{2m_1}\left(\nabla_1 \right)^2 \Psi - \frac{\hbar^2}{2m_2}\left(\nabla_2\right)^2 \Psi\\
+& = -\frac{\hbar^2}{2m_1}\left(\frac{\mu}{m_2}\nabla_R + \nabla_r\right)^2\Psi -\frac{\hbar^2}{2m_2}\left(\frac{\mu}{m_1}\nabla_R - \nabla_r\right)^2\Psi \\
+& = -\frac{\hbar^2}{2m_1}\left(\left(\frac{\mu}{m_2}\right)^2\nabla_R^2 + \frac{\mu}{m_2}\nabla_R \nabla_r + \nabla_r^2\right)\Psi \\
+& \hspace{4em} -\frac{\hbar^2}{2m_2}\left(\left(\frac{\mu}{m_1}\right)^2\nabla_R^2 - \frac{\mu}{m_1}\nabla_R \nabla_r + \nabla_r^2\right)\Psi\\
+& = \left(\left[-\frac{\hbar^2}{2m_1}\left(\frac{\mu}{m_2}\right)^2-\frac{\hbar^2}{2m_2}\left(\frac{\mu}{m_1}\right)^2\right]\nabla_R^2 + \left[-\frac{\hbar^2}{2m_1}-\frac{\hbar^2}{2m_2}\right]\nabla_r^2\right)\Psi\\
+& = -\frac{\hbar^2}{2}\left[\frac{m_1+m_2}{(m_1 + m_2)^2}\nabla_R^2 + \frac{m_1+m_2}{m_1m_2}\nabla_r^2\right]\Psi\\
+& = -\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2\Psi - \frac{\hbar^2}{2\mu}\nabla_r^2\Psi & \checkmark
+\end{align*}
+
+\item Not quite sure what they want us to do exactly here, I think it is just a statement about what the next step to solving would be. 
+\begin{align*}
+-\frac{\hbar^2}{2(m_1+m_2)}\nabla_R^2(\Psi_R\Psi_r) - \frac{\hbar^2}{2\mu}\nabla_r^2 (\Psi_R\Psi_r) + V(\Psi_R\Psi_r) & = (E_R+E_r) (\Psi_R\Psi_r)\\
+\Psi_r\left(-\frac{\hbar^2}{2(m_1+m_2)}\right)\nabla_R^2 \Psi_R + \Psi_r \left(-\frac{\hbar^2}{2\mu}\right)\nabla_r^2 \Psi_r + V(\Psi_R\Psi_r) & = (E_R+E_r) (\Psi_R\Psi_r)
+\end{align*}
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 5.2}
+\begin{enumerate}[label=\alph*)]
+\item I did a lot of this in python, so I will be just stating the results:
+\[m_e \rightarrow 13.6056 \text{ eV}\]
+\[\mu \rightarrow 13.5983 \text{ eV}\]
+\[\boxed{\% \text{ error} = 0.055\%}\]
+\item 
+\begin{align*}
+\text{hydrogen} & \rightarrow -1.8886 \text{eV}\\
+\text{deutromium} & \rightarrow -1.8892 \text{eV}
+\end{align*}
+where the $\displaystyle{\mu_{deu} = \frac{m_e(m_p + m_n)}{m_e+m_n+m_p}}$. Using the wavelength equation $\displaystyle{\lambda = \frac{hc}{E}}$
+\[\boxed{\Delta \lambda = 0.1788 \text{ nm}}\]
+\item with $\displaystyle{\frac{m_e(m_n+m_e)}{2m_e + m_n}}$
+\[\boxed{E_{pos} = - 13.5983 \text{ eV}}\]
+\item with $\displaystyle{\frac{m_\mu m_p}{m_\mu + m_p}}$
+\[E_{0,\mu} = 2528.51\text{ eV}\]
+\[\Delta E = 1896.38\text{ eV} \rightarrow \boxed{\lambda = 0.6338 \text{ nm}}\]
+
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 5.4}
+\begin{enumerate}[label=\alph*)]
+\item 
+\begin{align*}
+|\Psi_a(\vec{r_1})\Psi_b(\vec{r_2})|^2 & = \braket{\Psi_a \Psi_b}{\Psi_a \Psi_b}\\
+& = \braket{\Psi_a}{\Psi_a}\braket{\Psi_b}{\Psi_b}\\
+& = 1
+\end{align*}
+Since there are two orthogonal terms, $\displaystyle{\left|\frac{1}{A}\Psi_\pm\right|^2 = 1+ 1 = 2}$. So:
+\[\boxed{A = \frac{1}{\sqrt{2}}}\]
+
+\item this one we are going to be a little more clear with:
+\begin{align*}
+1 & = A^2 \int \left[\Psi_a^1 \Psi_a^2 + \Psi_a^2 \Psi^1\right]^*\left[\Psi_a^1 \Psi_a^2 + \Psi_a^2 \Psi^1\right]\\
+& = A^2 \int \left[2 \Psi_a^1 \Psi_a^2\right]^*\left[2 \Psi_a^1 \Psi_a^2\right]\\
+& = 4 A^2 \int \left(\Psi_a^1\right)^*\Psi_a^1 \int \left(\Psi_a^2\right)^*\Psi_a^2\\
+& = 4 A^2
+\end{align*}
+
+\[\boxed{A = \frac{1}{2}}\]
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Question 4}
+\begin{enumerate}[label=\alph*)]
+\item
+The energy of the system can be described as $E_n = E_a + E_b$. Since these particles are distinguishable, the can be in the same state:
+\[E_0 = \frac{3}{2}\hbar \omega + \frac{3}{2}\hbar \omega \boxed{= 3 \hbar \omega}\]
+\item 
+There are two setups that we can do:
+\begin{align*}
+\psi_1 & = (\hat{a}_+ \psi_0(x_1))(\psi_0(x_2)) & \psi_1 & = (\psi_0(x_1))(\hat{a}_+ \psi_0(x_2))
+\end{align*}
+\begin{align*}
+E_1 & = \left[\frac{1}{2}\hbar \omega\right]4 + \left[\frac{3}{2}\hbar \omega\right]2\\
+& = 2\hbar \omega + 3\hbar \omega\\
+& \boxed{= 5 \hbar \omega}
+\end{align*}
+
+\item Only one of the states need to be excited:
+
+\begin{table}[!hb]
+\centering
+\begin{tabular}{c c c}
+$\psi_{100}(x_1)\,\psi_{000}(x_2)$ & \quad & $\psi_{000}(x_1)\,\psi_{100}(x_2)$\\
+$\psi_{010}(x_1)\,\psi_{000}(x_2)$ && $\psi_{000}(x_1)\,\psi_{010}(x_2)$\\
+$\psi_{001}(x_1)\,\psi_{000}(x_2)$ && $\psi_{000}(x_1)\,\psi_{001}(x_2)$\\
+\end{tabular}
+\end{table}
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Question 5}
+\begin{enumerate}[label=\alph*)]
+\item 
+\begin{align*}
+1 & = A^2 \int\left[2\sin(\frac{2\pi}{a}x_1)\sin(\frac{\pi}{a}x_2)\sin(\frac{\pi}{a}x_3) + 3\sin(\frac{\pi}{a}x_1)\sin(\frac{2\pi}{a}x_2)\sin(\frac{5\pi}{a}x_3)\right]^*\\
+& \hspace{4em}\times \left[2\sin(\frac{2\pi}{a}x_1)\sin(\frac{\pi}{a}x_2)\sin(\frac{\pi}{a}x_3) + 3\sin(\frac{\pi}{a}x_1)\sin(\frac{2\pi}{a}x_2)\sin(\frac{5\pi}{a}x_3)\right]\\
+& \text{recognizing that none of the states between the two state, so the cross terms are zero}\\
+& = A^2 \int \left[4\sin[2](\frac{2\pi}{a}x_1)\sin[2](\frac{\pi}{a}x_2)\sin[2](\frac{\pi}{a}x_3) + 9\sin[2](\frac{\pi}{a}x_1)\sin[2](\frac{2\pi}{a}x_2)\sin[2](\frac{5\pi}{a}x_3)\right]\\
+& \hspace{5em}\text{remembering that } \int_0^{n\pi} \sin[2](x) = \frac{x}{2}\\
+& = A^2 \left[4\left(\frac{a}{2}\right)^3 + 9\left(\frac{a}{2}\right)^3\right]
+\end{align*}
+
+\[\boxed{A = \frac{1}{\sqrt{13}}\left(\frac{2}{a}\right)^{3/2}}\]
+This makes sense, since the second part is the normal coefficient, and the $\sqrt{13}$ accounts for normalizing the two different wavefunctions. 
+
+\item The wavefunction of interest is the second one, with the coefficient of 3. So, the probability of having $E_3$ with this energy is:
+\[\boxed{\left(\frac{3}{\sqrt{13}}\right)^2 = \frac{9}{13}}\]
+\item Independent of the energy, the average $x$ value is the center of the well. So, we have a $\displaystyle{\frac{4}{13}}$ chance for $\displaystyle{\frac{a}{2}}$ and a $\displaystyle{\frac{9}{13}}$ chance for $\displaystyle{\frac{a}{2}}$, so $\displaystyle{\boxed{\ev{x} = \frac{a}{2}}}$.
+\item We need to find the expectation value of each the energies independently, then add them all together:
+\[\left|\frac{4}{13}\mqty[4 \\ 1 \\ 1] + \frac{9}{13}\mqty[1 \\ 4 \\ 25]\right| = \frac{1}{13}\left|\mqty[25\\40\\229]\right| = \frac{294}{13}\]
+\[\boxed{\ev{E} \approx \frac{22.62 \, \hbar^2 \pi^2}{2ma^2}}\]
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 5.8}
+\begin{enumerate}[label=\alph*)]
+\addtocounter{enumi}{1}
+\item I will do the next part, with the fermion, then remove all the negatives to take the permanent.
+\[\frac{1}{\sqrt{3!}}\mqty|\ket{\Psi_a}_1 & \ket{\Psi_b}_1 & \ket{\Psi_c}_1 \\ \ket{\Psi_a}_2 & \ket{\Psi_b}_2 & \ket{\Psi_c}_2 \\ \ket{\Psi_a}_3 & \ket{\Psi_b}_3 & \ket{\Psi_c}_3|\]
+\begin{align*}
+\quad & = \frac{1}{\sqrt{6}}\left[\ket{\Psi_a}_1 \mqty|\ket{\Psi_b}_2 & \ket{\Psi_c}_2 \\ \ket{\Psi_b}_3 & \ket{\Psi_c}_3| - \ket{\Psi_a}_2 \mqty|\ket{\Psi_b}_1 & \ket{\Psi_c}_1 \\ \ket{\Psi_b}_3 & \ket{\Psi_c}_3| + \ket{\Psi_a}_3 \mqty|\ket{\Psi_b}_1 & \ket{\Psi_c}_1 \\ \ket{\Psi_b}_2 & \ket{\Psi_c}_2|\right]\\
+& = \frac{1}{\sqrt{6}}\left[\ket{\Psi_a}_1 \ket{\Psi_b}_2\ket{\Psi_c}_3 - \ket{\Psi_a}_1\ket{\Psi_c}_2\ket{\Psi_b}_3 - \ket{\Psi_b}_1\ket{\Psi_a}_2\ket{\Psi_c}_3 + \ket{\Psi_c}_1\ket{\Psi_a}_2\ket{\Psi_b}_3\right. \\
+& \hspace{3em}\left.+ \ket{\Psi_b}_1\ket{\Psi_c}_2\ket{\Psi_a}_3 - \ket{\Psi_c}_1\ket{\Psi_b}_2\ket{\Psi_a}_3\right]
+\end{align*}
+So, for a bosonic system: 
+\begin{align*}
+\frac{1}{\sqrt{6}}\left[\ket{\Psi_a}_1 \ket{\Psi_b}_2\ket{\Psi_c}_3 + \ket{\Psi_a}_1\ket{\Psi_c}_2\ket{\Psi_b}_3 + \ket{\Psi_b}_1\ket{\Psi_a}_2\ket{\Psi_c}_3 + \ket{\Psi_c}_1\ket{\Psi_a}_2\ket{\Psi_b}_3\right. \\
+\hspace{3em}\left.+ \ket{\Psi_b}_1\ket{\Psi_c}_2\ket{\Psi_a}_3 + \ket{\Psi_c}_1\ket{\Psi_b}_2\ket{\Psi_a}_3\right]
+\end{align*}
+\item Stealing the answer from the last part, before changing the signs:
+\begin{align*}
+ \frac{1}{\sqrt{6}}\left[\ket{\Psi_a}_1 \ket{\Psi_b}_2\ket{\Psi_c}_3 - \ket{\Psi_a}_1\ket{\Psi_c}_2\ket{\Psi_b}_3 - \ket{\Psi_b}_1\ket{\Psi_a}_2\ket{\Psi_c}_3 + \ket{\Psi_c}_1\ket{\Psi_a}_2\ket{\Psi_b}_3\right. \\
+\hspace{3em}\left.+ \ket{\Psi_b}_1\ket{\Psi_c}_2\ket{\Psi_a}_3 - \ket{\Psi_c}_1\ket{\Psi_b}_2\ket{\Psi_a}_3\right]
+\end{align*}
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Griffiths 5.9}
+\begin{enumerate}[label=\alph*)]
+\item 
+I just brute forced these bad bois to find all of them. 
+
+For the first energy: $E_0 = 2K$, degeneracy 1
+\[\Psi_1(x_1)\Psi_1(x_2)\ket{\uparrow\downarrow} - \Psi_1(x_1) \Psi_1(x_2)\ket{\downarrow\uparrow}\]
+
+for the second energy: $E_1 = 5K$, degeneracy 4
+\[\Psi_1(x_1)\Psi_2(x_2)\ket{\downarrow\downarrow} - \Psi_2(x_1) \Psi_1(x_2)\ket{\downarrow\downarrow}\]
+\[(\Psi_1(x_1)\Psi_2(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}) - (\Psi_2(x_1)\Psi_1(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow})\]
+\[\Psi_1(x_1)\Psi_2(x_2)\ket{\uparrow\uparrow} - \Psi_2(x_1) \Psi_1(x_2)\ket{\uparrow\uparrow}\]
+\[(\Psi_1(x_1)\Psi_2(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}) + (\Psi_2(x_1)\Psi_1(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow})\]
+
+for the third energy: $E_2 = 8k$, degeneracy 1
+\[\Psi_2(x_1)\Psi_2(x_2)\ket{\uparrow\downarrow} - \Psi_2(x_1) \Psi_2(x_2)\ket{\downarrow\uparrow}\]
+
+for the second energy: $E_3 = 10K$, degeneracy 4
+\[\Psi_1(x_1)\Psi_3(x_2)\ket{\downarrow\downarrow} - \Psi_3(x_1) \Psi_1(x_2)\ket{\downarrow\downarrow}\]
+\[(\Psi_1(x_1)\Psi_3(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}) - (\Psi_3(x_1)\Psi_1(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow})\]
+\[\Psi_1(x_1)\Psi_3(x_2)\ket{\uparrow\uparrow} - \Psi_3(x_1) \Psi_1(x_2)\ket{\uparrow\uparrow}\]
+\[(\Psi_1(x_1)\Psi_3(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}) + (\Psi_3(x_1)\Psi_1(x_2))\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow})\]
+
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\end{document}
