@@ -27,6 +27,8 @@
 
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 
 \usepackage{jmlr2e}
@@ -51,7 +53,7 @@
 \title{Critique of \ul{Right for the Right Reasons: Training Neural Networks to be Interpretable, Robust, and Consistent with Expert Knowledge}}
 
 \author{\name William Jardee\email willjardee@gmail.com \\
-       \addr Physics Department\\
+       \addr Physics\\
        Montana State University\\
        Bozeman, MT 59715, USA
        }
@@ -72,23 +74,42 @@
 %---------------------------------------------------------------------
 
 \section{Right for the Right Reasons Algorithm}
+The first novel idea introduced by the paper is a loss function that discourages the impact of gradients in regions declared by a mask matrix, $A$. This loss function is presented in the context of neural networks. It is pointed out that all of the functions provided are differentiable and thus can be minimized with gradient methods. The first proposed iteration of the process is 
 
 \begin{align}
-\mathcal{L}(\theta, \vb{X}, y, A) &  = \underbrace{\sum^N_{n=1}\sum^K_{k=1}-y_{nk}\,\log(\hat{y}_{nk})}_\text{Right Reason (Cross-Entropy)} + \underbrace{\lambda_1 \sum^N_{n=1}\sum^D_{d=1}\left[A_{nd}\pdv{x_{nd}}\sum^K_{k=1}\, \log(\hat{y}_{nk})\right]^2}_\text{Right Reasons} + \underbrace{\lambda_2 \sum_i \theta^2_i}_\text{Regularizer}
+\mathcal{L}(\theta, \vb{X}, y, A) &  = \underbrace{\sum^N_{n=1}\sum^K_{k=1}-y_{nk}\,\log(\hat{y}_{nk})}_\text{Right Answers (Cross-Entropy)} + \underbrace{\lambda_1 \sum^N_{n=1}\sum^D_{d=1}\left[A_{nd}\pdv{x_{nd}}\sum^K_{k=1}\, \log(\hat{y}_{nk})\right]^2}_\text{Right Reasons} + \underbrace{\lambda_2 \sum_i \theta^2_i}_\text{Regularizer}.
 \label{fn:1}
 \end{align}
 
+Where $\theta$ are the input parameters, $\vb{X}$ is the input vector, and $y$ are the target values. $\lambda_1$, $\lambda_2$, and $A$ are provided hyperparameters. The authors point out that $\lambda_1$ should be chosen such that the ``Right Answers" and ``Right Reasons" are of the same magnitude; they go on later to analyze the impact of varying the parameter. $A$ is the annotation matrix that masks unwanted gradients that can be provided via domain knowledge or recursively defined. The cross-entropy and regularizer terms are standard and the new ``Right Reasons" accounts for gradients in directions that are not preferred. 
+
+The authors introduce the ``Find-Another-Explanation" model where multiple neural nets are learned sequentially:
+\begin{align*}
+A_0 & = 0 & \theta_0, & = \argmax_\theta \, \mathcal{L}(\theta, \vb{X}, y, A_0)\\
+A_1 & = M_c[f_x|\theta_0], & \theta_1 & = \argmax_\theta \, \mathcal{L}(\theta, \vb{X}, y, A_1)\\
+A_2 & = M_c[f_x|\theta_1]\cup A_1, & \theta_2 & = \argmax_\theta \, \mathcal{L}(\theta, \vb{X}, y, A_2)\\
+&\cdots & &\cdots
+\end{align*}
+where $M_c$ is a binary mask that activates for features that reached a critical threshold, $c$, in the last stage. When the annotation matrix is not changed between subsequent runs, or when $\lambda_1$ must be tuned high in comparison to previous runs, then this model has spanned the whole of the viable model space and the set of resulting models can be passed to a  domain expert to select the proper reason. 
+
+In \cref{fn:1}, specifically when the annotation matrix is not designed by an expert, each subsequent run is unique from following runs. This means that if a previous run had a mixture of reasons, it is likely that all of them will be disregarded for future runs. This can be problematic if important and unimportant reasons show up in the same annotation matrix. To account for this, it is proposed that reasons will be locally independent. Formally, this is stated as 
+\[f(x) = f(x_{g_\text{max}}) \quad \forall \; \epsilon^\prime < \epsilon\]
+such that $x_{g_\text{max}} = \argmax g(x^\prime)$, $x^\prime \in N_{\epsilon^\prime}(x)$, and $N_{\epsilon^\prime} = \mathcal{B}_\epsilon(x) \cap \Omega_x$, where $\mathcal{B}_\epsilon(x)$ defines a hypersphere in the feature space $\Omega_x$ with radius $\epsilon$. 
+
+Replacing the annotation matrix reliant loss function in \cref{fn:1} with the idea of local independence provides 
 \begin{align}
 \mathcal{L}(\{ \theta_m \}) & = \underbrace{\sum_m \mathbb{E}_{p(x,y)} \left[ - \text{log}(p(y|f(x; \theta_m))\right]}_\text{Predictive Term (Cross-Entropy)} + \underbrace{\lambda\sum_{l\neq m}\textbf{IndepErr}\left(f(\cdot ;\theta_m), f(\cdot ; \theta_l)\right)}_\text{Diversity Measurement} \label{fn:2}\\
 &\approx \underbrace{\sum_m \mathbb{E}_{p(x,y)} \left[ - \text{log}(p(y|f(x; \theta_m))\right]}_\text{Predictive Term (Cross-Entropy)} + \underbrace{\lambda\sum_{l\neq m}\textbf{CosIndepErr}\left(f(\cdot ;\theta_m), f(\cdot ; \theta_l)\right)}_\text{Diversity Measurement} \label{fn:3}
 \end{align}
-
 where
 \begin{align*}
-\textbf{IndepErr}(f,g) = \mathbb{E}\left[\left(f(x_{g_\text{max}}) - f(x)\right)^2\right] \approx \left(\epsilon \, \grad{f(x)} \cdot \grad{g(x)}\right)^2 \righarrow \left(\frac{\grad{f(x)} \cdot \grad{g(x)}}{|f(x)|_2 |g(x)|_2}\right)^2 \equiv \cos[2](\grad{f(x)}, \grad{g(x)}) \equiv \textbf{CosIndepErr}(f,g)
+\textbf{IndepErr}(f,g) = \mathbb{E}\left[\left(f(x_{g_\text{max}}) - f(x)\right)^2\right] \approx \left(\epsilon \, \grad{f(x)} \cdot \grad{g(x)}\right)^2 \rightarrow \left(\frac{\grad{f(x)} \cdot \grad{g(x)}}{|f(x)|_2 |g(x)|_2}\right)^2 \\
+\equiv \cos[2](\grad{f(x)}, \grad{g(x)}) \equiv \textbf{CosIndepErr}(f,g).
 \end{align*}
+The latter conclusion where \textbf{IndepErr} is approximately the cosine error is achieved by two derivations. The first is a logical argument from the first order Taylor expansion that then gets to the cosine similarity after normalizing the result. The second is by considering the covariance between the change in two functions and minimizes the two after doing a Gaussian approximation. It should be noted that the final algorithm only has one hyperparameter that needs to be tuned, and clear guidance is given on how to pick it.
 
-\cref{fn:1}
+\cref{fn:2} naturally flows from the idea of \cref{fn:1} when the idea of recursively generating the annotation matrix is shifted to choosing the $A$ that maximizes local independence. Choosing the optimal $x_{g_\text{max}}$ is very difficult and can either be closely approximated with adversarial methods, as will be expanded on later, or using a linear approximation when $\epsilon \rightarrow 0$. The latter is what allows the function to be written as \cref{fn:3}.
+
 %---------------------------------------------------------------------
 
 \section{Algorithm Experiments}
