@@ -1,0 +1,113 @@
+\documentclass[twoside,11pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{geometry, graphicx}
+\usepackage{tabulary}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{hanging}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{url}
+
+\usepackage{enumitem}
+\usepackage{physics}
+
+\usepackage{mathtools}
+
+\usepackage{soul}
+
+\newtagform{Eq}{(Equation }{)}
+\usetagform{Eq}
+
+\graphicspath{ {../images} }    
+
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+
+\usepackage{jmlr2e}
+
+\usepackage[noabbrev,capitalize]{cleveref}
+
+
+
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+
+
+% Short headings should be running head and authors' last names
+
+
+\ShortHeadings{Dissertation Critique}{Jardee}
+\firstpageno{1}
+
+
+\begin{document}
+
+
+\title{Critique of \ul{Right for the Right Reasons: Training Neural Networks to be Interpretable, Robust, and Consistent with Expert Knowledge}}
+
+\author{\name William Jardee\email willjardee@gmail.com \\
+       \addr Physics Department\\
+       Montana State University\\
+       Bozeman, MT 59715, USA
+       }
+\editor{\,}
+
+\maketitle
+ 
+\section{Introduction}
+
+%---------------------------------------------------------------------
+
+\section{Related Works}
+\subsection{Explainable Models}
+\subsection{Ensemble and Adversarial Methods}
+\subsection{Human Centered Interpretability Measures}
+\subsection{Interpretable Representations}
+
+%---------------------------------------------------------------------
+
+\section{Right for the Right Reasons Algorithm}
+
+\begin{align}
+\mathcal{L}(\theta, \vb{X}, y, A) &  = \underbrace{\sum^N_{n=1}\sum^K_{k=1}-y_{nk}\,\log(\hat{y}_{nk})}_\text{Right Reason (Cross-Entropy)} + \underbrace{\lambda_1 \sum^N_{n=1}\sum^D_{d=1}\left[A_{nd}\pdv{x_{nd}}\sum^K_{k=1}\, \log(\hat{y}_{nk})\right]^2}_\text{Right Reasons} + \underbrace{\lambda_2 \sum_i \theta^2_i}_\text{Regularizer}
+\label{fn:1}
+\end{align}
+
+\begin{align}
+\mathcal{L}(\{ \theta_m \}) & = \underbrace{\sum_m \mathbb{E}_{p(x,y)} \left[ - \text{log}(p(y|f(x; \theta_m))\right]}_\text{Predictive Term (Cross-Entropy)} + \underbrace{\lambda\sum_{l\neq m}\textbf{IndepErr}\left(f(\cdot ;\theta_m), f(\cdot ; \theta_l)\right)}_\text{Diversity Measurement} \label{fn:2}\\
+&\approx \underbrace{\sum_m \mathbb{E}_{p(x,y)} \left[ - \text{log}(p(y|f(x; \theta_m))\right]}_\text{Predictive Term (Cross-Entropy)} + \underbrace{\lambda\sum_{l\neq m}\textbf{CosIndepErr}\left(f(\cdot ;\theta_m), f(\cdot ; \theta_l)\right)}_\text{Diversity Measurement} \label{fn:3}
+\end{align}
+
+where
+\begin{align*}
+\textbf{IndepErr}(f,g) = \mathbb{E}\left[\left(f(x_{g_\text{max}}) - f(x)\right)^2\right] \approx \left(\epsilon \, \grad{f(x)} \cdot \grad{g(x)}\right)^2 \righarrow \left(\frac{\grad{f(x)} \cdot \grad{g(x)}}{|f(x)|_2 |g(x)|_2}\right)^2 \equiv \cos[2](\grad{f(x)}, \grad{g(x)}) \equiv \textbf{CosIndepErr}(f,g)
+\end{align*}
+
+\cref{fn:1}
+%---------------------------------------------------------------------
+
+\section{Algorithm Experiments}
+
+%---------------------------------------------------------------------
+
+\section{Application of Algorithm in Adversarial Context}
+
+%---------------------------------------------------------------------
+
+\section{Interpretability with Human's Study}
+
+%---------------------------------------------------------------------
+
+\section{Conclusion}
+
+%---------------------------------------------------------------------
+
+\vskip 0.2in
+\bibliography{disertation_critique}
+
+\end{document}
