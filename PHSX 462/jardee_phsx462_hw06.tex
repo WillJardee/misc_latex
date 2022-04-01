@@ -1,0 +1,230 @@
+ \documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\begin{document}
+
+\title{PHSX 462: HW06}
+\author{William Jardee}
+\maketitle
+
+
+\section*{Griffiths 5.6}
+\begin{enumerate}[label=\alph*)]
+\item
+For distinguishable particles, we can simply use 
+\[\ev{(x_1 - x_2)^2} = \ev{x^2}_a + \ev{x^2}_b - 2\ev{x}_a\ev{x}_b.\]
+We already know, from an argument of symmetry, that $\displaystyle{\ev{x}_a = \ev{x}_b = \frac{a}{2}}$, so all we need to do is solve for $\ev{x^2}$:
+\begin{align*}
+\ev{x^2} & = \frac{2}{a}\int x^2 \sin[2](\frac{n\pi}{a}x)\dd{x}\\
+& = \frac{2}{a}\int x^2\left(\frac{1}{2}\left(1 - \cos(\frac{2n\pi}{a}x)\right)\right)\dd{x}\\
+& = \frac{1}{a}\left[\frac{1}{3}x^3\eval^a_0 - x^2\frac{a}{2n\pi}\sin(\frac{2n\pi}{a}x)\eval^a_0 + \int \frac{a}{n\pi}x \sin(\frac{2n\pi}{a}x)\dd{x}\right]\\
+& \cdots\\
+&= \frac{a^2}{3} - \frac{a^2}{2n^2\pi^2} = a^2\left[\frac{1}{3}-\frac{1}{2(n\pi)^2}\right]
+\end{align*}
+
+Plugging this sucker in, and simplifying we get:
+\begin{align*}
+\ev{(x_1-x_2)^2} & = a^2\left[\frac{1}{3}-\frac{1}{2(n\pi)^2}\right] + a^2\left[\frac{1}{3}-\frac{1}{2(l\pi)^2}\right] - 2\left(\frac{a}{2}\right)\left(\frac{a}{2}\right)\\
+& = \boxed{a^2\left[\frac{1}{6} - \frac{1}{2(n\pi)^2} - \frac{1}{2(l\pi)^2}\right]}
+\end{align*}
+
+\item For indistinguishable particles we have to use the equation
+\[\ev{(x_1 - x_2)^2}_\pm = \ev{x^2}_a + \ev{x^2}_b - 2\ev{x}_a\ev{x}_b \mp 2\left|\ev{x}_{ab}\right|^2.\]
+We already know the first three terms from the last part, so we just need to do $\ev{x}_{ab}$.
+
+\begin{align*}
+\ev{x}_{ab} & \equiv \frac{2}{a}\int_0^a x \sin(\frac{n\pi}{a}x)\sin(\frac{l\pi}{a}x)\dd{x}\\
+& = \frac{2}{a}\, \frac{1}{2}\int_0^a x\left[\cos(\frac{(n-l)\pi}{a}x) - \cos(\frac{(n+l)\pi}{a}x)\right]\\
+& \cdots\\
+& = \frac{a}{\pi^2} \left[\left(\frac{1}{n+l}\right)^2 \cos((n+l)\pi) - \left(\frac{1}{n-l}\right)^2\cos((n-l)\pi) + \left(\frac{1}{n-l}\right)^2 - \left(\frac{1}{n+l}\right)^2\right]
+\end{align*}
+Doing a quick analysis, cos can either be $\pm 1$ and tracking this through then 
+\begin{align*}
+\ev{x}_{ab} = \begin{cases}
+          \frac{-8nla}{\pi^2(n^2 - l^2)^2} \quad &\text{if } \, l \text{ and } n \text{ have same parity,}\\
+          0 \quad & \text{Otherwise.} \\
+     \end{cases}
+\end{align*}
+Extracting this to the solution in general:
+\begin{align*}
+\ev{(x_1 - x_2)^2} = \boxed{a^2\left[\frac{1}{6} - \frac{1}{2(n\pi)^2} - \frac{1}{2(l\pi)^2} - \begin{cases}
+          \frac{128n^2l^2}{\pi^4(n^2 - l^2)^4} \quad &\text{if } \, l \text{ and } n \text{ have same parity,}\\
+          0 \quad & \text{Otherwise.} \\
+     \end{cases}\right]}
+\end{align*}
+\item The derivation is the same as the last part, with the exception that the exchange integral will now be added, instead of subtracted; i.e.
+\begin{align*}
+\ev{(x_1 - x_2)^2} = \boxed{a^2\left[\frac{1}{6} - \frac{1}{2(n\pi)^2} - \frac{1}{2(l\pi)^2} + \begin{cases}
+          \frac{128n^2l^2}{\pi^4(n^2 - l^2)^4} \quad &\text{if } \, l \text{ and } n \text{ have same parity,}\\
+          0 \quad & \text{Otherwise.} \\
+     \end{cases}\right]}
+\end{align*}
+\end{enumerate}
+
+
+%--------------------------------------------------------------------------------
+\newpage
+
+
+
+\section*{Griffiths 5.10}
+\begin{enumerate}[label=\alph*)]
+\item
+\begin{align*}
+\text{Exchange: } & 1\leftrightarrow 2 &   &  2\leftrightarrow 3\\ 
+a\ket{\uparrow\uparrow\uparrow} & \rightarrow a \ket{\uparrow\uparrow\uparrow} \quad  : a = 0\\
+b\ket{\uparrow\uparrow\downarrow} & \rightarrow b \ket{\uparrow\uparrow\downarrow} \quad  : b = 0\\
+c\ket{\uparrow\downarrow\uparrow} & \rightarrow c \ket{\uparrow\downarrow\uparrow} \quad  : c = -e & c\ket{\uparrow\downarrow\uparrow} & \rightarrow c \ket{\uparrow\uparrow\downarrow} \quad  : c = -b = 0\\
+d\ket{\uparrow\downarrow\downarrow} & \rightarrow d \ket{\downarrow\uparrow\downarrow} \quad  : d = -f & d\ket{\uparrow\downarrow\downarrow} & \rightarrow d \ket{\uparrow\downarrow\downarrow} \quad  : d = 0\\
+e\ket{\downarrow\uparrow\uparrow} & \rightarrow e \ket{\uparrow\downarrow\uparrow} \quad  : e = -c &
+e\ket{\downarrow\uparrow\uparrow} & \rightarrow e \ket{\downarrow\uparrow\uparrow} \quad  : e = 0\\
+f\ket{\downarrow\uparrow\downarrow} & \rightarrow f \ket{\uparrow\downarrow\downarrow} \quad  : f = -d & f\ket{\downarrow\uparrow\downarrow} & \rightarrow f \ket{\downarrow\downarrow\uparrow} \quad  : f = -g = 0\\
+g\ket{\downarrow\downarrow\uparrow} & \rightarrow g \ket{\downarrow\downarrow\uparrow} \quad  : g = 0\\
+h\ket{\downarrow\downarrow\downarrow} & \rightarrow h \ket{\downarrow\downarrow\downarrow} \quad  : h = 0\\
+\end{align*}
+So, if $\chi(1,2,3)$ is a superposition of all the permutations of the spin, the only anti-symmetric solution is when all the coefficients are 0, which is not a solution. \hspace{4em} \checkmark
+\item 
+The determinant for a $3\times 3$ matrix is
+\[\frac{1}{\sqrt{3!}}\mqty|a&b&c\\d&e&f\\g&h&i| = \frac{1}{\sqrt{6}}[aei - afh-bdi+cdh+bfg - ceg].\]
+Replacing this determinant with the three states hinted at ($\psi_1(x)\ket{\uparrow}$, $\psi_1\ket{\downarrow}$, and $\psi_2(x)\ket{\uparrow}$) provides 
+\begin{align*}
+\rightarrow \frac{1}{\sqrt{6}} \Big[ \quad \, &  \psi_1(x_1)\ket{\uparrow}_1\psi_1(x_2)\ket{\downarrow}_2\psi_2(x_3)\ket{\uparrow}_3\\
+-\,&\psi_1(x_1)\ket{\uparrow}_1\psi_2(x_2)\ket{\uparrow}_2\psi_1(x_3)\ket{\downarrow}_3\\
+-\,&\psi_1(x_1)\ket{\downarrow}_1\psi_1(x_2)\ket{\uparrow}_2\psi_2(x_3)\ket{\uparrow}_3\\
++\,&\psi_2(x_1)\ket{\uparrow}_1\psi_1(x_2)\ket{\uparrow}_2\psi_1(x_3)\ket{\downarrow}_3\\
++\,&\psi_1(x_1)\ket{\downarrow}_1\psi_2(x_2)\ket{\uparrow}_2\psi_1(x_3)\ket{\uparrow}_3\\
+-\,&\psi_2(x_1)\ket{\uparrow}_1\psi_1(x_2)\ket{\downarrow}_2\psi_1(x_3)\ket{\uparrow}_3 \quad \Big]
+\end{align*}
+The energy has a degeneracy of $\boxed{\, 6 \, }$ where the energies are $\displaystyle{E = \frac{2\pi^2 \hbar^2}{2ma^2} + \frac{4\pi^2\hbar^2}{2ma^2} = \boxed{\,\frac{3\pi^2\hbar^2}{ma^2} \, }}$
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+
+
+\section*{Question 3}
+
+\[\hat{H} = \underbrace{\left\{-\frac{\hbar^2}{2m}\nabla_1^2 - \frac{1}{4\pi\varepsilon_0}\frac{2e^2}{r_1}\right\} + \left\{-\frac{\hbar^2}{2m}\nabla_2^2 - \frac{1}{4\pi\varepsilon_0}\frac{2e^2}{r_2}\right\}}_{H_0} + \underbrace{\frac{1}{4\pi\varepsilon_0}\frac{e^2}{\left|\vec{r_1} - \vec{r_2}\right|}}_{H_1}\]
+We already know the individual components, so let's show the process, then jump to the answer.
+\begin{align*}
+E_0^0 = \ev{H_0} & = 2 * 2^2 * E_0 \approx 8 (-13.6\text{ eV}) = -109 \text{ eV}
+\end{align*}
+Pulling the answer from Problem 5.15:
+\begin{align*}
+E_0^1 = \ev{H_1} & = \frac{e^2}{4\pi\varepsilon_0}\ev{\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}} = \frac{e^2}{4\pi\varepsilon_0} \frac{5}{4a} \approx 34 \text{ eV}
+\end{align*}
+Putting these two parts together
+\[E_0 \approx E_0^0 + E_0^1 = -109\text{ eV} + 34 \text{ eV} = \boxed{\, 75 \text{ eV}\,}.\]
+
+It should be noted that $E_0^0 \backsim E_0^1$, so using the first-order perturbation is not viable.
+
+%--------------------------------------------------------------------------------
+\newpage
+
+
+
+\section*{Question 4}
+A quick reminder of the hamiltonian for this setup:
+\[\hat{H} = \underbrace{\left\{-\frac{\hbar^2}{2m}\nabla_1^2 - \frac{1}{4\pi\varepsilon_0}\frac{2e^2}{r_1}\right\} + \left\{-\frac{\hbar^2}{2m}\nabla_2^2 - \frac{1}{4\pi\varepsilon_0}\frac{2e^2}{r_2}\right\}}_{H_0} + \underbrace{\frac{1}{4\pi\varepsilon_0}\frac{e^2}{\left|\vec{r_1} - \vec{r_2}\right|}}_{H_1}.\]
+
+For the 2S state the two states are
+\begin{align*}
+\text{Parahelium: } & \frac{1}{\sqrt{2}}\left(\ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})} + \ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})}\right)\otimes \frac{1}{\sqrt{2}}\left(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right), \\
+\text{and Orthohelium: } & \frac{1}{\sqrt{2}}\left(\ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})} - \ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})}\right)\otimes \ket{\uparrow\downarrow}.
+\end{align*}
+I chose the $\ket{\uparrow\uparrow}$ to keep the problem simple; any of the three triplet states would have been valid. As we will see in a second, they will cancel out either way.
+
+With different spin configurations, the $H_0$ does not change. So, for both the parahelium and orthohelium the energy is the sum of an electron in the ground state and an electron in the first excited state, that is $\displaystyle{E_1^0 = \frac{\pi^2\hbar^2}{2ma^2} + \frac{4\pi^2\hbar^2}{2ma^2} = \frac{5\pi^2\hbar^2}{2ma^2}}$ for both configurations. 
+
+Applying the first-order perturbation to the parahelium:
+\begin{align*}
+E^1_{para} & = \ev{H_1}{Para}\\
+& = \frac{e^2}{4\pi\varepsilon_0}\left(\bra{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})} + \bra{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})}\right)\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\left(\ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})} + \ket{\psi_{100}(\vec{r_1})\psi_{200}(\vec{r_2})}\right)\\
+& \hspace{4em} \cdot \cancelto{1}{\frac{1}{2}\left(\bra{\uparrow\downarrow} - \bra{\downarrow\uparrow}\right)\left(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\right)}\\
+& = \frac{e^2}{8\pi\varepsilon_0}\left(\bra{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)} \right.\\
+& \hspace{4em} + \bra{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{200}(\vec{r}_1)\psi_{100}(\vec{r}_2)} \\
+& \hspace{4em} + \bra{\psi_{200}(\vec{r}_1)\psi_{100}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)} \\
+& \hspace{4em} + \left. \bra{\psi_{200}(\vec{r}_1)\psi_{100}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{200}(\vec{r}_1)\psi_{100}(\vec{r}_2)}\right)\\
+& = \frac{e^2}{4\pi\varepsilon_0}\left(\underbrace{\bra{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)}}_C \right. \\
+&  \hspace{4em} + \left.\underbrace{\bra{\psi_{100}(\vec{r}_1)\psi_{200}(\vec{r}_2)}\frac{1}{\left|\vec{r_1} - \vec{r_2}\right|}\ket{\psi_{200}(\vec{r}_1)\psi_{100}(\vec{r}_2)}}_J\right)\\
+& = \frac{e^2}{4\pi\varepsilon_0}(C + J)
+\end{align*}
+Where the $C$ is the ``Coulomb Integrals" and $J$ is the ``Exchange Integral". Tracking the negatives that are introduced for the Orthohelium, the result is
+\begin{align*}
+E^1_{Ortho} & = \frac{e^2}{4\pi\varepsilon_0}(C - J)
+\end{align*} 
+
+Putting this this with energy from $H_0$, the 2S energies are
+\begin{align*}
+& \boxed{E_{Para} \approx \frac{5\pi^2\hbar^2}{2ma^2} + \frac{e^2}{4\pi\varepsilon_0}(C + J)}&  & \boxed{E_{Ortho} \approx \frac{5\pi^2\hbar^2}{2ma^2} + \frac{e^2}{4\pi\varepsilon_0}(C - J)}
+\end{align*}
+The difference in these two energies is:
+\[\boxed{\Delta E \approx 2J}\]
+
+Reading off of Table 5.1, the change in energy is about $0.7 \text{ eV}$. So, $\boxed{J \approx 0.35 \text{eV}}$.
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\section*{Question 5}
+\begin{enumerate}[label=\alph*)]
+\item 
+This is just reading off of the table:
+\begin{align*}
+& & &\underline{L^2}  & & \underline{m_l} &  \underline{\text{sym?}}\\
+\ket{2 \, 2} &=  \ket{1 \, 1} \otimes \ket{1 \, 1} && 2 && 2 & \text{sym}\\
+\ket{2 \, 1} & = \frac{1}{\sqrt{2}}\left(\ket{1 \, 1}\otimes \ket{1 \, 0} + \ket{1 \, 0} \otimes \ket{1 \, 1}\right) && 2 && 1 & \text{sym}\\
+\ket{1 \, 1} & = \frac{1}{\sqrt{2}}\left(\ket{1 \, 0}\otimes \ket{1 \, 1} - \ket{1 \, 1} \otimes \ket{1 \, 0}\right) && 1 && 1 & \text{asym}\\
+\ket{2 \, 0} & = \frac{1}{\sqrt{6}}\ket{1 \, 1} \otimes \ket{1 \, -1} + \sqrt{\frac{2}{3}}\ket{1 \, 0}\otimes \ket{1 \, 0} + \frac{1}{\sqrt{6}}\ket{1 \, -1}\otimes \ket{1 \, 1} && 2 && 0 & \text{sym}\\
+\ket{1 \, 0} &= \frac{1}{\sqrt{2}}\left(\ket{1 \, 1}\otimes \ket{1 \, -1} - \ket{1 \, -1}\otimes \ket{1 \, 1}\right) && 1 && 0 & \text{asym}\\
+\ket{0 \, 0} & = \frac{1}{\sqrt{3}}\left(\ket{1 \, 1}\otimes\ket{1 \, -1} - \ket{1 \, 0}\otimes \ket{1 \, 0} + \ket{1 -1}\otimes \ket{1 \, 1}\right) && 0 && 0 & \text{sym}\\
+\ket{2 \, -1} & = \frac{1}{\sqrt{2}}\left(\ket{1 \, 0}\otimes \ket{1 \, -1} + \ket{1 \, -1}\otimes\ket{1 \, 0}\right) && 2 && -1 & \text{sym}\\
+\ket{1 \, -1} &= \frac{1}{\sqrt{2}}\left(\ket{1 \, 0}\otimes \ket{1 \, -1} - \ket{1 \, -1}\otimes \ket{1 \, 0}\right) && 1 && -1 & \text{asym}\\
+\ket{2 \, -2} &= \ket{1 \, -1} \otimes \ket{1 \, -1} && 2 && -2 & \text{sym}
+\end{align*}
+
+\item Following Hund's Laws, we need to fill in with the maximum spin. The max of both would be two ``ups"; i.e. $\boxed{\ket{\uparrow\uparrow}}$. this is symmetric, so we need to get an asymmetric spatial wavefunction. 
+
+\item We are allowed to use any of the asymmetric wavefunctions, so the set of possible sets is
+\[\boxed{\left\{\ket{1 \, 1}, \ket{1 \, 0}, \ket{1 \, -1}\right\}}.\]
+
+\item All of these states have the same $L$, so all three of them are valid solutions. Putting them together as a superposition of states gives
+\[\boxed{\frac{1}{\sqrt{3}}\left(\ket{1 \, 1} + \ket{1 \, 0} + \ket{1 \, -1}\right)\otimes \ket{\uparrow\uparrow}}.\]
+
+\item There are total of 6 possible states to fill, so it is not half way full yet. Thus, Hund's Law tells us that 
+\[\abs{\vb{J}} = \abs{\vb{L} - \vb{S}} \Rightarrow \abs{1 - \frac{1}{2}} = \boxed{\frac{1}{2}}\]
+\end{enumerate}
+
+%--------------------------------------------------------------------------------
+\newpage
+
+\end{document}

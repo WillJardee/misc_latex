@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: disertation_critique.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plainnat.bst
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+Database file #1: disertation_critique.bib
+Warning--empty booktitle in 2016:Ribeioro
+You've used 11 entries,
+            2773 wiz_defined-function locations,
+            664 strings with 6883 characters,
+and the built_in function-call counts, 5117 in all, are:
+= -- 459
+> -- 286
+< -- 7
++ -- 98
+- -- 87
+* -- 385
+:= -- 776
+add.period$ -- 34
+call.type$ -- 11
+change.case$ -- 61
+chr.to.int$ -- 11
+cite$ -- 23
+duplicate$ -- 255
+empty$ -- 415
+format.name$ -- 100
+if$ -- 1085
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 11
+newline$ -- 63
+num.names$ -- 44
+pop$ -- 127
+preamble$ -- 1
+purify$ -- 51
+quote$ -- 0
+skip$ -- 211
+stack$ -- 0
+substring$ -- 158
+swap$ -- 43
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 116
+warning$ -- 1
+while$ -- 45
+width$ -- 0
+write$ -- 149
+(There was 1 warning)
