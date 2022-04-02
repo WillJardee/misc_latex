@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,12 +17,35 @@ Leo Breiman.
 \newblock Random forests.
 \newblock \emph{Machine learning}, 45\penalty0 (1):\penalty0 5--32, 2001.
 
+\bibitem[Chen et~al.(2018)Chen, Li, Grosse, and Duvenaud]{chen2018isolating}
+Ricky~TQ Chen, Xuechen Li, Roger~B Grosse, and David~K Duvenaud.
+\newblock Isolating sources of disentanglement in variational autoencoders.
+\newblock \emph{Advances in neural information processing systems}, 31, 2018.
+
+\bibitem[Chen et~al.(2016)Chen, Duan, Houthooft, Schulman, Sutskever, and
+  Abbeel]{chen2016infogan}
+Xi~Chen, Yan Duan, Rein Houthooft, John Schulman, Ilya Sutskever, and Pieter
+  Abbeel.
+\newblock Infogan: Interpretable representation learning by information
+  maximizing generative adversarial nets.
+\newblock \emph{Advances in neural information processing systems}, 29, 2016.
+
 \bibitem[Goodfellow et~al.(2014)Goodfellow, Pouget-Abadie, Mirza, Xu,
   Warde-Farley, Ozair, Courville, and Bengio]{goodfellow2014generative}
 Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
   Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
 \newblock Generative adversarial nets.
 \newblock \emph{Advances in neural information processing systems}, 27, 2014.
+
+\bibitem[Hinton and Salakhutdinov(2006)]{hinton2006reducing}
+Geoffrey~E Hinton and Ruslan~R Salakhutdinov.
+\newblock Reducing the dimensionality of data with neural networks.
+\newblock \emph{science}, 313\penalty0 (5786):\penalty0 504--507, 2006.
+
+\bibitem[Kingma and Welling(2013)]{kingma2013auto}
+Diederik~P Kingma and Max Welling.
+\newblock Auto-encoding variational bayes.
+\newblock \emph{arXiv preprint arXiv:1312.6114}, 2013.
 
 \bibitem[Kurakin et~al.(2016)Kurakin, Goodfellow, and
   Bengio]{kurakin2016adversarial}
@@ -53,6 +76,11 @@ Tim Miller.
   sciences.
 \newblock \emph{Artificial intelligence}, 267:\penalty0 1--38, 2019.
 
+\bibitem[Olah et~al.(2017)Olah, Mordvintsev, and Schubert]{olah2017feature}
+Chris Olah, Alexander Mordvintsev, and Ludwig Schubert.
+\newblock Feature visualization.
+\newblock \emph{Distill}, 2\penalty0 (11):\penalty0 e7, 2017.
+
 \bibitem[Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin]{2016:Ribeioro}
 Marco~Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.
 \newblock "why should i trust you?": Explaining the predictions of any
@@ -60,6 +88,12 @@ Marco~Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.
 \newblock KDD '16, page 1135–1144, New York, NY, USA, 2016. Association for
   Computing Machinery.
 \newblock ISBN 9781450342322.
+
+\bibitem[Ross et~al.(2017)Ross, Hughes, and Doshi-Velez]{ross2017right}
+Andrew~Slavin Ross, Michael~C Hughes, and Finale Doshi-Velez.
+\newblock Right for the right reasons: Training differentiable models by
+  constraining their explanations.
+\newblock \emph{arXiv preprint arXiv:1703.03717}, 2017.
 
 \bibitem[Zaidan et~al.(2007)Zaidan, Eisner, and Piatko]{2007:zaidan}
 Omar Zaidan, Jason Eisner, and Christine Piatko.

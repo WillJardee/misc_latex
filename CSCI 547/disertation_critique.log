@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  1 APR 2022 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  1 APR 2022 16:03
 entering extended mode
 **./disertation_critique.tex
 (disertation_critique.tex
@@ -755,49 +755,48 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-[1{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+Underfull \vbox (badness 2050) has occurred while \output is active []
 
-]
+ [1{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+
+] [2] [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2]
-Underfull \vbox (badness 6078) has occurred while \output is active []
-
- [3]
-[4] [5]
-<dis_fig1.png, id=141, 641.39626pt x 676.02562pt>
+ [4]
+[5]
+<dis_fig1.png, id=151, 641.39626pt x 676.02562pt>
 File: dis_fig1.png Graphic file (type png)
 <use dis_fig1.png>
 Package pdftex.def Info: dis_fig1.png  used on input line 150.
 (pdftex.def)             Requested size: 325.215pt x 342.77765pt.
-<dis_fig2.png, id=143, 616.55344pt x 265.74281pt>
+<dis_fig2.png, id=157, 616.55344pt x 265.74281pt>
 File: dis_fig2.png Graphic file (type png)
 <use dis_fig2.png>
 Package pdftex.def Info: dis_fig2.png  used on input line 156.
 (pdftex.def)             Requested size: 325.215pt x 140.17395pt.
- [6]
-<dis_fig3.png, id=153, 1011.78pt x 481.8pt>
+ [6] [7 <./dis_fig1.png>]
+<dis_fig3.png, id=189, 1011.78pt x 481.8pt>
 File: dis_fig3.png Graphic file (type png)
 <use dis_fig3.png>
 Package pdftex.def Info: dis_fig3.png  used on input line 172.
 (pdftex.def)             Requested size: 411.93767pt x 196.1645pt.
 
-Underfull \vbox (badness 4144) has occurred while \output is active []
+Underfull \vbox (badness 2142) has occurred while \output is active []
 
- [7 <./dis_fig1.png>] [8 <./dis_fig2.png> <./dis_fig3.png>] [9] (disertation_cr
-itique.bbl
-[10]) [11] (disertation_critique.aux)
+ [8 <./dis_fig2.png>] [9 <./dis_fig3.png>] (disertation_critique.bbl [10] [11])
+ [12]
+(disertation_critique.aux)
 Package rerunfilecheck Info: File `disertation_critique.out' has not changed.
 (rerunfilecheck)             Checksum: CB4A1141DF9E6FF134707AECE9A3420A;1885.
  ) 
 Here is how much of TeX's memory you used:
- 21032 strings out of 478927
- 398124 string characters out of 2851586
- 711566 words of memory out of 3000000
- 38538 multiletter control sequences out of 15000+600000
+ 21057 strings out of 478927
+ 398673 string characters out of 2851586
+ 716566 words of memory out of 3000000
+ 38556 multiletter control sequences out of 15000+600000
  415654 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,19n,81p,1472b,892s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,19n,81p,1472b,904s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmbsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/cm/cmbx10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/
@@ -817,9 +816,9 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
 WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sy
 mbols/msbm10.pfb>
-Output written on disertation_critique.pdf (11 pages, 1085361 bytes).
+Output written on disertation_critique.pdf (12 pages, 1094020 bytes).
 PDF statistics:
- 258 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
+ 298 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
  104 words of extra memory for PDF output out of 10000 (max. 10000000)
 
