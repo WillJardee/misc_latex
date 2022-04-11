@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  2 APR 2022 19:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.10.25)  8 APR 2022 16:43
 entering extended mode
-**./disertation_critique.tex
-(disertation_critique.tex
+**./jardee_project_proposal.tex
+(jardee_project_proposal.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-08-27>
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -622,8 +622,8 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 )
 Package translations Info: No language package found. I am going to use `englis
 h' as default language. on input line 50.
- (disertation_critique.aux)
-\openout1 = `disertation_critique.aux'.
+ (jardee_project_proposal.aux)
+\openout1 = `jardee_project_proposal.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
 LaTeX Font Info:    ... okay on input line 50.
@@ -739,86 +739,58 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 50.
 LaTeX Info: Redefining \pageref on input line 50.
 LaTeX Info: Redefining \nameref on input line 50.
- (disertation_critique.out) (disertation_critique.out)
+ (jardee_project_proposal.out) (jardee_project_proposal.out)
 \@outlinefile=\write4
-\openout4 = `disertation_critique.out'.
+\openout4 = `jardee_project_proposal.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
 
 
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 66.
 
 
 (C:\Users\WillsPc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \vbox (badness 2050) has occurred while \output is active []
+[1{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
- [1{C:/Users/WillsPc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+]
+Overfull \hbox (0.18307pt too wide) in paragraph at lines 85--86
+\OT1/cmr/m/n/10.95 The the-o-ret-i-cal ba-sis of the Killing equa-tion is read-
+ily avail-able on-line and rel-a-tively straight-
+ []
 
-] [2] [3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-[5]
-<dis_fig1.png, id=151, 641.39626pt x 676.02562pt>
-File: dis_fig1.png Graphic file (type png)
-<use dis_fig1.png>
-Package pdftex.def Info: dis_fig1.png  used on input line 150.
-(pdftex.def)             Requested size: 325.215pt x 342.77765pt.
-<dis_fig2.png, id=157, 616.55344pt x 265.74281pt>
-File: dis_fig2.png Graphic file (type png)
-<use dis_fig2.png>
-Package pdftex.def Info: dis_fig2.png  used on input line 156.
-(pdftex.def)             Requested size: 325.215pt x 140.17395pt.
- [6] [7 <./dis_fig1.png>]
-<dis_fig3.png, id=189, 1011.78pt x 481.8pt>
-File: dis_fig3.png Graphic file (type png)
-<use dis_fig3.png>
-Package pdftex.def Info: dis_fig3.png  used on input line 172.
-(pdftex.def)             Requested size: 411.93767pt x 196.1645pt.
-
-Underfull \vbox (badness 2142) has occurred while \output is active []
-
- [8 <./dis_fig2.png>] [9 <./dis_fig3.png>] (disertation_critique.bbl [10] [11])
- [12]
-(disertation_critique.aux)
-Package rerunfilecheck Info: File `disertation_critique.out' has not changed.
-(rerunfilecheck)             Checksum: CB4A1141DF9E6FF134707AECE9A3420A;1885.
+(jardee_project_proposal.bbl) [2] (jardee_project_proposal.aux)
+Package rerunfilecheck Info: File `jardee_project_proposal.out' has not changed
+.
+(rerunfilecheck)             Checksum: 6BB32C9A13F0FC6DCCC22D3A2AEA40F5;1199.
  ) 
 Here is how much of TeX's memory you used:
- 21057 strings out of 478927
- 398673 string characters out of 2851586
- 716566 words of memory out of 3000000
- 38556 multiletter control sequences out of 15000+600000
- 415654 words of font info for 70 fonts, out of 8000000 for 9000
+ 20892 strings out of 478927
+ 395994 string characters out of 2851586
+ 703572 words of memory out of 3000000
+ 38444 multiletter control sequences out of 15000+600000
+ 412059 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,19n,81p,1472b,904s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,10n,81p,1008b,752s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmbsy10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmbx10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/WillsPc/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/WillsPc/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users
-/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr6.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/WillsPc/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/WillsPc/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/WillsPc/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
-WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sy
-mbols/msbm10.pfb>
-Output written on disertation_critique.pdf (12 pages, 1094020 bytes).
+m/cmbx10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/WillsPc/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/WillsPc/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/WillsPc/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Wi
+llsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:
+/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
+y10.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb><C:/Users/WillsPc/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmti10.pfb>
+Output written on jardee_project_proposal.pdf (2 pages, 142458 bytes).
 PDF statistics:
- 298 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
- 104 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 95 PDF objects out of 1000 (max. 8388607)
+ 11 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

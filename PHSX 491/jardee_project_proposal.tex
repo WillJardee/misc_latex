@@ -1,0 +1,98 @@
+\documentclass[twoside,11pt]{article}
+
+\usepackage{amssymb,amsmath, mathtools} 
+\usepackage{geometry, graphicx}
+\usepackage{tabulary}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{hanging}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{url}
+
+\usepackage{enumitem}
+\usepackage{physics}
+
+\usepackage{mathtools}
+
+\usepackage{soul}
+
+\newtagform{Eq}{(Equation }{)}
+\usetagform{Eq}
+
+\graphicspath{ {../images} }    
+
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\usepackage{jmlr2e}
+
+\usepackage[noabbrev,capitalize]{cleveref}
+
+
+
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+
+
+% Short headings should be running head and authors' last names
+
+
+\ShortHeadings{GR Project Proposal1}{Jardee}
+\firstpageno{1}
+
+
+\begin{document}
+
+
+\title{Intro to General Relativity Project Proposal}
+
+\author{\name William Jardee\email willjardee@gmail.com \\
+       \addr Physics\\
+       Montana State University\\
+       Bozeman, MT 59715, USA
+       }
+\editor{N/A}
+
+\maketitle
+
+ 
+\section{Introduction}
+Many problems in physics come down to exploiting symmetries in problems. According to \cite{Noether_1971}: ``If the integral $I$ is invariant with respect to a $\mathcal{G}_{\infty \, \rho}$, then $\rho$ linearly independent combinations of the Lagrange expressions become divergences - and from this, conversely, invariance of $I$ with respect to $\mathcal{G}_\rho$ will follow." This idea is specified to work in general space-times as satisfying the Killing equation: 
+\[\nabla_{(\mu}K_{\nu)} = 0 \Rightarrow P^\mu \nabla_\mu\left(K_\nu P^\nu\right) = 0 \, ,\]
+where $K$ are referred to as the Killing vector field, or just Killing vectors for short \citep{carroll2019spacetime}. By solving these equations, the symmetries of the space can be deduced, and from there, the related conserved quantities are also deduced. However, as with most calculations that exist in general relativity, the solutions are far from trivial.
+
+A simple example of the Killing vectors for Minkowski space are the
+\begin{align*}
+& \text{Spacial:} & \text{ and } & \text{rotational:}\\
+X^\mu & = [1,0,0] & R^\mu & = [-y, x, 0]\\
+Y^\mu & = [0,1,0] & S^\mu & = [z, 0 , -x]\\
+Z^\mu & = [0,0,1] & T^\mu & = [0, -z, y].
+\end{align*}
+It should be noted that these only account for six of the Lie groups that explain the space, the spacial and rotational generators. The other four are 3 Lorentz boosts and one time translation (which presents itself as the conserved value of energy with the operator $H$). 
+
+These Killing vectors show up in the physical space as symmetries. So, it begs whether computational methods can be used to access these symmetries directly and if they can thus be used to inform us about the metric. A potential route of answering this would be through unsupervised learning in the machine learning realm. Supervised learning attempts to take unlabeled data and detect patterns in it through methods such as dimensionality reduction or clustering. Principle Component Analysis (PCA) extracts higher-level information from a data set by extracting the most defining eigenvector. A more modern approach is t-distributed Stochastic Neighbor Embedding (t-SNE) which uses a Gaussian distribution around each point to estimate whether the two are likely to have come from the same class. Further research needs to be done into whether there are modern methods that work to detect abstract symmetries, such as rotational and modular, in data sets. 
+
+\section{Final Project Outline}
+The final project will be a written report tackling a couple of ideas around the Killing equation.
+
+\subsection{The Killing equation}
+The theoretical basis of the Killing equation is readily available online and relatively straightforward. A portion of the final result will cover a brief derivation of the Killing equation, consistent with modern textbooks, and delve into how the equation interacts with Lie groups. The spacial and rotational components of the Poincare group were extracted using the Minkowski metric; the reason that the Lorentz boosts and time symmetry were not extracted will be analyzed. This idea may lead to understanding that will help understand the shortcomings of using a machine learning approach. 
+
+\subsection{The Killing vectors for the Schwarzschild metric} 
+As an extension of the theory behind the Killing equation, a derivation of the Killing vectors of the Schwarzchild metric will be derived. Most of the derivation will likely be allocated to an appendix after the bulk of the paper to aid in the flow of the final project. The Schwarzschild metric is the preferred choice for this project as it is the simplest solution to the Einstein equation and undoubtedly has worked out solutions accessible online. The consequences and uses of these vectors will be explored to better understand the theory and its applications of the theory.
+
+\subsection{Proposed approach for using unsupervised learning to extract Killing vectors}
+Using machine learning to extract Killing vectors will be explored to round out the discussion on Killing vectors. It is unclear whether there are any good ML methods, specifically unsupervised learning methods, that can tackle any arbitrary symmetry. Currently, plans are somewhat limited to linear manifolds. All physical topologies can be explained as differential manifolds and further described as a locally flat. Thus, algorithms used to extract linear data may apply to the system locally, then generalize to the whole space. A potential approach, or a reason why this approach won't work, will be given. 
+
+
+
+\vskip 0.2in
+\bibliography{jardee_project_proposal}
+
+\end{document}
