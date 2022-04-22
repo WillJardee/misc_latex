@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW08}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item \textit{Show that } $\displaystyle{\Gamma^\lambda_{\mu\nu} = 0}$.
+
+Let us begin with the equation of the Christoffel symbol
+\[\Gamma^\lambda_{\nu \mu} = \frac{1}{2}g^{\beta \lambda}\left[\partial_\mu g_{\nu \beta} + \partial_\nu g_{\mu \beta} - \partial_\beta g_{\nu\mu}\right].\]
+Taking the fact that the metric we are looking at is diagonal, then the equation simplifies as
+\begin{align*}
+\Gamma^\lambda_{\nu \mu} &= \frac{1}{2}g^{\beta \lambda}\left[\partial_\mu g_{\nu \beta} + \partial_\nu g_{\mu \beta} - \partial_\beta g_{\nu\mu}\right]\\
+& = \frac{1}{2}g^{\lambda\lambda} \left[\cancelto{0}{\partial_\mu g_{\nu \lambda}} + \cancelto{0}{\partial_\nu g_{\mu \lambda}} - \cancelto{0}{\partial_\lambda g_{\nu\mu}}\right]\\
+& = \, \boxed{0} \, .  \qquad \checkmark
+\end{align*}
+
+\item \textit{Show that } $\displaystyle{\Gamma^\lambda_{\mu \mu} = -\frac{1}{2}\left(g_{\lambda\lambda}\right)^{-1}\partial_\lambda \, g_{\mu\mu}}$.
+
+This starts at the same point, but not everything cancels out now:
+\begin{align*}
+\Gamma^\lambda_{\mu\mu} & = \frac{1}{2}g^{\beta \lambda} \left[\partial_\mu g_{\mu\beta} + \partial_\mu g_{\mu \beta} - \partial_\beta g_{\mu \mu}\right]\\
+& = \frac{1}{2} g^{\lambda\lambda} \left[\cancelto{0}{\partial_\mu g_{\mu \lambda}} + \cancelto{0}{\partial_\mu g_{\mu \lambda}} - \partial_\lambda g_{\mu\mu}\right]\\
+& = \frac{1}{2}g^{\lambda\lambda}\left[-\partial_\lambda g_{\mu\mu}\right]\\
+& = \, \boxed{-\frac{1}{2}\left(g_{\lambda\lambda}\right)^{-1}\partial_\lambda \, g_{\mu\mu}} \, \qquad \checkmark
+\end{align*}
+where the last line is justified by realizing that the metric is diagonal and, thus, the inverse is the reciprocal of the diagonal elements.
+
+\item \textit{Show that } $\displaystyle{\Gamma^\lambda_{\mu \lambda} = \partial_\mu \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right)}$.
+
+This one is quite clever, I like it! Let's start where we have started the last two parts (but skipping a couple cancellations in the beginning):
+\begin{align*}
+\Gamma^\lambda_{\mu \lambda} & = \frac{1}{2} g^{\lambda\lambda}\left[\cancelto{0}{\partial_\lambda g_{\mu\lambda}} + \partial_\mu g_{\lambda\lambda}\right]\\
+& = \frac{1}{2}\left(g_{\lambda\lambda}\right)^{-1}\partial_\mu \, g_{\lambda\lambda}\\
+& = \frac{1}{2}\left(g_{\lambda\lambda}\right)^{-1/2}\left(g_{\lambda\lambda}\right)^{-1/2}\partial_\mu g_{\lambda\lambda}\\
+& = \, \boxed{\partial_\mu \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right)} \, . \qquad \checkmark
+\end{align*}
+
+\item \textit{Show that } $\displaystyle{\Gamma^\lambda_{\lambda \lambda} = \partial_\lambda \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right)}$.
+
+If we take the previous part and let $\mu \rightarrow \lambda$ then we get to 
+\[\Gamma^\lambda_{\lambda \lambda} = \partial_\lambda \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right).\]
+This, however, does overlook some of the cancellations of $g_{\mu \lambda}$. So, let's recalculate the beginning of the derivation.
+\begin{align*}
+\Gamma^\lambda_{\lambda\lambda} & = \frac{1}{2}g^{\lambda\beta} \left[\partial_\lambda g_{\lambda\beta} + \partial_\lambda g_{\lambda\beta} - \partial_\beta g_{\lambda\lambda}\right]\\
+& = \frac{1}{2}g^{\lambda\lambda} \left[\partial_\lambda g_{\lambda\lambda} + \partial_\lambda g_{\lambda\lambda} - \partial_\lambda g_{\lambda\lambda}\right]\\
+& = \frac{1}{2}g^{\lambda\lambda} \left[\partial_\lambda g_{\lambda\lambda}\right]
+\end{align*}
+and, at this point, we have gotten back to the calculation done in the previous part. So, we will just jump to the conclusion of 
+\[\Gamma^\lambda_{\lambda\lambda} = \, \boxed{\partial_\lambda \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right)} \, .\]
+
+\item \textit{Find the Christoffel symbols for the Schwarzschild spacetime}.
+
+There are a total of nine that turn out to be non-negative (13 if you count identical ones), those are:
+\begin{align*}
+\Gamma^t _{rt} = \Gamma^t_{tr} & = \partial_r \left(\ln{\sqrt{\abs{g_{tt}}}}\right)\\
+& = \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right)\\
+\Gamma^r_{rr} &= \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right)\\
+\Gamma^r_{\theta\theta} & = -\frac{1}{2}\left(1-\frac{2GM}{r}\right)2r\\
+& = -(r-2GM)\\
+\Gamma^r_{\phi\phi} & = -(r-2GM)\sin[2](\theta)
+\end{align*}
+\begin{align*}
+\Gamma^\theta_{\theta r} = \Gamma^\theta_{r \theta} & = \partial_r \, \ln(\sqrt{r^2}) = \frac{1}{r}\\
+\Gamma^\theta_{\phi \phi} & = -\frac{1}{2}\left(\frac{1}{r^2}\right)\partial_\theta \, r^2 \sin[2](\theta)\\
+& = -\sin(\theta)\cos(\theta)\\
+\Gamma^\phi_{\theta \phi} = \Gamma^\phi_{\phi \theta} & = \partial_\theta \, \ln(r^2\sin[2](\theta))\\
+& = \frac{1}{\sin[2](\theta)} \sin(\theta)\cos(\theta) = \cot(\theta)\\
+\Gamma^r_{tt} & = \frac{GM}{r^2}\left(1 - \frac{2GM}{r}\right)\\
+\Gamma^\phi_{\phi r} = \Gamma^\phi_{r \phi} & = \partial_r \, \ln(r\sin(\theta)) = \frac{1}{r} \, .
+\end{align*}
+
+Wow, that's a lot of mess. Let's state them as (removing the duplicates) and letting $\theta = \pi/2$:
+\begin{align*}
+\Gamma^t_{rt} & = \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right) & \Gamma^r_{rr} & = \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right) & \Gamma^r_{\theta\theta} & = -(r-2GM)\\
+\Gamma^r_{tt} & = \frac{GM}{r^2}\left(1 - \frac{2GM}{r}\right) & \Gamma^r_{\phi\phi} & = -(r-2GM) & \Gamma^\theta_{r \theta} & = \frac{1}{r} \\
+ \Gamma^\theta_{\phi \phi} & = -\sin(\theta)\cos(\theta) = 0 & \Gamma^\phi_{\theta \phi} & = \cot(\theta) = 0 & \Gamma^\phi_{r \phi} & = \frac{1}{r} \, .
+\end{align*}
+
+The rest of the Christoffel symbols are zero.
+
+\item \textit{Verify your answer to part \textbf{d} with the geodesic equation}.
+
+So, I found it easier to rederive some of the values instead of manipulating our new equations into the form discussed in class. I start with the previous geodesics equation 
+\[\dv{\tau} \left(g_{\alpha \mu}\dv{x^\mu}{\tau}\right) - \frac{1}{2}\partial_\alpha g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} = 0\]
+and derive the appropriate part in parallel to the derivation from the equivalent geodesics equation 
+\[\dv[2]{x^\mu}{\tau} + \Gamma^\mu_{\alpha \beta}\dv{x^\alpha}{\tau}\dv{x^\beta}{\tau} = 0 \, .\]
+
+I will be skipping quite a few steps on the former (right) derivations for brevity's sake and both of our sanities'.
+
+For $t$:
+\begin{align*}
+\dv[2]{t}{\tau} - \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right)\dv{x^t}{\tau}\dv{x^r}{\tau} & = 0 & \dv{\tau}\left(g_{tt}\dv{x^t}{\tau}\right) - \frac{1}{2}\partial_\alpha g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} & = 0\\
+& & \dv{t}{\tau} \dv{\tau}g_{tt} + g_{tt}\dv[2]{t}{\tau} - 0 & = 0\\
+& & -\left(1-\frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right)\dv{t}{\tau}\dv{r}{\tau} + \dv[2]{t}{\tau} & = 0
+\end{align*}
+
+For $\theta$:
+\begin{align*}
+\dv[2]{x^\theta}{\tau} + \frac{2}{r}\dv{x^r}{\tau}\dv{x^\theta}{\tau} & = 0 & \dv{\tau}\left(g_{\theta\theta}\dv{\theta}{\tau}\right)-\frac{1}{2}\partial_\theta g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} & = 0\\
+& & \dv[2]{\theta}{\tau}r^2 + \dv{\theta}{\tau}2r \dv{r}{\tau} & = 0 \\
+& & \dv[2]{\theta}{\tau} + \frac{2}{r}\dv{\theta}{\tau}\dv{r}{\tau} & = 0 
+\end{align*}
+
+For $\phi$:
+\begin{align*}
+\dv[2]{\phi}{\tau} + \frac{2}{r}\dv{\phi}{\tau}\dv{r}{\tau} & = 0 & \dv{\tau}\left(g_{\phi\phi}\dv{\phi}{\tau}\right)-\frac{1}{2}\partial_\phi g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} & = 0\\
+& & \dv[2]{\phi}{\tau}r^2 + \dv{\phi}{\tau}\dv{r}{\tau}2r & = 0\\
+& & \dv[2]{\phi}{\tau} + \frac{2}{r}\dv{\phi}{\tau}\dv{r}{\tau} & = 0
+\end{align*}
+
+For $r$:
+\begin{align*}
+\dv[2]{r}{\tau} + \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r}\right)\left(\dv{r}{\tau}\right)^2 & + \left(\frac{GM}{r^2}\right)\left(1-\frac{2GM}{r}\right)\left(\dv{t}{\tau}\right)^2 \\
+& - (r - 2GM)\left[\left(\dv{\theta}{\tau}\right)^2 + \left(\dv{\phi}{\tau}\right)^2\right] = 0
+\end{align*}
+
+\begin{align*}
+\dv{\tau}\left(g_{rr}\dv{r}{\tau}\right)-\frac{1}{2}\partial_r g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau} & = 0\\
+\dv[2]{r}{\tau}g_{rr} + \dv{r}{\tau}\dv{\tau}g_{rr} - \frac{1}{2}\left[\partial_r g_{tt}\left(\dv{t}{\tau}\right)^2 + \partial_r g_{rr}\left(\dv{r}{\tau}\right)^2 + \partial_\theta g_{\theta\theta}\left(\dv{\theta}{\tau}\right)^2 + \partial_\phi g_{\phi\phi}\left(\dv{\phi}{\tau}\right)^2\right] & = 0\\
+\dv[2]{r}{\tau} + \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r}\right)\left(\dv{r}{\tau}\right)^2 + \left(\frac{GM}{r^2}\right)\left(1-\frac{2GM}{r}\right)\left(\dv{t}{\tau}\right)^2 \quad & \, \\
+- (r - 2GM)\left[\left(\dv{\theta}{\tau}\right)^2 + \left(\dv{\phi}{\tau}\right)^2\right] & = 0
+\end{align*}
+
+It may be messy, but it works. All four of the free variable, choices gave the same value for both geodesic equations.
+
+Copying down the four geodesics provide:
+\[\dv[2]{t}{\tau} - \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r^2}\right)\dv{x^t}{\tau}\dv{x^r}{\tau} 1= 0\]
+\[\dv[2]{x^\theta}{\tau} + \frac{2}{r}\dv{x^r}{\tau}\dv{x^\theta}{\tau} =  0\]
+\[\dv[2]{\phi}{\tau} + \frac{2}{r}\dv{\phi}{\tau}\dv{r}{\tau} = 0\]
+\begin{align*}
+\dv[2]{r}{\tau} + \left(1 - \frac{2GM}{r}\right)^{-1}\left(\frac{2GM}{r}\right)\left(\dv{r}{\tau}\right)^2 & + \left(\frac{GM}{r^2}\right)\left(1-\frac{2GM}{r}\right)\left(\dv{t}{\tau}\right)^2 \\
+& - (r - 2GM)\left[\left(\dv{\theta}{\tau}\right)^2 + \left(\dv{\phi}{\tau}\right)^2\right] = 0
+\end{align*}
+
+\end{enumerate}
+
+\end{document}
