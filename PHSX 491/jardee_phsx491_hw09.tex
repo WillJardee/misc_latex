@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW09}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item \textit{Why won't two dimensional flat space be an interesting calculation for the elements of the Riemann Tensor and curvature scalar?}
+
+Without actually calculating the value, the first guess is that it become trivial, probably saying that the curvator is just the $\theta$ component. There also isn't a three dimensional analysis we could do, like in part~\textbf{e)}.
+
+\item \textit{Final all non-zero Christoffel Symbols for the metric } $\displaystyle{\dd{s^2} = R^2 \dd{\theta^2} + R^2\sin[2](\theta)\dd{\phi^2}}$
+
+We know from the last homework
+\begin{align*}
+\Gamma^\lambda_{\nu\mu} & = 0 \, ,& \Gamma^\lambda_{\mu\mu} & = -\frac{1}{2}\left(g_{\lambda\lambda}\right)^{-1}\partial_\lambda g_{\mu\mu}\, ,\\
+\Gamma^\lambda_{\mu\lambda} & = \partial_\mu \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right) \, , \text{ and } & \Gamma^\lambda_{\lambda\lambda} & = \partial_\lambda \left(\ln(\sqrt{\abs{g_{\lambda\lambda}}})\right) \, ,
+\end{align*}
+where the metric is diagonal. Using this for this metric:
+\begin{align*}
+\Gamma^\phi_{\theta\theta} & = -\frac{1}{2}\left(\frac{1}{R^2\sin[2](\theta)}\right)\partial_\phi (R^2) = 0 \, ,\\
+\Gamma^\phi_{\theta \phi} = \Gamma^\phi_{\phi\theta} & = \partial\left(\ln(\sqrt{R^2 \sin[2](\theta)})\right) = \frac{1}{\sqrt{R^2 \sin[2](\theta)}}\frac{1}{2}\frac{1}{\sqrt{R^2\sin[2](\theta)}}2\sin(\theta)\cos(\theta)\\
+& = \cot(\theta) \, ,\\
+\Gamma^\phi_{\phi \phi} &= \partial_\phi\left(\ln(\sqrt{R^2\sin[2](\theta)})\right) = 0 \, ,\\
+\Gamma^\theta_{\theta\theta} & = \partial\left(\ln(R^2)\right) = 0 \, ,\\
+\Gamma^\theta_{\phi\theta} = \Gamma^\theta_{\theta\phi} & = \partial_\phi\left(\ln(\sqrt{R^2})\right) = 0 \, ,\\
+\Gamma^\theta_{\phi\phi} & = -\frac{1}{2}\frac{1}{R^2}\partial_\phi (R^2) = 0 \, , \text{ and }\\
+\Gamma^\theta_{\phi\phi} & = -\frac{1}{2}\left(\frac{1}{R^2}\right)\partial_\theta\left(R^2\sin[2](\theta)\right)\\
+& = -\sin(\theta)\cos(\theta) \, .
+\end{align*}
+From this, there are two Christoffel Symbols (three if you don't count symmetry) that are non-zero. They are:
+\begin{align*}
+\Gamma^\phi_{\theta\phi} = \Gamma^\phi_{\phi\theta} & = \cot(\theta) \, , \text{ and } & \Gamma^\theta_{\phi\phi} & = -\sin(\theta)\cos(\theta) \, .
+\end{align*}
+
+\item \textit{For a two dimensional space how many components of the Riemann Tensor will there be? Find the non-zero components fo the Riemann Tensor.}
+There are a total of $2^4=16$ elements that we ``need" to consider. But, if we look at symmetries there are really only six, that is:
+\[\phi\phi\phi\phi \, ,\]
+\[\phi\theta\theta\theta = -\theta\phi\theta\theta = \theta\theta\phi\theta = - \theta \theta \theta \phi \, ,\]
+\[\phi\theta\theta\phi = - \phi\theta\phi\theta = - \theta\phi \theta \phi = \theta\phi \phi \theta\, ,\]
+\[\phi\phi\theta\theta = \theta \theta\phi\phi\, ,\]
+\[\theta\phi\phi\phi = -\phi\theta\phi\phi = \phi\phi\theta\phi = -\phi\phi\phi\theta \, , \text{ and }\]
+\[\theta\theta\theta\theta \, . \]
+Saving both of us the laborious task of sifting through the non-zero terms, there are only two interesting lines. They are the $\phi\phi\theta\theta$ element:
+\begin{align*}
+R^\phi_{\phi\theta\theta} & = \partial_\theta \Gamma^\phi_{\phi\theta} - \partial_\theta \Gamma^\phi_{\phi\theta} + \Gamma^\phi_{\theta\gamma}\Gamma^\gamma_{\phi\theta} - \Gamma^\phi_{\theta\sigma}\Gamma^\sigma_{\phi\theta}\\
+& = \partial_\theta(\cot(\theta))-\partial_\theta(\cot(\theta)) \Gamma^\phi_{\theta\phi}\Gamma^\phi_{\phi\theta} - \Gamma^\phi_{\theta\phi}\Gamma^\phi_{\phi\theta} \\ 
+& = 0 \, ,
+\end{align*}
+and the $\phi\theta\theta\phi$ term:
+\begin{align*}
+R^\phi_{\theta\theta\phi} &= \partial_\theta\Gamma^\phi_{\theta\phi} - \partial\Gamma^\phi_{\theta\theta} + \Gamma^\phi_{\theta\gamma}\Gamma^\gamma_{\theta\phi} - \Gamma^\phi_{\phi\sigma}\Gamma^\sigma_{\theta\theta}\\
+& = \partial_\theta\Gamma^\phi_{\theta\phi} + \Gamma^\phi_{\theta\phi}\Gamma^\phi_{\theta\phi}\\
+& = \partial_\theta\left(\cot(\theta)\right) + \left(\cot(\theta)\right)^2\\
+& = -\csc[2](\theta)+ \cot[2](\theta)\\
+& = -1 \, .
+\end{align*}
+
+So, the only non-zero element out of the six unique elements of the Riemann Tensor is 
+\[R^\phi_{\theta\theta\phi} = -R^\phi_{\theta\phi\theta} = -R^\theta_{\phi\theta\phi} = R^\theta_{\phi\phi\theta} = -1 \, .\]
+
+\item \textit{Find the components of the Ricci tensor for this metric. From this, what is the curvature scalar?}
+
+The elements of the Ricci tensor are $\displaystyle{R^\alpha_{\beta \alpha \nu}}$. Using this, it is easy to get that the Ricci tensor is 
+\[R_{\beta\nu} = \mqty[1&0\\0&1] \, .\]
+This gives us a Ricci scalar, or curvature scalar, of
+\begin{align*}
+R  = g^{\beta\nu}R_{\beta\nu} & = \frac{1}{R^2} + \frac{1}{R^2\sin[2](\theta)}\\
+& = \frac{1}{R^2}\left(1 + \frac{1}{\sin[2](\theta)}\right)\\
+& = \frac{1}{R^2}\left(1 + \csc[2](\theta)\right) \, .
+\end{align*}
+
+\item \textit{Consider the two limits $R\rightarrow 0 $ and $R\rightarrow \infty$. Comment on what happens to the curvature scalar in these two limits. Does this make sense physically?}
+
+As $R\rightarrow 0$, the curvature scalar goes to infinity, which makes sense. As we collapse to a point all of the curving happens at once. 
+
+As $R\rightarrow \infty$, the curvature scalar goes to zero. This also makes sense, as the surface of the sphere becomes more and more flat as the sphere becomes larger (meaning less curving). 
+
+\end{enumerate}
+
+\end{document}
