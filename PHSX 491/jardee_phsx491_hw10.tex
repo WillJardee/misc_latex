@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[margin=0.8in]{geometry}
+
+% Math/Greek packages
+\usepackage{amssymb,amsmath,amsthm, mathtools} 
+\usepackage{algorithm, algorithmic}
+\usepackage{upgreek, siunitx}
+\usepackage{setspace}
+
+% Graphics/Presentation packages
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabulary, enumitem, array}
+\usepackage{xparse,mleftright,tikz}
+\usepackage{physics}
+
+% Misc packages
+\usepackage{fancyhdr}
+
+
+\usepackage[export]{adjustbox}
+
+\usepackage{esint}
+
+\sisetup{locale=US,group-separator = {,}}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+% General macro declarations
+
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\begin{document}
+
+\title{PHSX 491: HW10}
+\author{William Jardee}
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+\item \textit{Matter dominated, flat universe:}
+
+The matter term will dominate, so let us throw everything else away (also realize that the addition of all the $\Omega$ must be one, so $\Omega_m \approx 1$);
+\[\left(\frac{1}{H_0}\dv{a}{t}\right)^2 \approx \frac{\Omega_m}{a} \approx \frac{1}{a} \, .\]
+We have all taken differential equations, so let's just jump to the solution of
+\[a(t) = \left(\frac{3}{2}H_0t + C\right)^{2/3} \, .\]
+Using the initial condition $a(0) = 1$, we get that $C=1$. 
+
+To figure out how old the universe would be, we need to figure out when everything existed at one point, that is when $a(t)=0$. Doing this yields:
+\[0 = \left(\frac{3}{2}H_0 t+1\right)^{2/3} \longrightarrow \boxed{t = -\frac{2}{3 H_0}} \, .\]
+All together, this makes the universe pretty young, around $t \approx 4.8 \times 10^{7}$ years old. (Using that $H_0 = 13.9 \times 10^{-9}$ years)
+
+\item \textit{Radiation dominated, flat universe:}
+
+This is pretty much the same as the last part, but instead we get that 
+\[\left(\frac{1}{H_0}\dv{a}{t}\right)^2 \approx \frac{\Omega_r}{a^2} \approx \frac{1}{a^2} \, .\]
+Jumping to the solution:
+\[a(t) = \left(2H_0t+1\right)^{1/2} \, ,\]
+where I have already applied the initial condition $a(0) = 1$. 
+
+Solving 
+\[ 0 = \left(2H_0t+1\right)^{1/2} \longrightarrow \boxed{t = -\frac{1}{2H_0}} \, .\]
+This gives a pretty similar estimate of $t \approx 3.6 \times 10^{7}$ years old.
+
+\item \textit{Vaccum dominated, flat universe:}
+
+Finally, solving 
+\[\left(\frac{1}{H_0}\dv{a}{t}\right)^2 \approx \Omega_v a^2 \approx a^2\]
+gives
+\[a(t) = e^{H_0 t} \, .\]
+
+Now, solving this for 
+\[ 0 = e^{H_0 t} \longrightarrow \boxed{t \rightarrow \infty} \, .\]
+Interpreted, this means that the universe is infinitely old. Since we can see the beginning of the universe, that can't be the case. Consequently, the first two are viable models, but the one that makes intuitive sense (that space is filled with vacuum) is the only one that is convincingly wrong. 
+
+\end{enumerate}
+
+\end{document}

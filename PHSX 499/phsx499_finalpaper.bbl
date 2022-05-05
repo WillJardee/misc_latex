@@ -1,0 +1,63 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[B{\'e}nard et~al.(2021)B{\'e}nard, Biau, Da~Veiga, and
+  Scornet]{benard2021interpretable}
+Cl{\'e}ment B{\'e}nard, G{\'e}rard Biau, S{\'e}bastien Da~Veiga, and Erwan
+  Scornet.
+\newblock Interpretable random forests via rule extraction.
+\newblock In \emph{International Conference on Artificial Intelligence and
+  Statistics}, pages 937--945. PMLR, 2021.
+
+\bibitem[Blaser and Fryzlewicz(2016)]{blaser2016random}
+Rico Blaser and Piotr Fryzlewicz.
+\newblock Random rotation ensembles.
+\newblock \emph{The Journal of Machine Learning Research}, 17\penalty0
+  (1):\penalty0 126--151, 2016.
+
+\bibitem[Boruah et~al.(2022)Boruah, Biswas, and
+  Bandyopadhyay]{boruah2022transparent}
+Arpita~Nath Boruah, Saroj~Kumar Biswas, and Sivaji Bandyopadhyay.
+\newblock Transparent rule generator random forest (trg-rf): an interpretable
+  random forest.
+\newblock \emph{Evolving Systems}, pages 1--15, 2022.
+
+\bibitem[Breiman(2001)]{breiman2001random}
+Leo Breiman.
+\newblock Random forests.
+\newblock \emph{Machine learning}, 45\penalty0 (1):\penalty0 5--32, 2001.
+
+\bibitem[Griffiths and Schroeter(2018)]{griffiths2018introduction}
+David~J Griffiths and Darrell~F Schroeter.
+\newblock \emph{Introduction to quantum mechanics}.
+\newblock Cambridge university press, 2018.
+
+\bibitem[Mashayekhi and Gras(2015)]{mashayekhi2015rule}
+Morteza Mashayekhi and Robin Gras.
+\newblock Rule extraction from random forest: the rf+ hc methods.
+\newblock In \emph{Canadian Conference on Artificial Intelligence}, pages
+  223--237. Springer, 2015.
+
+\bibitem[Sch{\"o}lkopf et~al.(1997)Sch{\"o}lkopf, Smola, and
+  M{\"u}ller]{scholkopf1997kernel}
+Bernhard Sch{\"o}lkopf, Alexander Smola, and Klaus-Robert M{\"u}ller.
+\newblock Kernel principal component analysis.
+\newblock In \emph{International Conference on Artificial Neural Networks},
+  pages 583--588. Springer, 1997.
+
+\bibitem[Strang(2006)]{strang2006linear}
+Gilbert Strang.
+\newblock \emph{Linear algebra and its applications}.
+\newblock Acad. Press, 4th edition, 2006.
+
+\bibitem[Vidal and Schiffer(2020)]{vidal2020born}
+Thibaut Vidal and Maximilian Schiffer.
+\newblock Born-again tree ensembles.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  9743--9753. PMLR, 2020.
+
+\end{thebibliography}
