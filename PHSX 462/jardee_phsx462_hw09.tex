@@ -1,4 +1,4 @@
- \documentclass[11pt]{article}
+\documentclass[11pt]{article}
 
 \usepackage[english]{babel}
 \usepackage[margin=1in]{geometry}
@@ -141,6 +141,28 @@ Plugging these into $c_a$, and doing some simplifying,
 Finally, the two constants are 
 \[\boxed{\mqty{c_a(t) = e^{-i((\omega_0 - \omega)/2)t}\left[\cos(\omega_r t) + \frac{i(\omega_0 - \omega)}{2\omega_r}\sin(\omega_r t)\right] \\ c_b(t)  = -\frac{i}{2\hbar \omega_r}V_{ba} \left[e^{i((\omega-\omega_0)/2)t}\right]\sin(\omega_r t)}}\]
 
+\item To show that the probability of state $b$ is never larger than 1, let us take the square of the component:
+\begin{align*}
+\abs{c_b(t)}^2 & = \frac{1}{4\hbar^2\omega_r^2}\abs{V_{ab}}^2 \sin[2](\omega_r t) \rightarrow \left(\frac{\abs{V_{ab}}}{2\hbar \omega_r}\right)^2 \, .
+\end{align*}
+We need to compare the top: $(\abs{V_{ab}}/2\hbar)^2$ to the bottom: $\displaystyle{\frac{1}{4}\left((\omega-\omega_0)^2 + (\abs{V_{ab}}/2\hbar)^2\right)}$. Since the bottom will always be larger than the top, the probability never goes above 1. 
+
+To show that the total probability is one, let us take the sum of the square of the components:
+\[\cos[2](\omega_r t) + \left(\frac{\omega_0 - \omega}{2\omega_r}\right)^2 \sin[2](\omega_r t) + \frac{1}{4\hbar^2 \omega^2_r}\abs{V_{ab}}^2\sin[2](\omega_r t)\]
+\[\cos[2](\omega_r t) + \left(\frac{1}{2\omega_r}\right)^2 \left((\omega_0-\omega)^2 + (\abs{V_{ab}}/2\hbar)^2\right)\sin[2](\omega_r t)\]
+\[\cos[2](\omega_r t) + \frac{\omega_r^2}{\omega_r^2} \sin[2](\omega_r t)\]
+\[\cos[2](\omega_r t) + \sin[2](\omega_r t) = t \qquad \checkmark\]
+
+\item 
+\begin{align*}
+\abs{c_b(t)}^2 & = \left(\frac{\abs{V_{ab}}^2}{2\hbar}\right)^2 \frac{4}{(\omega-\omega_0)^2 + (\abs{V_{ab}}/2\hbar)^2}\sin[2](\frac{1}{2}\sqrt{(\omega-\omega)^2 + (\abs{V_{ab}}/\hbar)^2})\\
+& \qquad \text{ if } (\omega - \omega_0)^2 \gg (\abs{V_{ab}}/\hbar)^2\\
+& = \left(\frac{\abs{V_{ab}}^2}{2\hbar}\right)^2 \frac{4}{(\omega-\omega_0)^2}\sin[2](\frac{1}{2}(\omega-\omega))\\
+& = \frac{\abs{V_{ab}}^2}{\hbar^2 (\omega-\omega_0)^2}\sin[2]((\omega-\omega_0)/2) \, .
+\end{align*}
+This is the solution that we got in the perturbation theory. As already stated, the definition of small here is that $(\omega - \omega_0)^2 \gg (\abs{V_{ab}}/\hbar)^2$. 
+
+\item The state is cycles on $\omega_r t$. So, the question when what have made one half rotation (since sign doesn't matter here), so $\omega_r t = \pi \rightarrow \boxed{t = \pi/\omega_r}$ . 
 
 \end{enumerate}
 
