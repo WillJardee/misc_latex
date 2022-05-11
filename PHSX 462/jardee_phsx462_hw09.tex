@@ -44,7 +44,7 @@ Let's start here by simply copying the wavefunctions that we will need:
 \psi_{210} & = \frac{1}{\sqrt{32\pi a^3}}\frac{r}{a} e^{-r/2a}\cos(\theta) \, ,\\
 \psi_{21\pm 1} & = \mp \frac{1}{\sqrt{64 \pi a^3}}\frac{r}{a} e^{-r/2a}\sin(\theta)e^{\pm i\phi} \, .
 \end{align*}
-Since $r$ has the same degree as $z$ ($r^2 = x^2 + y^2 + z^2$), then we can just do some analysis of each as even or odd, and eliminate each on that. For each of the $H^\prime_{ii}$, they are even in $z$; thus, each is zero. The same holds for each of the combinations of $\ket{200}, \ket{211}, \ket{21-1}$ with $\ket{100}$. However, the combination of $\ket{210}$ with $\ket{100}$ is not, so let us look at that:
+Since $r$ has the same degree as $z$ ($r^2 = x^2 + y^2 + z^2$), we can just analyze each as even or odd and eliminate each on that. For each of the $H^\prime_{ii}$, they are even in $z$; thus, each is zero. The same holds for each of the combinations of $\ket{200}, \ket{211}, \ket{21-1}$ with $\ket{100}$. However, the combination of $\ket{210}$ with $\ket{100}$ is not, so let us look at that:
 \begin{align*}
 H^\prime_{100, 210} & = eE\frac{1}{\sqrt{\pi a^3}}\frac{1}{\sqrt{32 \pi a^3}}\frac{1}{a}\int re^{-r/a} e^{-r/2a}\cos(\theta) z r^2 \sin(\theta) \dd{r}\dd{\theta}\dd{\phi}\\
 & = eE \frac{1}{a^4\sqrt{8}\pi}\int^\infty_0 r^4 e^{-3r/2a} \dd{r} \int_0^\pi \cos[2](\theta) \dd{\theta} \int^{2\pi}_0 \dd{\phi}\\
@@ -78,7 +78,7 @@ The probability of the transition will then be
 \[c_b^{(1)} = -\frac{i}{\hbar}\int_{-\infty}^\infty \alpha \delta(t)e^{i\omega t}\dd{t} = -\frac{i\alpha}{\hbar} \, .\]
 This gives a probability of $(\alpha/\hbar)^2$, which is the first order term of the solution of 11.4 ($\sin[2](\alpha/\hbar)$).
 
-\item The probability gets killed off, as $e^{-(\omega \tau)^2/2}\rightarrow 0$. Consequently, we see no transition of states and the hinting at an adiabatic-type system.
+\item The probability gets killed off, as $e^{-(\omega \tau)^2/2}\rightarrow 0$. Consequently, we see no transition of states, hinting at an adiabatic-type system.
 
 \end{enumerate}
 
@@ -115,9 +115,11 @@ Using the initial conditions here gives $C+D = 0$.
 
 To solve for the coefficients in the $c_b$ equation, let us take the derivative: 
 \begin{align*}
-\dot{c}_b & = -i\left[\frac{(\omega - \omega_0)}{2} + \omega_r\right]Ce^{-i\left[\frac{(\omega - \omega_0)}{2} + \omega_r\right]} -i\left[\frac{(\omega - \omega_0)}{2} - \omega_r\right]De^{-i\left[\frac{(\omega - \omega_0)}{2} - \omega_r\right]}\\
+\dot{c}_b & = -i\left[\frac{(\omega - \omega_0)}{2} + \omega_r\right]Ce^{-i\left[\frac{(\omega - \omega_0)}{2} + \omega_r\right]} \\
+& \hspace{5em} -i\left[\frac{(\omega - \omega_0)}{2} - \omega_r\right]De^{-i\left[\frac{(\omega - \omega_0)}{2} - \omega_r\right]}\\
 -\frac{i}{2\hbar}V_{ba}e^{i(\omega_0-\omega)t}c_a & = \qquad " \quad "\\
-c_a & = \left[\frac{2\hbar}{V_{ba}}\right]\left[\left(\frac{(\omega-omega_0)}{2} + \omega_r\right)Ce^{-i\omega_r t} + \left(\frac{(\omega-omega_0)}{2} - \omega_r\right)De^{i\omega_r t}\right]\\
+c_a & = \left[\frac{2\hbar}{V_{ba}}\right]\left[\left(\frac{(\omega-omega_0)}{2} + \omega_r\right)Ce^{-i\omega_r t} \right. \\
+& \hspace{5em } \left. + \left(\frac{(\omega-omega_0)}{2} - \omega_r\right)De^{i\omega_r t}\right]\\
 1 & = \left[\frac{2\hbar}{V_{ba}}\right]\left[\left(\frac{(\omega-omega_0)}{2} + \omega_r\right)C + \left(\frac{(\omega-omega_0)}{2} - \omega_r\right)D\right]\\
 1 & = \left[\frac{2\hbar}{V_{ba}}\right][C-D]\omega_r
 \end{align*}
@@ -170,12 +172,71 @@ This is the solution that we got in the perturbation theory. As already stated, 
 \newpage
 
 \section*{Griffiths 11.11}
+\begin{enumerate}[label=\alph*)]
+\item We want to find the solution to 
+\[\left(\frac{1}{c^2}\pdv[2]{t} - \nabla^2\right)f(x,y,z,t) = 0 \, .\]
+Let us start by assuming that the equation is separable, 
+\[f(x,y,z,t) = f_x(x)f_y(y)f_z(z)f_t(t) \, ,\]
+and plug it back into the differential equation,
+\[\frac{1}{c^2}f^{\prime\prime}_t f_xf_yf_z - f^{\prime\prime}_xf_yf_zf_t - f^{\prime\prime}_yf_xf_zf_t - f^{\prime\prime}_zf_xf_yf_t = 0 \rightarrow \frac{1}{c^2}\frac{f^{\prime \prime}_t}{f_t} - \frac{f^{\prime \prime}_x}{f_x} - \frac{f^{\prime \prime}_y}{f_y} - \frac{f^{\prime \prime}_z}{f_z} = 0\, ,\]
+\[\frac{1}{c^2}\frac{f^{\prime \prime}_t}{f_t} = \frac{f^{\prime \prime}_x}{f_x} + \frac{f^{\prime \prime}_y}{f_y} + \frac{f^{\prime \prime}_z}{f_z} \, .\]
+The right and left sides must always be equal (isolating the temporal and spatial functions), so if we let this be some $-\alpha$, 
+\[f^{\prime \prime}_t = -\alpha c^2 f_t \rightarrow C_1 \cos(\omega t) + C_2 \sin(\omega t) \text{ where } \omega = \sqrt{\alpha}c \, .\]
+If we let the function start at the apex, then we can just choose the cosine part. 
 
+All together, the three spatial functions must be also be provide this $-\alpha$, but individually must be a constant so they can vary independently. putting together this idea gives that each function can be written as
+\begin{align*}
+f_x^{\prime \prime} & = -k_x^2 f_x & f_y^{\prime \prime} & = -k_y^2 f_y & f_z^{\prime \prime} & = -k_z^2 f_z \, ,
+\end{align*}
+which gives
+\begin{align*}
+f_x & = C_{1x}\cos(k_x x) + C_{2x}\sin(k_x x) \, , \\
+f_y & = C_{1y}\cos(k_y y) + C_{2y}\sin(k_y y) \, ,\\
+f_z & = C_{1z}\cos(k_z z) + C_{2z}\sin(k_z z) \, . 
+\end{align*}
+Using the initial condition that the boxes must zero at both the beginning and end of the box, then we must choose the sine solution and let the $k$'s be multiples of $\pi$; that means
+\begin{align*}
+f_x & = C_{2x}\sin(\frac{n_x \pi}{l} x) \, ,& f_y & = C_{2y}\sin(\frac{n_y \pi}{l} y) \, , & f_z & = C_{2z}\sin(\frac{n_z \pi}{l} z) \, . 
+\end{align*}
+This means that the $\displaystyle{\alpha = \left(\frac{n_x \pi}{l}\right)^2 + \left(\frac{n_y \pi}{l}\right)^2 + \left(\frac{n_y \pi}{l}\right)^2 = \left(\frac{\pi}{l}\right)^2(n_x^2 + n_y^2 + n_z^2)}$. This gives that $\displaystyle{\omega = \frac{\pi c}{l}\sqrt{n_x^2 + n_y^2 + n_z^2}}$. Taking the product of these four, and combining all the coefficients, gives
+\[\boxed{f(x,y,z,t) = A \cos(\omega t)\sin(\frac{n_x \pi}{l} x)\sin(\frac{n_y \pi}{l} y)\sin(\frac{n_z \pi}{l} z)} \quad \text{where } \omega = \frac{\pi c}{l}\sqrt{n_x^2 + n_y^2 + n_z^2} \, .\]
+
+\item Taking the analogy that the wavenumbers are on the surface of a sphere, we get that the ``surface area" is
+\[2\left(\frac{1}{8}4\pi n^2\right)\dd{n} = \pi n^2 \dd{n} \, .\]
+We are given that 
+\[E_n = 2\frac{\pi\hbar c}{l}n = \hbar \omega \rightarrow n = \frac{\omega l}{\pi c} \text{ and } \dd{n} = \frac{l}{\pi c}\dd{\omega} \, .\]
+We can then say
+\begin{align*}
+\dd{E} & = \hbar \omega \pi n^2 \dd{n}\\
+& = \hbar \omega \pi \left(\frac{\omega l}{\pi c}\right)^2 \left(\frac{l}{\pi c}\right) \dd{\omega}\\
+\frac{\dd{E}}{l^3} & = \underbrace{\frac{\hbar}{\pi^2}\left(\frac{\omega}{c}\right)^3}_{\rho(\omega)} \dd{\omega} \, .
+\end{align*}
+
+\item Substituting into 11.54 gives $\displaystyle{R_{b\rightarrow a} = \frac{\omega^3\abs{\mathcal{P}}^2}{3\pi \varepsilon_0 \hbar c^3}}$, which is exactly what we got in 11.63.
+
+\end{enumerate}
 
 %--------------------------------------------------------------------------------
 \newpage
 
 \section*{Griffiths 11.13}
-
+A lot of the analysis for this one mirrors what we have already done in the first question. From that conversation we can copy that $\displaystyle{\bra{1 0 0 } z \ket{2 1 0} = \frac{2^8 a}{3^5 \sqrt{2}}}$. We also noticed that the equations were even in $x$ and $y$ for all of them except $\ket{2 1 \pm 1}$. This is the only matrix element that we still need to calculate.
+\begin{align*}
+\bra{1 0 0} x \ket{2 1 \pm 1} & = \int \frac{1}{\sqrt{\pi a^3}}\frac{\mp 1}{\sqrt{64\pi a^3}}e^{-r/a}\frac{r}{a}e^{-r/2a}\sin(\theta)e^{\pm i \phi} x\dd{V}\\
+& = \frac{\mp 1}{8\pi a^4}\left[4!\left(\frac{2a}{3}\right)^5\right]\frac{4\pi}{3} = \mp \frac{2^7}{3^5}a \, ,\\
+\bra{1 0 0} y \ket{2 1 \pm 1} & = \int \frac{1}{\sqrt{\pi a^3}}\frac{\mp 1}{\sqrt{64\pi a^3}}e^{-r/a}\frac{r}{a}e^{-r/2a}\sin(\theta)e^{\pm i \phi} y\dd{V}\\
+& = \frac{\mp 1}{8\pi a^4}\left[4!\left(\frac{2a}{3}\right)^5\right]\frac{4\pi}{3}(\pm i) = -i \frac{2^7}{3^5}a \, .
+\end{align*}
+Putting these all together give that 
+\begin{align*}
+\bra{1 0 0}\vb{r}\ket{2 0 0} & = 0 \, , & \bra{1 0 0}\vb{r}\ket{2 1 0} & =\frac{2^8 a}{3^5 \sqrt{2}}\hat{z} & \bra{1 0 0}\vb{r}\ket{2 1 \pm 1} & = \frac{2^7}{3^5}a(\mp \hat{x} - i \hat{y}) \, , \\
+\bra{1 0 0}\vb{r}\ket{2 0 0} & \rightarrow \abs{\mathcal{P}}^2 = 0 & \bra{1 0 0}\vb{r}\ket{2 1 0} & \rightarrow \abs{\mathcal{P}}^2 = (qa)^2\frac{2^{15}}{3^{10}}  & \bra{1 0 0}\vb{r}\ket{2 0 0} & \rightarrow \abs{\mathcal{P}}^2 = (qa)^2\frac{2^{15}}{3^{10}} \, .
+\end{align*}
+We are given that $\displaystyle{A = \frac{\omega^3 \abs{\mathcal{P}}^2}{3\pi \varepsilon_0 \hbar c^3}}$, and $\displaystyle{\omega = \frac{E_2-E_1}{\hbar} = -\frac{3}{4\hbar}E_1}$. So, for all the states where $\mathcal{P}\neq 0$:
+\begin{align*}
+A & = -\frac{3^3}{2^6}\frac{E_1^3}{\hbar^3}\frac{(ea)^2 2^{15}}{3^{10}}\frac{1}{3\pi\varepsilon_0 \hbar c^3} \rightarrow 6.27\times 10^8 \text{s}^{-1} \, ,
+\end{align*}
+\[\boxed{\tau = \frac{1}{A} \approx 1.60\times 10^{-9} \text{s}} \, .\qquad \checkmark\]
+Obviously, the $\ket{2 0 0 }$ state never has the opportunity to transition, so the lifetime is $\tau \rightarrow \infty$. 
 
 \end{document}

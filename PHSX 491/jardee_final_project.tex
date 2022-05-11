@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath, mathtools} 
+\usepackage{geometry, graphicx}
+\usepackage{algorithm, algpseudocode}
+\usepackage{tabulary}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{hanging}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{url}
+
+\usepackage{enumitem}
+\usepackage{physics}
+
+\usepackage{mathtools}
+
+\usepackage{soul}
+
+
+
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\usepackage{jmlr2e}
+
+\usepackage[noabbrev,capitalize]{cleveref}
+
+
+
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+% Short headings should be running head and authors' last names
+
+\ShortHeadings{Killing Vectors}{Jardee}
+\firstpageno{1}
+
+
+\begin{document}
+
+
+\title{Introduction to Killing Vectors}
+
+\author{\name William Jardee\email willjardee@gmail.com \\
+       \addr Department of Physics\\
+       Montana State University\\
+       Bozeman, MT 59715, USA
+       }
+\editor{N/A}
+
+\maketitle
+ 
+\section{Introduction}
+\label{sec:intro}
+If physics, conserved quantities are often the key to understanding the universe. According to Noether's Theorem (over simplifying the nuances of the elegant proof), symmetries of a physical system with conservative forces correspond to conservation laws \citep{Noether_1971}. So, if one is looking only at the surrounding topology of space, then the symmetries of the space are the key to understanding the universe. In the context of general relativity specifically, the application of the Killing Equation provides the Killing Equations that underline the Lie Algebra that defines a differentiable topological space and thus fundamentally define the conserved quantities of the space. This paper aims to introduce Killing Vectors and give a few examples of solutions to the Killing Equation in some common spaces. 
+
+\section{Killing Vectors}
+There are various derivations of the Killing equations and related representations. Looking at the Wikipedia page related to Killing vectors, two common representations are through the Lie derivative and the Levi-Citita connection \citep{wiki}. The Lie derivative runs closer to what we have been doing in class, so we will be following the derivation provided by \cite{carroll2005spacetime}.
+
+\subsection{Formalism}
+The symmetries of a metric, such that $\phi_* g_{\mu\nu} = g_{\mu\nu}$, motive what is called a isometry. The generators of these isometries are vectors $K^\mu(x)$, where $K^\mu$ is known as a Killing vector field (often shorted to a Killing vector; presumably to be more confusing). The Lie derivative along this vector must be invarient then, that is
+\begin{equation}
+\tag{5.41 \citep{carroll2005spacetime}}
+\mathcal{L}_{K}g_{\mu\nu} = 0 \, .
+\label{eq:5.41}
+\end{equation}
+Given that the the Lie derivative of a metric can be described as 
+\begin{equation}
+\tag{5.33 \citep{carroll2005spacetime}}
+\mathcal{L}_{K}g_{\mu\nu} = 2\nabla_{(\mu}K_{\nu)}
+\label{eq:5.33}
+\end{equation}
+then it can be given that
+\begin{equation}
+\tag{5.42 \citep{carroll2005spacetime}}
+\nabla_{(\mu}K_{\nu)} = 0 \, .
+\label{eq:5.42}
+\end{equation}
+Equation~\ref{eq:5.42} is referred to as the Killing's equation, and is the differential equation that all Killing vectors must satisfy. To make this conversation more abstract, these killing equations are equivalent to\footnote{This is more clearly derived in \cite{woodhouse} and can be see in their Definition 7.4.}
+\begin{equation}
+\tag{3.59 \citep{alder}}
+\nabla_{(\mu}K_{\nu)} + \nabla_{(\nu}K_{\mu)}= 0 \, .\footnote{This was not the formalism described in that paper, but rewritten and posted on \cite{wiki} in more modern formalism.}
+\label{eq:3.59}
+\end{equation}
+
+How to approach analytically deriving these solutions is not overly straightforward, and in researching this topic, it seemed that doing so was not a common approach at all. Instead, most observed the space and deduced candidates by inspection. As we shall see in the derivation of the Killing vectors of a 2-sphere, derivations can be made to create a new basis of a space already known. However, it is not clear how to go about solving these differential equations. 
+
+The conceptual understanding of what is happening is laid out well in \cite{woodhouse} chapter 7.6 (refer to that for the origin of this conversation). The general premise is that we want to find a vector $T = (1,0,0,0)$ such that the Lagrange is constant along the coordinate; this defines a geodesic. In a static (time independent) field, this coordinate is $(1,0,0,0)$ in regular four-space. In the case of more complicated symmetries, this $T$ will have to be defined in a new coordinate system, then mapping back to a familiar space gives $T_\mu \mapsto K_\mu$. By looking at metrics, these symmetries can usually be deduced by finding variables that the metric does not depend on or a certain type of familiar symmetries. 
+
+These are some bounds on when the search for symmetries is done, but, as \cite{carroll2005spacetime} points out, ``it is not clear when to stop looking". It has been proven that a maximally symmetric $n$-dimensionaly manifold has at most $n(n+1)/2$ symmetries. This can be rationalized as having $n$ possible coordinates with symmetries, then $n(n-1)/2$ possible rotational symmetries. Putting these two together gives 
+\[n + \frac{n(n-1)}{2} = \frac{n(n+1)}{2}\]
+symmetries. Using this idea, then the $n$ might be manipulated to guess how many symmetries, and in terms of how many Killing vectors, a metric may have. However, this conversation about coordinates and rotations only works in Euclidean geometries and breaks down when curving spaces and non-Euclidean signatures are introduced; the number of symmetries does not change, but the details do. This number is merely a guess and not an enforceable claim on how many possible Killing vectors any metric has. 
+ 
+\subsection{Conserved Quantities}
+These symmetries are interesting, but how do they translate to conserved quanities? As described by \cite{carroll2005spacetime}: ``Killing vectors imply conserved quanities associated with the motion of \textit{free particles}" (emphasis added). Given a geodesic $x^\mu(\lambda)$, and tangent vector $U^\mu = \dv*{x^\mu}{\lambda}$, and a Killing vector $K^\mu$, then
+\begin{equation}
+\tag{5.43 \citep{carroll2005spacetime}}
+U^\mu \nabla_\nu(K_\mu U^\mu)= U^\mu U^\nu \nabla_\nu K_\mu +V_\mu U^\nu \nabla_\nu U^\mu = 0 \, ,
+\label{eq:5.43}
+\end{equation}
+where the first term is zero because of the Killing's equation and the second from the fact that $x^\mu(\lambda)$ is a geodesic (all these details are outlined well in \cite{carroll2005spacetime}). In the example of generators in hamiltonian mechanics, the general Hamiltonian is the generator of translations and directly results in energy conservation \cite{griffiths_qm}. These same ideas can be taken to derive momentum conservation and angular momentum conservation. Some of these conservations are more abstract and rely on symmetries that only exist in some fields, such as the EM field that the weak force carries act in \cite{griffiths_part}. Observing Equation~\ref{eq:5.43}, then conserved quantities can be derived. 
+
+\section{Examples of Killing Vectors}
+It is hard to understand what these Killing vectors look like until a couple of examples are given. Here we will outline a couple of key examples: simple cartesian, 2-sphere and by simple extension, the Schwarzschild metric. To conclude, we will bring up the symmetries in Minkowski-space, a maximally symmetric space.
+
+\subsection{Cartesian}
+Looking at a Cartesian 2-space\footnote{This example is from \cite{carroll2005spacetime}.}, $\mathbb{R}^2$ with metric $\dd{s}^2 = \dd{x}^2 + \dd{y}^2$, it is clear that there are a total of 3 symmetries: $x$, $y$, and a single rotational symmetry given by $\partial_\theta$. The first two can be seen as
+\begin{align*}
+X^\mu & = (1,0) \, ,\\
+Y^\mu & = (0,1) \, .
+\end{align*}
+The third rotational vector is $R^\mu = (-1, 1)$. This doesn't fit the intuitive statement earlier in the form of $(1,0)$. If this space is described in polar coordinates instead, then 
+\[\theta^\mu = (0,1) \, ,\]
+which does fit the statement from earlier. In the converstation of genetors of the space, this gives the three genetors for the space, which we know define it:
+\[\partial_x \, , \, \partial_y \, , \, \partial_\theta \, .\]
+
+\subsection{2-Sphere}
+This example is taken from \cite{wiki}, and has a more detailed derivation there. The space of interest is the surface of a three-dimensional sphere. The typical metric is 
+\[g(\Omega) = \dd{\theta}^2 + \sin[2](\theta)\dd{\phi}^2 \, .\]
+There is a rotational symmetry in both $\phi$ and $\theta$ (these can be described as the generators $\partial_\phi$ and $\partial_\theta$ respectively). The commutator of any two Killing vectors is also a Killing vector, so the question is: what is the dimensionality of this space, and what is a convenient orthonormal basis that can define it? If we can find a cyclic base of commutator relationship between Killing vectors, then those vectors define a complete basis of the space. In this problem, that space will fully define all the rotational symmetries. 
+
+If the space is seen as rotations in three-dimensional Euclidean space, then the three unique rotations are the three around the axes. That is, around the $x$, $y$, and $z$ axis. Recalling that $\vb{L} = \vb{r}\times \vb{p}$, then the rotational operators are
+\begin{align*}
+R & = x\partial_y - y\partial_x \, ,& S & = z\partial_y - y\partial_z & \, , T & = z\partial_x - x\partial_z \, .
+\end{align*} 
+It is easy to see that 
+\begin{align*}
+[R,S] & = T \, ,& [S, T] & = R \, , & [T, R] & = S \, ,
+\end{align*}
+and thus these three make a complete basis. This description of the generators are not all that enlightening considering that we started in a spherical interpretation. 
+
+Rewritting these coordinates, and nomalizing, provideds the basis
+\begin{align*}
+R^\prime & = \frac{R}{\sin[2](\theta)} = \partial_\phi \, ,\\
+S^\prime & = \frac{S}{\sin[2](\theta)} = \sin(\phi)\partial_\theta + \cot(\theta)\cos(\phi)\partial_\phi \, ,\\
+T^\prime & = \frac{T}{\sin[2](\theta)} = \cos(\phi)\partial_\theta + \cot(\theta)\sin(\phi)\partial_\phi \, .
+\end{align*}
+Let us look back at the earlier conversation about the possible number of symmetries of a space. Before we said that there were $n$ symmetries from coordinate transformation, and $n(n-1)/2$ from rotations. In this space, we only have two coordinates in our basis, $\theta$ and $\phi$, which would hint at $2(1)/2 =1$ symmetries. However, the neglected third coordinate, $r$, that did not show up in the metric meant that there were $3(2)/2 = 3$ possible rotational symmetries, which is what we found. This is being highlighted to remind the reader that the ``obvious" limitations of the space should not necessarily be trusted.
+
+\subsection{Schwartzchild Metric}
+The Killing vectors of the Schartzchild metric are a natural expansion of those of the 2-sphere because of the strong rotational symmetry in the metric. The Schwarzschild metric is 
+\[\dd{s}^2 = -\left(1 -\frac{2M}{r}\right)\dd{t}^2 + \left(1 - \frac{2M}{r}\right)^{-1}\dd{r}^2 + g(\Omega) \, .\]
+There is a clear lack of symmetry concerning the radius, as both time and spatial components depend on it asymptotically. However, all four of the components are independent of $t$, which leads to the generator of $\partial_t$. There seems to be a consensus that these four generators, 
+\[\partial_t \, ,\]
+\[\partial_\phi \, ,\]
+\[\sin(\phi)\partial_\theta + \cot(\theta)\cos(\phi)\partial_\phi \, , \text{ and }\]
+\[\cos(\phi)\partial_\theta + \cot(\theta)\sin(\phi)\partial_\phi \, ,\]
+are the only four Killing vectors that define the basis of the ``Killing space." However, there does not seem to be any common proof beyond inspecting the space. Here, our conversation about maximally symmetric spaces can be brought back up. There is one translational symmetry, $t$, which is $1/4$ of the $n$ translational symmetries. Then there are only $3$ rotational symmetries, which mirrors the conversation in the 2-Sphere section. As will be seen in the Minkowski space conversation, there does seem to be a time-rotation component missing from this conversation. The most likely explanation is that time is no longer a disjoint coordinate and depends strictly on $r$; thus, no symmetry can be found here, as the important characteristics are already covered with $r$ in finding the three rotational symmetries.
+
+
+\subsection{Minkowski Space}
+Finally, let us look at the special relativistic metric, the Minkowski metric. The metric is\footnote{Notice that I have chosen to use the $(-\, +\, +\, +)$ signature. The keen classical physicist may be confused by this choice, but it is an act of rebellion stemming from the particle physicist inside.}
+\[\dd{s}^2 = -\dd{t}^2 + \dd{x}^2 + \dd{y}^2 \dd{z}^2 \, .\]
+It is easy to see that there are the symmetries seen in the Schwarzschild metric. There are also the symmetries seen in a Cartesian 3-space of the coordinate axes, those are 
+\[\partial_x \, , \, \partial_y \, , \, \partial_z \, .\]
+Finally there are three rotational symmetries described by ``rotations" in time. These are often referred to as the Lorentz boosts,
+\[x\partial_t + t\partial_x \, , \, y\partial_t + t \partial_y \, , \, z\partial_t + r \partial_z \, .\]
+Altogether these make up 10 Killing vectors, or 10 symmetries. From the statement earlier, there can be a total of $4(5)/2 = 10$ symmetries for a four-dimensional space. Thus, we can conclude that the Minkowski space is the maximally symmetric space, which makes intuitive sense.
+
+
+%\section{Machine Learning Methods to Symmetries}
+%% comment on NN structure detection (hidden layer)
+%% loss function
+%% differential evolution/pso for auto clustering
+%
+%\section{New Proposed Method}
+%% learn geodesics via monte carlo or pso
+%% killing equation via previous method
+%% combine to detect solution to caroll equation
+%% incomplete idea, but the next steps is working out all the theory to get there
+
+
+\section{Conclusion}
+The exploration of symmetries in manifolds defines an essential understanding of a space. We have presented the fundamental concepts that define these symmetries through the Killing vectors. In addition, a few examples of Killing vectors in two important spaces, the Schwartzchild and Minkowski metrics, were given. This introduction barely scratches the surface on the derivation of Killing vectors and their application but serves as an excellent introduction to their concept.
+
+%---------------------------------------------------------------------
+
+\vskip 0.2in
+\bibliography{jardee_final_project}
+
+\end{document}
+

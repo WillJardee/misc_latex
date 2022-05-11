@@ -1,0 +1,48 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Adler et~al.(1975)Adler, Bazin, and Schiffer]{alder}
+Ronald Adler, Maurice Bazin, and Menahem Schiffer.
+\newblock \emph{Introduction to general relativity}.
+\newblock McGraw-Hill, 1975.
+
+\bibitem[Carroll and Traschen(2005)]{carroll2005spacetime}
+Sean~M Carroll and Jennie Traschen.
+\newblock Spacetime and geometry: An introduction to general relativity.
+\newblock \emph{Physics Today}, 58\penalty0 (1):\penalty0 52, 2005.
+
+\bibitem[Griffiths(2020)]{griffiths_part}
+David~J. Griffiths.
+\newblock \emph{Introduction to elementary particles}.
+\newblock Wiley-VCH, 2020.
+
+\bibitem[Griffiths and Schroeter(2018)]{griffiths_qm}
+David~Jeffery Griffiths and Darrell~F. Schroeter.
+\newblock \emph{Introduction to quantum mechanics}.
+\newblock Cambridge University Press, 2018.
+
+\bibitem[J.(2007)]{woodhouse}
+Woodhouse N~M J.
+\newblock \emph{General relativity}.
+\newblock Springer, 2007.
+
+\bibitem[Noether(1971)]{Noether_1971}
+Emmy Noether.
+\newblock Invariant variation problems.
+\newblock \emph{Transport Theory and Statistical Physics}, 1\penalty0
+  (3):\penalty0 186--207, jan 1971.
+\newblock \doi{10.1080/00411457108231446}.
+\newblock URL \url{https://doi.org/10.1080%2F00411457108231446}.
+
+\bibitem[{Wikipedia contributors}(2022)]{wiki}
+{Wikipedia contributors}.
+\newblock Killing vector field --- {Wikipedia}{,} the free encyclopedia, 2022.
+\newblock URL
+  \url{https://en.wikipedia.org/w/index.php?title=Killing_vector_field&oldid=1086549403}.
+\newblock [Online; accessed 9-May-2022].
+
+\end{thebibliography}
